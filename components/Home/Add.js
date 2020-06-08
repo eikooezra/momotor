@@ -16,12 +16,13 @@ class Add extends Component{
         super(props)
         this.state = {
             Model: '',
-            prodYear: [],
-            location: [],
+            prodYear: '',
+            location: '',
             price: '',
             refcode: '',
             desc: '',
             isAllFilled: false,
+            data: null
         }
     }
     
@@ -33,32 +34,32 @@ class Add extends Component{
         this.props.navigation.navigate('AddPics')
     }
 
-    changeYear(item) {
-        let prodYear
-        switch (item,value) {
-            case '2015':
-                prodYear = [{label: '2015', value: 2015}]
-                break;
-            case '2016':
-                prodYear = [{label: '2016', value: 2016}]
-                break;
-            case '2017':
-                prodYear = [{label: '2017', value: 2017}]
-                break;
-            case '2018':
-                prodYear = [{label: '2018', value: 2018}]
-                break;
-            case '2019':
-                prodYear = [{label: '2019', value: 2019}]
-                break;
-            case '2020':
-                prodYear = [{label: '2020', value: 2020}]
-                break;
-        }
-        this.setState({
-            prodYear
-        })
-    }
+    // changeYear(item) {
+    //     let prodYear
+    //     switch (item,value) {
+    //         case '2015':
+    //             prodYear = [{label: '2015', value: '15'}]
+    //             break;
+    //         case '2016':
+    //             prodYear = [{label: '2016', value: '16'}]
+    //             break;
+    //         case '2017':
+    //             prodYear = [{label: '2017', value: '17'}]
+    //             break;
+    //         case '2018':
+    //             prodYear = [{label: '2018', value: '18'}]
+    //             break;
+    //         case '2019':
+    //             prodYear = [{label: '2019', value: '19'}]
+    //             break;
+    //         case '2020':
+    //             prodYear = [{label: '2020', value: '20'}]
+    //             break;
+    //     }
+    //     this.setState({
+    //         prodYear
+    //     })
+    // }
     
 render(){
     return(
@@ -92,15 +93,16 @@ render(){
             </View>
         </View>
         
-        <View>
+         <View>
+            <View>
             <DropDownPicker
                 items={[
-                    {label: '2015', value: 2015}, 
-                    {label: '2016', value: 2016}, 
-                    {label: '2017', value: 2017}, 
-                    {label: '2018', value: 2018},
-                    {label: '2019', value: 2019}, 
-                    {label: '2020', value: 2020},
+                    {label: '2015', value: '15'}, 
+                    {label: '2016', value: '16'}, 
+                    {label: '2017', value: '17'}, 
+                    {label: '2018', value: '18'},
+                    {label: '2019', value: '19'}, 
+                    {label: '2020', value: '20'},
                 ]}
                 defaultNull
                 placeholder='Tahun Produksi'
@@ -112,8 +114,9 @@ render(){
                     height: 48,
                     marginLeft: 16,
                     marginBottom: 34,
-                    borderWidth: 2,
-                    borderColor: '#EBEBEB',
+                }}
+                dropDownStyle={{
+                    backgroundColor: '#FFFFFF'
                 }}
                 labelStyle={{
                     marginLeft: 8,
@@ -124,12 +127,20 @@ render(){
                 arrowStyle={{
                     marginLeft: 205
                 }}
-                onChangeItem={item => this.changeYear(item)}
+                onChangeItem={item => this.setState({
+                    prodYear: item
+                })}
             />
+            </View>
 
+            <View>
             <DropDownPicker
                 items={[
-
+                    {label: 'Jakarta', value: 'jakarta'},
+                    {label: 'Bogor', value: 'bogor'},
+                    {label: 'Depok', value: 'depok'},
+                    {label: 'Tangerang', value: 'tangerang'},
+                    {label: 'Bekasi', value: 'bekasi'},
                 ]}
                 defaultNull
                 placeholder='Lokasi'
@@ -142,8 +153,9 @@ render(){
                     height: 48,
                     marginLeft: 16,
                     marginBottom: 34,
-                    borderWidth: 2,
-                    borderColor: '#EBEBEB',
+                }}
+                dropDownStyle={{
+                    backgroundColor: '#FFFFFF'
                 }}
                 labelStyle={{
                     marginLeft: 8,
@@ -154,12 +166,17 @@ render(){
                 arrowStyle={{
                     marginLeft: 270
                 }}
+                onChangeItem={item => this.setState({
+                    location: item
+                })}
                 />
+            </View>
 
                 <View style={styles.txtInpHarga}>
                     <TextInput
                         style={styles.txtHarga}
                         placeholder='Harga'
+                        onChangeText={this.state.price}
                     />
                 </View>
 
@@ -168,6 +185,7 @@ render(){
                         style={styles.txtCode}
                         placeholder='Kode Referral'
                         placeholderTextColor='#7F7F7F'
+                        onChangeText={this.state.refcode}
                     />
                 </View>
 
@@ -176,6 +194,7 @@ render(){
                         style={styles.txtDesc}
                         placeholder='Deskripsi'
                         placeholderTextColor='#7F7F7F'
+                        onChangeText={this.state.desc}
                     />
                 </View>
         </View>
