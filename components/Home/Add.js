@@ -10,7 +10,6 @@ import {
 } from 'react-native'
 import DropDownPicker from 'react-native-dropdown-picker'
 
-
 class Add extends Component{
     constructor(props){
         super(props)
@@ -19,10 +18,15 @@ class Add extends Component{
             prodYear: '',
             location: '',
             price: '',
+            isPrcFilled: false,
             refcode: '',
+            isRefFilled: false,
             desc: '',
-            isAllFilled: false,
-            data: null
+            isDescFilled: false,
+            validity: false,
+            isPicked: false,
+            isPressed: false,
+            null: true
         }
     }
     
@@ -34,34 +38,48 @@ class Add extends Component{
         this.props.navigation.navigate('AddPics')
     }
 
-    // changeYear(item) {
-    //     let prodYear
-    //     switch (item,value) {
-    //         case '2015':
-    //             prodYear = [{label: '2015', value: '15'}]
-    //             break;
-    //         case '2016':
-    //             prodYear = [{label: '2016', value: '16'}]
-    //             break;
-    //         case '2017':
-    //             prodYear = [{label: '2017', value: '17'}]
-    //             break;
-    //         case '2018':
-    //             prodYear = [{label: '2018', value: '18'}]
-    //             break;
-    //         case '2019':
-    //             prodYear = [{label: '2019', value: '19'}]
-    //             break;
-    //         case '2020':
-    //             prodYear = [{label: '2020', value: '20'}]
-    //             break;
-    //     }
-    //     this.setState({
-    //         prodYear
-    //     })
-    // }
+    nullChecker = () => {
+        if(this.state.isPressed === false){
+            this.setState({null: true})
+        } 
+    }
+
+    handleChangePick = (prodYear, location) => {
+      this.setState({prodYear, location})
+      if(this.state.prodYear && this.state.location === true){
+        this.setState({isPicked: true})
+      }
+    }
+
+    handleChangePrice = (price) => {
+      this.setState({price})
+      if(this.state.price === true){
+        this.setState({isPrcFilled: true})
+      }
+    }
+
+    handleChangeRef = (refcode) => {
+      this.setState({refcode})
+      if(this.state.refcode === true){
+        this.setState({isRefFilled: true})
+      }
+    }
+
+    handleChangeDesc = (desc) => {
+      this.setState({desc})
+      if(this.state.desc === true){
+        this.setState({isDescFilled: true})
+      }
+    }
     
 render(){
+    const enabled = 
+    this.state.prodYear !== '' &&
+    this.state.location !== '' &&
+    this.state.price !== '' &&
+    this.state.refcode !== '' &&
+    this.state.desc !== ''
+
     return(
     <View style={styles.container}>
         <View style={styles.Header}>
@@ -104,7 +122,7 @@ render(){
                     {label: '2019', value: '19'}, 
                     {label: '2020', value: '20'},
                 ]}
-                defaultNull
+                defaultNull={this.nullChecker}
                 placeholder='Tahun Produksi'
                 style={{
                     paddingVertical: 20
@@ -128,7 +146,7 @@ render(){
                     marginLeft: 205
                 }}
                 onChangeItem={item => this.setState({
-                    prodYear: item
+                    prodYear: item,
                 })}
             />
             </View>
@@ -142,7 +160,7 @@ render(){
                     {label: 'Tangerang', value: 'tangerang'},
                     {label: 'Bekasi', value: 'bekasi'},
                 ]}
-                defaultNull
+                defaultNull={this.nullChecker}
                 placeholder='Lokasi'
                 placeholderTextColor='#7F7F7F'
                 style={{
@@ -167,7 +185,7 @@ render(){
                     marginLeft: 270
                 }}
                 onChangeItem={item => this.setState({
-                    location: item
+                    location: item,
                 })}
                 />
             </View>
@@ -176,7 +194,8 @@ render(){
                     <TextInput
                         style={styles.txtHarga}
                         placeholder='Harga'
-                        onChangeText={this.state.price}
+                        value={this.state.price}
+                        onChangeText={price => this.handleChangePrice(price)}
                     />
                 </View>
 
@@ -185,7 +204,8 @@ render(){
                         style={styles.txtCode}
                         placeholder='Kode Referral'
                         placeholderTextColor='#7F7F7F'
-                        onChangeText={this.state.refcode}
+                        value={this.state.refcode}
+                        onChangeText={refcode => this.handleChangeRef(refcode)}
                     />
                 </View>
 
@@ -194,7 +214,8 @@ render(){
                         style={styles.txtDesc}
                         placeholder='Deskripsi'
                         placeholderTextColor='#7F7F7F'
-                        onChangeText={this.state.desc}
+                        value={this.state.desc}
+                        onChangeText={desc => this.handleChangeDesc(desc)}
                     />
                 </View>
         </View>
@@ -202,12 +223,18 @@ render(){
         <View style={styles.btnNxtArea}>
             <TouchableOpacity
                 style={[styles.btnNxt, {
-                    backgroundColor: (this.state.isAllFilled === true)
+                    backgroundColor: (this.state.prodYear !== '' &&
+                                      this.state.location !== '' &&
+                                      this.state.price !== '' &&
+                                      this.state.refcode !== '' &&
+                                      this.state.desc !== ''
+                        )
                     ? '#0064D0' 
                     : '#B7B7B7'
                     }
                 ]}
                 onPress={this.goToAddPics}
+                disabled={!enabled}
             >
                 <Text style={styles.txtNxt}>
                     SELANJUTNYA
@@ -283,6 +310,7 @@ const styles = StyleSheet.create({
         borderWidth: 2,
         borderRadius: 4,
         borderColor: '#EBEBEB',
+        backgroundColor: '#EBEBEB'
     },
 
     txtHarga:{
