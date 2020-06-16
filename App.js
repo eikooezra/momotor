@@ -25,7 +25,7 @@ import OrderList from './components/Home/OrderList'
 import JualCepat from './components/Home/JualCepat'
 import Calculator from './components/Home/Calculator'
 
-import InstantOrder from './components/InstantOrder/InstantOrder'
+import DataCustomer from './components/InstantOrder/DataCustomer'
 
 import NotifActivity from './components/Notification/NotifActivity'
 import NotifNewOrder from './components/Notification/NotifNewOrder'
@@ -220,7 +220,7 @@ const InstantOrderStack = createStackNavigator()
 function InstantOrderStackScreen(){
   return(
     <InstantOrderStack.Navigator screenOptions={{headerShown:false}}>
-      <InstantOrderStack.Screen name='InstantOrder' component={InstantOrder}/>
+      <InstantOrderStack.Screen name='InstantOrder' component={DataCustomer}/>
     </InstantOrderStack.Navigator>
   )
 }
@@ -330,7 +330,7 @@ function LogoAccount() {
 const Tab = createBottomTabNavigator()
 
 // ToDo: Icon harus berubah warna, font juga harus sesuai mockup
-function TabScreen1(){
+function TabScreen(){
  return(
     <Tab.Navigator 
     tabBarOptions={{
@@ -382,7 +382,7 @@ class App extends Component {
         <Stack.Navigator initialRouteName='Login' screenOptions={{headerShown:false}}>
           <Stack.Screen name='Login' component={Login}/>
           <Stack.Screen name='Forgot' component={Forgot}/>
-          <Stack.Screen name='Home' component={TabScreen1}/>
+          <Stack.Screen name='Home' component={TabScreen}/>
           <Stack.Screen name='Search' component={Search}/>
           <Stack.Screen name='Add' component={Add}/>
           <Stack.Screen name='AddPics' component={AddPics}/>
