@@ -23,8 +23,6 @@ class Add extends Component{
             isRefFilled: false,
             desc: '',
             isDescFilled: false,
-            validity: false,
-            isPicked: false,
             isPressed: false,
             null: true
         }
@@ -44,30 +42,23 @@ class Add extends Component{
         } 
     }
 
-    handleChangePick = (prodYear, location) => {
-      this.setState({prodYear, location})
-      if(this.state.prodYear && this.state.location === true){
-        this.setState({isPicked: true})
-      }
-    }
-
     handleChangePrice = (price) => {
       this.setState({price})
-      if(this.state.price === true){
+      if(this.state.price !== ''){
         this.setState({isPrcFilled: true})
       }
     }
 
     handleChangeRef = (refcode) => {
       this.setState({refcode})
-      if(this.state.refcode === true){
+      if(this.state.refcode !== ''){
         this.setState({isRefFilled: true})
       }
     }
 
     handleChangeDesc = (desc) => {
       this.setState({desc})
-      if(this.state.desc === true){
+      if(this.state.desc !== ''){
         this.setState({isDescFilled: true})
       }
     }
