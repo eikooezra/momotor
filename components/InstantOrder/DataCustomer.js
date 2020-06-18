@@ -11,7 +11,149 @@ import {
 import DropDownPicker from 'react-native-dropdown-picker'
 
 class DataCustomer extends Component {
+    constructor(props){
+        super(props)
+        this.state = {
+            name: '',
+            isNameFilled: false,
+            gender: '',
+            NIK: '',
+            isNikFilled: false,
+            phone: '',
+            isPhoneFilled: false,
+            email: '',
+            isEmaillFilled: false,
+            brthplc: '',
+            isBrthplcFilled: false,
+            DoB: '',
+            isDobFilled: false,
+            address: '',
+            isAddressFilled: false,
+            RT: '',
+            isRtFilled: '',
+            RW: '',
+            isRwFilled: false,
+            kelurahan: '',
+            isKelurahanFilled: false,
+            mom: '',
+            isMomFilled: false,
+            kelMom: '',
+            isKelMomFilled: false,
+            isPressed: false,
+            null: true
+        }
+    }
+
+    // goToDataPekerjaan = () => {
+    //     this.props.navigation.navigate('DataPekerjaan')
+    // }
+
+    nullChecker = () => {
+        if(this.state.isPressed === false){
+            this.setState({null: true})
+        } 
+    }
+
+    handleChangeName = (name) => {
+        this.setState({name})
+        if(this.state.name !== ''){
+            this.setState({isNameFilled: true})
+        }
+    }
+
+    handleChangeNIK = (NIK) => {
+        this.setState({NIK})
+        if(this.state.NIK !== ''){
+            this.setState({isNikFilled: true})
+        }
+    }
+
+    handleChangePhone = (phone) => {
+        this.setState({phone})
+        if(this.state.phone !== ''){
+            this.setState({isPhoneFilled: true})
+        }
+    }
+
+    handleChangeEmail = (email) => {
+        this.setState({email})
+        if(this.state.email !== ''){
+            this.setState({isEmaillFilled: true})
+        }
+    }
+
+    handleChangeBrthPlc = (brthplc) => {
+        this.setState({brthplc})
+        if(this.state.brthplc !== ''){
+            this.setState({isBrthplcFilled: true})
+        }
+    }
+
+    handleChangeDoB = (DoB) => {
+        this.setState({DoB})
+        if(this.state.DoB !== ''){
+            this.setState({isDobFilled: true})
+        }
+    }
+
+    handleChangeAddress = (address) => {
+        this.setState({address})
+        if(this.state.address !== ''){
+            this.setState({isAddressFilled: true})
+        }
+    }
+
+    handleChangeRT = (RT) => {
+        this.setState({RT})
+        if(this.state.RT !== ''){
+            this.setState({isRtFilled: true})
+        }
+    }
+
+    handleChangeRW = (RW) => {
+        this.setState({RW})
+        if(this.state.RT !== ''){
+            this.setState({isRwFilled: true})
+        }
+    }
+
+    handleChangeKelurahan = (kelurahan) => {
+        this.setState({kelurahan})
+        if(this.state.kelurahan !== ''){
+            this.setState({isKelurahanFilled: true})
+        }
+    }
+
+    handleChangeMom = (mom) => {
+        this.setState({mom})
+        if(this.state.mom !== ''){
+            this.setState({isMomFilled: true})
+        }
+    }
+    
+    handleChangeKelMom = (kelMom) => {
+        this.setState({kelMom})
+        if(this.state.kelMom !== ''){
+            this.setState({isKelMomFilled: true})
+        }
+    }
+
 render() {
+    const enabled = 
+    this.state.name !== '' &&
+    this.state.gender !== '' &&
+    this.state.NIK !== '' &&
+    this.state.phone !== '' &&
+    this.state.email !== '' &&
+    this.state.brthplc !== '' &&
+    this.state.DoB !== '' &&
+    this.state.address !== '' &&
+    this.state.RT !== '' &&
+    this.state.RW !== '' &&
+    this.state.kelurahan !== '' &&
+    this.state.mom !== '' &&
+    this.state.kelMom !== ''
+
     return (
         <View style={styles.container}>
             <View style={styles.Header}>
@@ -32,6 +174,8 @@ render() {
                         style={styles.txtNama}
                         placeholder='Nama Lengkap (Sesuai KTP)'
                         placeholderTextColor='#7F7F7F'
+                        value={this.state.name}
+                        onChangeText={name => this.handleChangeName(name)}
                     />
             </View>
 
@@ -41,7 +185,7 @@ render() {
                         {label: 'Pria', value: 'pria'},
                         {label: 'Wanita', value: 'Wanita'}
                     ]}
-                    defaultNull
+                    defaultNull={this.nullChecker}
                     placeholder='Jenis Kelamin'
                     style={{
                         paddingVertical: 20
@@ -72,6 +216,8 @@ render() {
                         style={styles.txtNIK}
                         placeholder='NIK'
                         placeholderTextColor='#7F7F7F'
+                        value={this.state.NIK}
+                        onChangeText={NIK => this.handleChangeNIK(NIK)}
                     />
             </View>
 
@@ -80,6 +226,8 @@ render() {
                         style={styles.txtPhone}
                         placeholder='No. Handphone'
                         placeholderTextColor='#7F7F7F'
+                        value={this.state.phone}
+                        onChangeText={phone => this.handleChangePhone(phone)}
                     />
             </View>
 
@@ -88,6 +236,8 @@ render() {
                         style={styles.txtEmail}
                         placeholder='Email'
                         placeholderTextColor='#7F7F7F'
+                        value={this.state.email}
+                        onChangeText={email => this.handleChangeEmail(email)}
                     />
             </View>
 
@@ -96,6 +246,8 @@ render() {
                         style={styles.txtBrthPlc}
                         placeholder='Tempat Lahir'
                         placeholderTextColor='#7F7F7F'
+                        value={this.state.brthplc}
+                        onChangeText={brthplc => this.handleChangeBrthPlc(brthplc)}
                     />
             </View>
 
@@ -104,6 +256,8 @@ render() {
                         style={styles.txtDoB}
                         placeholder='Tanggal Lahir'
                         placeholderTextColor='#7F7F7F'
+                        value={this.state.DoB}
+                        onChangeText={DoB => this.handleChangeDoB(DoB)}
                     />
             </View>
 
@@ -112,6 +266,8 @@ render() {
                         style={styles.txtAddress}
                         placeholder='Alamat Lengkap (Sesuai KTP)'
                         placeholderTextColor='#7F7F7F'
+                        value={this.state.address}
+                        onChangeText={address => this.handleChangeAddress(address)}
                     />
             </View>
 
@@ -121,6 +277,8 @@ render() {
                         style={styles.txtRT}
                         placeholder='RT'
                         placeholderTextColor='#7F7F7F'
+                        value={this.state.RT}
+                        onChangeText={RT => this.handleChangeRT(RT)}
                     />
                 </View>
 
@@ -129,6 +287,8 @@ render() {
                         style={styles.txtRW}
                         placeholder='RW'
                         placeholderTextColor='#7F7F7F'
+                        value={this.state.RW}
+                        onChangeText={RW => this.handleChangeRW(RW)}
                     />
                 </View>
             </View>
@@ -138,6 +298,8 @@ render() {
                         style={styles.txtKelurahan}
                         placeholder='Kelurahan Domisili'
                         placeholderTextColor='#7F7F7F'
+                        value={this.state.kelurahan}
+                        onChangeText={kelurahan => this.handleChangeKelurahan(kelurahan)}
                     />
             </View>
 
@@ -146,6 +308,8 @@ render() {
                         style={styles.txtMom}
                         placeholder='Nama Ibu Kandung'
                         placeholderTextColor='#7F7F7F'
+                        value={this.state.mom}
+                        onChangeText={mom => this.handleChangeMom(mom)}
                     />
             </View>
 
@@ -154,22 +318,33 @@ render() {
                         style={styles.txtKelurahanMom}
                         placeholder='Kelurahan Domisili Ibu'
                         placeholderTextColor='#7F7F7F'
+                        value={this.state.kelMom}
+                        onChangeText={kelMom => this.handleChangeKelMom(kelMom)}
                     />
             </View>
 
             <TouchableOpacity
-                // style={{
-                //     backgroundColor: (this.state.prodYear !== '' &&
-                //                       this.state.location !== '' &&
-                //                       this.state.price !== '' &&
-                //                       this.state.refcode !== '' &&
-                //                       this.state.desc !== ''
-                //         )
-                //     ? '#0064D0' 
-                //     : '#B7B7B7'
-                //     }}
+                // onPress={this.goToDataPekerjaan}
+                disabled={!enabled}
             >
-                <Text style={styles.txtNxt}>
+                <Text style={[styles.txtNxt, {
+                    color: (
+                        this.state.name !== '' &&
+                        this.state.gender !== '' &&
+                        this.state.NIK !== '' &&
+                        this.state.phone !== '' &&
+                        this.state.email !== '' &&
+                        this.state.brthplc !== '' &&
+                        this.state.DoB !== '' &&
+                        this.state.address !== '' &&
+                        this.state.RT !== '' &&
+                        this.state.RW !== '' &&
+                        this.state.kelurahan !== '' &&
+                        this.state.mom !== '' &&
+                        this.state.kelMom !== '')
+                    ? '#0064D0' 
+                    : '#7F7F7F'
+                }]}>
                     SELANJUTNYA
                 </Text>
             </TouchableOpacity>
