@@ -16,29 +16,43 @@ class DataCustomer extends Component {
         this.state = {
             name: '',
             isNameFilled: false,
+            errorName: '',
             gender: '',
+            isGenderPicked: false,
+            errorGender: '',
             NIK: '',
             isNikFilled: false,
+            errorNIK: '',
             phone: '',
             isPhoneFilled: false,
+            errorPhone: '',
             email: '',
             isEmaillFilled: false,
+            errorEmail: '',
             brthplc: '',
             isBrthplcFilled: false,
+            errorBrthplc: '',
             DoB: '',
             isDobFilled: false,
+            errorDoB: '',
             address: '',
             isAddressFilled: false,
+            errorAddress: '',
             RT: '',
             isRtFilled: '',
+            errorRT: '',
             RW: '',
             isRwFilled: false,
+            errorRW: '',
             kelurahan: '',
             isKelurahanFilled: false,
+            errorKelurahan: '',
             mom: '',
             isMomFilled: false,
+            errorMom: '',
             kelMom: '',
             isKelMomFilled: false,
+            errorKelmom: '',
             isPressed: false,
             null: true
         }
@@ -56,85 +70,117 @@ class DataCustomer extends Component {
 
     handleChangeName = (name) => {
         this.setState({name})
-        if(this.state.name !== ''){
-            this.setState({isNameFilled: true})
+        if(name !== ''){
+            this.setState({isNameFilled: true, errorName: ''})
+        }else{
+            this.setState({errorName: 'Tidak boleh kosong'})
+        }
+    }
+
+    handleChangeGender = (gender) => {
+        this.setState({gender})
+        if(gender !== ''){
+            this.setState({isGenderPicked: true, errorGender: ''})
+        }else{
+            this.setState({errorGender: 'Pilih salah satu'})
         }
     }
 
     handleChangeNIK = (NIK) => {
         this.setState({NIK})
-        if(this.state.NIK !== ''){
-            this.setState({isNikFilled: true})
+        if(NIK.length > 16){
+            this.setState({isNikFilled: true, errorNIK: ''})
+        }else{
+            this.setState({errorNIK: 'Minimal 16 karakter'})
         }
     }
 
     handleChangePhone = (phone) => {
         this.setState({phone})
-        if(this.state.phone !== ''){
-            this.setState({isPhoneFilled: true})
+        if(phone.length > 11){
+            this.setState({isPhoneFilled: true, errorPhone: ''})
+        }else{
+            this.setState({errorPhone: 'Minimal 11 karakter'})
         }
     }
 
     handleChangeEmail = (email) => {
         this.setState({email})
-        if(this.state.email !== ''){
-            this.setState({isEmaillFilled: true})
+        let reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/
+        if(reg.test(email) === true){
+            this.setState({isEmaillFilled: true, errorEmail: ''})
+        }else{
+            this.setState({errorEmail: 'Format: Example@adira.com'})
         }
     }
 
     handleChangeBrthPlc = (brthplc) => {
         this.setState({brthplc})
-        if(this.state.brthplc !== ''){
-            this.setState({isBrthplcFilled: true})
+        if(brthplc !== ''){
+            this.setState({isBrthplcFilled: true, errorBrthplc: ''})
+        }else{
+            this.setState({errorBrthplc: 'Tidak boleh kosong'})
         }
     }
 
     handleChangeDoB = (DoB) => {
         this.setState({DoB})
-        if(this.state.DoB !== ''){
-            this.setState({isDobFilled: true})
+        if(DoB !== ''){
+            this.setState({isDobFilled: true, errorDoB: ''})
+        }else{
+            this.setState({errorDoB: 'Tidak boleh kosong'})
         }
     }
 
     handleChangeAddress = (address) => {
         this.setState({address})
-        if(this.state.address !== ''){
-            this.setState({isAddressFilled: true})
+        if(address !== ''){
+            this.setState({isAddressFilled: true, errorAddress: ''})
+        }else{
+            this.setState({errorAddress: 'Tidak boleh kosong'})
         }
     }
 
     handleChangeRT = (RT) => {
         this.setState({RT})
-        if(this.state.RT !== ''){
-            this.setState({isRtFilled: true})
+        if(RT !== ''){
+            this.setState({isRtFilled: true, errorRT: ''})
+        }else{
+            this.setState({errorRT: 'Tidak boleh kosong'})
         }
     }
 
     handleChangeRW = (RW) => {
         this.setState({RW})
-        if(this.state.RT !== ''){
-            this.setState({isRwFilled: true})
-        }
+        if(RW !== ''){
+            this.setState({isRwFilled: true, errorRW: ''})
+        }this.setState({errorRW: 'Tidak boleh kosong'})
     }
 
     handleChangeKelurahan = (kelurahan) => {
         this.setState({kelurahan})
-        if(this.state.kelurahan !== ''){
-            this.setState({isKelurahanFilled: true})
+        if(kelurahan !== ''){
+            this.setState({isKelurahanFilled: true, errorKelurahan: ''})
+        }else{
+            this.setState({errorKelurahan: 'Tidak boleh kosong'})
         }
     }
 
     handleChangeMom = (mom) => {
         this.setState({mom})
-        if(this.state.mom !== ''){
-            this.setState({isMomFilled: true})
+        if(mom !== ''){
+            this.setState({isMomFilled: true, errorMom: ''})
+        }else{
+            this.setState({errorMom: 'Tidak boleh kosong'})
         }
     }
     
     handleChangeKelMom = (kelMom) => {
         this.setState({kelMom})
-        if(this.state.kelMom !== ''){
-            this.setState({isKelMomFilled: true})
+        if(kelMom !== ''){
+            this.setState({isKelMomFilled: true, errorKelmom: ''})
+        }else{
+            this.setState({errorKelmom: 'Tidak boleh kosong'})
         }
     }
 
@@ -169,7 +215,13 @@ render() {
             </View>
 
         <ScrollView>
-            <View style={styles.txtInpNama}>
+            <View style={[styles.txtInpNama, {
+                    borderColor: (
+                        this.state.name !== ''
+                    )
+                    ? '#EBEBEB'
+                    : '#D81818'
+            }]}>
                     <TextInput
                         style={styles.txtNama}
                         placeholder='Nama Lengkap (Sesuai KTP)'
@@ -178,6 +230,10 @@ render() {
                         onChangeText={name => this.handleChangeName(name)}
                     />
             </View>
+
+            <Text style={styles.errorStyle}>
+                {this.state.errorName}
+            </Text>
 
             <View>
                 <DropDownPicker
@@ -221,6 +277,10 @@ render() {
                     />
             </View>
 
+            <Text style={styles.errorStyle}>
+                {this.state.errorNIK}
+            </Text>
+
             <View style={styles.txtInpPhone}>
                     <TextInput
                         style={styles.txtPhone}
@@ -230,6 +290,10 @@ render() {
                         onChangeText={phone => this.handleChangePhone(phone)}
                     />
             </View>
+
+            <Text style={styles.errorStyle}>
+                {this.state.errorPhone}
+            </Text>
 
             <View style={styles.txtInpEmail}>
                     <TextInput
@@ -241,6 +305,10 @@ render() {
                     />
             </View>
 
+            <Text style={styles.errorStyle}>
+                {this.state.errorEmail}
+            </Text>
+
             <View style={styles.txtInpBrthPlc}>
                     <TextInput
                         style={styles.txtBrthPlc}
@@ -250,6 +318,10 @@ render() {
                         onChangeText={brthplc => this.handleChangeBrthPlc(brthplc)}
                     />
             </View>
+
+            <Text style={styles.errorStyle}>
+                {this.state.errorBrthplc}
+            </Text>
 
             <View style={styles.txtInpDoB}>
                     <TextInput
@@ -261,6 +333,10 @@ render() {
                     />
             </View>
 
+            <Text style={styles.errorStyle}>
+                {this.state.errorDoB}
+            </Text>
+
             <View style={styles.txtInpAddress}>
                     <TextInput
                         style={styles.txtAddress}
@@ -271,6 +347,10 @@ render() {
                     />
             </View>
 
+            <Text style={styles.errorStyle}>
+                {this.state.errorAddress}
+            </Text>
+
             <View style={styles.flexContainer}>
                 <View style={styles.txtInpRT}>
                     <TextInput
@@ -280,6 +360,10 @@ render() {
                         value={this.state.RT}
                         onChangeText={RT => this.handleChangeRT(RT)}
                     />
+
+                    <Text style={styles.errorStyle}>
+                        {this.state.errorRT}
+                    </Text>
                 </View>
 
                 <View style={styles.txtInpRW}>
@@ -290,7 +374,12 @@ render() {
                         value={this.state.RW}
                         onChangeText={RW => this.handleChangeRW(RW)}
                     />
+
+                    <Text style={styles.errorStyle}>
+                        {this.state.errorRW}
+                    </Text>
                 </View>
+
             </View>
 
             <View style={styles.txtInpKelurahan}>
@@ -303,6 +392,10 @@ render() {
                     />
             </View>
 
+            <Text style={styles.errorStyle}>
+                {this.state.errorKelurahan}
+            </Text>
+
             <View style={styles.txtInpMom}>
                     <TextInput
                         style={styles.txtMom}
@@ -313,6 +406,10 @@ render() {
                     />
             </View>
 
+            <Text style={styles.errorStyle}>
+                {this.state.errorMom}
+            </Text>
+
             <View style={styles.txtInpKelurahanMom}>
                     <TextInput
                         style={styles.txtKelurahanMom}
@@ -322,6 +419,10 @@ render() {
                         onChangeText={kelMom => this.handleChangeKelMom(kelMom)}
                     />
             </View>
+
+            <Text style={styles.errorStyle}>
+                {this.state.errorKelmom}
+            </Text>
 
             <TouchableOpacity
                 // onPress={this.goToDataPekerjaan}
@@ -395,11 +496,21 @@ const styles = StyleSheet.create({
         fontFamily: 'Montserrat-SemiBold'
     },
 
+    errorStyle: {
+        width: 200,
+        height: 15,
+        marginLeft: 17,
+        marginBottom: 15,
+        fontSize: 12,
+        fontFamily: 'Montserrat-Medium',
+        color: '#D81818'
+    },
+
     txtInpNama: {
         width: 370,
         height: 48,
         marginLeft: 16,
-        marginBottom: 34,
+        marginBottom: 6,
         borderWidth: 2,
         borderRadius: 4,
         borderColor: '#EBEBEB',
@@ -415,7 +526,7 @@ const styles = StyleSheet.create({
         width: 370,
         height: 48,
         marginLeft: 16,
-        marginBottom: 34,
+        marginBottom: 6,
         borderWidth: 2,
         borderRadius: 4,
         borderColor: '#EBEBEB',
@@ -431,7 +542,7 @@ const styles = StyleSheet.create({
         width: 370,
         height: 48,
         marginLeft: 16,
-        marginBottom: 34,
+        marginBottom: 6,
         borderWidth: 2,
         borderRadius: 4,
         borderColor: '#EBEBEB',
@@ -447,7 +558,7 @@ const styles = StyleSheet.create({
         width: 370,
         height: 48,
         marginLeft: 16,
-        marginBottom: 34,
+        marginBottom: 6,
         borderWidth: 2,
         borderRadius: 4,
         borderColor: '#EBEBEB',
@@ -463,7 +574,7 @@ const styles = StyleSheet.create({
         width: 370,
         height: 48,
         marginLeft: 16,
-        marginBottom: 34,
+        marginBottom: 6,
         borderWidth: 2,
         borderRadius: 4,
         borderColor: '#EBEBEB',
@@ -479,7 +590,7 @@ const styles = StyleSheet.create({
         width: 370,
         height: 48,
         marginLeft: 16,
-        marginBottom: 34,
+        marginBottom: 6,
         borderWidth: 2,
         borderRadius: 4,
         borderColor: '#EBEBEB',
@@ -495,7 +606,7 @@ const styles = StyleSheet.create({
         width: 370,
         height: 48,
         marginLeft: 16,
-        marginBottom: 34,
+        marginBottom: 6,
         borderWidth: 2,
         borderRadius: 4,
         borderColor: '#EBEBEB',
@@ -508,14 +619,15 @@ const styles = StyleSheet.create({
     },
 
     flexContainer: {
-        flexDirection: 'row'
+        flexDirection: 'row',
+        marginBottom: 34
     },
 
     txtInpRT: {
         width: 160,
         height: 48,
         marginLeft: 16,
-        marginBottom: 34,
+        marginBottom: 6,
         borderWidth: 2,
         borderRadius: 4,
         borderColor: '#EBEBEB',
@@ -531,7 +643,7 @@ const styles = StyleSheet.create({
         width: 170,
         height: 48,
         marginLeft: 40,
-        marginBottom: 34,
+        marginBottom: 6,
         borderWidth: 2,
         borderRadius: 4,
         borderColor: '#EBEBEB',
@@ -547,7 +659,7 @@ const styles = StyleSheet.create({
         width: 370,
         height: 48,
         marginLeft: 16,
-        marginBottom: 34,
+        marginBottom: 6,
         borderWidth: 2,
         borderRadius: 4,
         borderColor: '#EBEBEB',
@@ -563,7 +675,7 @@ const styles = StyleSheet.create({
         width: 370,
         height: 48,
         marginLeft: 16,
-        marginBottom: 34,
+        marginBottom: 6,
         borderWidth: 2,
         borderRadius: 4,
         borderColor: '#EBEBEB',
@@ -579,7 +691,7 @@ const styles = StyleSheet.create({
         width: 370,
         height: 48,
         marginLeft: 16,
-        marginBottom: 24,
+        marginBottom: 6,
         borderWidth: 2,
         borderRadius: 4,
         borderColor: '#EBEBEB',
