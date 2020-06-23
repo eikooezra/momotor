@@ -54,13 +54,13 @@ class DataCustomer extends Component {
             isKelMomFilled: false,
             errorKelmom: '',
             isPressed: false,
-            null: true
+            null: true,
         }
     }
 
-    // goToDataPekerjaan = () => {
-    //     this.props.navigation.navigate('DataPekerjaan')
-    // }
+    goToDataPekerjaan = () => {
+        this.props.navigation.navigate('DataPekerjaan')
+    }
 
     nullChecker = () => {
         if(this.state.isPressed === false){
@@ -73,14 +73,14 @@ class DataCustomer extends Component {
         if(name !== ''){
             this.setState({isNameFilled: true, errorName: ''})
         }else{
-            this.setState({errorName: 'Tidak boleh kosong'})
+            this.setState({isNameFilled: false, errorName: 'Tidak boleh kosong'})
         }
     }
 
     handleChangeGender = (gender) => {
         this.setState({gender})
         if(gender !== ''){
-            this.setState({isGenderPicked: true, errorGender: ''})
+            this.setState({isGenderPicked: true, errorGender: 'lol'})
         }else{
             this.setState({errorGender: 'Pilih salah satu'})
         }
@@ -88,7 +88,7 @@ class DataCustomer extends Component {
 
     handleChangeNIK = (NIK) => {
         this.setState({NIK})
-        if(NIK.length > 16){
+        if(NIK.length >= 16){
             this.setState({isNikFilled: true, errorNIK: ''})
         }else{
             this.setState({errorNIK: 'Minimal 16 karakter'})
@@ -97,7 +97,7 @@ class DataCustomer extends Component {
 
     handleChangePhone = (phone) => {
         this.setState({phone})
-        if(phone.length > 11){
+        if(phone.length >= 11){
             this.setState({isPhoneFilled: true, errorPhone: ''})
         }else{
             this.setState({errorPhone: 'Minimal 11 karakter'})
@@ -154,7 +154,9 @@ class DataCustomer extends Component {
         this.setState({RW})
         if(RW !== ''){
             this.setState({isRwFilled: true, errorRW: ''})
-        }this.setState({errorRW: 'Tidak boleh kosong'})
+        }else {
+            this.setState({errorRW: 'Tidak boleh kosong'})
+        }
     }
 
     handleChangeKelurahan = (kelurahan) => {
@@ -250,7 +252,7 @@ render() {
                         width: 370,
                         height: 48,
                         marginLeft: 16,
-                        marginBottom: 34,
+                        marginBottom: 6,
                     }}
                     dropDownStyle={{
                         backgroundColor: '#FFFFFF'
@@ -264,8 +266,18 @@ render() {
                     arrowStyle={{
                         marginLeft: 205
                     }}
+                    onChangeItem={
+                        item => this.setState({
+                            gender: item
+                        })
+                    }
+                    onChangeText={gender => this.handleChangeGender(gender)}
                 />
             </View>
+
+            <Text style={styles.errorStyle}>
+                {this.state.errorGender}
+            </Text>
 
             <View style={styles.txtInpNIK}>
                     <TextInput
@@ -425,7 +437,7 @@ render() {
             </Text>
 
             <TouchableOpacity
-                // onPress={this.goToDataPekerjaan}
+                onPress={this.goToDataPekerjaan}
                 disabled={!enabled}
             >
                 <Text style={[styles.txtNxt, {
