@@ -70,16 +70,18 @@ class DataCustomer extends Component {
 
     handleChangeName = (name) => {
         this.setState({name})
-        if(name !== ''){
+        let reg = /([^\s])/
+        if(reg.test(name) === true){
             this.setState({isNameFilled: true, errorName: ''})
         }else{
-            this.setState({isNameFilled: false, errorName: 'Tidak boleh kosong'})
+            this.setState({errorName: 'Tidak boleh kosong'})
         }
     }
 
     handleChangeGender = (gender) => {
         this.setState({gender})
-        if(gender !== ''){
+        let reg = /([^\s])/
+        if(reg.test(gender) === true){
             this.setState({isGenderPicked: true, errorGender: 'lol'})
         }else{
             this.setState({errorGender: 'Pilih salah satu'})
@@ -88,7 +90,8 @@ class DataCustomer extends Component {
 
     handleChangeNIK = (NIK) => {
         this.setState({NIK})
-        if(NIK.length >= 16){
+        let reg = /([^\s])/
+        if(reg.test(NIK.length >= 16) === true){
             this.setState({isNikFilled: true, errorNIK: ''})
         }else{
             this.setState({errorNIK: 'Minimal 16 karakter'})
@@ -97,7 +100,8 @@ class DataCustomer extends Component {
 
     handleChangePhone = (phone) => {
         this.setState({phone})
-        if(phone.length >= 11){
+        let reg = /^[0-9]*$/
+        if(reg.test(phone.length >= 11) === true){
             this.setState({isPhoneFilled: true, errorPhone: ''})
         }else{
             this.setState({errorPhone: 'Minimal 11 karakter'})
@@ -116,7 +120,8 @@ class DataCustomer extends Component {
 
     handleChangeBrthPlc = (brthplc) => {
         this.setState({brthplc})
-        if(brthplc !== ''){
+        let reg = /([^\s])/
+        if(reg.test(brthplc) === true){
             this.setState({isBrthplcFilled: true, errorBrthplc: ''})
         }else{
             this.setState({errorBrthplc: 'Tidak boleh kosong'})
@@ -125,7 +130,8 @@ class DataCustomer extends Component {
 
     handleChangeDoB = (DoB) => {
         this.setState({DoB})
-        if(DoB !== ''){
+        let reg = /^(0[1-9]|1[012])[-/.](0[1-9]|[12][0-9]|3[01])[-/.](19|20)\\d\\d$/
+        if(reg.test(DoB) === true){
             this.setState({isDobFilled: true, errorDoB: ''})
         }else{
             this.setState({errorDoB: 'Tidak boleh kosong'})
@@ -134,7 +140,8 @@ class DataCustomer extends Component {
 
     handleChangeAddress = (address) => {
         this.setState({address})
-        if(address !== ''){
+        let reg = /([^\s])/
+        if(reg.test(address) === true){
             this.setState({isAddressFilled: true, errorAddress: ''})
         }else{
             this.setState({errorAddress: 'Tidak boleh kosong'})
@@ -143,7 +150,8 @@ class DataCustomer extends Component {
 
     handleChangeRT = (RT) => {
         this.setState({RT})
-        if(RT !== ''){
+        let reg = /^[0-9]*$/
+        if(reg.test(RT = 3) === true){
             this.setState({isRtFilled: true, errorRT: ''})
         }else{
             this.setState({errorRT: 'Tidak boleh kosong'})
@@ -152,7 +160,8 @@ class DataCustomer extends Component {
 
     handleChangeRW = (RW) => {
         this.setState({RW})
-        if(RW !== ''){
+        let reg = /^[0-9]*$/
+        if(reg.test(RW = 3) === true){
             this.setState({isRwFilled: true, errorRW: ''})
         }else {
             this.setState({errorRW: 'Tidak boleh kosong'})
@@ -161,7 +170,8 @@ class DataCustomer extends Component {
 
     handleChangeKelurahan = (kelurahan) => {
         this.setState({kelurahan})
-        if(kelurahan !== ''){
+        let reg = /([^\s])/
+        if(reg.test(kelurahan) === true){
             this.setState({isKelurahanFilled: true, errorKelurahan: ''})
         }else{
             this.setState({errorKelurahan: 'Tidak boleh kosong'})
@@ -170,7 +180,8 @@ class DataCustomer extends Component {
 
     handleChangeMom = (mom) => {
         this.setState({mom})
-        if(mom !== ''){
+        let reg = /([^\s])/
+        if(reg.test(mom) === true){
             this.setState({isMomFilled: true, errorMom: ''})
         }else{
             this.setState({errorMom: 'Tidak boleh kosong'})
@@ -179,7 +190,8 @@ class DataCustomer extends Component {
     
     handleChangeKelMom = (kelMom) => {
         this.setState({kelMom})
-        if(kelMom !== ''){
+        let reg = /([^\s])/
+        if(reg.test(kelMom) === true){
             this.setState({isKelMomFilled: true, errorKelmom: ''})
         }else{
             this.setState({errorKelmom: 'Tidak boleh kosong'})
@@ -187,20 +199,41 @@ class DataCustomer extends Component {
     }
 
 render() {
+    const {
+        name,
+        gender,
+        NIK,
+        phone,
+        email,
+        brthplc,
+        DoB,
+        address,
+        RT,
+        RW,
+        kelurahan,
+        mom,
+        kelMom,
+    } = this.state
+
+    let emailReg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/
+    let dobReg = /^(0[1-9]|1[012])[-/.](0[1-9]|[12][0-9]|3[01])[-/.](19|20)\\d\\d$/
+    let emptyReg = /([^\s])/
+    let numReg = /^[0-9]*$/
+
     const enabled = 
-    this.state.name !== '' &&
-    this.state.gender !== '' &&
-    this.state.NIK !== '' &&
-    this.state.phone !== '' &&
-    this.state.email !== '' &&
-    this.state.brthplc !== '' &&
-    this.state.DoB !== '' &&
-    this.state.address !== '' &&
-    this.state.RT !== '' &&
-    this.state.RW !== '' &&
-    this.state.kelurahan !== '' &&
-    this.state.mom !== '' &&
-    this.state.kelMom !== ''
+    (emptyReg.test(name) === true) &&
+    (emptyReg.test(gender) === true) &&
+    (numReg.test(NIK.length >= 16) === true) &&
+    (numReg.test(phone.length >= 11) === true) &&
+    (emailReg.test(email) === true) &&
+    (emptyReg.test(brthplc) === true) &&
+    (dobReg.test(DoB) === true) &&
+    (emptyReg.test(address) === true) &&
+    (numReg.test(RT.length = 3) === true) &&
+    (numReg.test(RW.length = 3) === true) &&
+    (emptyReg.test(kelurahan) === true) &&
+    (emptyReg.test(mom) === true) &&
+    (emptyReg.test(kelMom) === true)
 
     return (
         <View style={styles.container}>
@@ -218,11 +251,11 @@ render() {
 
         <ScrollView>
             <View style={[styles.txtInpNama, {
-                    borderColor: (
-                        this.state.name !== ''
-                    )
-                    ? '#EBEBEB'
-                    : '#D81818'
+                 borderColor: (
+                    this.state.name !== ''
+                )
+                ? '#EBEBEB'
+                : '#D81818'
             }]}>
                     <TextInput
                         style={styles.txtNama}
@@ -279,7 +312,13 @@ render() {
                 {this.state.errorGender}
             </Text>
 
-            <View style={styles.txtInpNIK}>
+            <View style={[styles.txtInpNIK, {
+                borderColor: (
+                    this.state.NIK !== ''
+                )
+                ? '#EBEBEB'
+                : '#D81818'
+            }]}>
                     <TextInput
                         style={styles.txtNIK}
                         placeholder='NIK'
@@ -293,7 +332,13 @@ render() {
                 {this.state.errorNIK}
             </Text>
 
-            <View style={styles.txtInpPhone}>
+            <View style={[styles.txtInpPhone, {
+                borderColor: (
+                    this.state.phone !== ''
+                )
+                ? '#EBEBEB'
+                : '#D81818'
+            }]}>
                     <TextInput
                         style={styles.txtPhone}
                         placeholder='No. Handphone'
@@ -307,7 +352,13 @@ render() {
                 {this.state.errorPhone}
             </Text>
 
-            <View style={styles.txtInpEmail}>
+            <View style={[styles.txtInpEmail, {
+                borderColor: (
+                    this.state.email !== ''
+                )
+                ? '#EBEBEB'
+                : '#D81818'
+            }]}>
                     <TextInput
                         style={styles.txtEmail}
                         placeholder='Email'
@@ -321,7 +372,13 @@ render() {
                 {this.state.errorEmail}
             </Text>
 
-            <View style={styles.txtInpBrthPlc}>
+            <View style={[styles.txtInpBrthPlc, {
+                borderColor: (
+                    this.state.brthplc !== ''
+                )
+                ? '#EBEBEB'
+                : '#D81818'
+            }]}>
                     <TextInput
                         style={styles.txtBrthPlc}
                         placeholder='Tempat Lahir'
@@ -335,7 +392,13 @@ render() {
                 {this.state.errorBrthplc}
             </Text>
 
-            <View style={styles.txtInpDoB}>
+            <View style={[styles.txtInpDoB, {
+                borderColor: (
+                    this.state.DoB !== ''
+                )
+                ? '#EBEBEB'
+                : '#D81818'
+            }]}>
                     <TextInput
                         style={styles.txtDoB}
                         placeholder='Tanggal Lahir'
@@ -349,7 +412,13 @@ render() {
                 {this.state.errorDoB}
             </Text>
 
-            <View style={styles.txtInpAddress}>
+            <View style={[styles.txtInpAddress, {
+                borderColor: (
+                    this.state.address !== ''
+                )
+                ? '#EBEBEB'
+                : '#D81818'
+            }]}>
                     <TextInput
                         style={styles.txtAddress}
                         placeholder='Alamat Lengkap (Sesuai KTP)'
@@ -364,7 +433,13 @@ render() {
             </Text>
 
             <View style={styles.flexContainer}>
-                <View style={styles.txtInpRT}>
+                <View style={[styles.txtInpRT, {
+                    borderColor: (
+                        this.state.RT !== ''
+                    )
+                    ? '#EBEBEB'
+                    : '#D81818'
+                }]}>
                     <TextInput
                         style={styles.txtRT}
                         placeholder='RT'
@@ -378,7 +453,13 @@ render() {
                     </Text>
                 </View>
 
-                <View style={styles.txtInpRW}>
+                <View style={[styles.txtInpRW, {
+                    borderColor: (
+                        this.state.RW !== ''
+                    )
+                    ? '#EBEBEB'
+                    : '#D81818'
+                }]}>
                     <TextInput
                         style={styles.txtRW}
                         placeholder='RW'
@@ -394,7 +475,13 @@ render() {
 
             </View>
 
-            <View style={styles.txtInpKelurahan}>
+            <View style={[styles.txtInpKelurahan, {
+                borderColor: (
+                    this.state.kelurahan !== ''
+                )
+                ? '#EBEBEB'
+                : '#D81818'
+            }]}>
                     <TextInput
                         style={styles.txtKelurahan}
                         placeholder='Kelurahan Domisili'
@@ -408,7 +495,13 @@ render() {
                 {this.state.errorKelurahan}
             </Text>
 
-            <View style={styles.txtInpMom}>
+            <View style={[styles.txtInpMom, {
+                borderColor: (
+                    this.state.mom !== ''
+                )
+                ? '#EBEBEB'
+                : '#D81818'
+            }]}>
                     <TextInput
                         style={styles.txtMom}
                         placeholder='Nama Ibu Kandung'
@@ -422,7 +515,13 @@ render() {
                 {this.state.errorMom}
             </Text>
 
-            <View style={styles.txtInpKelurahanMom}>
+            <View style={[styles.txtInpKelurahanMom, {
+                borderColor: (
+                    this.state.kelMom !== ''
+                )
+                ? '#EBEBEB'
+                : '#D81818'
+            }]}>
                     <TextInput
                         style={styles.txtKelurahanMom}
                         placeholder='Kelurahan Domisili Ibu'
@@ -525,7 +624,6 @@ const styles = StyleSheet.create({
         marginBottom: 6,
         borderWidth: 2,
         borderRadius: 4,
-        borderColor: '#EBEBEB',
     },
 
     txtNama: {
