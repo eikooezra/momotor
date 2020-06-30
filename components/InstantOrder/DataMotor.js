@@ -27,6 +27,10 @@ class DataMotor extends Component{
         }
     }
 
+    goToDataKredit = () => {
+        this.props.navigation.navigate('DataKredit')
+    }
+
     nullChecker = () => {
         if(this.state.isPressed === false){
             this.setState({null: true})
@@ -152,7 +156,7 @@ class DataMotor extends Component{
                 </Text>
 
                 <TouchableOpacity
-                // onPress={this.goToDataPekerjaan}
+                onPress={this.goToDataKredit}
                 // disabled={!enabled}
             >
                 <Text style={[styles.txtNxt, {
