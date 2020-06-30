@@ -10,7 +10,7 @@ import {
 import DropDownPicker from 'react-native-dropdown-picker'
 import DrawerLayout from 'react-native-gesture-handler/DrawerLayout'
 
-class DataPekerjaan extends Component{
+class DataMotor extends Component{
     constructor(props){
         super(props)
         this.state={
@@ -74,7 +74,7 @@ class DataPekerjaan extends Component{
 
                 <View style={styles.containerTxt}>
                     <Text style={styles.txtData}>
-                        Data Pekerjaan
+                        Data Motor
                     </Text>
                 </View>
 
@@ -171,7 +171,7 @@ class DataPekerjaan extends Component{
     }
 }
 
-export default DataPekerjaan
+export default DataMotor
 
 const styles = StyleSheet.create({
     container: {
