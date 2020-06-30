@@ -28,7 +28,7 @@
             }
         }
 
-        goToDataPekerjaan = () => {
+        goToDataMotor = () => {
             this.props.navigation.navigate('DataMotor')
         }
 
@@ -230,7 +230,7 @@
             width: 370,
             height: 48,
             marginLeft: 16,
-            marginBottom: 6,
+            marginBottom: 320,
             borderWidth: 2,
             borderRadius: 4,
             borderColor: '#EBEBEB',
