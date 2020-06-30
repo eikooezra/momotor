@@ -27,6 +27,7 @@ import Calculator from './components/Home/Calculator'
 
 import DataCustomer from './components/InstantOrder/DataCustomer'
 import DataPekerjaan from './components/InstantOrder/DataPekerjaan'
+import DataMotor from './components/InstantOrder/DataPekerjaan'
 
 import NotifActivity from './components/Notification/NotifActivity'
 import NotifNewOrder from './components/Notification/NotifNewOrder'
@@ -385,6 +386,7 @@ class App extends Component {
           <Stack.Screen name='Forgot' component={Forgot}/>
           <Stack.Screen name='Home' component={TabScreen}/>
           <Stack.Screen name='DataPekerjaan' component={DataPekerjaan}/>
+          <Stack.Screen name='DataMotor' component={DataMotor}/>
           <Stack.Screen name='Search' component={Search}/>
           <Stack.Screen name='Add' component={Add}/>
           <Stack.Screen name='AddPics' component={AddPics}/>
