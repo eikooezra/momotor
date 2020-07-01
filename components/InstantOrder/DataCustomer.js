@@ -5,6 +5,7 @@ import {
     TextInput,
     View,
     Text,
+    Image,
     ScrollView,
     TouchableOpacity
 } from 'react-native'
@@ -13,6 +14,9 @@ import DropDownPicker from 'react-native-dropdown-picker'
 class DataCustomer extends Component {
     constructor(props){
         super(props)
+        // let imgUrl = props 
+        //            ? require('../../assets/images/alert.png')
+        //            : require('../../assets/images/check.png')
         this.state = {
             name: '',
             isNameFilled: false,
@@ -55,6 +59,8 @@ class DataCustomer extends Component {
             errorKelmom: '',
             isPressed: false,
             null: true,
+            txtInpColor: '',
+            // checkRender: imgUrl
         }
     }
 
@@ -72,9 +78,10 @@ class DataCustomer extends Component {
         this.setState({name})
         let reg = /([^\s])/
         if(reg.test(name) === true){
-            this.setState({isNameFilled: true, errorName: ''})
+            this.setState({isNameFilled: true, errorName: '', txtInpColor: '#EBEBEB',
+        })
         }else{
-            this.setState({errorName: 'Tidak boleh kosong'})
+            this.setState({errorName: 'Tidak boleh kosong', txtInpColor: '#D81818'})
         }
     }
 
@@ -82,7 +89,7 @@ class DataCustomer extends Component {
         this.setState({gender})
         let reg = /([^\s])/
         if(reg.test(gender) === true){
-            this.setState({isGenderPicked: true, errorGender: 'lol'})
+            this.setState({isGenderPicked: true, errorGender: ''})
         }else{
             this.setState({errorGender: 'Pilih salah satu'})
         }
@@ -90,8 +97,7 @@ class DataCustomer extends Component {
 
     handleChangeNIK = (NIK) => {
         this.setState({NIK})
-        let reg = /([^\s])/
-        if(reg.test(NIK.length >= 16) === true){
+        if(NIK.length >= 16){
             this.setState({isNikFilled: true, errorNIK: ''})
         }else{
             this.setState({errorNIK: 'Minimal 16 karakter'})
@@ -100,8 +106,7 @@ class DataCustomer extends Component {
 
     handleChangePhone = (phone) => {
         this.setState({phone})
-        let reg = /^[0-9]*$/
-        if(reg.test(phone.length >= 11) === true){
+        if(phone.length >= 11){
             this.setState({isPhoneFilled: true, errorPhone: ''})
         }else{
             this.setState({errorPhone: 'Minimal 11 karakter'})
@@ -130,11 +135,11 @@ class DataCustomer extends Component {
 
     handleChangeDoB = (DoB) => {
         this.setState({DoB})
-        let reg = /^(0[1-9]|1[012])[-/.](0[1-9]|[12][0-9]|3[01])[-/.](19|20)\\d\\d$/
+        let reg = /^([0-2][0-9]|(3)[0-1])(\/)(((0)[0-9])|((1)[0-2]))(\/)\d{4}$/
         if(reg.test(DoB) === true){
             this.setState({isDobFilled: true, errorDoB: ''})
         }else{
-            this.setState({errorDoB: 'Tidak boleh kosong'})
+            this.setState({errorDoB: 'Format: dd/mm/yyyy'})
         }
     }
 
@@ -150,8 +155,8 @@ class DataCustomer extends Component {
 
     handleChangeRT = (RT) => {
         this.setState({RT})
-        let reg = /^[0-9]*$/
-        if(reg.test(RT = 3) === true){
+        let reg = /([^\s])/
+        if(reg.test(RT) === true){
             this.setState({isRtFilled: true, errorRT: ''})
         }else{
             this.setState({errorRT: 'Tidak boleh kosong'})
@@ -160,8 +165,8 @@ class DataCustomer extends Component {
 
     handleChangeRW = (RW) => {
         this.setState({RW})
-        let reg = /^[0-9]*$/
-        if(reg.test(RW = 3) === true){
+        let reg = /([^\s])/
+        if(reg.test(RW) === true){
             this.setState({isRwFilled: true, errorRW: ''})
         }else {
             this.setState({errorRW: 'Tidak boleh kosong'})
@@ -216,21 +221,20 @@ render() {
     } = this.state
 
     let emailReg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/
-    let dobReg = /^(0[1-9]|1[012])[-/.](0[1-9]|[12][0-9]|3[01])[-/.](19|20)\\d\\d$/
+    let dobReg = /^([0-2][0-9]|(3)[0-1])(\/)(((0)[0-9])|((1)[0-2]))(\/)\d{4}$/
     let emptyReg = /([^\s])/
-    let numReg = /^[0-9]*$/
 
     const enabled = 
     (emptyReg.test(name) === true) &&
     (emptyReg.test(gender) === true) &&
-    (numReg.test(NIK.length >= 16) === true) &&
-    (numReg.test(phone.length >= 11) === true) &&
+    NIK.length >= 16 &&
+    phone.length >= 11 &&
     (emailReg.test(email) === true) &&
     (emptyReg.test(brthplc) === true) &&
     (dobReg.test(DoB) === true) &&
     (emptyReg.test(address) === true) &&
-    (numReg.test(RT.length = 3) === true) &&
-    (numReg.test(RW.length = 3) === true) &&
+    (emptyReg.test(RT) === true) &&
+    (emptyReg.test(RW) === true) &&
     (emptyReg.test(kelurahan) === true) &&
     (emptyReg.test(mom) === true) &&
     (emptyReg.test(kelMom) === true)
@@ -250,8 +254,9 @@ render() {
             </View>
 
         <ScrollView>
-            <View style={[styles.txtInpNama, {
-                 borderColor: (
+            <View 
+            style={[styles.txtInpNama, {
+                borderColor: (
                     this.state.name !== ''
                 )
                 ? '#EBEBEB'
@@ -261,8 +266,13 @@ render() {
                         style={styles.txtNama}
                         placeholder='Nama Lengkap (Sesuai KTP)'
                         placeholderTextColor='#7F7F7F'
+                        returnKeyType='next'
                         value={this.state.name}
                         onChangeText={name => this.handleChangeName(name)}
+                    />
+
+                    <Image
+                        source={this.state.checkRender}
                     />
             </View>
 
@@ -323,6 +333,8 @@ render() {
                         style={styles.txtNIK}
                         placeholder='NIK'
                         placeholderTextColor='#7F7F7F'
+                        returnKeyType='next'
+                        maxLength={16}
                         value={this.state.NIK}
                         onChangeText={NIK => this.handleChangeNIK(NIK)}
                     />
@@ -343,6 +355,9 @@ render() {
                         style={styles.txtPhone}
                         placeholder='No. Handphone'
                         placeholderTextColor='#7F7F7F'
+                        keyboardType={'numeric'}
+                        returnKeyType='next'
+                        maxLength={13}
                         value={this.state.phone}
                         onChangeText={phone => this.handleChangePhone(phone)}
                     />
@@ -363,6 +378,8 @@ render() {
                         style={styles.txtEmail}
                         placeholder='Email'
                         placeholderTextColor='#7F7F7F'
+                        keyboardType='email-address'
+                        returnKeyType='next'
                         value={this.state.email}
                         onChangeText={email => this.handleChangeEmail(email)}
                     />
@@ -383,6 +400,7 @@ render() {
                         style={styles.txtBrthPlc}
                         placeholder='Tempat Lahir'
                         placeholderTextColor='#7F7F7F'
+                        returnKeyType='next'
                         value={this.state.brthplc}
                         onChangeText={brthplc => this.handleChangeBrthPlc(brthplc)}
                     />
@@ -403,6 +421,8 @@ render() {
                         style={styles.txtDoB}
                         placeholder='Tanggal Lahir'
                         placeholderTextColor='#7F7F7F'
+                        returnKeyType='next'
+                        maxLength={10}
                         value={this.state.DoB}
                         onChangeText={DoB => this.handleChangeDoB(DoB)}
                     />
@@ -423,6 +443,7 @@ render() {
                         style={styles.txtAddress}
                         placeholder='Alamat Lengkap (Sesuai KTP)'
                         placeholderTextColor='#7F7F7F'
+                        returnKeyType='next'
                         value={this.state.address}
                         onChangeText={address => this.handleChangeAddress(address)}
                     />
@@ -444,6 +465,9 @@ render() {
                         style={styles.txtRT}
                         placeholder='RT'
                         placeholderTextColor='#7F7F7F'
+                        keyboardType={'numeric'}
+                        returnKeyType='next'
+                        maxLength={3}
                         value={this.state.RT}
                         onChangeText={RT => this.handleChangeRT(RT)}
                     />
@@ -464,6 +488,9 @@ render() {
                         style={styles.txtRW}
                         placeholder='RW'
                         placeholderTextColor='#7F7F7F'
+                        keyboardType={'numeric'}
+                        returnKeyType='next'
+                        maxLength={3}
                         value={this.state.RW}
                         onChangeText={RW => this.handleChangeRW(RW)}
                     />
@@ -486,6 +513,7 @@ render() {
                         style={styles.txtKelurahan}
                         placeholder='Kelurahan Domisili'
                         placeholderTextColor='#7F7F7F'
+                        returnKeyType='next'
                         value={this.state.kelurahan}
                         onChangeText={kelurahan => this.handleChangeKelurahan(kelurahan)}
                     />
@@ -506,6 +534,7 @@ render() {
                         style={styles.txtMom}
                         placeholder='Nama Ibu Kandung'
                         placeholderTextColor='#7F7F7F'
+                        returnKeyType='next'
                         value={this.state.mom}
                         onChangeText={mom => this.handleChangeMom(mom)}
                     />
@@ -624,6 +653,7 @@ const styles = StyleSheet.create({
         marginBottom: 6,
         borderWidth: 2,
         borderRadius: 4,
+        borderColor: '#EBEBEB'
     },
 
     txtNama: {
@@ -737,7 +767,7 @@ const styles = StyleSheet.create({
         width: 160,
         height: 48,
         marginLeft: 16,
-        marginBottom: 6,
+        marginBottom: 8,
         borderWidth: 2,
         borderRadius: 4,
         borderColor: '#EBEBEB',
@@ -821,7 +851,5 @@ const styles = StyleSheet.create({
         fontFamily: 'Montserrat-SemiBold',
         justifyContent: 'center',
         alignSelf: 'center'
-    }
-
-
+    },
 })
