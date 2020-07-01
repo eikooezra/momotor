@@ -8,7 +8,6 @@
         ScrollView,
         TouchableOpacity
     } from 'react-native'
-    import DrawerLayout from 'react-native-gesture-handler/DrawerLayout'
 
     class DataPekerjaan extends Component{
         constructor(props){
@@ -40,7 +39,7 @@
 
         handleChangeJob = (job) => {
             this.setState({job})
-            let reg = /^[0-9]*$/
+            let reg = /([^\s])/
             if(reg.test(job) === true){
                 this.setState({isJobFilled: true, errorJob: ''})
             }else{
@@ -50,7 +49,7 @@
 
         handleChangeSalary = (salary) => {
             this.setState({salary})
-            let reg = /^[0-9]*$/
+            let reg = /([^\s])/
             if(reg.test(salary) === true){
                 this.setState({isSalaryFilled: true, errorSalary: ''})
             }else{
@@ -60,7 +59,7 @@
 
         handleChangeExp = (exp) => {
             this.setState({exp})
-            let reg = /^[0-9]*$/
+            let reg = /([^\s])/
             if(reg.test(exp) === true){
                 this.setState({isExpFilled: true, errorExp: ''})
             }else {
@@ -69,6 +68,18 @@
         }
 
         render(){
+            const {
+                job,
+                salary,
+                exp
+            } = this.state
+
+            let emptyReg = /([^\s])/
+            const enabled = 
+            (emptyReg.test(job) === true) &&
+            (emptyReg.test(salary) === true) &&
+            (emptyReg.test(exp) === true)
+
             return(
                 <View style={styles.container}>
                     <View style={styles.Header}>
@@ -119,12 +130,12 @@
                     </View>
 
                     <Text style={styles.errorStyle}>
-                        {this.state.errorPrice}
+                        {this.state.errorExp}
                     </Text>
 
                     <TouchableOpacity
                     onPress={this.goToDataMotor}
-                    // disabled={!enabled}
+                    disabled={!enabled}
                 >
                     <Text style={[styles.txtNxt, {
                         color: (
@@ -230,7 +241,7 @@
             width: 370,
             height: 48,
             marginLeft: 16,
-            marginBottom: 320,
+            marginBottom: 6,
             borderWidth: 2,
             borderRadius: 4,
             borderColor: '#EBEBEB',
@@ -245,7 +256,7 @@
         txtNxt: {
             width: 125,
             height: 20,
-            marginBottom: 24,
+            marginTop: 320,
             fontSize: 16,
             fontFamily: 'Montserrat-SemiBold',
             justifyContent: 'center',
