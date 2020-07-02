@@ -1,11 +1,10 @@
     import React, {Component} from 'react'
     import {
         StyleSheet,
-        KeyboardAvoidingView,
+        Image,
         TextInput,
         View,
         Text,
-        ScrollView,
         TouchableOpacity
     } from 'react-native'
 
@@ -23,6 +22,10 @@
                 isExpFilled: false,
                 errorExp: '',
             }
+        }
+
+        goBack = () => {
+            this.props.navigation.navigate('DataCustomer')
         }
 
         goToDataMotor = () => {
@@ -75,6 +78,15 @@
             return(
                 <View style={styles.container}>
                     <View style={styles.Header}>
+                        <TouchableOpacity
+                        onPress={this.goBack}
+                        >
+                        <Image
+                            style={styles.btnBack}
+                            source={require('../../assets/images/back.png')}
+                        />
+                        </TouchableOpacity>
+
                         <Text style={styles.txtInstant}>
                             Instant Order
                         </Text>
@@ -158,6 +170,13 @@
             height: 70,
             flexDirection: 'row',
             backgroundColor: '#0064D0',
+        },
+
+        btnBack: {
+            width: 32,
+            height: 16,
+            marginLeft: 16,
+            marginTop: 30
         },
 
         txtInstant: {

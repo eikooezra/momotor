@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import {
     StyleSheet,
-    KeyboardAvoidingView,
+    Image,
     TextInput,
     View,
     Text,
@@ -26,6 +26,10 @@ class DataMotor extends Component{
             isPressed: false,
             null: true
         }
+    }
+
+    goBack = () => {
+        this.props.navigation.navigate('DataPekerjaan')
     }
 
     goToDataKredit = () => {
@@ -84,6 +88,15 @@ class DataMotor extends Component{
         return(
             <View style={styles.container}>
                 <View style={styles.Header}>
+                    <TouchableOpacity
+                        onPress={this.goBack}
+                    >
+                        <Image
+                            style={styles.btnBack}
+                            source={require('../../assets/images/back.png')}
+                        />
+                    </TouchableOpacity>
+
                     <Text style={styles.txtInstant}>
                         Instant Order
                     </Text>
@@ -202,11 +215,18 @@ const styles = StyleSheet.create({
         backgroundColor: '#0064D0',
     },
 
+    btnBack: {
+        width: 32,
+        height: 16,
+        marginLeft: 16,
+        marginTop: 30
+    },
+
     txtInstant: {
         width: 200,
         height: 20,
         marginTop: 25,
-        marginLeft: 153,
+        marginLeft: 103,
         fontSize: 16,
         color: '#FFFFFF',
         fontFamily: 'Montserrat-Bold'
