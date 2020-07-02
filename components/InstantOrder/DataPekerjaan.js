@@ -25,7 +25,7 @@
         }
 
         goBack = () => {
-            this.props.navigation.navigate('DataCustomer')
+            this.props.navigation.navigate('InstantOrder')
         }
 
         goToDataMotor = () => {
@@ -183,7 +183,7 @@
             width: 200,
             height: 20,
             marginTop: 25,
-            marginLeft: 153,
+            marginLeft: 103,
             fontSize: 16,
             color: '#FFFFFF',
             fontFamily: 'Montserrat-Bold'
