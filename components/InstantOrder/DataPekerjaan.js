@@ -22,19 +22,11 @@
                 exp: '',
                 isExpFilled: false,
                 errorExp: '',
-                isPressed: true,
-                null: false
             }
         }
 
         goToDataMotor = () => {
             this.props.navigation.navigate('DataMotor')
-        }
-
-        nullChecker = () => {
-            if(this.state.isPressed === false){
-                this.setState({null: true})
-            } 
         }
 
         handleChangeJob = (job) => {
@@ -135,8 +127,8 @@
 
                     <TouchableOpacity
                     onPress={this.goToDataMotor}
-                    disabled={!enabled}
-                >
+                    //disabled={!enabled}
+                    >
                     <Text style={[styles.txtNxt, {
                         color: (
                             this.state.job !== '' &&
@@ -256,7 +248,7 @@
         txtNxt: {
             width: 125,
             height: 20,
-            marginTop: 320,
+            marginTop: 280,
             fontSize: 16,
             fontFamily: 'Montserrat-SemiBold',
             justifyContent: 'center',

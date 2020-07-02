@@ -59,7 +59,6 @@ class DataCustomer extends Component {
             errorKelmom: '',
             isPressed: false,
             null: true,
-            txtInpColor: '',
             // checkRender: imgUrl
         }
     }
@@ -566,7 +565,7 @@ render() {
 
             <TouchableOpacity
                 onPress={this.goToDataPekerjaan}
-                disabled={!enabled}
+                //disabled={!enabled}
             >
                 <Text style={[styles.txtNxt, {
                     color: (
