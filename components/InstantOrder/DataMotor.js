@@ -8,7 +8,7 @@ import {
     TouchableOpacity
 } from 'react-native'
 import DropDownPicker from 'react-native-dropdown-picker'
-import DrawerLayout from 'react-native-gesture-handler/DrawerLayout'
+import { TapGestureHandler } from 'react-native-gesture-handler'
 
 class DataMotor extends Component{
     constructor(props){
@@ -18,12 +18,13 @@ class DataMotor extends Component{
             isModelFilled: false,
             errorModel: '',
             prodYear: '',
-            isProdYearFilled: false,
+            isProdFilled: false,
+            errorProd: '',
             price: '',
             isPriceFilled: false,
             errorPrice: '',
-            isPressed: true,
-            null: false
+            isPressed: false,
+            null: true
         }
     }
 
@@ -39,7 +40,7 @@ class DataMotor extends Component{
 
     handleChangeModel = (model) => {
         this.setState({model})
-        let reg = /^[0-9]*$/
+        let reg = /([^\s])/
         if(reg.test(model) === true){
             this.setState({isModelFilled: true, errorModel: ''})
         }else{
@@ -47,27 +48,39 @@ class DataMotor extends Component{
         }
     }
 
-    handleChangeProdYear = (prodYear) => {
+    handleChangeProd = (prodYear) => {
         this.setState({prodYear})
-        let reg = /^[0-9]*$/
+        let reg = /([^\s])/
         if(reg.test(prodYear) === true){
-            this.setState({isProdYearFilled: true, errorProdYear: ''})
+            this.setState({isProdFilled: true, errorProd: ''})
         }else{
-            this.setState({errorProdYear: 'Tidak boleh kosong'})
+            this.setState({errorProd: 'Tidak boleh kosong'})
         }
     }
 
     handleChangePrice = (price) => {
         this.setState({price})
-        let reg = /^[0-9]*$/
+        let reg = /([^\s])/
         if(reg.test(price) === true){
             this.setState({isPriceFilled: true, errorPrice: ''})
-        }else {
-            this.setState({errorPrice: 'Tidak boleh kosong'})
+        }else{
+            this.setState({errorPrice: 'Tidak Boleh kosong'})
         }
     }
 
     render(){
+        const {
+            model,
+            prodYear,
+            price
+        } = this.state
+
+        let reg = /([^\s])/
+        const enabled = 
+        (reg.test(model) === true) &&
+        (reg.test(prodYear) === true) &&
+        (reg.test(price) === true)
+
         return(
             <View style={styles.container}>
                 <View style={styles.Header}>
@@ -87,7 +100,7 @@ class DataMotor extends Component{
                         style={styles.txtModel}
                         placeholder='Model Motor'
                         placeholderTextColor='#7F7F7F'
-                        onChangeText={model => this.handleChangeModel(model)}
+                        onChangeText={(model) => this.handleChangeModel(model)}
                     />
                 </View>
 
@@ -96,7 +109,7 @@ class DataMotor extends Component{
                 </Text>
 
                 <View>
-                    <DropDownPicker
+                <DropDownPicker
                         items={[
                             {label: '2015', value: '15'},
                             {label: '2016', value: '16'},
@@ -135,11 +148,10 @@ class DataMotor extends Component{
                         }
                         onChangeText={prodYear => this.handleChangeProdYear(prodYear)}
                     />
-                    />
                 </View>
 
                 <Text style={styles.errorStyle}>
-                    {this.state.errorProdYear}
+                    {this.state.errorProd}
                 </Text>
 
                 <View style={styles.txtInpPrice}>
@@ -147,7 +159,7 @@ class DataMotor extends Component{
                         style={styles.txtPrice}
                         placeholder='Harga'
                         placeholderTextColor='#7F7F7F'
-                        onChangeText={price => this.handleChangePrice(price)}
+                        onChangeText={(price) => this.handleChangePrice(price)}
                     />
                 </View>
 
@@ -156,20 +168,20 @@ class DataMotor extends Component{
                 </Text>
 
                 <TouchableOpacity
-                onPress={this.goToDataKredit}
-                // disabled={!enabled}
-            >
-                <Text style={[styles.txtNxt, {
-                    color: (
-                        this.state.model !== '' &&
-                        this.state.prodYear !== '' &&
-                        this.state.price !== '')
-                    ? '#0064D0' 
-                    : '#7F7F7F'
-                }]}>
-                    SELANJUTNYA
-                </Text>
-            </TouchableOpacity>
+                    onPress={this.goToDataKredit}
+                    //disabled={!enabled}
+                >
+                    <Text style={[styles.txtNxt, {
+                        color: (
+                            this.state.model !== '' &&
+                            this.state.prodYear !== '' &&
+                            this.state.price !== '')
+                        ? '#0064D0' 
+                        : '#7F7F7F'
+                    }]}>
+                        SELANJUTNYA
+                    </Text>
+                </TouchableOpacity>
             </View>
         )
     }
@@ -262,7 +274,7 @@ const styles = StyleSheet.create({
     txtNxt: {
         width: 125,
         height: 20,
-        marginBottom: 24,
+        marginTop: 280,
         fontSize: 16,
         fontFamily: 'Montserrat-SemiBold',
         justifyContent: 'center',

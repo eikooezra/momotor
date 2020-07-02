@@ -7,7 +7,7 @@ import {
     Text,
     TouchableOpacity
 } from 'react-native'
-import DrawerLayout from 'react-native-gesture-handler/DrawerLayout'
+import DropDownPicker from 'react-native-dropdown-picker'
 
 class DataKredit extends Component{
     constructor(props){
@@ -34,7 +34,7 @@ class DataKredit extends Component{
 
     handleChangeJob = (dp) => {
         this.setState({dp})
-        let reg = /^[0-9]*$/
+        let reg = /([^\s])/
         if(reg.test(dp) === true){
             this.setState({isDpFilled: true})
         }
@@ -42,13 +42,21 @@ class DataKredit extends Component{
 
     handleChangeSalary = (tenor) => {
         this.setState({tenor})
-        let reg = /^[0-9]*$/
+        let reg = /([^\s])/
         if(reg.test(tenor) === true){
             this.setState({isTenorFilled: true})
         }
     }
 
     render(){
+        const {
+            dp,
+            tenor
+        } = this.state
+
+        let reg = /([^\s])/
+        const enabled = (reg.test(dp) === true) && (reg.test(tenor) === true)
+
         return(
             <View style={styles.container}>
                 <View style={styles.Header}>
@@ -79,8 +87,8 @@ class DataKredit extends Component{
                 <View>
                 <DropDownPicker
                         items={[
-                            {label: '14', value: '12'},
-                            {label: '28', value: '24'},
+                            {label: '12', value: '12'},
+                            {label: '24', value: '24'},
                             {label: '36', value: '36'},
                             {label: '48', value: '48'},
                             {label: '60', value: '60'},
@@ -114,7 +122,6 @@ class DataKredit extends Component{
                             })
                         }
                         onChangeText={tenor => this.handleChangeTenor(tenor)}
-                    />
                     />
                 </View>
 
@@ -198,7 +205,7 @@ const styles = StyleSheet.create({
     txtMinDP: {
         width: 200,
         height: 15,
-        marginLeft: 17,
+        marginLeft: 20,
         marginBottom: 15,
         fontSize: 12,
         fontFamily: 'Montserrat-Medium',
@@ -207,7 +214,7 @@ const styles = StyleSheet.create({
     txtNxt: {
         width: 125,
         height: 20,
-        marginBottom: 24,
+        marginTop: 390,
         fontSize: 16,
         fontFamily: 'Montserrat-SemiBold',
         justifyContent: 'center',
