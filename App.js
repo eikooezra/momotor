@@ -224,6 +224,7 @@ function InstantOrderStackScreen(){
   return(
     <InstantOrderStack.Navigator screenOptions={{headerShown:false}}>
       <InstantOrderStack.Screen name='InstantOrder' component={DataCustomer}/>
+      <InstantOrderStack.Screen name='DataPekerjaan' component={DataPekerjaan}/>
       <InstantOrderStack.Screen name='DataMotor' component={DataMotor}/>
       <InstantOrderStack.Screen name='DataKredit' component={DataKredit}/>
     </InstantOrderStack.Navigator>
@@ -388,7 +389,6 @@ class App extends Component {
           <Stack.Screen name='Login' component={Login}/>
           <Stack.Screen name='Forgot' component={Forgot}/>
           <Stack.Screen name='Home' component={TabScreen}/>
-          <Stack.Screen name='DataPekerjaan' component={DataPekerjaan}/>
           <Stack.Screen name='Search' component={Search}/>
           <Stack.Screen name='Add' component={Add}/>
           <Stack.Screen name='AddPics' component={AddPics}/>
