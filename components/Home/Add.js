@@ -28,7 +28,7 @@ class Add extends Component{
         }
     }
     
-    goToDaftarprod = () => {
+    goBack = () => {
         this.props.navigation.navigate('DaftarProduk')
     }
 
@@ -75,7 +75,7 @@ render(){
     <View style={styles.container}>
         <View style={styles.Header}>
          <TouchableOpacity
-            onPress={this.goToDaftarprod}
+            onPress={this.goBack}
          >
           <Image 
               style={styles.btnBack}

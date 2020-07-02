@@ -21,7 +21,7 @@ class Verification extends Component{
         alert('Data tersimpan!')
     }
 
-    goToAddPics = () => {
+    goBack = () => {
         this.props.navigation.navigate('AddPics')
     }
 
@@ -39,7 +39,7 @@ class Verification extends Component{
             <View style={styles.container}>
                 <View style={styles.Header}>
                 <TouchableOpacity
-                    onPress={this.goToAddPics}
+                    onPress={this.goBack}
                 >
                     <Image 
                         style={styles.btnBack}

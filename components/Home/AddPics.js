@@ -37,7 +37,7 @@ class AddPics extends Component{
     }
 
     // Navigation
-    goToAdd = () => {
+    goBack = () => {
         this.props.navigation.navigate('Add')
     }
 
@@ -50,7 +50,7 @@ class AddPics extends Component{
             <View style={styles.container}>
                 <View style={styles.Header}>
                 <TouchableOpacity
-                    onPress={this.goToAdd}
+                    onPress={this.goBack}
                 >
                     <Image 
                         style={styles.btnBack}
