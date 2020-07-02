@@ -29,6 +29,7 @@ import DataCustomer from './components/InstantOrder/DataCustomer'
 import DataPekerjaan from './components/InstantOrder/DataPekerjaan'
 import DataMotor from './components/InstantOrder/DataMotor'
 import DataKredit from './components/InstantOrder/DataKredit'
+import UploadDocs from './components/InstantOrder/UploadDocs'
 
 import NotifActivity from './components/Notification/NotifActivity'
 import NotifNewOrder from './components/Notification/NotifNewOrder'
@@ -227,6 +228,7 @@ function InstantOrderStackScreen(){
       <InstantOrderStack.Screen name='DataPekerjaan' component={DataPekerjaan}/>
       <InstantOrderStack.Screen name='DataMotor' component={DataMotor}/>
       <InstantOrderStack.Screen name='DataKredit' component={DataKredit}/>
+      <InstantOrderStack.Screen name='UploadDocs' component={UploadDocs}/>
     </InstantOrderStack.Navigator>
   )
 }
