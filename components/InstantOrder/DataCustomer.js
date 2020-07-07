@@ -565,7 +565,7 @@ render() {
 
             <TouchableOpacity
                 onPress={this.goToDataPekerjaan}
-                //disabled={!enabled}
+                disabled={!enabled}
             >
                 <Text style={[styles.txtNxt, {
                     color: (

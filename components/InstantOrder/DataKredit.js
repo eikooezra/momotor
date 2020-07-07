@@ -140,7 +140,7 @@ class DataKredit extends Component{
 
                 <TouchableOpacity
                 onPress={this.goToUploadDocs}
-                // disabled={!enabled}
+                disabled={!enabled}
             >
                 <Text style={[styles.txtNxt, {
                     color: (

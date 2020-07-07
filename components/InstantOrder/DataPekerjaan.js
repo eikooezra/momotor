@@ -139,7 +139,7 @@
 
                     <TouchableOpacity
                     onPress={this.goToDataMotor}
-                    //disabled={!enabled}
+                    disabled={!enabled}
                     >
                     <Text style={[styles.txtNxt, {
                         color: (

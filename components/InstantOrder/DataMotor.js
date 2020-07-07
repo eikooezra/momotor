@@ -182,7 +182,7 @@ class DataMotor extends Component{
 
                 <TouchableOpacity
                     onPress={this.goToDataKredit}
-                    //disabled={!enabled}
+                    disabled={!enabled}
                 >
                     <Text style={[styles.txtNxt, {
                         color: (
