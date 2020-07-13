@@ -21,7 +21,11 @@ import Add from './components/Home/Add'
 import AddPics from './components/Home/AddPics'
 import Verification from './components/Home/Verification'
 
-import OrderList from './components/Home/OrderList'
+import SemuaPesanan from './components/Home/SemuaPesanan'
+import Verifikasi from './components/Home/Verifikasi'
+import Survey from './components/Home/Survey'
+import Dibatalkan from './components/Home/Dibatalkan'
+
 import JualCepat from './components/Home/JualCepat'
 import Calculator from './components/Home/Calculator'
 
@@ -43,8 +47,6 @@ import PrivacyPolicy from './components/Account/PrivacyPolicy'
 import Terms from './components/Account/Terms'
 import FAQ from './components/Account/FAQ'
 
-import NewOrder from './components/NewOrder'
-
 const HomeStack = createStackNavigator()
 
 function HomeStackScreen(){
@@ -52,7 +54,7 @@ function HomeStackScreen(){
     <HomeStack.Navigator screenOptions={{headerShown:false}}>
       <HomeStack.Screen name='Home' component={Home}/>
       <HomeStack.Screen name='DaftarProduk' component={DaftarProdukStackScreen} />
-      <HomeStack.Screen name='OrderList' component={OrderList} />
+      <HomeStack.Screen name='DaftarPesanan' component={DaftarPesananStackScreen} />
       <HomeStack.Screen name='JualCepat' component={JualCepat} />
       <HomeStack.Screen name='Calculator' component={Calculator} />
     </HomeStack.Navigator>
@@ -78,6 +80,36 @@ if(!selected){
   ); 
  }
 } 
+
+function LogoAdd() {
+  return (
+    <Image
+      style={{ 
+        width: 18, height: 18, marginRight: 16}}
+      source={require('./assets/images/add.png')}
+    />
+  );
+}
+
+function LogoSearch() {
+  return (
+    <Image
+    style={{ 
+      width: 18, height: 18, marginRight: 16}}
+    source={require('./assets/images/search.png')}
+    />
+  )
+}
+
+function LogoBack(){
+  return(
+    <Image
+    style={{ 
+      width: 35, height: 18, marginLeft: 16}}
+    source={require('./assets/images/back.png')}
+    />
+  )
+}
 
 const DaftarProdukStack = createStackNavigator()
 const DaftarProdukTab = createMaterialTopTabNavigator()
@@ -189,33 +221,103 @@ function DaftarProdukTabScreen(){
   )
 }
 
-function LogoAdd() {
-  return (
-    <Image
-      style={{ 
-        width: 18, height: 18, marginRight: 16}}
-      source={require('./assets/images/add.png')}
-    />
-  );
-}
+const DaftarPesananStack = createStackNavigator()
+const DaftarPesananTab = createStackNavigator()
 
-function LogoSearch() {
-  return (
-    <Image
-    style={{ 
-      width: 18, height: 18, marginRight: 16}}
-    source={require('./assets/images/search.png')}
+function DaftarPesananStackScreen({navigation: {navigate}}){
+  return(  
+  <DaftarPesananStack.Navigator>
+    <DaftarPesananStack.Screen
+       name='Daftar Pesanan'
+       component={DaftarPesananTabScreen}
+       options={{
+         title: 'Daftar Pesanan',
+         headerStyle:{
+           height: 70,
+           backgroundColor: '#0064D0',
+         },
+           headerTintColor: '#FFFFFF',
+           headerTitleStyle: {
+             width: 200,
+             height: 20,
+             marginLeft: 75,
+             fontSize: 16,
+             fontFamily: 'Montserrat-Bold'
+           },
+           headerRight: () => (
+             <TouchableOpacity
+               onPress={() => navigate('Search')}
+             >
+               <LogoSearch/>
+             </TouchableOpacity>
+
+           ),
+           headerLeft: () => (
+             <TouchableOpacity
+               onPress={() => navigate('Home')}
+             >
+               <LogoBack/>
+             </TouchableOpacity>
+           )
+       }}
     />
+  </DaftarPesananStack.Navigator>
   )
 }
 
-function LogoBack(){
+function DaftarPesananTabScreen(){
   return(
-    <Image
-    style={{ 
-      width: 35, height: 18, marginLeft: 16}}
-    source={require('./assets/images/back.png')}
-    />
+    <DaftarPesananTab.Navigator
+      tabBarOptions={{
+        labelStyle: {
+          fontFamily: 'Monserrat-Medium'
+        }
+      }}
+    >
+      <DaftarPesananTab.Screen
+        name='Semua Pesanan'
+        component={SemuaPesanan}
+        options={{
+          title: 'Semua Pesanan',
+          labelStyle: {
+            fontFamily: 'Montserrat-Medium'
+          }
+        }}
+      />
+
+      <DaftarPesananTab.Screen
+        name='Verifikasi'
+        component={Verifikasi}
+        options={{
+          title: 'Verifikasi',
+          labelStyle: {
+            fontFamily: 'Montserrat-Medium'
+          }
+        }}
+      />
+
+      <DaftarPesananTab.Screen
+        name='Survey'
+        component={Survey}
+        options={{
+          title: 'Survey',
+          labelStyle: {
+            fontFamily: 'Montserrat-Medium'
+          }
+        }}
+      />
+
+      <DaftarPesananTab.Screen
+        name='Dibatalkan'
+        component={Dibatalkan}
+        options={{
+          title: 'Dibatalkan',
+          labelStyle: {
+            fontFamily: 'Montserrat-Medium'
+          }
+        }}
+      />
+    </DaftarPesananTab.Navigator>
   )
 }
 
