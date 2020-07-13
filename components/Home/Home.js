@@ -22,7 +22,7 @@ class Home extends Component{
         this.props.navigation.navigate('DaftarProduk')
     }
     goToOrderList = () => {
-        this.props.navigation.navigate('OrderList')
+        this.props.navigation.navigate('DaftarPesanan')
     }
     goToJualCpt = () => {
         this.props.navigation.navigate('JualCepat')
