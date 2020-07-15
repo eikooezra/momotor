@@ -23,6 +23,7 @@ class Home extends Component{
     }
     goToOrderList = () => {
         this.props.navigation.navigate('DaftarPesanan')
+        console.log('hehe')
     }
     goToJualCpt = () => {
         this.props.navigation.navigate('JualCepat')
@@ -33,16 +34,6 @@ class Home extends Component{
      goToHome = () => {
         this.props.navigation.navigate('Home')
     }
-    goToInstant = () => {
-        this.props.navigation.navigate('InstantOrder')
-    }
-    goToNotif = () => {
-        this.props.navigation.navigate('Notification')
-    }
-    goToAccount = () => {
-        this.props.navigation.navigate('Account')
-    }
-    
 
 render(){
     return(
