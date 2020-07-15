@@ -25,9 +25,10 @@ import SemuaPesanan from './components/Home/SemuaPesanan'
 import Verifikasi from './components/Home/Verifikasi'
 import Survey from './components/Home/Survey'
 import Dibatalkan from './components/Home/Dibatalkan'
+import SearchOrd from './components/Home/SearchOrd'
 
 import JualCepat from './components/Home/JualCepat'
-import SearchOrd from './components/Home/SearchOrd'
+import SearchFst from './components/Home/SearchFst'
 
 import Calculator from './components/Home/Calculator'
 
@@ -497,6 +498,7 @@ class App extends Component {
           <Stack.Screen name='Home' component={TabScreen}/>
           <Stack.Screen name='SearchPrd' component={SearchPrd}/>
           <Stack.Screen name='SearchOrd' component={SearchOrd}/>
+          <Stack.Screen name='SearchFst' component={SearchFst}/>
           <Stack.Screen name='Add' component={Add}/>
           <Stack.Screen name='AddPics' component={AddPics}/>
           <Stack.Screen name='Verification' component={Verification}/>
