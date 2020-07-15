@@ -16,7 +16,7 @@ import SemuaProduk from './components/Home/SemuaProduk'
 import Approved from './components/Home/Approved'
 import Pending from './components/Home/Pending'
 import Unapplied from './components/Home/Unapplied'
-import Search from './components/Home/Search'
+import SearchPrd from './components/Home/SearchPrd'
 import Add from './components/Home/Add'
 import AddPics from './components/Home/AddPics'
 import Verification from './components/Home/Verification'
@@ -27,6 +27,8 @@ import Survey from './components/Home/Survey'
 import Dibatalkan from './components/Home/Dibatalkan'
 
 import JualCepat from './components/Home/JualCepat'
+import SearchOrd from './components/Home/SearchOrd'
+
 import Calculator from './components/Home/Calculator'
 
 import DataCustomer from './components/InstantOrder/DataCustomer'
@@ -138,7 +140,7 @@ function DaftarProdukStackScreen({navigation: {navigate}}){
                <View style={{flexDirection: 'row'}}>
 
               <TouchableOpacity
-                onPress={() => navigate('Search')}
+                onPress={() => navigate('SearchPrd')}
               >
                 <LogoSearch/>
               </TouchableOpacity>
@@ -246,7 +248,7 @@ function DaftarPesananStackScreen({navigation: {navigate}}){
            },
            headerRight: () => (
              <TouchableOpacity
-               onPress={() => navigate('Search')}
+               onPress={() => navigate('SearchOrd')}
              >
                <LogoSearch/>
              </TouchableOpacity>
@@ -493,7 +495,8 @@ class App extends Component {
           <Stack.Screen name='Login' component={Login}/>
           <Stack.Screen name='Forgot' component={Forgot}/>
           <Stack.Screen name='Home' component={TabScreen}/>
-          <Stack.Screen name='Search' component={Search}/>
+          <Stack.Screen name='SearchPrd' component={SearchPrd}/>
+          <Stack.Screen name='SearchOrd' component={SearchOrd}/>
           <Stack.Screen name='Add' component={Add}/>
           <Stack.Screen name='AddPics' component={AddPics}/>
           <Stack.Screen name='Verification' component={Verification}/>
