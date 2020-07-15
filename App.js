@@ -222,7 +222,7 @@ function DaftarProdukTabScreen(){
 }
 
 const DaftarPesananStack = createStackNavigator()
-const DaftarPesananTab = createStackNavigator()
+const DaftarPesananTab = createMaterialTopTabNavigator()
 
 function DaftarPesananStackScreen({navigation: {navigate}}){
   return(  
