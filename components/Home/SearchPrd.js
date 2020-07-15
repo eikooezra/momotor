@@ -103,6 +103,7 @@ const styles = StyleSheet.create({
     },
 
     txtInput: {
+        width: 300,
         fontFamily: 'Montserrat-Medium'
     },
 

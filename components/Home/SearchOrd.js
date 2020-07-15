@@ -19,7 +19,7 @@ class Search extends Component {
     }
 
     goToDaftarProduk = () => {
-        this.props.navigation.navigate('JualCepat')
+        this.props.navigation.navigate('DaftarPesanan')
     }
 
 render() {
@@ -85,6 +85,7 @@ const styles = StyleSheet.create({
     },
 
     txtInput: {
+        width: 300,
         fontFamily: 'Montserrat-Medium'
     },
 
