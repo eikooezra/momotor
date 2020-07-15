@@ -9,6 +9,36 @@ import {
 } from 'react-native'
 
 class SemuaPesanan extends Component {
+constructor(props){
+    super(props)
+    this.state = {
+        isVerification: false,
+        verification: '',
+        isSurvey: false,
+        survey: '',
+        isCanceled: false,
+        canceled: ''
+    }
+}
+
+VerifStatus = () => {
+    if(isVerification === true){
+        this.setState({verification: 'Proses Verifikasi'})
+    }
+}
+
+SurveyStatus = () => {
+    if(isSurvey === true){
+        this.setState({survey: 'Proses Survey'})
+    }
+}
+
+CanceledStatus = () => {
+    if(isCanceled === true){
+        this.setState({canceled: 'Proses Dibatalkan'})
+    }
+}
+
 render() {
     return (
         <View style={styles.container}>
