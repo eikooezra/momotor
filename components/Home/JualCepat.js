@@ -19,7 +19,7 @@ goToSearch = () => {
 }
 
 goToHistory = () => {
-
+    this.props.navigation.navigate('HistoryFst')
 }
 
 render() {
@@ -72,21 +72,23 @@ render() {
                </View> 
 
                <View style={styles.boxContainer2}>
-                   <Text style={styles.txtModel}>
-                       Honda Vario 125 
-                   </Text>
+                   <View style={styles.section1}>
+                    <Text style={styles.txtModel}>
+                        Honda Vario 125 
+                    </Text>
 
-                   <Text style={styles.txtPrice}>
-                        Rp 13.000.000
-                   </Text>
+                    <Text style={styles.txtPrice}>
+                            Rp 13.000.000
+                    </Text>
 
-                   <Text style={styles.txtYear}>
-                       2017
-                   </Text>
-
-                   <Text style={styles.txtStatus1}>
-                        OPEN
-                   </Text>
+                    <Text style={styles.txtYear}>
+                        2017
+                    </Text>
+                   </View>
+                   
+                    <Text style={styles.txtStatus1}>
+                            OPEN
+                    </Text>
                </View>
 
                <TouchableOpacity style={styles.btnTawar}>
@@ -107,17 +109,19 @@ render() {
                </View> 
 
                <View style={styles.boxContainer2}>
-                   <Text style={styles.txtModel}>
+                   <View style={styles.section1}>
+                     <Text style={styles.txtModel}>
                        Honda Vario 125 
-                   </Text>
+                     </Text>
 
-                   <Text style={styles.txtPrice}>
+                     <Text style={styles.txtPrice}>
                         Rp 13.000.000
-                   </Text>
+                    </Text>
 
-                   <Text style={styles.txtYear}>
+                     <Text style={styles.txtYear}>
                        2017
-                   </Text>
+                    </Text>
+                   </View>
 
                    <Text style={styles.txtStatus2}>
                         CLOSED
@@ -223,6 +227,13 @@ const styles = StyleSheet.create({
         marginLeft: 16,
     },
 
+    section1: {
+        width: 210,
+        marginBottom: 12,
+        borderBottomWidth: 1,
+        borderBottomColor: '#0000001A'
+    },
+
     txtModel: {
         width: 160,
         height: 22,
@@ -243,7 +254,7 @@ const styles = StyleSheet.create({
     txtYear: {
         width: 120,
         height: 20,
-        marginBottom: 20,
+        marginBottom: 12,
         fontSize: 12,
         fontFamily: 'Montserrat-Medium',
         color: '#7F7F7F'
@@ -278,7 +289,7 @@ const styles = StyleSheet.create({
 
     txtStatus2: {
         width: 60,
-        height: 15,
+        height: 16,
         fontSize: 14,
         color: '#E56464',
         fontFamily: 'Montserrat-Bold'
