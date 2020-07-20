@@ -8,7 +8,7 @@ import {
     TouchableOpacity
 } from 'react-native'
 import RBSheet from 'react-native-raw-bottom-sheet'
-import BottomSheet from './BottomSheet'
+import BottomSheet from '../BottomSheet'
 
 class SemuaProduk extends Component {
     constructor(props){
@@ -27,7 +27,7 @@ render() {
                 <View style={styles.boxContainer1}>
                     <Image
                       style={styles.imgUnit}
-                      source={require('../../assets/images/vario.png')}
+                      source={require('../../../assets/images/vario.png')}
                     />
 
                     <Text style={styles.date}>
@@ -43,7 +43,7 @@ render() {
                     <View style={styles.speedoContainer}>
                         <Image
                             style={styles.imgSpeedo}
-                            source={require('../../assets/images/speedo.png')}
+                            source={require('../../../assets/images/speedo.png')}
                         />
 
                         <Text style={styles.txtSpeedo}>
@@ -52,7 +52,7 @@ render() {
 
                         <Image
                             style={styles.imgYear}
-                            source={require('../../assets/images/year.png')}
+                            source={require('../../../assets/images/year.png')}
                         />
 
                         <Text style={styles.txtYear}>
@@ -63,7 +63,7 @@ render() {
                     <View style={styles.locContainer}>
                         <Image
                             style={styles.imgLoc}
-                            source={require('../../assets/images/location.png')}
+                            source={require('../../../assets/images/location.png')}
                         />
                         
                         <Text style={styles.txtLoc}>
@@ -81,7 +81,7 @@ render() {
                 >
                     <Image
                         style={styles.triDots}
-                        source={require('../../assets/images/3dots.png')}
+                        source={require('../../../assets/images/3dots.png')}
                     />
                 </TouchableOpacity>
             </View>    
@@ -91,7 +91,7 @@ render() {
                 <View style={styles.boxContainer1}>
                     <Image
                       style={styles.imgUnit}
-                      source={require('../../assets/images/vario.png')}
+                      source={require('../../../assets/images/vario.png')}
                     />
 
                     <Text style={styles.date}>
@@ -107,7 +107,7 @@ render() {
                     <View style={styles.speedoContainer}>
                         <Image
                             style={styles.imgSpeedo}
-                            source={require('../../assets/images/speedo.png')}
+                            source={require('../../../assets/images/speedo.png')}
                         />
 
                         <Text style={styles.txtSpeedo}>
@@ -116,7 +116,7 @@ render() {
 
                         <Image
                             style={styles.imgYear}
-                            source={require('../../assets/images/year.png')}
+                            source={require('../../../assets/images/year.png')}
                         />
 
                         <Text style={styles.txtYear}>
@@ -127,7 +127,7 @@ render() {
                     <View style={styles.locContainer}>
                         <Image
                             style={styles.imgLoc}
-                            source={require('../../assets/images/location.png')}
+                            source={require('../../../assets/images/location.png')}
                         />
                         
                         <Text style={styles.txtLoc}>
@@ -145,7 +145,7 @@ render() {
                 >
                     <Image
                         style={styles.triDots}
-                        source={require('../../assets/images/3dots.png')}
+                        source={require('../../../assets/images/3dots.png')}
                     />
                 </TouchableOpacity>
             </View>  

@@ -30,7 +30,7 @@ render() {
                 <View style={styles.searchBar}>
                 <Image
                     style={styles.imgBlkSearch}
-                    source={require('../../assets/images/blacksearch.png')}
+                    source={require('../../../assets/images/blacksearch.png')}
                 />
 
                 <SearchInput

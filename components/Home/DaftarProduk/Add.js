@@ -79,7 +79,7 @@ render(){
          >
           <Image 
               style={styles.btnBack}
-              source={require('../../assets/images/back.png')}
+              source={require('../../../assets/images/back.png')}
           />
          </TouchableOpacity>
           <Text style={styles.txtAdd}>
@@ -89,7 +89,7 @@ render(){
 
         <View style={styles.searchContainer}>
             <Image
-                source={require('../../assets/images/greysearch.png')}
+                source={require('../../../assets/images/greysearch.png')}
                 style={styles.imgSearch}
             />
 

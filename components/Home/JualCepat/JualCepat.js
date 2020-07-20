@@ -32,7 +32,7 @@ render() {
                     >
                         <Image
                             style={styles.btnBack}
-                            source={require('../../assets/images/back.png')}
+                            source={require('../../../assets/images/back.png')}
                         />
                 </TouchableOpacity>
 
@@ -46,7 +46,7 @@ render() {
                 >
                     <Image
                         style={styles.btnSearch}
-                        source={require('../../assets/images/search.png')}
+                        source={require('../../../assets/images/search.png')}
                     />
                 </TouchableOpacity>
 
@@ -55,7 +55,7 @@ render() {
                 >
                     <Image
                         style={styles.btnHistory}
-                        source={require('../../assets/images/history.png')}
+                        source={require('../../../assets/images/history.png')}
                     />
                 </TouchableOpacity>
             </View>
@@ -66,7 +66,7 @@ render() {
                    <TouchableOpacity>
                     <Image
                         style={styles.imgUnit}
-                        source={require('../../assets/images/vario.png')}
+                        source={require('../../../assets/images/vario.png')}
                     />
                    </TouchableOpacity>
                </View> 
@@ -103,7 +103,7 @@ render() {
                    <TouchableOpacity>
                     <Image
                         style={styles.imgUnit}
-                        source={require('../../assets/images/vario.png')}
+                        source={require('../../../assets/images/vario.png')}
                     />
                    </TouchableOpacity>
                </View> 

@@ -8,7 +8,7 @@ import {
     TouchableOpacity
 } from 'react-native'
 
-class Dibatalkan extends Component {
+class Verifikasi extends Component {
 render() {
     return (
         <View style={styles.container}>
@@ -18,7 +18,7 @@ render() {
                    <TouchableOpacity>
                     <Image
                         style={styles.imgUnit}
-                        source={require('../../assets/images/vario.png')}
+                        source={require('../../../assets/images/vario.png')}
                     />
                    </TouchableOpacity>
                </View> 
@@ -42,7 +42,7 @@ render() {
     )
 }}
 
-export default Dibatalkan
+export default Verifikasi
 
 const styles = StyleSheet.create({
 

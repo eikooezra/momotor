@@ -19,8 +19,26 @@ class Search extends Component {
     }
 
     goToDaftarProduk = () => {
-        this.props.navigation.navigate('JualCepat')
+        this.props.navigation.navigate('DaftarProduk')
     }
+
+    // componentDidMount() {
+    //     this.keyboardDidShow = Keyboard.addListener('keyboardDidShow', this.keyboardDidShow)
+    //     this.keyboardWillShow = Keyboard.addListener('keyboardWillShow', this.keyboardWillShow)
+    //     this.keyboardWillHide = Keyboard.addListener('keyboardWillHide', this.keyboardWillHide)
+    //  }
+    
+    // keyboardDidShow = () => {
+    //     this.setState({searchFocused: true})
+    // }
+    
+    // keyboardWillShow = () => {
+    //     this.setState({searchFocused: true})
+    // }
+    
+    // keyboardWillHide = () => {
+    //     this.setState({searchFocused: false})
+    //}
 
 render() {
     return (
@@ -30,12 +48,12 @@ render() {
                 <View style={styles.searchBar}>
                 <Image
                     style={styles.imgBlkSearch}
-                    source={require('../../assets/images/blacksearch.png')}
+                    source={require('../../../assets/images/blacksearch.png')}
                 />
 
                 <SearchInput
                     style={styles.txtInput}
-                    placeholder= 'Cari Jual Cepat . . .'
+                    placeholder={'Cari Motor . . .'}
                     placeholderTextColor='#7F7F7F'
                 />
                 </View>

@@ -43,7 +43,7 @@ class Verification extends Component{
                 >
                     <Image 
                         style={styles.btnBack}
-                        source={require('../../assets/images/back.png')}
+                        source={require('../../../assets/images/back.png')}
                     />
                 </TouchableOpacity>
 
