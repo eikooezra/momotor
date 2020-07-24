@@ -22,6 +22,10 @@ goToHistory = () => {
     this.props.navigation.navigate('HistoryFst')
 }
 
+goToTawar = () => {
+    this.props.navigation.navigate('Tawar')
+}
+
 render() {
     return (
         <View>
@@ -91,7 +95,10 @@ render() {
                     </Text>
                </View>
 
-               <TouchableOpacity style={styles.btnTawar}>
+               <TouchableOpacity 
+               style={styles.btnTawar}
+               onPress={this.goToTawar}
+               >
                    <Text style={styles.txtTawar}>
                        Tawar
                    </Text>
@@ -128,7 +135,10 @@ render() {
                    </Text>
                </View>
 
-               <TouchableOpacity style={styles.btnTawar}>
+               <TouchableOpacity 
+               style={styles.btnTawar}
+               onPress={this.goToTawar}
+               >
                    <Text style={styles.txtTawar}>
                        Tawar
                    </Text>
@@ -191,7 +201,7 @@ const styles = StyleSheet.create({
     },
 
     WhiteBox: {
-        width: 380 ,
+        width: 380,
         height: 144,
         marginTop: 16,
         marginLeft: 16,
@@ -263,10 +273,8 @@ const styles = StyleSheet.create({
     btnTawar: {
         width: 90,
         height: 32,
-        marginTop: 100,
-        marginLeft: 226,
         borderRadius: 6,
-        color: '#0064D0'
+        backgroundColor: '#0064D0'
     },
 
     txtTawar: {
