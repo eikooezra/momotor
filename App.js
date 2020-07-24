@@ -502,6 +502,7 @@ class App extends Component {
           <Stack.Screen name='SearchOrd' component={SearchOrd}/>
           <Stack.Screen name='SearchFst' component={SearchFst}/>
           <Stack.Screen name='HistoryFst' component={HistoryFst}/>
+          <Stack.Screen name='Tawar' component={Tawar}/>
           <Stack.Screen name='Add' component={Add}/>
           <Stack.Screen name='AddPics' component={AddPics}/>
           <Stack.Screen name='Verification' component={Verification}/>
