@@ -1,17 +1,19 @@
-import React, {Compenent} from 'react'
+import React, {Component} from 'react'
 import {
     Text,
     View,
     ScrollView,
     StyleSheet,
+    TouchableOpacity,
+    Image
 } from 'react-native'
 import Slider from '@react-native-community/slider'
 
-class InspectResult extends Compenent{
+class InspectResult extends Component{
     constructor(props){
         super(props)
     }
-    
+
     render(){
         return(
             <View style={styles.container}>
@@ -25,14 +27,88 @@ class InspectResult extends Compenent{
                         />
                     </TouchableOpacity>
 
-                    <Text style={styles.txtJual}>
-                     Inspeksi Motor
+                    <Text style={styles.txtInspeksi}>
+                        Inspeksi Motor
                     </Text>
                 </View>
                 
                 <ScrollView>
                     <View style={styles.infoSection}>
-                        
+                        <View style={styles.InfoContainer}>
+                            <Text style={styles.txtInfo}>
+                                Informasi Motor
+                            </Text>
+                        </View>
+
+                        <View style={styles.typeContainer}>
+                            <Text style={styles.txtJenis}>
+                                Jenis Motor
+                            </Text>
+
+                            <Text style={styles.txtType}>
+                                Honda Vario 125
+                            </Text>
+                        </View>
+
+                        <View style={styles.yearContainer}>
+                            <Text style={styles.txtTahun}>
+                                Tahun
+                            </Text>
+
+                            <Text style={styles.txtYear}>
+                                2017
+                            </Text>
+                        </View>
+
+                        <View style={styles.distanceContainer}>
+                            <Text style={styles.txtJarak}>
+                                Jarak Tempuh
+                            </Text>
+
+                            <Text style={styles.txtDistance}>
+                                2.008 KM
+                            </Text>
+                        </View>
+
+                        <View style={styles.capacityContainer}>
+                            <Text style={styles.txtKapasitas}>
+                                Kapasitas Mesin
+                            </Text>
+
+                            <Text style={styles.txtCapacity}>
+                                125 cc
+                            </Text>
+                        </View>
+
+                        <View style={styles.transmissionContainer}>
+                            <Text style={styles.txtTransmisi}>
+                                Transmisi
+                            </Text>
+
+                            <Text style={styles.txtTransmission}>
+                                Otomatis
+                            </Text>
+                        </View>
+
+                        <View style={styles.dateContainer}>
+                            <Text style={styles.txtTanggal}>
+                                Tanggal Inspeksi
+                            </Text>
+
+                            <Text style={styles.txtDate}>
+                                22/12/2019
+                            </Text>
+                        </View>
+
+                        <View style={styles.locationContainer}>
+                            <Text style={styles.txtLokasi}>
+                                Lokasi
+                            </Text>
+
+                            <Text style={styles.txtLocation}>
+                                Jakarta Barat
+                            </Text>
+                        </View>
                     </View>
 
                     <View style={styles.gradeSection}>
@@ -74,7 +150,7 @@ const styles = StyleSheet.create({
         width: 200,
         height: 20,
         marginTop: 25,
-        marginLeft: 80,
+        marginLeft: 100,
         fontSize: 16,
         color: '#FFFFFF',
         fontFamily: 'Montserrat-Bold'
@@ -89,6 +165,170 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         borderRadius: 6,
         borderColor: '#B7B7B7'
+    },
+
+    InfoContainer: {
+        width: 340,
+        marginBottom: 10,
+        marginLeft: 16,
+        borderBottomColor: '#0000001A',
+        borderBottomWidth: 1
+    },
+
+    txtInfo: {
+        width: 135,
+        height: 19,
+        marginTop: 16,
+        marginBottom: 10,
+        fontSize: 16,
+        fontFamily: 'Montserrat-SemiBold'
+    },
+
+    typeContainer: {
+        flexDirection: 'row',
+        marginBottom: 12,
+    },
+
+    txtJenis: {
+        width: 82,
+        height: 18,
+        marginLeft: 16,
+        fontSize: 14,
+        fontFamily: 'Montserrat-Regular'
+    },
+
+    txtType: {
+        width: 130,
+        height: 18,
+        marginLeft: 145,
+        fontSize: 14,
+        fontFamily: 'Montserrat-Medium'
+    },
+
+    yearContainer: {
+        flexDirection: 'row',
+        marginBottom: 12,
+    },
+
+    txtTahun: {
+        width: 45,
+        height: 18,
+        marginLeft: 16,
+        fontSize: 14,
+        fontFamily: 'Montserrat-Regular'
+    },
+
+    txtYear: {
+        width: 32,
+        height: 18,
+        marginLeft: 260,
+        fontSize: 14,
+        fontFamily: 'Montserrat-Medium'
+    },
+
+    distanceContainer: {
+        flexDirection: 'row',
+        marginBottom: 12,
+    },
+
+    txtJarak: {
+        width: 100,
+        height: 18,
+        marginLeft: 16,
+        fontSize: 14,
+        fontFamily: 'Montserrat-Regular'
+    },
+
+    txtDistance: {
+        width: 130,
+        height: 18,
+        marginLeft: 170,
+        fontSize: 14,
+        fontFamily: 'Montserrat-Medium'
+    },
+
+    capacityContainer: {
+        flexDirection: 'row',
+        marginBottom: 12,
+    },
+
+    txtKapasitas: {
+        width: 115,
+        height: 18,
+        marginLeft: 16,
+        fontSize: 14,
+        fontFamily: 'Montserrat-Regular'
+    },
+
+    txtCapacity: {
+        width: 42,
+        height: 18,
+        marginLeft: 180,
+        fontSize: 14,
+        fontFamily: 'Montserrat-Medium'
+    },
+    
+    transmissionContainer: {
+        flexDirection: 'row',
+        marginBottom: 12,
+    },
+
+    txtTransmisi: {
+        width: 70,
+        height: 18,
+        marginLeft: 16,
+        fontSize: 14,
+        fontFamily: 'Montserrat-Regular'
+    },
+
+    txtTransmission: {
+        width: 68,
+        height: 18,
+        marginLeft: 200,
+        fontSize: 14,
+        fontFamily: 'Montserrat-Medium'
+    },
+
+    dateContainer: {
+        flexDirection: 'row',
+        marginBottom: 12,
+    },
+
+    txtTanggal: {
+        width: 120,
+        height: 18,
+        marginLeft: 16,
+        fontSize: 14,
+        fontFamily: 'Montserrat-Regular'
+    },
+
+    txtDate: {
+        width: 72,
+        height: 18,
+        marginLeft: 145,
+        fontSize: 14,
+        fontFamily: 'Montserrat-Medium'
+    },
+
+    locationContainer: {
+        flexDirection: 'row',
+        marginBottom: 12,
+    },
+
+    txtLokasi: {
+        width: 46,
+        height: 18,
+        marginLeft: 16,
+        fontSize: 14,
+        fontFamily: 'Montserrat-Regular'
+    },
+
+    txtLocation: {
+        width: 98,
+        height: 18,
+        marginLeft: 195,
+        fontSize: 14,
+        fontFamily: 'Montserrat-Medium'
     },
 
     gradeSection: {
