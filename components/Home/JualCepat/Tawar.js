@@ -23,6 +23,11 @@ class Tawar extends Component{
             ]
         }
     }
+
+    goToHasilInspeksi = () =>{
+        this.props.navigation.navigate('InspectResult')
+    }
+
     render(){
         return(
          <View style={styles.container}>
@@ -63,6 +68,7 @@ class Tawar extends Component{
 
                 <TouchableOpacity
                     style={styles.btnHasil}
+                    onPress={this.goToHasilInspeksi}
                 >
                     <View style={styles.btnHasilContainer}>
                         <Image

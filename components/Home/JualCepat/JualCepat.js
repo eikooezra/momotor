@@ -29,7 +29,6 @@ goToTawar = () => {
 render() {
     return (
         <View>
-        <ScrollView>
            <View style={styles.Header}>
                 <TouchableOpacity
                         onPress={this.goBack}
@@ -63,8 +62,9 @@ render() {
                     />
                 </TouchableOpacity>
             </View>
-           </View>
-
+        </View>
+        
+        <ScrollView>
            <View style={styles.WhiteBox}>
                <View style={styles.boxContainer1}>
                    <TouchableOpacity>
