@@ -31,6 +31,7 @@ import JualCepat from './components/Home/JualCepat/JualCepat'
 import SearchFst from './components/Home/JualCepat/SearchFst'
 import HistoryFst from './components/Home/JualCepat/HistoryFst'
 import Tawar from './components/Home/JualCepat/Tawar'
+import InspectResult from './components/Home/JualCepat/InspectResult'
 
 import Calculator from './components/Home/Calculator'
 
@@ -503,6 +504,7 @@ class App extends Component {
           <Stack.Screen name='SearchFst' component={SearchFst}/>
           <Stack.Screen name='HistoryFst' component={HistoryFst}/>
           <Stack.Screen name='Tawar' component={Tawar}/>
+          <Stack.Screen name='InspectResult' component={InspectResult}/>
           <Stack.Screen name='Add' component={Add}/>
           <Stack.Screen name='AddPics' component={AddPics}/>
           <Stack.Screen name='Verification' component={Verification}/>
