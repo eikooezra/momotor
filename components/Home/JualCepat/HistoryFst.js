@@ -25,7 +25,6 @@ goToHistory = () => {
 render() {
     return (
         <View>
-        <ScrollView>
            <View style={styles.Header}>
                 <TouchableOpacity
                         onPress={this.goBack}
@@ -40,7 +39,8 @@ render() {
                    Riwayat Jual Cepat
                 </Text>
            </View>
-
+           
+        <ScrollView>
            <View style={styles.FlatContainer}>
            <View style={styles.boxContainer1}>
                    <TouchableOpacity>
@@ -173,7 +173,6 @@ render() {
 export default JualCepat
 
 const styles = StyleSheet.create({
-
     container: {
         flex: 1,
         backgroundColor: '#FFFFFF'
@@ -191,24 +190,6 @@ const styles = StyleSheet.create({
         height: 16,
         marginTop: 30,
         marginLeft: 16,
-    },
-       
-    btnWrapper: {
-        marginLeft: 60,
-        flexDirection: 'row'
-    },
-    
-    btnSearch: {
-        width: 18,
-        height: 18,
-        marginTop: 26,
-        marginRight: 13,
-    },
-
-    btnHistory: {
-        width: 21,
-        height: 18,
-        marginTop: 26,
     },
 
     txtJual: {
