@@ -7,12 +7,23 @@ import {
     TouchableOpacity,
     Image
 } from 'react-native'
-import Slider from '@react-native-community/slider'
+import CustomSlider from '../CustomSlider'
 
 class InspectResult extends Component{
     constructor(props){
         super(props)
+        this.state = {
+            MultiSliderValues: []
+        }
     }
+
+    singleSliderValueCallback =(values)=> {
+        this.setState({singleSliderValues : values})
+      }
+    
+    multiSliderValueCallback = (values) => {
+        this.setState({multiSliderValues : values})
+      }
 
     render(){
         return(
@@ -112,11 +123,23 @@ class InspectResult extends Component{
                     </View>
 
                     <View style={styles.gradeSection}>
-
+                        <Text style={styles.txtGrade}>
+                            Grade
+                        </Text>
                     </View>
 
                     <View style={styles.priceRangeSection}>
+                        <Text style={styles.txtPerkiraan}>
+                            Perkiraan Harga
+                        </Text>
 
+                        <CustomSlider
+                            min={1}
+                            max={5}
+                            LRpadding={80}
+                            callback={this.multiSliderValueCallback}
+                            single={false}
+                        />
                     </View>
                 </ScrollView>
             </View>
@@ -349,5 +372,27 @@ const styles = StyleSheet.create({
         borderRadius: 6,
         elevation: 5,
         backgroundColor: '#FFFFFF'
+    },
+
+    txtGrade: {
+        width: 46,
+        height: 18,
+        marginTop: 12,
+        marginBottom: 11,
+        marginLeft: 12,
+        fontSize: 14,
+        fontFamily: 'Montserrat-Bold',
+        color: '#225C9A'
+    },
+
+    txtPerkiraan: {
+        width: 122,
+        height: 18,
+        marginTop: 12,
+        marginBottom: 16,
+        marginLeft: 12,
+        fontSize: 14,
+        fontFamily: 'Montserrat-Bold',
+        color: '#225C9A'
     }
 })
