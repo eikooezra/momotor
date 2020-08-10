@@ -21,6 +21,10 @@ constructor(props){
     }
 }
 
+goToProsesVerif = () => {
+    this.props.navigation.navigate('ProsesVerif')
+}
+
 VerifStatus = () => {
     if(isVerification === true){
         this.setState({verification: 'Proses Verifikasi'})
@@ -65,6 +69,15 @@ render() {
                    <Text style={styles.txtDate}>
                        12/10/2019
                    </Text>
+
+                   <TouchableOpacity
+                    style={styles.btnProsesVerif}
+                    onPress={this.goToProsesVerif}
+                   >
+                       <Text style={styles.txtProsesVerif}>
+                           Proses Verifikasi
+                       </Text>
+                   </TouchableOpacity>
                </View>
            </View>
         </ScrollView>
@@ -139,9 +152,25 @@ const styles = StyleSheet.create({
     txtDate: {
         width: 120,
         height: 20,
-        marginBottom: 6,
+        marginBottom: 5,
         fontSize: 12,
         fontFamily: 'Montserrat-Medium',
         color: '#7F7F7F'
     },   
+
+    btnProsesVerif: {
+        width: 120,
+        height: 25,
+        marginLeft: 115,
+        borderRadius: 4,
+        backgroundColor: '#EAF7EE'
+    },
+    
+    txtProsesVerif: {
+        marginTop: 4,
+        marginLeft: 8,
+        fontSize: 12,
+        fontFamily: 'Montserrat-SemiBold',
+        color: '#3CB13C'
+    }
 })
