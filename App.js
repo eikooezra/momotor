@@ -26,6 +26,7 @@ import Verifikasi from './components/Home/DaftarPesanan/Verifikasi'
 import Survey from './components/Home/DaftarPesanan/Survey'
 import Dibatalkan from './components/Home/DaftarPesanan/Dibatalkan'
 import SearchOrd from './components/Home/DaftarPesanan/SearchOrd'
+import ProsesVerif from './components/Home/DaftarPesanan/ProsesVerif'
 
 import JualCepat from './components/Home/JualCepat/JualCepat'
 import SearchFst from './components/Home/JualCepat/SearchFst'
@@ -501,6 +502,7 @@ class App extends Component {
           <Stack.Screen name='Home' component={TabScreen}/>
           <Stack.Screen name='SearchPrd' component={SearchPrd}/>
           <Stack.Screen name='SearchOrd' component={SearchOrd}/>
+          <Stack.Screen name='ProsesVerif' component={ProsesVerif}/>
           <Stack.Screen name='SearchFst' component={SearchFst}/>
           <Stack.Screen name='HistoryFst' component={HistoryFst}/>
           <Stack.Screen name='Tawar' component={Tawar}/>
