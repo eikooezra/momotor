@@ -36,7 +36,7 @@ class DataKredit extends Component{
         } 
     }
 
-    handleChangeJob = (dp) => {
+    handleChangeDP = (dp) => {
         this.setState({dp})
         let reg = /([^\s])/
         if(reg.test(dp) === true){

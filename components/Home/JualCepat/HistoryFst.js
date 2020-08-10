@@ -24,7 +24,7 @@ goToHistory = () => {
 
 render() {
     return (
-        <View>
+        <View style={styles.Header}>
            <View style={styles.Header}>
                 <TouchableOpacity
                         onPress={this.goBack}
