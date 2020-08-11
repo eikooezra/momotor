@@ -50,8 +50,92 @@ class ProsesVerif extends Component{
                 </View>
 
                 <View style={styles.whiteBox}>
+                    <Text style={styles.txtDP}>
+                        Uang Muka (DP)
+                    </Text>
 
+                    <Text style={styles.txtPriceDP}>
+                        Rp 2.000.0000
+                    </Text>
                 </View>
+
+                <View style={styles.whiteBox}>
+                    <Text style={styles.txtCicil}>
+                        Jumlah Cicilan (Per Bulan)
+                    </Text>
+
+                    <Text style={styles.txtPriceCicil}>
+                        Rp 770.000
+                    </Text>
+                </View>
+
+                <View style={styles.whiteBox2}>
+                    <Text style={styles.txtDetail}>
+                        Detail Pesanan
+                    </Text>
+
+                    <View style={styles.nameContainer}>
+                        <Text style={styles.txtNama}>
+                            Nama Pemesan
+                        </Text>
+
+                        <Text style={styles.txtName}>
+                            Sumanto Wijaya
+                        </Text>
+                    </View>
+
+                    <View style={styles.codeContainer}>
+                        <Text style={styles.txtKode}>
+                            Kode
+                        </Text>
+
+                        <Text style={styles.txtCode}>
+                            1569825581305
+                        </Text>
+                    </View>
+
+                    <View style={styles.noRefContainer}>
+                        <Text style={styles.txtRef}>
+                            No. Referensi
+                        </Text>
+
+                        <Text style={styles.txtNoRef}>
+                            UMCY1569825580096
+                        </Text>
+                    </View>
+
+                    <View style={styles.tenorContainer}>
+                        <Text style={styles.txtTenor}>
+                            Tenor
+                        </Text>
+
+                        <Text style={styles.txtTenorMonths}>
+                            12 Bulan
+                        </Text>
+                    </View>
+
+                    <View style={styles.dateContainer}>
+                        <Text style={styles.txtTanggal}>
+                            Tanggal Pemesanan
+                        </Text>
+
+                        <Text style={styles.txtDate}>
+                            21/12/19
+                        </Text>
+                    </View>
+                </View>
+
+                <Text style={styles.txtTindakan}>
+                    Tindakan
+                </Text>
+
+                <TouchableOpacity
+                    style={styles.btnPerbarui}
+                >
+                    <Text style={styles.txtPerbarui}>
+                        Perbarui
+                    </Text>
+                </TouchableOpacity>
 
             </ScrollView>
         </View>
@@ -107,8 +191,172 @@ const styles = StyleSheet.create({
     },
 
     whiteBox: {
-        width: 328,
-        height: 76,
+        width: 378,
+        height: 80,
+        marginLeft: 16,
+        marginBottom: 16,
+        borderWidth: 0.3,
         borderRadius: 6,
+        backgroundColor: '#FFFFFF'
     },
+
+    txtDP: {
+        marginTop: 10,
+        marginBottom: 8,
+        marginLeft: 16,
+        fontSize: 14,
+        fontFamily: 'Montserrat-Medium'
+    },
+
+    txtPriceDP: {
+        marginLeft: 16,
+        fontSize: 20,
+        fontFamily: 'Montserrat-Bold',
+        color: '#0064D0'
+    },
+
+    txtCicil: {
+        marginTop: 10,
+        marginBottom: 8,
+        marginLeft: 16,
+        fontSize: 14,
+        fontFamily: 'Montserrat-Medium'
+    },
+
+    txtPriceCicil: {
+        marginLeft: 16,
+        fontSize: 20,
+        fontFamily: 'Montserrat-Bold',
+        color: '#0064D0'
+    },
+
+    whiteBox2: {
+        width: 378,
+        height: 200,
+        marginLeft: 16,
+        marginBottom: 16,
+        borderWidth: 0.3,
+        borderRadius: 6,
+        backgroundColor: '#FFFFFF'
+    },
+
+    txtDetail: {
+        marginTop: 10,
+        marginBottom: 12,
+        marginLeft: 16,
+        fontSize: 14,
+        fontFamily: 'Montserrat-SemiBold'
+    },
+
+    nameContainer: {
+        flexDirection: 'row',
+        marginBottom: 12,
+    },
+
+    txtNama: {
+        marginLeft: 25,
+        fontSize: 14,
+        fontFamily: 'Montserrat-Regular'
+    },
+
+    txtName: {
+        marginLeft: 90,
+        fontSize: 14,
+        fontFamily: 'Montserrat-SemiBold'
+    },
+
+    codeContainer: {
+        flexDirection: 'row',
+        marginBottom: 12,
+    },
+
+    txtKode: {
+        marginLeft: 25,
+        fontSize: 14,
+        fontFamily: 'Montserrat-Regular'
+    },
+
+    txtCode: {
+        marginLeft: 180,
+        fontSize: 14,
+        fontFamily: 'Montserrat-SemiBold'
+    },
+
+    noRefContainer: {
+        flexDirection: 'row',
+        marginBottom: 12,
+    },
+
+    txtRef: {
+        marginLeft: 25,
+        fontSize: 14,
+        fontFamily: 'Montserrat-Regular'
+    },
+
+    txtNoRef: {
+        marginLeft: 75,
+        fontSize: 14,
+        fontFamily: 'Montserrat-SemiBold'
+    },
+
+    tenorContainer: {
+        flexDirection: 'row',
+        marginBottom: 12,
+    },
+
+    txtTenor: {
+        marginLeft: 25,
+        fontSize: 14,
+        fontFamily: 'Montserrat-Regular'
+    },
+
+    txtTenorMonths: {
+        marginLeft: 220,
+        fontSize: 14,
+        fontFamily: 'Montserrat-SemiBold'
+    },
+
+    dateContainer: {
+        flexDirection: 'row',
+        marginBottom: 12,
+    },
+
+    txtTanggal: {
+        marginLeft: 25,
+        fontSize: 14,
+        fontFamily: 'Montserrat-Regular'
+    },
+
+    txtDate: {
+        marginLeft: 120,
+        fontSize: 14,
+        fontFamily: 'Montserrat-SemiBold'
+    },
+
+    txtTindakan: {
+        marginBottom: 12,
+        marginLeft: 16,
+        fontSize: 14,
+        fontFamily: 'Montserrat-SemiBold'
+    },
+
+    btnPerbarui: {
+        width: 378,
+        height: 50,
+        marginBottom: 31,
+        marginLeft: 16,
+        borderWidth: 1,
+        borderRadius: 6,
+        borderColor: '#0064D0',
+        backgroundColor: '#FFFFFF'
+    },
+
+    txtPerbarui: {
+        marginTop: 11,
+        textAlign: 'center',
+        fontSize: 16,
+        fontFamily: 'Montserrat-SemiBold',
+        color: '#0064D0'
+    }
+
 })
