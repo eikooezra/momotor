@@ -8,6 +8,12 @@ import {
   ScrollView,
   StatusBar
 } from 'react-native'
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp,
+  listenOrientationChange as loc,
+  removeOrientationListener as rol
+} from 'react-native-responsive-screen'
 
 class Home extends Component{
     constructor(props){
@@ -168,29 +174,32 @@ export default Home
 const styles = StyleSheet.create({
     container: {
         flex: 1,
+        display: 'flex',
         backgroundColor: 'white'
     },
 
     Header: {
-        width: 412,
-        height: 140,
+        width: 415,
+        height: 145,
         marginBottom: 90,
         borderBottomLeftRadius: 25,
         borderBottomRightRadius: 25,
         backgroundColor: '#0064D0',
+        display: 'flex'
     },
 
     momotor: {
-        width: 143.52,
-        height: 21.87,
+        width: 144,
+        height: 22,
         marginTop: 40,
         marginBottom: 22.13,
         marginLeft: 16,
-        marginRight: 200.48
+        marginRight: 200.48,
+        display: 'flex'
     },
     
     upperBar: {
-        width: 380,
+        width: 378,
         height: 133,
         borderRadius: 10,
         marginLeft: 16,
@@ -199,7 +208,8 @@ const styles = StyleSheet.create({
         elevation: 5,
         backgroundColor: '#FFFFFF',
         justifyContent: 'space-between',
-        flexDirection: 'row'
+        flexDirection: 'row',
+        display: 'flex'
     },
 
     btnList: {
@@ -208,7 +218,8 @@ const styles = StyleSheet.create({
         marginTop: 20,
         marginBottom: 10,
         marginLeft: 22,
-        marginRight: 40
+        marginRight: 40,
+        display: 'flex'
     },
 
     txtList: {
@@ -219,7 +230,8 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         color: '#000000',
         marginLeft: 20,
-        marginRight: 30
+        marginRight: 30,
+        display: 'flex'
     },
 
 
@@ -228,7 +240,8 @@ const styles = StyleSheet.create({
         height: 54,
         marginTop: 20,
         marginBottom: 10,
-        marginRight: 40
+        marginRight: 40,
+        display: 'flex'
     },
 
     txtClist: {
@@ -238,7 +251,8 @@ const styles = StyleSheet.create({
         fontFamily: 'Montserrat-SemiBold',
         textAlign: 'center',
         color: '#000000',
-        marginRight: 35
+        marginRight: 35,
+        display: 'flex'
     },
 
     btnJualCpt: {
@@ -246,6 +260,7 @@ const styles = StyleSheet.create({
         height: 54,
         marginTop: 20,
         marginBottom: 10,
+        display: 'flex'
     },
 
     txtJualCpt: {
@@ -255,7 +270,8 @@ const styles = StyleSheet.create({
         fontFamily: 'Montserrat-SemiBold',
         textAlign: 'center',
         color: '#000000',
-        marginRight: 30
+        marginRight: 30,
+        display: 'flex'
     },
 
     btnCalc: {
@@ -264,17 +280,19 @@ const styles = StyleSheet.create({
         marginTop: 20,
         marginBottom: 10,
         marginRight: 30,
-        marginLeft: 7
+        marginLeft: 7,
+        display: 'flex'
     },
 
     txtCalc: {
-        width: 65,
+        width: 66,
         height: 29,
         fontSize: 12,
         marginRight: 15,
         fontFamily: 'Montserrat-SemiBold',
         textAlign: 'center',
         color: '#000000',
+        display: 'flex'
     },
 
     dblTxtContainer: {
@@ -284,7 +302,7 @@ const styles = StyleSheet.create({
     },
 
     txtPesanan: {
-        width: 140,
+        width: 139,
         height: 19,
         fontSize: 16,
         marginLeft: 60,
@@ -293,10 +311,10 @@ const styles = StyleSheet.create({
     },
 
     txtJual: {
-        width: 138,
+        width: 100,
         height: 19,
         fontSize: 16,
-        marginRight: 25,
+        marginRight: 50,
         fontFamily: 'Montserrat-SemiBold',
         color: '#000000'
     },
@@ -310,93 +328,11 @@ const styles = StyleSheet.create({
     },
 
     imgContainer: {
-        width: 380,
-        height: 270,
+        width: 378,
+        height: 300,
         borderRadius: 18,
         marginLeft: 16,
         marginRight: 16,
         marginBottom: 16,
     },
-
-    lowerbar: {
-        width: 410,
-        height: 60,
-        bottom: 0,
-        left: 0,
-        position: 'absolute',
-        backgroundColor: '#FFFFFF',
-        justifyContent: 'space-between',
-        flexDirection: 'row',
-    },
-
-    btnHome: {
-        width: 32,
-        height: 32,
-        marginTop: 7,
-        marginBottom: 2,
-        marginLeft: 50,
-        marginRight: 40
-    },
-
-    txtHome: {
-        width: 46,
-        height: 13,
-        fontSize: 10,
-        marginLeft: 43,
-        color: '#B7B7B7',
-        fontFamily: 'Montserrat-SemiBold'
-    },
-
-    btnInstant: {
-        width: 32,
-        height: 32,
-        marginTop: 7,
-        marginBottom: 2,
-        marginLeft: 25,
-        marginRight: 40
-    },
-
-    txtInstant: {
-        width: 80,
-        height: 13,
-        fontSize: 10,
-        textAlign: 'center',
-        color: '#B7B7B7',
-        fontFamily: 'Montserrat-SemiBold'
-    },
-
-    btnNotif: {
-        width: 32,
-        height: 32,
-        marginTop: 7,
-        marginBottom: 2,
-        marginLeft: 25,
-        marginRight: 40
-    },
-
-    txtNotif: {
-        width: 90,
-        height: 13,
-        fontSize: 10,
-        color: '#B7B7B7',
-        fontFamily: 'Montserrat-SemiBold'
-    },
-
-    btnAccount: {
-        width: 32,
-        height: 32,
-        marginTop: 7,
-        marginBottom: 2,
-        marginLeft: 15,
-        marginRight: 100
-    },
-
-    txtAccount: {
-        width: 30,
-        height: 13,
-        fontSize: 10,
-        marginLeft: 16,
-        color: '#B7B7B7',
-        fontFamily: 'Montserrat-SemiBold'
-    }
 })

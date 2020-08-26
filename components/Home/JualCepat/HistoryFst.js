@@ -8,18 +8,10 @@ import {
     TouchableOpacity
 } from 'react-native'
 
-class JualCepat extends Component {
+class HistoryFst extends Component {
 
 goBack = () => {
     this.props.navigation.navigate('Home')
-}
-
-goToSearch = () => {
-    this.props.navigation.navigate('SearchFst')
-}
-
-goToHistory = () => {
-    this.props.navigation.navigate('HistoryFst')
 }
 
 render() {
@@ -170,12 +162,13 @@ render() {
     )
 }}
 
-export default JualCepat
+export default HistoryFst
 
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#FFFFFF'
+        backgroundColor: '#FFFFFF',
+        display: 'flex'
     },
 
     Header: {
