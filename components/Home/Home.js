@@ -174,33 +174,30 @@ export default Home
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        display: 'flex',
-        backgroundColor: 'white'
+        backgroundColor: 'white',
+        display: 'flex'
     },
 
     Header: {
-        width: 415,
-        height: 145,
+        width: wp(100),
+        height: hp(18),
         marginBottom: 90,
         borderBottomLeftRadius: 25,
         borderBottomRightRadius: 25,
         backgroundColor: '#0064D0',
-        display: 'flex'
     },
 
     momotor: {
-        width: 144,
-        height: 22,
+        width: wp(36),
+        height: hp(3),
         marginTop: 40,
         marginBottom: 22.13,
-        marginLeft: 16,
+        marginLeft: 20,
         marginRight: 200.48,
-        display: 'flex'
     },
     
     upperBar: {
-        width: 378,
-        height: 133,
+        height: hp(17),
         borderRadius: 10,
         marginLeft: 16,
         marginRight: 16,
@@ -209,84 +206,72 @@ const styles = StyleSheet.create({
         backgroundColor: '#FFFFFF',
         justifyContent: 'space-between',
         flexDirection: 'row',
-        display: 'flex'
     },
 
     btnList: {
-        width: 54,
-        height: 54,
+        width: wp(13.7),
+        height: hp(7.5),
         marginTop: 20,
         marginBottom: 10,
         marginLeft: 22,
         marginRight: 40,
-        display: 'flex'
     },
-
+    
     txtList: {
-        width: 55,
-        height: 29,
+        width: wp(12),
         fontSize: 12,
         fontFamily: 'Montserrat-SemiBold',
         textAlign: 'center',
         color: '#000000',
-        marginLeft: 20,
+        marginLeft: 25,
         marginRight: 30,
-        display: 'flex'
     },
 
-
     btnClist: {
-        width: 54,
-        height: 54,
+        width: wp(13.7),
+        height: hp(7.5),
         marginTop: 20,
         marginBottom: 10,
         marginRight: 40,
-        display: 'flex'
     },
 
     txtClist: {
-        width: 55,
-        height: 29,
+        width: wp(13),
         fontSize: 12,
         fontFamily: 'Montserrat-SemiBold',
         textAlign: 'center',
         color: '#000000',
         marginRight: 35,
-        display: 'flex'
+        marginLeft: 3
     },
 
     btnJualCpt: {
-        width: 54,
-        height: 54,
+        width: wp(13.7),
+        height: hp(7.5),
         marginTop: 20,
         marginBottom: 10,
-        display: 'flex'
     },
 
     txtJualCpt: {
-        width: 53,
-        height: 29,
+        width: wp(13),
         fontSize: 12,
         fontFamily: 'Montserrat-SemiBold',
         textAlign: 'center',
         color: '#000000',
         marginRight: 30,
-        display: 'flex'
     },
 
     btnCalc: {
-        width: 54,
-        height: 54,
+        width: wp(13.7),
+        height: hp(7.5),
         marginTop: 20,
         marginBottom: 10,
         marginRight: 30,
         marginLeft: 7,
-        display: 'flex'
     },
 
     txtCalc: {
-        width: 66,
-        height: 29,
+        width: wp(16),
         fontSize: 12,
         marginRight: 15,
         fontFamily: 'Montserrat-SemiBold',
@@ -302,8 +287,7 @@ const styles = StyleSheet.create({
     },
 
     txtPesanan: {
-        width: 139,
-        height: 19,
+        width: wp(35),
         fontSize: 16,
         marginLeft: 60,
         fontFamily: 'Montserrat-SemiBold',
@@ -311,8 +295,7 @@ const styles = StyleSheet.create({
     },
 
     txtJual: {
-        width: 100,
-        height: 19,
+        width: wp(25),
         fontSize: 16,
         marginRight: 50,
         fontFamily: 'Montserrat-SemiBold',
@@ -328,8 +311,8 @@ const styles = StyleSheet.create({
     },
 
     imgContainer: {
-        width: 378,
-        height: 300,
+        width: wp(92),
+        height: hp(50),
         borderRadius: 18,
         marginLeft: 16,
         marginRight: 16,
