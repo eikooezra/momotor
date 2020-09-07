@@ -14,6 +14,7 @@ import {
   listenOrientationChange as loc,
   removeOrientationListener as rol
 } from 'react-native-responsive-screen'
+import normalize from 'react-native-normalize';
 
 class Home extends Component{
     constructor(props){
@@ -175,34 +176,32 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: 'white',
-        width: wp(100),
-        display: 'flex'
     },
 
     Header: {
-        width: wp(100),
-        height: hp(18),
-        marginBottom: 90,
-        borderBottomLeftRadius: 25,
-        borderBottomRightRadius: 25,
+        width: normalize(380),
+        height: normalize(130),
+        marginBottom: normalize(90),
+        borderBottomLeftRadius: normalize(25),
+        borderBottomRightRadius: normalize(25),
         backgroundColor: '#0064D0',
     },
 
     momotor: {
-        width: wp(36),
-        height: hp(3),
-        marginTop: 40,
-        marginBottom: 22.13,
-        marginLeft: 20,
-        marginRight: 200.48,
+        width: normalize(144),
+        height: normalize(22),
+        marginTop: normalize(40),
+        marginBottom: normalize(22.13),
+        marginLeft: normalize(20),
+        marginRight: normalize(200.48),
     },
     
     upperBar: {
-        height: hp(17),
-        borderRadius: 10,
-        marginLeft: 16,
-        marginRight: 16,
-        marginBottom: 15,
+        height: normalize(120),
+        borderRadius: normalize(10),
+        marginLeft: normalize(16),
+        marginRight: normalize(16),
+        marginBottom: normalize(15),
         elevation: 5,
         backgroundColor: '#FFFFFF',
         justifyContent: 'space-between',
@@ -210,71 +209,71 @@ const styles = StyleSheet.create({
     },
 
     btnList: {
-        width: wp(13.7),
-        height: hp(7.5),
-        marginTop: 20,
-        marginBottom: 10,
-        marginLeft: 22,
-        marginRight: 40,
+        width: normalize(54),
+        height: normalize(54),
+        marginTop: normalize(20),
+        marginBottom: normalize(10),
+        marginLeft: normalize(22),
+        marginRight: normalize(40),
     },
     
     txtList: {
-        width: wp(12),
-        fontSize: 12,
+        width: normalize(46),
+        fontSize: normalize(13),
         fontFamily: 'Montserrat-SemiBold',
         textAlign: 'center',
         color: '#000000',
-        marginLeft: 25,
-        marginRight: 30,
+        marginLeft: normalize(25),
+        marginRight: normalize(30),
     },
 
     btnClist: {
-        width: wp(13.7),
-        height: hp(7.5),
-        marginTop: 20,
-        marginBottom: 10,
-        marginRight: 40,
+        width: normalize(54),
+        height: normalize(54),
+        marginTop: normalize(20),
+        marginBottom: normalize(10),
+        marginRight: normalize(40),
     },
 
     txtClist: {
-        width: wp(13),
-        fontSize: 12,
+        width: normalize(54),
+        fontSize: normalize(13),
         fontFamily: 'Montserrat-SemiBold',
         textAlign: 'center',
         color: '#000000',
-        marginRight: 35,
-        marginLeft: 3
+        marginRight: normalize(35),
+        marginLeft: normalize(3)
     },
 
     btnJualCpt: {
-        width: wp(13.7),
-        height: hp(7.5),
-        marginTop: 20,
-        marginBottom: 10,
+        width: normalize(54),
+        height: normalize(54),
+        marginTop: normalize(20),
+        marginBottom: normalize(10),
     },
 
     txtJualCpt: {
-        width: wp(13),
-        fontSize: 12,
+        width: normalize(46),
+        fontSize: normalize(13),
         fontFamily: 'Montserrat-SemiBold',
         textAlign: 'center',
         color: '#000000',
-        marginRight: 30,
+        marginRight: normalize(30),
     },
 
     btnCalc: {
-        width: wp(13.7),
-        height: hp(7.5),
-        marginTop: 20,
-        marginBottom: 10,
-        marginRight: 30,
-        marginLeft: 7,
+        width: normalize(54),
+        height: normalize(54),
+        marginTop: normalize(20),
+        marginBottom: normalize(10),
+        marginRight: normalize(30),
+        marginLeft: normalize(7),
     },
 
     txtCalc: {
-        width: wp(16),
-        fontSize: 12,
-        marginRight: 15,
+        width: normalize(65),
+        fontSize: normalize(13),
+        marginRight: normalize(15),
         fontFamily: 'Montserrat-SemiBold',
         textAlign: 'center',
         color: '#000000',
@@ -282,23 +281,23 @@ const styles = StyleSheet.create({
     },
 
     dblTxtContainer: {
-        marginBottom: 20,
+        marginBottom: normalize(20),
         justifyContent: 'space-between',
         flexDirection: 'row'
     },
 
     txtPesanan: {
-        width: wp(35),
-        fontSize: 16,
-        marginLeft: 60,
+        width: normalize(138),
+        fontSize: normalize(16),
+        marginLeft: normalize(60),
         fontFamily: 'Montserrat-SemiBold',
         color: '#000000'
     },
 
     txtJual: {
-        width: wp(25),
-        fontSize: 16,
-        marginRight: 50,
+        width: normalize(86),
+        fontSize: normalize(16),
+        marginRight: normalize(50),
         fontFamily: 'Montserrat-SemiBold',
         color: '#000000'
     },
@@ -312,8 +311,8 @@ const styles = StyleSheet.create({
     },
 
     imgContainer: {
-        width: wp(92),
-        height: hp(50),
+        width: normalize(348),
+        height: normalize(246),
         borderRadius: 18,
         marginLeft: 16,
         marginRight: 16,
