@@ -277,7 +277,6 @@ const styles = StyleSheet.create({
         fontFamily: 'Montserrat-SemiBold',
         textAlign: 'center',
         color: '#000000',
-        display: 'flex'
     },
 
     dblTxtContainer: {
