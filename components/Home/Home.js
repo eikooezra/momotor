@@ -189,7 +189,7 @@ const styles = StyleSheet.create({
 
     momotor: {
         width: normalize(144),
-        height: normalize(22),
+        height: normalize(24),
         marginTop: normalize(40),
         marginBottom: normalize(22.13),
         marginLeft: normalize(20),
@@ -213,18 +213,16 @@ const styles = StyleSheet.create({
         height: normalize(54),
         marginTop: normalize(20),
         marginBottom: normalize(10),
-        marginLeft: normalize(22),
-        marginRight: normalize(40),
+        marginLeft: normalize(20)
     },
     
     txtList: {
-        width: normalize(46),
+        width: normalize(60),
         fontSize: normalize(13),
+        marginLeft: normalize(15),
         fontFamily: 'Montserrat-SemiBold',
         textAlign: 'center',
         color: '#000000',
-        marginLeft: normalize(25),
-        marginRight: normalize(30),
     },
 
     btnClist: {
@@ -232,17 +230,16 @@ const styles = StyleSheet.create({
         height: normalize(54),
         marginTop: normalize(20),
         marginBottom: normalize(10),
-        marginRight: normalize(40),
+        marginLeft: normalize(16)
     },
 
     txtClist: {
-        width: normalize(54),
+        width: normalize(60),
         fontSize: normalize(13),
+        marginLeft: normalize(12),
         fontFamily: 'Montserrat-SemiBold',
         textAlign: 'center',
         color: '#000000',
-        marginRight: normalize(35),
-        marginLeft: normalize(3)
     },
 
     btnJualCpt: {
@@ -250,15 +247,16 @@ const styles = StyleSheet.create({
         height: normalize(54),
         marginTop: normalize(20),
         marginBottom: normalize(10),
+        marginLeft: normalize(16)
     },
 
     txtJualCpt: {
-        width: normalize(46),
+        width: normalize(58),
         fontSize: normalize(13),
+        marginLeft: normalize(12),
         fontFamily: 'Montserrat-SemiBold',
         textAlign: 'center',
         color: '#000000',
-        marginRight: normalize(30),
     },
 
     btnCalc: {
@@ -266,14 +264,13 @@ const styles = StyleSheet.create({
         height: normalize(54),
         marginTop: normalize(20),
         marginBottom: normalize(10),
-        marginRight: normalize(30),
-        marginLeft: normalize(7),
+        marginLeft: normalize(13)
     },
 
     txtCalc: {
-        width: normalize(65),
+        width: normalize(75),
         fontSize: normalize(13),
-        marginRight: normalize(15),
+        marginRight: normalize(10),
         fontFamily: 'Montserrat-SemiBold',
         textAlign: 'center',
         color: '#000000',
@@ -286,7 +283,7 @@ const styles = StyleSheet.create({
     },
 
     txtPesanan: {
-        width: normalize(138),
+        width: normalize(150),
         fontSize: normalize(16),
         marginLeft: normalize(60),
         fontFamily: 'Montserrat-SemiBold',
@@ -294,9 +291,9 @@ const styles = StyleSheet.create({
     },
 
     txtJual: {
-        width: normalize(86),
+        width: normalize(110),
         fontSize: normalize(16),
-        marginRight: normalize(50),
+        marginRight: normalize(30),
         fontFamily: 'Montserrat-SemiBold',
         color: '#000000'
     },
