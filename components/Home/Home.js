@@ -8,12 +8,6 @@ import {
   ScrollView,
   StatusBar
 } from 'react-native'
-import {
-  widthPercentageToDP as wp,
-  heightPercentageToDP as hp,
-  listenOrientationChange as loc,
-  removeOrientationListener as rol
-} from 'react-native-responsive-screen'
 import normalize from 'react-native-normalize';
 
 class Home extends Component{
