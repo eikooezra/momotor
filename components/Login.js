@@ -224,7 +224,7 @@ split2: {
 txtSandi: {
     color: '#2A77CB',
     fontSize: normalize(14),
-    fontFamily: 'Montserrat-SemiBold'
+    fontFamily: 'Montserrat-Medium'
 },
 
 txtInput: {
@@ -233,7 +233,7 @@ txtInput: {
 
 txtMasuk: {
     fontFamily: 'Montserrat-SemiBold',
-    fontSize: 14,
+    fontSize: normalize(14),
     color: '#FFFFFF'
 },
 
@@ -248,18 +248,18 @@ txtError1: {
 },
 
 txtError2: {
-    width: 200,
-    height: 18,
-    fontSize: 14,
+    width: normalize(200),
+    height: normalize(18),
+    fontSize: normalize(14),
     fontFamily: 'Monserrat-Medium',
     color: '#E56464',
-    marginBottom: 12,
-    marginLeft: 30
+    marginBottom: normalize(12),
+    marginLeft: normalize(30)
 },
 
 btnMasuk: {
-    width: normalize(170),
-    height: normalize(46),
+    width: normalize(200),
+    height: normalize(48),
     borderRadius: 6,
     justifyContent: 'center',
     alignItems: 'center',

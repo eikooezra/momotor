@@ -9,6 +9,7 @@ import {
     StatusBar
 } from 'react-native'
 import axios from 'axios'
+import normalize from 'react-native-normalize';
 import {TextInput} from 'react-native-gesture-handler'
 
 const NODEAPI = 'http://10.3.110.149:3000';class Forgot extends Component {
@@ -141,30 +142,29 @@ all: {
 },
 
 imgContainer: {
-    width: 190,
-    height: 186,
-    marginTop: 80,
-    marginBottom: 30,
-    marginLeft: 105,
-    marginRight: 105
+    width: normalize(190),
+    height: normalize(186),
+    marginTop: normalize(80),
+    marginBottom: normalize(30),
+    marginLeft: normalize(105),
+    marginRight: normalize(105)
 },
 
 txt1: {
-    width: 225,
-    height: 22,
-    marginBottom: 16,
-    fontSize: 18,
+    width: normalize(225),
+    height: normalize(22),
+    marginBottom: normalize(16),
+    fontSize: normalize(18),
     fontFamily: 'Montserrat-Bold'
 },
 
 txt2: {
-    width: 294,
-    height: 60,
-    fontSize: 14,
+    width: normalize(300),
+    height: normalize(60),
+    fontSize: normalize(14),
     fontFamily: 'Montserrat-Medium',
     color: '#7F7F7F',
     textAlign: 'center',
-    marginBottom: 16
 },
 
 txtInput: {
@@ -173,61 +173,60 @@ txtInput: {
 
 txtKirim: {
     fontFamily: 'Montserrat-SemiBold',
-    fontSize: 14,
+    fontSize: normalize(14),
     color: '#FFFFFF'
 },
 
 txtBack: {
     color: '#2A77CB',
-    fontSize: 14,
-    fontFamily: 'Montserrat-SemiBold'
+    fontSize: normalize(14),
+    fontFamily: 'Montserrat-Medium'
 },
 
 txtError: {
-    width: 200,
-    height: 18,
-    fontSize: 14,
+    width: normalize(200),
+    height: normalize(18),
+    fontSize: normalize(14),
     fontFamily: 'Monserrat-Medium',
     color: '#E56464',
-    marginBottom: 12,
-    marginLeft: 30
+    marginBottom: normalize(12),
+    marginLeft: normalize(30)
 },
 
 btnKirim: {
     backgroundColor: '#0064D0',
-    marginBottom: 1,
-    width: 200,
-    height: 48,
+    marginBottom: normalize(1),
+    width: normalize(200),
+    height: normalize(48),
     borderRadius: 6,
     justifyContent: 'center',
     alignItems: 'center'
 },
 
 inputContainer: {
-    width: 300,
-    height: 48,
-    // marginTop: 24,
-    marginBottom: 8,
+    width: normalize(300),
+    height: normalize(48),
+    marginBottom: normalize(8),
     borderWidth: 2,
     borderColor: '#000000',
     borderRadius: 6,
-    paddingLeft: 45,
-    marginLeft: 25,
-    marginRight: 25
+    paddingLeft: normalize(45),
+    marginLeft: normalize(25),
+    marginRight: normalize(25)
 },
 
 mailLogo: {
-    marginTop: 14.5,
-    marginBottom: 14.5,
-    marginLeft: 10.76,
-    marginRight: 15.5,
-    width: 19,
-    height: 15,
+    marginTop: normalize(14.5),
+    marginBottom: normalize(14.5),
+    marginLeft: normalize(10.76),
+    marginRight: normalize(15.5),
+    width: normalize(19),
+    height: normalize(15),
     borderWidth: 0.8,
     flex: 1,
     position: 'absolute'
 },
 
 backLogin: {
-    marginTop: 16
+    marginTop: normalize(16)
 }})
