@@ -182,7 +182,7 @@ const styles = StyleSheet.create({
     },
 
     momotor: {
-        width: normalize(144),
+        width: normalize(145),
         height: normalize(24),
         marginTop: normalize(40),
         marginBottom: normalize(22.13),
