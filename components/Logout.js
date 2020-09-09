@@ -6,6 +6,7 @@ import {
   Text,
   Image,
 } from 'react-native'
+import normalize from 'react-native-normalize';
 
 class Logout extends Component{
     constructor(props){
@@ -121,41 +122,41 @@ const styles = StyleSheet.create({
     },
 
     Header: {
-        width: 412,
-        height: 65,
-        marginBottom: 24,
+        width: normalize(412),
+        height: normalize(65),
+        marginBottom: normalize(24),
         backgroundColor: '#0064D0',
     },
 
     momotor: {
-        width: 143.52,
-        height: 21.87,
-        marginTop: 25,
-        marginBottom: 22.13,
-        marginLeft: 16,
-        marginRight: 200.48
+        width: normalize(143.52),
+        height: normalize(21.87),
+        marginTop: normalize(25),
+        marginBottom: normalize(22.13),
+        marginLeft: normalize(16),
+        marginRight: normalize(200.48)
     },
 
     btnAbout: {
       flexDirection: 'row',
       borderBottomWidth: 1,
       borderBottomColor: '#E3DFDF',
-      marginBottom: 17,
-      marginLeft: 25,
-      marginRight: 25
+      marginBottom: normalize(17),
+      marginLeft: normalize(25),
+      marginRight: normalize(25)
     },
 
     imgAbout: {
-      width: 35,
-      height: 25,
+      width: normalize(35),
+      height: normalize(25),
     },
 
     txtAbout: {
-      width: 200,
-      height: 21,
-      marginLeft: 16,
-      marginBottom: 18,
-      fontSize: 16,
+      width: normalize(200),
+      height: normalize(21),
+      marginLeft: normalize(16),
+      marginBottom: normalize(18),
+      fontSize: normalize(16),
       fontFamily: 'Montserrat-Medium'
     },
 
@@ -163,23 +164,23 @@ const styles = StyleSheet.create({
       flexDirection: 'row',
       borderBottomWidth: 1,
       borderBottomColor: '#E3DFDF',
-      marginBottom: 16,
-      marginLeft: 25,
-      marginRight: 25
+      marginBottom: normalize(16),
+      marginLeft: normalize(25),
+      marginRight: normalize(25)
     },
 
     imgPrivacy: {
-      width: 21,
-      height: 25,
-      marginLeft: 6
+      width: normalize(21),
+      height: normalize(25),
+      marginLeft: normalize(6)
     },
 
     txtPrivacy: {
-      width: 300,
-      height: 20,
-      marginLeft: 24,
-      marginBottom: 18,
-      fontSize: 16,
+      width: normalize(300),
+      height: normalize(20),
+      marginLeft: normalize(24),
+      marginBottom: normalize(18),
+      fontSize: normalize(16),
       fontFamily: 'Montserrat-Medium'
     },
 
@@ -187,23 +188,23 @@ const styles = StyleSheet.create({
       flexDirection: 'row',
       borderBottomWidth: 1,
       borderBottomColor: '#E3DFDF',
-      marginBottom: 17,
-      marginLeft: 25,
-      marginRight: 25
+      marginBottom: normalize(17),
+      marginLeft: normalize(25),
+      marginRight: normalize(25)
     },
 
     imgTerms: {
-      width: 25,
-      height: 26,
-      marginLeft: 7
+      width: normalize(25),
+      height: normalize(26),
+      marginLeft: normalize(7)
     },
 
     txtTerms: {
-      width: 200,
-      height: 20,
-      marginLeft: 20,
-      marginBottom: 18,
-      fontSize: 16,
+      width: normalize(200),
+      height: normalize(20),
+      marginLeft: normalize(20),
+      marginBottom: normalize(18),
+      fontSize: normalize(16),
       fontFamily: 'Montserrat-Medium'
     },
 
@@ -211,50 +212,50 @@ const styles = StyleSheet.create({
       flexDirection: 'row',
       borderBottomWidth: 1,
       borderBottomColor: '#E3DFDF',
-      marginBottom: 20,
-      marginLeft: 25,
-      marginRight: 25
+      marginBottom: normalize(20),
+      marginLeft: normalize(25),
+      marginRight: normalize(25)
     }, 
 
     imgFaq: {
-      width: 30,
-      height: 23,
-      marginLeft: 6
+      width: normalize(30),
+      height: normalize(23),
+      marginLeft: normalize(6)
     },
 
     txtFaq: {
-      width: 200,
-      height: 20,
-      marginLeft: 17,
-      marginBottom: 18,
-      fontSize: 16,
+      width: normalize(200),
+      height: normalize(20),
+      marginLeft: normalize(17),
+      marginBottom: normalize(18),
+      fontSize: normalize(16),
       fontFamily: 'Montserrat-Medium'
     },
 
     txtVer: {
-      width: 410,
-      height: 20,
-      fontSize: 14,
-      marginBottom: 16,
+      width: normalize(410),
+      height: normalize(20),
+      fontSize: normalize(14),
+      marginBottom: normalize(16),
       color: '#7F7F7F',
       textAlign: 'center',
       fontFamily: 'Montserrat-Medium',
     },
 
     btnLogin: {
-      width: 360,
-      height: 48,
-      borderWidth: 2,
-      borderRadius: 6,
-      marginLeft: 25,
+      width: normalize(360),
+      height: normalize(48),
+      borderWidth: normalize(2),
+      borderRadius: normalize(6),
+      marginLeft: normalize(25),
       borderColor: '#0064D0',
     },
 
     txtLogin: {
-        width: 350,
-        height: 20, 
-        fontSize: 16,
-        marginTop: 10,
+        width: normalize(350),
+        height: normalize(20), 
+        fontSize: normalize(16),
+        marginTop: normalize(10),
         color: '#0064D0',
         textAlign: 'center',
         fontFamily: 'Montserrat-SemiBold'
