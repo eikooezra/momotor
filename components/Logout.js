@@ -233,7 +233,7 @@ const styles = StyleSheet.create({
     },
 
     txtVer: {
-      width: normalize(410),
+      width: normalize(380),
       height: normalize(20),
       fontSize: normalize(14),
       marginBottom: normalize(16),
@@ -252,7 +252,7 @@ const styles = StyleSheet.create({
     },
 
     txtLogin: {
-        width: normalize(350),
+        width: normalize(340),
         height: normalize(20), 
         fontSize: normalize(16),
         marginTop: normalize(10),
