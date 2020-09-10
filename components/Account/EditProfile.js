@@ -9,6 +9,7 @@ import {
   Image,
 } from 'react-native'
 import { TextInput } from 'react-native-gesture-handler'
+import normalize from 'react-native-normalize'
 import axios from 'axios'
 
 const NODEAPI = 'http://192.168.0.13:3000'
@@ -136,35 +137,35 @@ const styles = StyleSheet.create({
     },
 
     Header: {
-        width: 412,
-        height: 70,
-        marginBottom: 24,
+        width: normalize(380),
+        height: normalize(70),
+        marginBottom: normalize(24),
         flexDirection: 'row',
         backgroundColor: '#0064D0',
     },
 
     btnBack: {
-        width: 32,
-        height: 16,
-        marginLeft: 16,
-        marginTop: 30
+        width: normalize(32),
+        height: normalize(16),
+        marginLeft: normalize(16),
+        marginTop: normalize(30)
     },
 
     txtEdit: {
-        width: 100,
-        height: 20,
-        marginTop: 25,
-        marginLeft: 115,
-        fontSize: 16,
+        width: normalize(100),
+        height: normalize(20),
+        marginTop: normalize(25),
+        marginLeft: normalize(107),
+        fontSize: normalize(16),
         color: '#FFFFFF',
         fontFamily: 'Montserrat-Bold'
     },
 
     txtName: {
-        width: 150,
-        height: 15,
-        marginLeft: 20,
-        fontSize: 14,
+        width: normalize(150),
+        height: normalize(15),
+        marginLeft: normalize(20),
+        fontSize: normalize(14),
         color: '#7F7F7F',
         fontFamily: 'Montserrat-Medium'
     },
@@ -172,18 +173,18 @@ const styles = StyleSheet.create({
     inputName: {
       borderBottomWidth: 1,
       borderBottomColor: '#E3DFDF',
-      marginBottom: 24,
-      marginLeft: 20,
-      marginRight: 20,
-      fontSize: 14,
+      marginBottom: normalize(24),
+      marginLeft: normalize(20),
+      marginRight: normalize(20),
+      fontSize: normalize(14),
       fontFamily: 'Montserrat-Medium'
     },
 
     txtAddress: {
-        width: 150,
-        height: 15,
-        marginLeft: 20,
-        fontSize: 14,
+        width: normalize(150),
+        height: normalize(15),
+        marginLeft: normalize(20),
+        fontSize: normalize(14),
         color: '#7F7F7F',
         fontFamily: 'Montserrat-Medium'
     },
@@ -191,18 +192,18 @@ const styles = StyleSheet.create({
     inputAddress: {
       borderBottomWidth: 1,
       borderBottomColor: '#E3DFDF',
-      marginBottom: 24,
-      marginLeft: 20,
-      marginRight: 20,
-      fontSize: 14,
+      marginBottom: normalize(24),
+      marginLeft: normalize(20),
+      marginRight: normalize(20),
+      fontSize: normalize(14),
       fontFamily: 'Montserrat-Medium'
     },
 
     txtPhone: {
-        width: 150,
-        height: 15,
-        marginLeft: 20,
-        fontSize: 14,
+        width: normalize(150),
+        height: normalize(15),
+        marginLeft: normalize(20),
+        fontSize: normalize(14),
         color: '#7F7F7F',
         fontFamily: 'Montserrat-Medium'
     },
@@ -210,18 +211,18 @@ const styles = StyleSheet.create({
     inputPhone: {
       borderBottomWidth: 1,
       borderBottomColor: '#E3DFDF',
-      marginBottom: 24,
-      marginLeft: 20,
-      marginRight: 20,
-      fontSize: 14,
+      marginBottom: normalize(24),
+      marginLeft: normalize(20),
+      marginRight: normalize(20),
+      fontSize: normalize(14),
       fontFamily: 'Montserrat-Medium'
     },
 
     txtEmail: {
-        width: 150,
-        height: 15,
-        marginLeft: 20,
-        fontSize: 14,
+        width: normalize(150),
+        height: normalize(15),
+        marginLeft: normalize(20),
+        fontSize: normalize(14),
         color: '#7F7F7F',
         fontFamily: 'Montserrat-Medium'
     },
@@ -229,10 +230,10 @@ const styles = StyleSheet.create({
     inputEmail: {
       borderBottomWidth: 1,
       borderBottomColor: '#E3DFDF',
-      marginBottom: 120,
-      marginLeft: 20,
-      marginRight: 20,
-      fontSize: 14,
+      marginBottom: normalize(120),
+      marginLeft: normalize(20),
+      marginRight: normalize(20),
+      fontSize: normalize(14),
       fontFamily: 'Montserrat-Medium'
     },
 
@@ -242,18 +243,18 @@ const styles = StyleSheet.create({
     },
 
     btnSave: {
-        width: 100,
-        height: 40,
-        borderRadius: 20,
+        width: normalize(100),
+        height: normalize(40),
+        borderRadius: normalize(20),
         backgroundColor: '#0064D0'
     },
 
     txtSave:{
-        width: 100,
-        height: 18,
-        marginTop: 11,
-        marginLeft: 21,
-        fontSize: 14,
+        width: normalize(100),
+        height: normalize(18),
+        marginTop: normalize(11),
+        marginLeft: normalize(26),
+        fontSize: normalize(14),
         color: '#FFFFFF',
         fontFamily: 'Montserrat-SemiBold',
     }

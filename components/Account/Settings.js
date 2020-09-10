@@ -7,6 +7,7 @@ import {
   Image,
 } from 'react-native'
 import ToggleSwitch from 'toggle-switch-react-native'
+import normalize from 'react-native-normalize'
 
 class Settings extends Component{
     constructor(props){
@@ -83,36 +84,36 @@ const styles = StyleSheet.create({
     },
 
     Header: {
-        width: 412,
-        height: 70,
-        marginBottom: 24,
+        width: normalize(380),
+        height: normalize(70),
+        marginBottom: normalize(24),
         flexDirection: 'row',
         backgroundColor: '#0064D0',
     },
 
     btnBack: {
-        width: 32,
-        height: 16,
-        marginLeft: 16,
-        marginTop: 30
+        width: normalize(32),
+        height: normalize(16),
+        marginLeft: normalize(16),
+        marginTop: normalize(30)
     },
 
     txtSettings: {
-        width: 100,
-        height: 20,
-        marginTop: 25,
-        marginLeft: 115,
-        fontSize: 16,
+        width: normalize(100),
+        height: normalize(20),
+        marginTop: normalize(25),
+        marginLeft: normalize(107),
+        fontSize: normalize(16),
         color: '#FFFFFF',
         fontFamily: 'Montserrat-Bold'
     },
 
     txtSandi: {
-        width: 100,
-        height: 18,
-        marginLeft: 20,
-        marginBottom: 36,
-        fontSize: 16,
+        width: normalize(100),
+        height: normalize(18),
+        marginLeft: normalize(20),
+        marginBottom: normalize(36),
+        fontSize: normalize(16),
         fontFamily: 'Montserrat-Medium'
     },
 
@@ -121,23 +122,23 @@ const styles = StyleSheet.create({
     },
 
     txtNotif: {
-        width: 100,
-        height: 18,
-        marginLeft: 20,
-        marginBottom: 36,
-        fontSize: 16,
+        width: normalize(100),
+        height: normalize(18),
+        marginLeft: normalize(20),
+        marginBottom: normalize(36),
+        fontSize: normalize(16),
         fontFamily: 'Montserrat-Medium'
     },
 
     notifToggle: {
-        marginLeft: 20
+        marginLeft: normalize(20)
     },
 
     txtKritik: {
-        width: 100,
-        height: 18,
-        marginLeft: 20,
-        fontSize: 16,
+        width: normalize(100),
+        height: normalize(18),
+        marginLeft: normalize(20),
+        fontSize: normalize(16),
         fontFamily: 'Montserrat-Medium'
     },
 })
