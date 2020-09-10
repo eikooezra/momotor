@@ -12,7 +12,8 @@ import axios from 'axios'
 import normalize from 'react-native-normalize';
 import {TextInput} from 'react-native-gesture-handler'
 
-const NODEAPI = 'http://10.3.110.149:3000';class Forgot extends Component {
+const NODEAPI = 'http://10.3.110.149:3000';
+class Forgot extends Component {
 constructor(props) {
     super(props)
     this.state = {
@@ -154,6 +155,7 @@ txt1: {
     width: normalize(225),
     height: normalize(22),
     marginBottom: normalize(16),
+    marginLeft: normalize(30),
     fontSize: normalize(18),
     fontFamily: 'Montserrat-Bold'
 },
