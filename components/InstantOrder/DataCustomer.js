@@ -10,6 +10,7 @@ import {
     TouchableOpacity
 } from 'react-native'
 import DropDownPicker from 'react-native-dropdown-picker'
+import normalize from 'react-native-normalize'
 
 class DataCustomer extends Component {
     constructor(props){
@@ -291,22 +292,22 @@ render() {
                         paddingVertical: 20
                     }}
                     containerStyle={{
-                        width: 370,
-                        height: 48,
-                        marginLeft: 16,
-                        marginBottom: 6,
+                        width: normalize(350),
+                        height: normalize(46),
+                        marginLeft: normalize(16),
+                        marginBottom: normalize(6),
                     }}
                     dropDownStyle={{
                         backgroundColor: '#FFFFFF'
                     }}
                     labelStyle={{
-                        marginLeft: 8,
-                        fontSize: 14,
+                        marginLeft: normalize(8),
+                        fontSize: normalize(14.5),
                         color:'#7F7F7F',
                         fontFamily: 'Montserrat-SemiBold'
                     }}
                     arrowStyle={{
-                        marginLeft: 205
+                        marginLeft: normalize(205)
                     }}
                     onChangeItem={
                         item => this.setState({
@@ -565,7 +566,7 @@ render() {
 
             <TouchableOpacity
                 onPress={this.goToDataPekerjaan}
-                disabled={!enabled}
+                // disabled={!enabled}
             >
                 <Text style={[styles.txtNxt, {
                     color: (
@@ -602,251 +603,251 @@ const styles = StyleSheet.create({
     },
 
     Header: {
-        width: 412,
-        height: 70,
+        width: normalize(380),
+        height: normalize(70),
         flexDirection: 'row',
         backgroundColor: '#0064D0',
     },
 
     txtInstant: {
-        width: 200,
-        height: 20,
-        marginTop: 25,
-        marginLeft: 153,
-        fontSize: 16,
+        width: normalize(200),
+        height: normalize(20),
+        marginTop: normalize(25),
+        marginLeft: normalize(145),
+        fontSize: normalize(16),
         color: '#FFFFFF',
         fontFamily: 'Montserrat-Bold'
     },
 
     containerTxt: {
-        width: 420,
-        height: 48,
-        marginBottom: 15,
+        width: normalize(420),
+        height: normalize(48),
+        marginBottom: normalize(15),
         elevation: 4,
         backgroundColor: '#FFFFFF',
     },
 
     txtData: {
-        width: 124,
-        height: 19,
-        marginTop: 15,
-        marginLeft: 16,
+        width: normalize(124),
+        height: normalize(19),
+        marginTop: normalize(15),
+        marginLeft: normalize(16),
         color: '#000000',
         fontFamily: 'Montserrat-SemiBold'
     },
 
     errorStyle: {
-        width: 200,
-        height: 15,
-        marginLeft: 17,
-        marginBottom: 15,
-        fontSize: 12,
+        width: normalize(200),
+        height: normalize(15),
+        marginLeft: normalize(17),
+        marginBottom: normalize(15),
+        fontSize: normalize(12),
         fontFamily: 'Montserrat-Medium',
         color: '#D81818'
     },
 
     txtInpNama: {
-        width: 370,
-        height: 48,
-        marginLeft: 16,
-        marginBottom: 6,
+        width: normalize(350),
+        height: normalize(46),
+        marginLeft: normalize(16),
+        marginBottom: normalize(6),
         borderWidth: 2,
         borderRadius: 4,
         borderColor: '#EBEBEB'
     },
 
     txtNama: {
-        marginLeft: 8,
+        marginLeft: normalize(8),
         color: '#7F7F7F',
         fontFamily: 'Montserrat-SemiBold'
     },
 
     txtInpNIK: {
-        width: 370,
-        height: 48,
-        marginLeft: 16,
-        marginBottom: 6,
+        width: normalize(350),
+        height: normalize(46),
+        marginLeft: normalize(16),
+        marginBottom: normalize(6),
         borderWidth: 2,
         borderRadius: 4,
         borderColor: '#EBEBEB',
     },
 
     txtNIK: {
-        marginLeft: 8,
+        marginLeft: normalize(8),
         color: '#7F7F7F',
         fontFamily: 'Montserrat-SemiBold'
     },
 
     txtInpPhone: {
-        width: 370,
-        height: 48,
-        marginLeft: 16,
-        marginBottom: 6,
+        width: normalize(350),
+        height: normalize(46),
+        marginLeft: normalize(16),
+        marginBottom: normalize(6),
         borderWidth: 2,
         borderRadius: 4,
         borderColor: '#EBEBEB',
     },
 
     txtPhone: {
-        marginLeft: 8,
+        marginLeft: normalize(8),
         color: '#7F7F7F',
         fontFamily: 'Montserrat-SemiBold'
     },
 
     txtInpEmail: {
-        width: 370,
-        height: 48,
-        marginLeft: 16,
-        marginBottom: 6,
+        width: normalize(350),
+        height: normalize(46),
+        marginLeft: normalize(16),
+        marginBottom: normalize(6),
         borderWidth: 2,
         borderRadius: 4,
         borderColor: '#EBEBEB',
     },
 
     txtEmail: {
-        marginLeft: 8,
+        marginLeft: normalize(8),
         color: '#7F7F7F',
         fontFamily: 'Montserrat-SemiBold'
     },
 
     txtInpBrthPlc: {
-        width: 370,
-        height: 48,
-        marginLeft: 16,
-        marginBottom: 6,
+        width: normalize(350),
+        height: normalize(46),
+        marginLeft: normalize(16),
+        marginBottom: normalize(6),
         borderWidth: 2,
         borderRadius: 4,
         borderColor: '#EBEBEB',
     },
 
     txtBrthPlc: {
-        marginLeft: 8,
+        marginLeft: normalize(8),
         color: '#7F7F7F',
         fontFamily: 'Montserrat-SemiBold'
     },
 
     txtInpDoB: {
-        width: 370,
-        height: 48,
-        marginLeft: 16,
-        marginBottom: 6,
+        width: normalize(350),
+        height: normalize(46),
+        marginLeft: normalize(16),
+        marginBottom: normalize(6),
         borderWidth: 2,
         borderRadius: 4,
         borderColor: '#EBEBEB',
     },
 
     txtDoB: {
-        marginLeft: 8,
+        marginLeft: normalize(8),
         color: '#7F7F7F',
         fontFamily: 'Montserrat-SemiBold'
     },
 
     txtInpAddress: {
-        width: 370,
-        height: 48,
-        marginLeft: 16,
-        marginBottom: 6,
+        width: normalize(350),
+        height: normalize(46),
+        marginLeft: normalize(16),
+        marginBottom: normalize(6),
         borderWidth: 2,
         borderRadius: 4,
         borderColor: '#EBEBEB',
     },
     
     txtAddress: {
-        marginLeft: 8,
+        marginLeft: normalize(8),
         color: '#7F7F7F',
         fontFamily: 'Montserrat-SemiBold'
     },
 
     flexContainer: {
         flexDirection: 'row',
-        marginBottom: 34
+        marginBottom: normalize(34)
     },
 
     txtInpRT: {
-        width: 160,
-        height: 48,
-        marginLeft: 16,
-        marginBottom: 8,
+        width: normalize(169),
+        height: normalize(46),
+        marginLeft: normalize(16),
+        marginBottom: normalize(6),
         borderWidth: 2,
         borderRadius: 4,
         borderColor: '#EBEBEB',
     },
 
     txtRT: {
-        marginLeft: 8,
+        marginLeft: normalize(8),
         color: '#7F7F7F',
         fontFamily: 'Montserrat-SemiBold'
     },
 
     txtInpRW: {
-        width: 170,
-        height: 48,
-        marginLeft: 40,
-        marginBottom: 6,
+        width: normalize(169),
+        height: normalize(46),
+        marginLeft: normalize(16),
+        marginBottom: normalize(6),
         borderWidth: 2,
         borderRadius: 4,
         borderColor: '#EBEBEB',
     },
 
     txtRW: {
-        marginLeft: 8,
+        marginLeft: normalize(8),
         color: '#7F7F7F',
         fontFamily: 'Montserrat-SemiBold'
     },
 
     txtInpKelurahan: {
-        width: 370,
-        height: 48,
-        marginLeft: 16,
-        marginBottom: 6,
+        width: normalize(350),
+        height: normalize(46),
+        marginLeft: normalize(16),
+        marginBottom: normalize(6),
         borderWidth: 2,
         borderRadius: 4,
         borderColor: '#EBEBEB',
     },
 
     txtKelurahan: {
-        marginLeft: 8,
+        marginLeft: normalize(8),
         color: '#7F7F7F',
         fontFamily: 'Montserrat-SemiBold'
     },
 
     txtInpMom: {
-        width: 370,
-        height: 48,
-        marginLeft: 16,
-        marginBottom: 6,
+        width: normalize(350),
+        height: normalize(46),
+        marginLeft: normalize(16),
+        marginBottom: normalize(6),
         borderWidth: 2,
         borderRadius: 4,
         borderColor: '#EBEBEB',
     },
 
     txtMom: {
-        marginLeft: 8,
+        marginLeft: normalize(8),
         color: '#7F7F7F',
         fontFamily: 'Montserrat-SemiBold'
     },
 
     txtInpKelurahanMom: {
-        width: 370,
-        height: 48,
-        marginLeft: 16,
-        marginBottom: 6,
+        width: normalize(350),
+        height: normalize(46),
+        marginLeft: normalize(16),
+        marginBottom: normalize(6),
         borderWidth: 2,
         borderRadius: 4,
         borderColor: '#EBEBEB',
     },
 
     txtKelurahanMom: {
-        marginLeft: 8,
+        marginLeft: normalize(8),
         color: '#7F7F7F',
         fontFamily: 'Montserrat-SemiBold'
     },
 
     txtNxt: {
-        width: 125,
-        height: 20,
-        marginBottom: 24,
-        fontSize: 16,
+        width: normalize(125),
+        height: normalize(20),
+        marginBottom: normalize(24),
+        fontSize: normalize(16),
         fontFamily: 'Montserrat-SemiBold',
         justifyContent: 'center',
         alignSelf: 'center'

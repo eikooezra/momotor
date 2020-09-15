@@ -8,6 +8,7 @@ import {
     TouchableOpacity
 } from 'react-native'
 import DropDownPicker from 'react-native-dropdown-picker'
+import normalize from 'react-native-normalize'
 
 class DataKredit extends Component{
     constructor(props){
@@ -140,7 +141,7 @@ class DataKredit extends Component{
 
                 <TouchableOpacity
                 onPress={this.goToUploadDocs}
-                disabled={!enabled}
+                // disabled={!enabled}
             >
                 <Text style={[styles.txtNxt, {
                     color: (
@@ -166,58 +167,58 @@ const styles = StyleSheet.create({
     },
 
     Header: {
-        width: 412,
-        height: 70,
+        width: normalize(412),
+        height: normalize(70),
         flexDirection: 'row',
         backgroundColor: '#0064D0',
     },
 
     btnBack: {
-        width: 32,
-        height: 16,
-        marginLeft: 16,
-        marginTop: 30
+        width: normalize(32),
+        height: normalize(16),
+        marginLeft: normalize(16),
+        marginTop: normalize(30)
     },
 
     txtInstant: {
-        width: 200,
-        height: 20,
-        marginTop: 25,
-        marginLeft: 103,
-        fontSize: 16,
+        width: normalize(200),
+        height: normalize(20),
+        marginTop: normalize(25),
+        marginLeft: normalize(145),
+        fontSize: normalize(16),
         color: '#FFFFFF',
         fontFamily: 'Montserrat-Bold'
     },
 
     containerTxt: {
-        width: 420,
-        height: 48,
-        marginBottom: 15,
+        width: normalize(420),
+        height: normalize(48),
+        marginBottom: normalize(15),
         elevation: 4,
         backgroundColor: '#FFFFFF',
     },
 
     txtData: {
-        width: 124,
-        height: 19,
-        marginTop: 15,
-        marginLeft: 16,
+        width: normalize(124),
+        height: normalize(19),
+        marginTop: normalize(15),
+        marginLeft: normalize(16),
         color: '#000000',
         fontFamily: 'Montserrat-SemiBold'
     },
 
     txtInpDP: {
-        width: 370,
-        height: 48,
-        marginLeft: 16,
-        marginBottom: 6,
+        width: normalize(350),
+        height: normalize(46),
+        marginLeft: normalize(16),
+        marginBottom: normalize(6),
         borderWidth: 2,
         borderRadius: 4,
-        borderColor: '#EBEBEB',
+        borderColor: '#EBEBEB'
     },
 
     txtDP: {
-        marginLeft: 8,
+        marginLeft: normalize(8),
         color: '#7F7F7F',
         fontFamily: 'Montserrat-SemiBold'
     },
@@ -232,12 +233,11 @@ const styles = StyleSheet.create({
     },
 
     txtNxt: {
-        width: 125,
-        height: 20,
-        marginTop: 390,
-        fontSize: 16,
+        width: normalize(125),
+        height: normalize(20),
+        marginTop: normalize(355),
+        marginLeft: normalize(135),
+        fontSize: normalize(16),
         fontFamily: 'Montserrat-SemiBold',
-        justifyContent: 'center',
-        alignSelf: 'center'
     },
 })

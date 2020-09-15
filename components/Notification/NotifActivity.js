@@ -6,6 +6,7 @@ import {
   Text,
   Image,
 } from 'react-native'
+import normalize from 'react-native-normalize'
 
 class Notification extends Component{
     constructor(props){
@@ -167,36 +168,36 @@ const styles = StyleSheet.create({
 
     notif: {
       flexDirection: 'row',
-      marginTop: 25,
+      marginTop: normalize(25),
     },
 
     imgNotif: {
-      marginLeft: 34,
-      width: 62,
-      height: 62,
+      marginLeft: normalize(34),
+      width: normalize(62),
+      height: normalize(62),
     },
 
     txtContainer: {
-      marginLeft: 11,
+      marginLeft: normalize(11),
       alignContent: 'center'
     },
 
     notifGagal: {
-      marginRight: 160,
-      marginBottom: 6,
-      fontSize: 16,
+      marginRight: normalize(160),
+      marginBottom: normalize(6),
+      fontSize: normalize(16),
       fontFamily: 'Montserrat-SemiBold'
     },
 
     noteGagal: {
-      marginBottom: 24,
-      fontSize: 12,
+      marginBottom: normalize(24),
+      fontSize: normalize(12),
       color: '#7F7F7F',
       fontFamily: 'Montserrat-Medium'
     },
 
     clock: {
-      fontSize: 12,
+      fontSize: normalize(12),
       fontFamily: 'Montserrat-Regular'
     }
    

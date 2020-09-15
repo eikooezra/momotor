@@ -7,6 +7,7 @@ import {
     Text,
     TouchableOpacity
 } from 'react-native'
+import normalize from 'react-native-normalize'
 
 class DataKredit extends Component{
     constructor(props){
@@ -242,270 +243,250 @@ const styles = StyleSheet.create({
     },
 
     Header: {
-        width: 412,
-        height: 70,
+        width: normalize(412),
+        height: normalize(70),
         flexDirection: 'row',
         backgroundColor: '#0064D0',
     },
 
     btnBack: {
-        width: 32,
-        height: 16,
-        marginLeft: 16,
-        marginTop: 30
+        width: normalize(32),
+        height: normalize(16),
+        marginLeft: normalize(16),
+        marginTop: normalize(30)
     },
 
     txtInstant: {
-        width: 200,
-        height: 20,
-        marginTop: 25,
-        marginLeft: 103,
-        fontSize: 16,
+        width: normalize(200),
+        height: normalize(20),
+        marginTop: normalize(25),
+        marginLeft: normalize(103),
+        fontSize: normalize(16),
         color: '#FFFFFF',
         fontFamily: 'Montserrat-Bold'
     },
 
     containerTxt: {
-        width: 420,
-        height: 48,
-        marginBottom: 15,
+        width: normalize(420),
+        height: normalize(48),
+        marginBottom: normalize(15),
         elevation: 4,
         backgroundColor: '#FFFFFF',
     },
 
     txtUpload: {
-        width: 200,
-        height: 19,
-        marginTop: 15,
-        marginLeft: 16,
+        width: normalize(124),
+        height: normalize(19),
+        marginTop: normalize(15),
+        marginLeft: normalize(16),
         color: '#000000',
         fontFamily: 'Montserrat-SemiBold'
     },
 
     DisclaimerContainer: {
-        width: 380,
-        height: 39,
-        marginLeft: 16,
-        marginBottom: 20,
+        width: normalize(350),
+        height: normalize(35),
+        marginLeft: normalize(16),
+        marginBottom: normalize(20),
         borderRadius: 6,
         flexDirection: 'row',
         backgroundColor: '#E8F5FF'
     },
 
     imgInfo: {
-        width: 14,
-        height: 14,
-        marginTop: 12,
-        marginLeft: 16
+        width: normalize(14),
+        height: normalize(14),
+        marginTop: normalize(12),
+        marginLeft: normalize(16)
     },
 
     txtDisclaimer: {
-        width: 300,
-        height: 18,
-        marginTop: 8,
-        marginLeft: 8,
-        fontSize: 15,
+        width: normalize(300),
+        marginTop: normalize(8),
+        marginLeft: normalize(8),
+        fontSize: normalize(15),
         fontFamily: 'Montserrat-Medium'
     },
 
     whiteBox: {
-        width: 380,
-        height: 67,
-        marginBottom: 20,
-        marginLeft: 16,
-        borderRadius: 4,
+        width: normalize(350),
+        height: normalize(64),
+        marginBottom: normalize(20),
+        marginLeft: normalize(16),
+        borderRadius: normalize(4),
         elevation: 5,
         flexDirection: 'row',
         backgroundColor: '#FFFFFF',
     },
 
     btnUpload: {
-        marginTop: 35,
-        marginLeft: 80
+        marginTop: normalize(35),
+        marginLeft: normalize(60)
     },
 
     imgUpload: {
-        width: 14,
-        height: 18
+        width: normalize(14),
+        height: normalize(18)
     },
 
     txtKTP: {
-        width: 250,
-        height: 18,
-        marginTop: 12,
-        marginLeft: 16,
-        marginBottom: 6,
-        fontSize: 14,
+        width: normalize(250),
+        marginTop: normalize(12),
+        marginLeft: normalize(16),
+        marginBottom: normalize(6),
+        fontSize: normalize(14.5),
         fontFamily: 'Montserrat-Medium'
     },
 
     txtUpKTP: {
-        width: 250,
-        height: 15,
-        marginLeft: 16,
-        fontSize: 12,
+        width: normalize(100),
+        marginLeft: normalize(16),
+        fontSize: normalize(12.5),
         fontFamily: 'Montserrat-Regular'
     },
 
     txtKK: {
-        width: 250,
-        height: 18,
-        marginTop: 12,
-        marginLeft: 16,
-        marginBottom: 6,
-        fontSize: 14,
+        width: normalize(250),
+        marginTop: normalize(12),
+        marginLeft: normalize(16),
+        marginBottom: normalize(6),
+        fontSize: normalize(14.5),
         fontFamily: 'Montserrat-Medium'
     },
 
     txtUpKK: {
-        width: 250,
-        height: 15,
-        marginLeft: 16,
-        fontSize: 12,
+        width: normalize(250),
+        marginLeft: normalize(16),
+        fontSize: normalize(12.5),
         fontFamily: 'Montserrat-Regular'
     },
 
     txtBuktiRmh: {
-        width: 200,
-        height: 20,
-        marginBottom: 20,
-        marginLeft: 16,
-        fontSize: 14,
+        width: normalize(200),
+        marginBottom: normalize(20),
+        marginLeft: normalize(16),
+        fontSize: normalize(14.5),
         fontFamily: 'Montserrat-Medium'
     },
 
     txtPBB: {
-        width: 250,
-        height: 18,
-        marginTop: 12,
-        marginLeft: 16,
-        marginBottom: 6,
-        fontSize: 14,
+        width: normalize(250),
+        marginTop: normalize(12),
+        marginLeft: normalize(16),
+        marginBottom: normalize(6),
+        fontSize: normalize(14.5),
         fontFamily: 'Montserrat-Medium'
     },
 
     txtUpPBB: {
-        width: 250,
-        height: 15,
-        marginLeft: 16,
-        fontSize: 12,
+        width: normalize(250),
+        marginLeft: normalize(16),
+        fontSize: normalize(12.5),
         fontFamily: 'Montserrat-Regular'
     },
 
     txtSertifikat: {
-        width: 250,
-        height: 18,
-        marginTop: 12,
-        marginLeft: 16,
-        marginBottom: 6,
-        fontSize: 14,
+        width: normalize(250),
+        marginTop: normalize(12),
+        marginLeft: normalize(16),
+        marginBottom: normalize(6),
+        fontSize: normalize(14.5),
         fontFamily: 'Montserrat-Medium'
     },
 
     txtUpSertifikat: {
-        width: 250,
-        height: 15,
-        marginLeft: 16,
-        fontSize: 12,
+        width: normalize(250),
+        marginLeft: normalize(16),
+        fontSize: normalize(12.5),
         fontFamily: 'Montserrat-Regular'
     },
 
     txtReklis: {
-        width: 250,
-        height: 18,
-        marginTop: 12,
-        marginLeft: 16,
-        marginBottom: 6,
-        fontSize: 14,
+        width: normalize(250),
+        marginTop: normalize(12),
+        marginLeft: normalize(16),
+        marginBottom: normalize(6),
+        fontSize: normalize(14.5),
         fontFamily: 'Montserrat-Medium'
     },
 
     txtUpReklis: {
-        width: 250,
-        height: 15,
-        marginLeft: 16,
-        fontSize: 12,
+        width: normalize(250),
+        marginLeft: normalize(16),
+        fontSize: normalize(12.5),
         fontFamily: 'Montserrat-Regular'
     },
 
     txtBuktiSal: {
-        width: 200,
-        height: 20,
-        marginBottom: 20,
-        marginLeft: 16,
-        fontSize: 14,
+        width: normalize(200),
+        marginBottom: normalize(20),
+        marginLeft: normalize(16),
+        fontSize: normalize(14.5),
         fontFamily: 'Montserrat-Medium'
     },
 
     txtSalary: {
-        width: 250,
-        height: 18,
-        marginTop: 12,
-        marginLeft: 16,
-        marginBottom: 6,
-        fontSize: 14,
+        width: normalize(250),
+        marginTop: normalize(12),
+        marginLeft: normalize(16),
+        marginBottom: normalize(6),
+        fontSize: normalize(14.5),
         fontFamily: 'Montserrat-Medium'
     },
 
     txtUpSalary: {
-        width: 250,
-        height: 15,
-        marginLeft: 16,
-        fontSize: 12,
+        width: normalize(250),
+        marginLeft: normalize(16),
+        fontSize: normalize(12.5),
         fontFamily: 'Montserrat-Regular'
     },
 
     txtRekkor: {
-        width: 250,
-        height: 18,
-        marginTop: 12,
-        marginLeft: 16,
-        marginBottom: 6,
-        fontSize: 14,
+        width: normalize(250),
+        marginTop: normalize(12),
+        marginLeft: normalize(16),
+        marginBottom: normalize(6),
+        fontSize: normalize(14.5),
         fontFamily: 'Montserrat-Medium'
     },
 
     txtUpRekkor: {
-        width: 250,
-        height: 15,
-        marginLeft: 16,
-        fontSize: 12,
+        width: normalize(250),
+        marginLeft: normalize(16),
+        fontSize: normalize(12.5),
         fontFamily: 'Montserrat-Regular'
     },
 
     txtNota: {
-        width: 250,
-        height: 18,
-        marginTop: 12,
-        marginLeft: 16,
-        marginBottom: 6,
-        fontSize: 14,
+        width: normalize(250),
+        marginTop: normalize(12),
+        marginLeft: normalize(16),
+        marginBottom: normalize(6),
+        fontSize: normalize(14.5),
         fontFamily: 'Montserrat-Medium'
     },
 
     txtUpNota: {
-        width: 250,
-        height: 15,
-        marginLeft: 16,
-        fontSize: 12,
+        width: normalize(250),
+        marginLeft: normalize(16),
+        fontSize: normalize(12.5),
         fontFamily: 'Montserrat-Regular'
     },
 
     btnSubmit: {
-        width: 380,
-        height: 45,
-        marginLeft: 16,
-        marginBottom: 20,
+        width: normalize(350),
+        height: normalize(43),
+        marginLeft: normalize(16),
+        marginBottom: normalize(20),
         borderRadius: 6,
         backgroundColor: '#B7B7B7',
     },
 
     txtSubmit: {
-        width: 120,
-        height: 18,
-        marginTop: 10,
-        marginLeft: 135,
-        fontSize: 16,
+        width: normalize(120),
+        marginTop: normalize(10),
+        marginLeft: normalize(125),
+        fontSize: normalize(16.5),
         color: '#FFFFFF',
         fontFamily: 'Montserrat-SemiBold',
     },

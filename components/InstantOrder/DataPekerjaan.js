@@ -7,6 +7,7 @@
         Text,
         TouchableOpacity
     } from 'react-native'
+    import normalize from 'react-native-normalize'
 
     class DataPekerjaan extends Component{
         constructor(props){
@@ -139,7 +140,7 @@
 
                     <TouchableOpacity
                     onPress={this.goToDataMotor}
-                    disabled={!enabled}
+                    // disabled={!enabled}
                     >
                     <Text style={[styles.txtNxt, {
                         color: (
@@ -166,111 +167,110 @@
         },
 
         Header: {
-            width: 412,
-            height: 70,
+            width: normalize(412),
+            height: normalize(70),
             flexDirection: 'row',
             backgroundColor: '#0064D0',
         },
 
         btnBack: {
-            width: 32,
-            height: 16,
-            marginLeft: 16,
-            marginTop: 30
+            width: normalize(32),
+            height: normalize(16),
+            marginLeft: normalize(16),
+            marginTop: normalize(30)
         },
 
         txtInstant: {
-            width: 200,
-            height: 20,
-            marginTop: 25,
-            marginLeft: 103,
-            fontSize: 16,
+            width: normalize(200),
+            height: normalize(20),
+            marginTop: normalize(25),
+            marginLeft: normalize(100),
+            fontSize: normalize(16),
             color: '#FFFFFF',
             fontFamily: 'Montserrat-Bold'
         },
 
         containerTxt: {
-            width: 420,
-            height: 48,
-            marginBottom: 15,
+            width: normalize(420),
+            height: normalize(48),
+            marginBottom: normalize(15),
             elevation: 4,
             backgroundColor: '#FFFFFF',
         },
 
         txtData: {
-            width: 124,
-            height: 19,
-            marginTop: 15,
-            marginLeft: 16,
+            width: normalize(124),
+            height: normalize(19),
+            marginTop: normalize(15),
+            marginLeft: normalize(16),
             color: '#000000',
             fontFamily: 'Montserrat-SemiBold'
         },
 
         errorStyle: {
-            width: 200,
-            height: 15,
-            marginLeft: 17,
-            marginBottom: 15,
-            fontSize: 12,
+            width: normalize(200),
+            height: normalize(15),
+            marginLeft: normalize(17),
+            marginBottom: normalize(15),
+            fontSize: normalize(12),
             fontFamily: 'Montserrat-Medium',
             color: '#D81818'
         },
 
         txtInpJob: {
-            width: 370,
-            height: 48,
-            marginLeft: 16,
-            marginBottom: 6,
+            width: normalize(350),
+            height: normalize(46),
+            marginLeft: normalize(16),
+            marginBottom: normalize(6),
             borderWidth: 2,
             borderRadius: 4,
             borderColor: '#EBEBEB',
         },
 
         txtJob: {
-            marginLeft: 8,
+            marginLeft: normalize(8),
             color: '#7F7F7F',
             fontFamily: 'Montserrat-SemiBold'
         },
 
         txtInpSalary: {
-            width: 370,
-            height: 48,
-            marginLeft: 16,
-            marginBottom: 6,
+            width: normalize(350),
+            height: normalize(46),
+            marginLeft: normalize(16),
+            marginBottom: normalize(6),
             borderWidth: 2,
             borderRadius: 4,
-            borderColor: '#EBEBEB',
+            borderColor: '#EBEBEB'
         },
 
         txtSalary: {
-            marginLeft: 8,
+            marginLeft: normalize(8),
             color: '#7F7F7F',
             fontFamily: 'Montserrat-SemiBold'
         },
 
         txtInpExp: {
-            width: 370,
-            height: 48,
-            marginLeft: 16,
-            marginBottom: 6,
+            width: normalize(350),
+            height: normalize(46),
+            marginLeft: normalize(16),
+            marginBottom: normalize(6),
             borderWidth: 2,
             borderRadius: 4,
-            borderColor: '#EBEBEB',
+            borderColor: '#EBEBEB'
         },
 
         txtExp: {
-            marginLeft: 8,
+            marginLeft: normalize(8),
             color: '#7F7F7F',
             fontFamily: 'Montserrat-SemiBold'
         },
 
         txtNxt: {
-            width: 125,
-            height: 20,
-            marginTop: 280,
-            fontSize: 16,
+            width: normalize(125),
+            height: normalize(20),
+            marginTop: normalize(250),
+            marginLeft: normalize(135),
+            fontSize: normalize(16),
             fontFamily: 'Montserrat-SemiBold',
-            justifyContent: 'center',
-            alignSelf: 'center'
         },
     })
