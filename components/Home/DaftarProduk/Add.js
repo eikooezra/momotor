@@ -9,6 +9,7 @@ import {
   Image,
 } from 'react-native'
 import DropDownPicker from 'react-native-dropdown-picker'
+import normalize from 'react-native-normalize';
 
 class Add extends Component{
     constructor(props){
@@ -119,22 +120,22 @@ render(){
                     paddingVertical: 20
                 }}
                 containerStyle={{
-                    width: 370,
-                    height: 48,
-                    marginLeft: 16,
-                    marginBottom: 34,
+                    width: normalize(350),
+                    height: normalize(48),
+                    marginLeft: normalize(16),
+                    marginBottom: normalize(34),
                 }}
                 dropDownStyle={{
                     backgroundColor: '#FFFFFF'
                 }}
                 labelStyle={{
-                    marginLeft: 8,
-                    fontSize: 14,
+                    marginLeft: normalize(8),
+                    fontSize: normalize(14.5),
                     color:'#7F7F7F',
                     fontFamily: 'Montserrat-SemiBold'
                 }}
                 arrowStyle={{
-                    marginLeft: 205
+                    marginLeft: normalize(205)
                 }}
                 onChangeItem={item => this.setState({
                     prodYear: item,
@@ -158,22 +159,22 @@ render(){
                     paddingVertical: 20
                 }}
                 containerStyle={{
-                    width: 370,
-                    height: 48,
-                    marginLeft: 16,
-                    marginBottom: 34,
+                    width: normalize(350),
+                    height: normalize(46),
+                    marginLeft: normalize(16),
+                    marginBottom: normalize(34),
                 }}
                 dropDownStyle={{
                     backgroundColor: '#FFFFFF'
                 }}
                 labelStyle={{
-                    marginLeft: 8,
-                    fontSize: 14,
+                    marginLeft: normalize(8),
+                    fontSize: normalize(14.5),
                     color:'#7F7F7F',
                     fontFamily: 'Montserrat-SemiBold'
                 }}
                 arrowStyle={{
-                    marginLeft: 270
+                    marginLeft: normalize(270)
                 }}
                 onChangeItem={item => this.setState({
                     location: item,
@@ -225,7 +226,7 @@ render(){
                     }
                 ]}
                 onPress={this.goToAddPics}
-                disabled={!enabled}
+                // disabled={!enabled}
             >
                 <Text style={styles.txtNxt}>
                     SELANJUTNYA
@@ -246,58 +247,58 @@ const styles = StyleSheet.create({
     },
 
     Header: {
-        width: 412,
-        height: 70,
-        marginBottom: 15,
+        width: normalize(380),
+        height: normalize(70),
+        marginBottom: normalize(15),
         flexDirection: 'row',
         backgroundColor: '#0064D0',
     },
 
     btnBack: {
-        width: 32,
-        height: 16,
-        marginLeft: 16,
-        marginTop: 30
+        width: normalize(32),
+        height: normalize(16),
+        marginLeft: normalize(16),
+        marginTop: normalize(30)
     },
 
     txtAdd: {
-        width: 200,
-        height: 20,
-        marginTop: 25,
-        marginLeft: 95,
-        fontSize: 16,
+        width: normalize(200),
+        height: normalize(20),
+        marginTop: normalize(25),
+        marginLeft: normalize(90),
+        fontSize: normalize(16),
         color: '#FFFFFF',
         fontFamily: 'Montserrat-Bold'
     },
 
     searchContainer: {
         flexDirection: 'row',
-        marginBottom: 34
+        marginBottom: normalize(34)
     },
 
     imgSearch: {
-        width: 22,
-        height: 22,
-        marginTop: 12,
-        marginLeft: 16,
+        width: normalize(22),
+        height: normalize(22),
+        marginTop: normalize(12),
+        marginLeft: normalize(16),
     },
 
     modelContainer: {
         borderBottomWidth: 2,
         borderBottomColor: '#DDDDDD',
-        marginLeft: 15
+        marginLeft: normalize(15)
     },
 
     txtModel: {
-        width: 330,
+        width: normalize(330),
         fontFamily: 'Montserrat-Medium',
     },
 
     txtInpHarga: {
-        width: 370,
-        height: 48,
-        marginLeft: 16,
-        marginBottom: 34,
+        width: normalize(350),
+        height: normalize(46),
+        marginLeft: normalize(16),
+        marginBottom: normalize(34),
         borderWidth: 2,
         borderRadius: 4,
         borderColor: '#EBEBEB',
@@ -305,62 +306,61 @@ const styles = StyleSheet.create({
     },
 
     txtHarga:{
-        marginLeft: 8,
+        marginLeft: normalize(8),
         fontFamily: 'Montserrat-SemiBold'
     },
 
     txtInpCode: {
-        width: 370,
-        height: 48,
-        marginLeft: 16,
-        marginBottom: 34,
+        width: normalize(350),
+        height: normalize(46),
+        marginLeft: normalize(16),
+        marginBottom: normalize(34),
         borderWidth: 2,
         borderRadius: 4,
         borderColor: '#EBEBEB',
     },
 
     txtCode: {
-        marginLeft: 8,
+        marginLeft: normalize(8),
         color: '#7F7F7F',
         fontFamily: 'Montserrat-SemiBold'
     },
 
     txtInpDesc: {
-        width: 370,
-        height: 180,
-        marginLeft: 16,
-        marginBottom: 34,
+        width: normalize(350),
+        height: normalize(150),
+        marginLeft: normalize(16),
+        marginBottom: normalize(34),
         borderWidth: 2,
         borderRadius: 4,
         borderColor: '#EBEBEB',
     },
 
     txtDesc: {
-        marginLeft: 8,
+        marginLeft: normalize(8),
         color: '#7F7F7F',
         fontFamily: 'Montserrat-SemiBold'
     },
 
     btnNxtArea: {
-        bottom: 0,
+        bottom: normalize(0),
         justifyContent: 'center',
         alignSelf: 'center',
         position: 'absolute'
     },
 
     btnNxt: {
-        width: 420,
-        height: 60,
+        width: normalize(420),
+        height: normalize(60),
     },
     
     txtNxt: {
-        width: 125,
-        height: 20,
-        marginTop: 18,
-        fontSize: 16,
+        width: normalize(125),
+        height: normalize(20),
+        marginTop: normalize(20),
+        marginLeft: normalize(160),
+        fontSize: normalize(16),
         fontFamily: 'Montserrat-SemiBold',
         color: '#FFFFFF',
-        justifyContent: 'center',
-        alignSelf: 'center'
     }
 })

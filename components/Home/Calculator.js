@@ -9,6 +9,7 @@ import {
 } from 'react-native'
 import { TextInput } from 'react-native-gesture-handler'
 import DropDownPicker from 'react-native-dropdown-picker'
+import normalize from 'react-native-normalize';
 
 
 class Calculator extends Component {
@@ -134,22 +135,22 @@ render() {
                                     paddingVertical: 20
                                 }}
                                 containerStyle={{
-                                    width: 155,
-                                    height: 48,
-                                    marginLeft: 16,
-                                    marginBottom: 6,
+                                    width: normalize(140),
+                                    height: normalize(48),
+                                    marginLeft: normalize(16),
+                                    marginBottom: normalize(6),
                                 }}
                                 dropDownStyle={{
                                     backgroundColor: '#FFFFFF'
                                 }}
                                 labelStyle={{
-                                    marginLeft: 8,
-                                    fontSize: 14,
+                                    marginLeft: normalize(8),
+                                    fontSize: normalize(14),
                                     color:'#7F7F7F',
                                     fontFamily: 'Montserrat-SemiBold'
                                 }}
                                 arrowStyle={{
-                                    marginLeft: 205
+                                    marginLeft: normalize(205)
                                 }}
                                 onChangeItem={
                                     item => this.setState({
@@ -234,179 +235,173 @@ const styles = StyleSheet.create({
     },
 
     Header: {
-        width: 412,
-        height: 70,
+        width: normalize(380),
+        height: normalize(70),
         flexDirection: 'row',
         backgroundColor: '#0064D0',
     },
 
     btnBack: {
-        width: 32,
-        height: 16,
-        marginTop: 30,
-        marginLeft: 16,
+        width: normalize(32),
+        height: normalize(16),
+        marginTop: normalize(30),
+        marginLeft: normalize(16),
     },
 
     txtKalkulator: {
-        width: 200,
-        height: 20,
-        marginTop: 25,
-        marginLeft: 87,
-        fontSize: 16,
+        width: normalize(200),
+        height: normalize(20),
+        marginTop: normalize(25),
+        marginLeft: normalize(87),
+        fontSize: normalize(16),
         color: '#FFFFFF',
         fontFamily: 'Montserrat-Bold'
     },
 
     WhiteContainer: {
-        width: 380 ,
-        height: 590,
-        marginTop: 14,
-        marginBottom: 22,
-        marginLeft: 16,
+        width: normalize(350) ,
+        height: normalize(530),
+        marginTop: normalize(14),
+        marginBottom: normalize(22),
+        marginLeft: normalize(16),
         elevation: 5,
         borderRadius: 6,
         backgroundColor: '#FFFFFF'
     },
 
     txtModel: {
-        width: 94,
-        height: 18,
-        marginTop: 25,
-        marginBottom: 8,
-        marginLeft: 16,
-        fontSize: 14,
+        width: normalize(94),
+        marginTop: normalize(25),
+        marginBottom: normalize(8),
+        marginLeft: normalize(16),
+        fontSize: normalize(14),
         fontFamily: 'Montserrat-SemiBold'
     },
 
     txtInpModel: {
-        width: 350,
-        height: 48,
-        marginLeft: 16,
-        marginBottom: 16,
+        width: normalize(320),
+        height: normalize(48),
+        marginLeft: normalize(16),
+        marginBottom: normalize(16),
         borderRadius: 6,
         borderWidth: 1
     },
 
     txtContoh: {
-        marginLeft: 15,
+        marginLeft: normalize(15),
         fontFamily: 'Montserrat-Medium'
     },
 
     flexContainer: {
-        marginBottom: 14,
+        marginBottom: normalize(14),
         flexDirection: 'row'
     },
 
     txtTahun: {
-        width: 114,
-        height: 18,
-        marginBottom: 8,
-        marginLeft: 16,
-        fontSize: 14,
+        width: normalize(114),
+        marginBottom: normalize(8),
+        marginLeft: normalize(16),
+        fontSize: normalize(14),
         fontFamily: 'Montserrat-SemiBold'
     },
 
     txtPrice: {
-        width: 114,
-        height: 18,
-        marginBottom: 8,
-        marginLeft: 44,
-        fontSize: 14,
+        width: normalize(114),
+        marginBottom: normalize(8),
+        marginLeft: normalize(44),
+        fontSize: normalize(14),
         fontFamily: 'Montserrat-SemiBold'
     },
 
     txtInpHarga: {
-        width: 155,
-        height: 48,
-        marginLeft: 40,
+        width: normalize(140),
+        height: normalize(48),
+        marginLeft: normalize(43),
         borderRadius: 6,
         borderWidth: 1,
     },
 
     txtHarga: {
-        marginLeft: 16,
+        marginLeft: normalize(16),
         fontFamily: 'Montserrat-Medium'
     },
 
     txtDP: {
-        width: 84,
-        height: 18,
-        marginBottom: 8,
-        marginLeft: 16,
-        fontSize: 14,
+        width: normalize(84),
+        marginBottom: normalize(8),
+        marginLeft: normalize(16),
+        fontSize: normalize(14),
         fontFamily: 'Montserrat-SemiBold',
     },
 
     txtInpUangMuka: {
-        width: 350,
-        height: 48,
-        marginLeft: 16,
-        marginBottom: 8,
+        width: normalize(320),
+        height: normalize(48),
+        marginLeft: normalize(16),
+        marginBottom: normalize(8),
         borderRadius: 6,
         borderWidth: 1
     },
 
     txtUangMuka: {
-        marginLeft: 16,
+        marginLeft: normalize(16),
         fontFamily: 'Montserrat-Medium'
     },
 
     txtMinDp: {
-        width: 158,
-        height: 15,
-        marginBottom: 14,
-        marginLeft: 16,
-        fontSize: 12,
+        width: normalize(158),
+        marginBottom: normalize(14),
+        marginLeft: normalize(16),
+        fontSize: normalize(12),
         fontFamily: 'Montserrat-Medium'
     },
 
     txtLocation: {
-        width: 84,
-        height: 18,
-        marginBottom: 8,
-        marginLeft: 16,
-        fontSize: 14,
+        width: normalize(84),
+        marginBottom: normalize(8),
+        marginLeft: normalize(16),
+        fontSize: normalize(14),
         fontFamily: 'Montserrat-SemiBold',
     },
 
     txtInpLokasi: {
-        width: 350,
-        height: 48,
-        marginLeft: 16,
-        marginBottom: 35,
+        width: normalize(320),
+        height: normalize(48),
+        marginLeft: normalize(16),
+        marginBottom: normalize(35),
         borderRadius: 6,
         borderWidth: 1
     },
 
     txtLokasi: {
-        marginLeft: 16,
+        marginLeft: normalize(16),
         fontFamily: 'Montserrat-Medium'
     },
 
     btnCount: {
-        width: 350,
-        height: 48,
-        marginLeft: 16,
-        marginBottom: 27,
+        width: normalize(320),
+        height: normalize(48),
+        marginLeft: normalize(16),
+        marginBottom: normalize(27),
         borderRadius: 6,
         backgroundColor: '#B7B7B7'
     },
 
     txtHitung: {
-        width: 60,
-        height: 20,
-        marginTop: 11,
-        marginLeft: 145,
-        fontSize: 16,
+        width: normalize(60),
+        height: normalize(20),
+        marginTop: normalize(15),
+        marginLeft: normalize(135),
+        fontSize: normalize(16),
         color: '#FFFFFF',
         fontFamily: 'Montserrat-SemiBold'
     },
 
     txtDisclaimer: {
-        width: 300,
-        height: 50,
-        marginLeft: 45,
-        fontSize: 14,
+        width: normalize(300),
+        height: normalize(50),
+        marginLeft: normalize(25),
+        fontSize: normalize(14),
         textAlign: 'center',
         fontFamily: 'Montserrat-Regular'
     }

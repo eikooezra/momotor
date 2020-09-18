@@ -8,6 +8,7 @@ import {
     StyleSheet
 } from 'react-native'
 import ToggleSwitch from 'toggle-switch-react-native'
+import normalize from 'react-native-normalize';
 
 class BottomSheet extends Component{
     constructor(props){
@@ -113,24 +114,24 @@ const styles = StyleSheet.create({
     containerText: {
         borderBottomWidth: 0.5,
         borderBottomColor: '#DDDDDD',
-        marginBottom: 10
+        marginBottom: normalize(10)
     },
 
     txtTindakan: {
-        width: 80,
-        height: 18,
-        marginTop: 14,
-        marginBottom: 14,
-        marginLeft: 20,
-        fontSize: 16,
+        width: normalize(80),
+        height: normalize(18),
+        marginTop: normalize(14),
+        marginBottom: normalize(14),
+        marginLeft: normalize(20),
+        fontSize: normalize(16),
         fontFamily: 'Montserrat-SemiBold'
     },
 
     containerTindakan: {
-        marginLeft: 24,
-        marginRight: 24,
-        marginBottom: 15,
-        borderBottomWidth: 0.5,
+        marginLeft: normalize(24),
+        marginRight: normalize(24),
+        marginBottom: normalize(15),
+        borderBottomWidth: normalize(0.5),
         borderBottomColor: '#DDDDDD'
     },
 
@@ -139,49 +140,49 @@ const styles = StyleSheet.create({
     },
 
     imgEdit: {
-        width: 25,
-        height: 25,
-        marginBottom: 18,
-        marginLeft: 5
+        width: normalize(25),
+        height: normalize(25),
+        marginBottom: normalize(18),
+        marginLeft: normalize(5)
     },
 
     txtEdit: {
-        width: 85,
-        height: 18,
-        marginTop: 1,
-        marginBottom: 18,
-        marginLeft: 18,
-        fontSize: 14,
+        width: normalize(85),
+        height: normalize(18),
+        marginTop: normalize(1),
+        marginBottom: normalize(18),
+        marginLeft: normalize(18),
+        fontSize: normalize(14),
         fontFamily: 'Montserrat-Regular'
     },
 
     imgURL: {
-        width: 22,
-        height: 14,
-        marginLeft: 5,
+        width: normalize(22),
+        height: normalize(14),
+        marginLeft: normalize(5),
     },
 
     txtURL: {
-        width: 86,
-        height: 18,
-        marginBottom: 18,
-        marginLeft: 21,
-        fontSize: 14,
+        width: normalize(86),
+        height: normalize(18),
+        marginBottom: normalize(18),
+        marginLeft: normalize(21),
+        fontSize: normalize(14),
         fontFamily: 'Montserrat-Regular'
     },
 
     imgQR: {
-        width: 18,
-        height: 18,
-        marginLeft: 5,
+        width: normalize(18),
+        height: normalize(18),
+        marginLeft: normalize(5),
     },
 
     txtQR: {
-        width: 62,
-        height: 18,
-        marginBottom: 18,
-        marginLeft: 25,
-        fontSize: 14,
+        width: normalize(62),
+        height: normalize(18),
+        marginBottom: normalize(18),
+        marginLeft: normalize(25),
+        fontSize: normalize(14),
         fontFamily: 'Montserrat-Regular'
     },
 
@@ -190,10 +191,10 @@ const styles = StyleSheet.create({
     },
 
     txtTampilkan: {
-        width: 129,
-        height: 18,
-        marginLeft: 26,
-        fontSize: 14,
+        width: normalize(129),
+        height: normalize(18),
+        marginLeft: normalize(26),
+        fontSize: normalize(14),
         fontFamily: 'Montserrat-Regular'
     },
 })

@@ -7,6 +7,7 @@ import {
     TouchableOpacity
 } from 'react-native'
 import ImagePicker from 'react-native-image-picker'
+import normalize from 'react-native-normalize';
 
 class AddPics extends Component{
     constructor(props){
@@ -105,25 +106,25 @@ const styles = StyleSheet.create({
     },
 
     Header: {
-        width: 412,
-        height: 70,
+        width: normalize(380),
+        height: normalize(70),
         flexDirection: 'row',
         backgroundColor: '#0064D0',
     },
 
     btnBack: {
-        width: 32,
-        height: 16,
-        marginLeft: 16,
-        marginTop: 30
+        width: normalize(32),
+        height: normalize(16),
+        marginLeft: normalize(16),
+        marginTop: normalize(30)
     },
 
     txtAddPic: {
-        width: 200,
-        height: 20,
-        marginTop: 25,
-        marginLeft: 105,
-        fontSize: 16,
+        width: normalize(200),
+        height: normalize(20),
+        marginTop: normalize(25),
+        marginLeft: normalize(103),
+        fontSize: normalize(16),
         color: '#FFFFFF',
         fontFamily: 'Montserrat-Bold'
     },
@@ -133,41 +134,40 @@ const styles = StyleSheet.create({
     },
 
     bluRectangle: {
-        width: 135,
-        height: 135,
-        marginTop: 3,
-        marginBottom: 3,
-        marginLeft: 3,
+        width: normalize(125),
+        height: normalize(125),
+        marginTop: normalize(5),
+        marginBottom: normalize(3),
+        marginLeft: normalize(5),
         backgroundColor: '#0064D0'
     },
 
     camLogo: {
-        width: 27,
-        height: 24,
-        marginTop: 56,
+        width: normalize(27),
+        height: normalize(24),
+        marginTop: normalize(56),
         alignSelf: 'center'
     },
 
     btnNxtArea: {
-        bottom: 0,
+        bottom: normalize(0),
         justifyContent: 'center',
         alignSelf: 'center',
         position: 'absolute'
     },
 
     btnNxt: {
-        width: 420,
-        height: 60,
+        width: normalize(420),
+        height: normalize(60),
     },
     
     txtNxt: {
-        width: 125,
-        height: 20,
-        marginTop: 18,
-        fontSize: 16,
+        width: normalize(125),
+        height: normalize(20),
+        marginTop: normalize(20),
+        marginLeft: normalize(160),
+        fontSize: normalize(16),
         fontFamily: 'Montserrat-SemiBold',
         color: '#FFFFFF',
-        justifyContent: 'center',
-        alignSelf: 'center'
     }
 })

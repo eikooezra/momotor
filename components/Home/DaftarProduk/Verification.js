@@ -7,6 +7,7 @@ import {
     StyleSheet
 } from 'react-native'
 import CheckBox from '@react-native-community/checkbox'
+import normalize from 'react-native-normalize';
 
 class Verification extends Component{
     constructor(props){
@@ -100,26 +101,26 @@ const styles = StyleSheet.create({
     },
 
     Header: {
-        width: 412,
-        height: 70,
-        marginBottom: 15,
+        width: normalize(380),
+        height: normalize(70),
+        marginBottom: normalize(15),
         flexDirection: 'row',
         backgroundColor: '#0064D0',
     },
 
     btnBack: {
-        width: 32,
-        height: 16,
-        marginLeft: 16,
-        marginTop: 30
+        width: normalize(32),
+        height: normalize(16),
+        marginLeft: normalize(16),
+        marginTop: normalize(30)
     },
 
     txtVerif: {
-        width: 200,
-        height: 20,
-        marginTop: 25,
-        marginLeft: 120,
-        fontSize: 16,
+        width: normalize(200),
+        height: normalize(20),
+        marginTop: normalize(25),
+        marginLeft: normalize(120),
+        fontSize: normalize(16),
         color: '#FFFFFF',
         fontFamily: 'Montserrat-Bold'
     },
@@ -129,17 +130,17 @@ const styles = StyleSheet.create({
     },
 
     cbPosition: {
-        width: 18,
-        height: 18,
-        marginLeft: 20,
+        width: normalize(18),
+        height: normalize(18),
+        marginLeft: normalize(20),
         borderRadius: 3,
     },
 
     txtWording: {
-        width: 306,
-        height: 85,
-        marginLeft: 20,
-        fontSize: 14,
+        width: normalize(306),
+        height: normalize(85),
+        marginLeft: normalize(20),
+        fontSize: normalize(14),
         fontFamily: 'Montserrat-Regular'
     },
 
@@ -151,18 +152,17 @@ const styles = StyleSheet.create({
     },
 
     btnSave: {
-        width: 420,
-        height: 60,
+        width: normalize(420),
+        height: normalize(60),
     },
     
     txtSave: {
-        width: 125,
-        height: 20,
-        marginTop: 18,
-        fontSize: 16,
+        width: normalize(125),
+        height: normalize(20),
+        marginTop: normalize(20),
+        marginLeft: normalize(160),
+        fontSize: normalize(16),
         fontFamily: 'Montserrat-SemiBold',
         color: '#FFFFFF',
-        justifyContent: 'center',
-        alignSelf: 'center'
     }
 })
