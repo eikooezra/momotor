@@ -7,6 +7,7 @@ import {
     Text,
     TouchableOpacity
 } from 'react-native'
+import normalize from 'react-native-normalize';
 
 class SemuaPesanan extends Component {
 constructor(props){
@@ -95,11 +96,11 @@ const styles = StyleSheet.create({
     },
 
     WhiteBox: {
-        width: 380 ,
-        height: 121,
-        marginTop: 16,
-        marginBottom: 16,
-        marginLeft: 16,
+        width: normalize(350) ,
+        height: normalize(121),
+        marginTop: normalize(16),
+        marginBottom: normalize(16),
+        marginLeft: normalize(16),
         borderRadius: 6,
         elevation: 5,
         backgroundColor: '#FFFFFF',
@@ -107,10 +108,10 @@ const styles = StyleSheet.create({
     },
 
     WhiteBox2: {
-        width: 380,
-        height: 121,
-        marginBottom: 16,
-        marginLeft: 16,
+        width: normalize(350),
+        height: normalize(121),
+        marginBottom: normalize(16),
+        marginLeft: normalize(16),
         borderRadius: 6,
         elevation: 5,
         backgroundColor: '#FFFFFF',
@@ -118,58 +119,58 @@ const styles = StyleSheet.create({
     },
 
     boxContainer1: {
-        marginLeft: 16
+        marginLeft: normalize(16)
     },
 
     imgUnit: {
-        width: 98,
-        height: 98,
+        width: normalize(98),
+        height: normalize(98),
+        marginTop: normalize(12),
         borderRadius: 4,
-        marginTop: 12,
     },
 
     boxContainer2: {
-        marginLeft: 16
+        marginLeft: normalize(16)
     },
 
     txtName: {
-        width: 119,
-        height: 20,
-        marginTop: 12,
-        marginBottom: 6,
-        fontSize: 14,
+        width: normalize(119),
+        height: normalize(20),
+        marginTop: normalize(12),
+        marginBottom: normalize(6),
+        fontSize: normalize(14),
         fontFamily: 'Montserrat-SemiBold'
     },
 
     txtModel: {
-        width: 120,
-        height: 20,
-        marginBottom: 6,
-        fontSize: 14,
+        width: normalize(120),
+        height: normalize(20),
+        marginBottom: normalize(6),
+        fontSize: normalize(14),
         fontFamily: 'Montserrat-Medium'
     },
 
     txtDate: {
-        width: 120,
-        height: 20,
-        marginBottom: 5,
-        fontSize: 12,
+        width: normalize(120),
+        height: normalize(20),
+        marginBottom: normalize(6),
+        fontSize: normalize(12),
         fontFamily: 'Montserrat-Medium',
         color: '#7F7F7F'
     },   
 
     btnProsesVerif: {
-        width: 120,
-        height: 25,
-        marginLeft: 115,
+        width: normalize(100),
+        height: normalize(25),
+        marginLeft: normalize(115),
         borderRadius: 4,
         backgroundColor: '#EAF7EE'
     },
     
     txtProsesVerif: {
-        marginTop: 4,
-        marginLeft: 8,
-        fontSize: 12,
+        marginTop: normalize(4),
+        marginLeft: normalize(8),
+        fontSize: normalize(12),
         fontFamily: 'Montserrat-SemiBold',
         color: '#3CB13C'
     }

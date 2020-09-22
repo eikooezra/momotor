@@ -9,6 +9,7 @@ import {
     StyleSheet,
 } from 'react-native'
 import {SliderBox} from 'react-native-image-slider-box'
+import normalize from 'react-native-normalize';
 
 class ProsesVerif extends Component{
     constructor(props){
@@ -152,199 +153,199 @@ const styles = StyleSheet.create({
     },
 
     bkgProses: {
-        width: 120,
-        height: 25,
-        marginTop: 16,
-        marginLeft: 16,
-        marginBottom: 16,
+        width: normalize(100),
+        height: normalize(25),
+        marginTop: normalize(16),
+        marginLeft: normalize(16),
+        marginBottom: normalize(16),
         borderRadius: 4,
         backgroundColor: '#EAF7EE'
     },
     
     txtProses: {
-        marginTop: 4,
-        marginLeft: 8,
-        fontSize: 12,
+        marginTop: normalize(5),
+        marginLeft: normalize(8),
+        fontSize: normalize(12),
         fontFamily: 'Montserrat-SemiBold',
         color: '#3CB13C'
     },
 
     section1: {
-        width: 378,
-        marginBottom: 16,
-        marginLeft: 16,
+        width: normalize(350),
+        marginBottom: normalize(16),
+        marginLeft: normalize(16),
         borderBottomWidth: 1,
         borderBottomColor: '#0000001A'
     },
 
     txtModel: {
-        marginBottom: 5,
-        fontSize: 20,
+        marginBottom: normalize(5),
+        fontSize: normalize(20),
         fontFamily: 'Montserrat-SemiBold'
     },
 
     txtPrice: {
-        marginBottom: 12,
-        fontSize: 20,
+        marginBottom: normalize(12),
+        fontSize: normalize(20),
         fontFamily: 'Montserrat-Bold',
         color: '#0064D0'
     },
 
     whiteBox: {
-        width: 378,
-        height: 80,
-        marginLeft: 16,
-        marginBottom: 16,
+        width: normalize(350),
+        height: normalize(80),
+        marginLeft: normalize(16),
+        marginBottom: normalize(16),
         borderWidth: 0.3,
         borderRadius: 6,
         backgroundColor: '#FFFFFF'
     },
 
     txtDP: {
-        marginTop: 10,
-        marginBottom: 8,
-        marginLeft: 16,
-        fontSize: 14,
+        marginTop: normalize(10),
+        marginBottom: normalize(8),
+        marginLeft: normalize(16),
+        fontSize: normalize(14),
         fontFamily: 'Montserrat-Medium'
     },
 
     txtPriceDP: {
-        marginLeft: 16,
-        fontSize: 20,
+        marginLeft: normalize(16),
+        fontSize: normalize(20),
         fontFamily: 'Montserrat-Bold',
         color: '#0064D0'
     },
 
     txtCicil: {
-        marginTop: 10,
-        marginBottom: 8,
-        marginLeft: 16,
-        fontSize: 14,
+        marginTop: normalize(10),
+        marginBottom: normalize(8),
+        marginLeft: normalize(16),
+        fontSize: normalize(14),
         fontFamily: 'Montserrat-Medium'
     },
 
     txtPriceCicil: {
-        marginLeft: 16,
-        fontSize: 20,
+        marginLeft: normalize(16),
+        fontSize: normalize(20),
         fontFamily: 'Montserrat-Bold',
         color: '#0064D0'
     },
 
     whiteBox2: {
-        width: 378,
-        height: 200,
-        marginLeft: 16,
-        marginBottom: 16,
+        width: normalize(350),
+        height: normalize(200),
+        marginLeft: normalize(16),
+        marginBottom: normalize(16),
         borderWidth: 0.3,
         borderRadius: 6,
         backgroundColor: '#FFFFFF'
     },
 
     txtDetail: {
-        marginTop: 10,
-        marginBottom: 12,
-        marginLeft: 16,
-        fontSize: 14,
+        marginTop: normalize(10),
+        marginBottom: normalize(12),
+        marginLeft: normalize(16),
+        fontSize: normalize(14),
         fontFamily: 'Montserrat-SemiBold'
     },
 
     nameContainer: {
         flexDirection: 'row',
-        marginBottom: 12,
+        marginBottom: normalize(12),
     },
 
     txtNama: {
-        marginLeft: 25,
-        fontSize: 14,
+        marginLeft: normalize(25),
+        fontSize: normalize(14),
         fontFamily: 'Montserrat-Regular'
     },
 
     txtName: {
-        marginLeft: 90,
-        fontSize: 14,
+        marginLeft: normalize(105),
+        fontSize: normalize(14),
         fontFamily: 'Montserrat-SemiBold'
     },
 
     codeContainer: {
         flexDirection: 'row',
-        marginBottom: 12,
+        marginBottom: normalize(12),
     },
 
     txtKode: {
-        marginLeft: 25,
-        fontSize: 14,
+        marginLeft: normalize(25),
+        fontSize: normalize(14),
         fontFamily: 'Montserrat-Regular'
     },
 
     txtCode: {
-        marginLeft: 180,
-        fontSize: 14,
+        marginLeft: normalize(181),
+        fontSize: normalize(14),
         fontFamily: 'Montserrat-SemiBold'
     },
 
     noRefContainer: {
         flexDirection: 'row',
-        marginBottom: 12,
+        marginBottom: normalize(12),
     },
 
     txtRef: {
-        marginLeft: 25,
-        fontSize: 14,
+        marginLeft: normalize(25),
+        fontSize: normalize(14),
         fontFamily: 'Montserrat-Regular'
     },
 
     txtNoRef: {
-        marginLeft: 75,
-        fontSize: 14,
+        marginLeft: normalize(91),
+        fontSize: normalize(14),
         fontFamily: 'Montserrat-SemiBold'
     },
 
     tenorContainer: {
         flexDirection: 'row',
-        marginBottom: 12,
+        marginBottom: normalize(12),
     },
 
     txtTenor: {
-        marginLeft: 25,
-        fontSize: 14,
+        marginLeft: normalize(25),
+        fontSize: normalize(14),
         fontFamily: 'Montserrat-Regular'
     },
 
     txtTenorMonths: {
-        marginLeft: 220,
-        fontSize: 14,
+        marginLeft: normalize(216),
+        fontSize: normalize(14),
         fontFamily: 'Montserrat-SemiBold'
     },
 
     dateContainer: {
         flexDirection: 'row',
-        marginBottom: 12,
+        marginBottom: normalize(12),
     },
 
     txtTanggal: {
-        marginLeft: 25,
-        fontSize: 14,
+        marginLeft: normalize(25),
+        fontSize: normalize(14),
         fontFamily: 'Montserrat-Regular'
     },
 
     txtDate: {
-        marginLeft: 120,
-        fontSize: 14,
+        marginLeft: normalize(120),
+        fontSize: normalize(14),
         fontFamily: 'Montserrat-SemiBold'
     },
 
     txtTindakan: {
-        marginBottom: 12,
-        marginLeft: 16,
-        fontSize: 14,
+        marginBottom: normalize(12),
+        marginLeft: normalize(16),
+        fontSize: normalize(14),
         fontFamily: 'Montserrat-SemiBold'
     },
 
     btnPerbarui: {
-        width: 378,
-        height: 50,
-        marginBottom: 31,
-        marginLeft: 16,
+        width: normalize(354),
+        height: normalize(50),
+        marginBottom: normalize(31),
+        marginLeft: normalize(16),
         borderWidth: 1,
         borderRadius: 6,
         borderColor: '#0064D0',
@@ -352,9 +353,9 @@ const styles = StyleSheet.create({
     },
 
     txtPerbarui: {
-        marginTop: 11,
-        textAlign: 'center',
-        fontSize: 16,
+        marginTop: normalize(13),
+        marginLeft: normalize(148),
+        fontSize: normalize(16),
         fontFamily: 'Montserrat-SemiBold',
         color: '#0064D0'
     }

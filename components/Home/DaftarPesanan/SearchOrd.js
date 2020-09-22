@@ -8,6 +8,7 @@ import {
     StatusBar
 } from 'react-native'
 import SearchInput from 'react-native-search-filter'
+import normalize from 'react-native-normalize';
 
 class Search extends Component {
 
@@ -61,40 +62,39 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: '#FFFFFF'
     },
-
     searchContainer: {
         flexDirection: 'row'
     },
 
     imgBlkSearch: {
-        width: 18,
-        height: 18,
-        marginTop: 11,
-        marginLeft: 10,
-        marginRight: 15,
+        width: normalize(18),
+        height: normalize(18),
+        marginTop: normalize(11),
+        marginLeft: normalize(10),
+        marginRight: normalize(15),
     },
 
     searchBar: {
-        width: 304,
-        height: 40,
-        marginTop: 10,
-        marginLeft: 20,
+        width: normalize(304),
+        height: normalize(40),
+        marginTop: normalize(10),
+        marginLeft: normalize(20),
         borderRadius: 10,
         backgroundColor: '#F4F4F4',
         flexDirection: 'row'
     },
 
     txtInput: {
-        width: 300,
+        width: normalize(300),
         fontFamily: 'Montserrat-Medium'
     },
 
     txtBatal: {
-        width: 48,
-        height: 18,
-        marginTop: 18,
-        marginLeft: 20,
-        fontSize: 16,
+        width: normalize(48),
+        height: normalize(18),
+        marginTop: normalize(18),
+        marginLeft: normalize(10),
+        fontSize: normalize(16),
         fontFamily: 'Montserrat-SemiBold',
         color: '#2A77CB'
     }
