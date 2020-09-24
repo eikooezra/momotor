@@ -94,7 +94,7 @@ const styles = StyleSheet.create({
     },
 
     searchBar: {
-        width: normalize(304),
+        width: normalize(280),
         height: normalize(40),
         marginTop: normalize(10),
         marginLeft: normalize(20),
@@ -112,7 +112,7 @@ const styles = StyleSheet.create({
         width: normalize(48),
         height: normalize(18),
         marginTop: normalize(18),
-        marginLeft: normalize(10),
+        marginLeft: normalize(20),
         fontSize: normalize(16),
         fontFamily: 'Montserrat-SemiBold',
         color: '#2A77CB'

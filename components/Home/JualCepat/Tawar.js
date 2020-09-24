@@ -9,6 +9,7 @@ import {
     StyleSheet,
 } from 'react-native'
 import {SliderBox} from 'react-native-image-slider-box'
+import normalize from 'react-native-normalize';
 
 class Tawar extends Component{
     constructor(props){
@@ -179,9 +180,9 @@ const styles = StyleSheet.create({
     },
 
     section1: {
-        width: 378,
-        marginBottom: 16,
-        marginLeft: 16,
+        width: normalize(348),
+        marginBottom: normalize(16),
+        marginLeft: normalize(16),
         borderBottomWidth: 1,
         borderBottomColor: '#0000001A'
     },
@@ -191,62 +192,59 @@ const styles = StyleSheet.create({
     },
 
     bkgStatus: {
-        width: 52,
-        height: 22,
-        marginTop: 16,
-        marginBottom: 8,
-        borderRadius: 6,
+        width: normalize(50),
+        height: normalize(22),
+        marginTop: normalize(16),
+        marginBottom: normalize(8),
+        borderRadius: normalize(6),
         backgroundColor: '#3CB13C',
     },
 
     txtStatus: {
-        width: 40,
-        height: 15,
-        marginTop: 2,
-        marginLeft: 8, 
-        fontSize: 12,
+        width: normalize(40),
+        height: normalize(15),
+        marginTop: normalize(4),
+        marginLeft: normalize(10), 
+        fontSize: normalize(12),
         color: '#FFFFFF',
         fontFamily: 'Montserrat-Bold'
     },
 
     imgLoc: {
-        width: 10,
-        height: 14,
-        marginTop: 20,
-        marginLeft: 245
+        width: normalize(10),
+        height: normalize(14),
+        marginTop: normalize(20),
+        marginLeft: normalize(220)
     },
 
     txtCity: {
-        width: 55,
-        height: 18,
-        marginTop: 17,
-        marginLeft: 8,
-        fontSize: 14,
+        width: normalize(55),
+        marginTop: normalize(17),
+        marginLeft: normalize(8),
+        fontSize: normalize(14),
         fontFamily: 'Montserrat-Medium'
     },
 
     txtModel: {
-        width: 170,
-        height: 24,
-        marginBottom: 4,
-        fontSize: 20,
+        width: normalize(170),
+        marginBottom: normalize(4),
+        fontSize: normalize(20),
         fontFamily: 'Montserrat-SemiBold'
     },
 
     txtPrice: {
-        width: 155,
-        height: 24,
-        marginBottom: 12,
-        fontSize: 20,
+        width: normalize(155),
+        marginBottom: normalize(12),
+        fontSize: normalize(20),
         color: '#0064D0',
         fontFamily: 'Montserrat-Bold'
     },
 
     btnHasil: {
-        width: 378,
-        height: 40,
-        marginLeft: 16,
-        marginBottom: 16,
+        width: normalize(348),
+        height: normalize(38),
+        marginLeft: normalize(16),
+        marginBottom: normalize(16),
         borderRadius: 8,
         backgroundColor: '#0064D0'
     },
@@ -256,39 +254,38 @@ const styles = StyleSheet.create({
     },
 
     imgLoupe: {
-        width: 20,
-        height: 20,
-        marginTop: 10,
-        marginLeft: 122,
+        width: normalize(20),
+        height: normalize(20),
+        marginTop: normalize(10),
+        marginLeft: normalize(117),
     },
 
     txtHasil: {
-        width: 120,
-        height: 18,
-        marginTop: 10,
-        marginLeft: 6,
-        fontSize: 14,
+        width: normalize(120),
+        height: normalize(18),
+        marginTop: normalize(10),
+        marginLeft: normalize(6),
+        fontSize: normalize(14.5),
         color: '#FFFFFF',
         fontFamily: 'Montserrat-Bold'
     },
 
     whiteBox1: {
-        width: 378,
-        height: 184,
-        marginBottom: 10,
-        marginLeft: 16,
+        width: normalize(348),
+        height: normalize(150),
+        marginBottom: normalize(10),
+        marginLeft: normalize(16),
         borderRadius: 6,
         elevation: 3,
         backgroundColor: '#FFFFFF'
     },
 
     txtInfoMotor: {
-        width: 150,
-        height: 18,
-        marginTop: 10,
-        marginBottom: 12,
-        marginLeft: 17,
-        fontSize: 14,
+        width: normalize(150),
+        marginTop: normalize(10),
+        marginBottom: normalize(12),
+        marginLeft: normalize(17),
+        fontSize: normalize(14.5),
         fontFamily: 'Montserrat-SemiBold'
     },
 
@@ -297,20 +294,18 @@ const styles = StyleSheet.create({
     },
 
     txtTahun: {
-        width: 45,
-        height: 18,
-        marginLeft: 26,
-        marginBottom: 12,
-        fontSize: 14,
+        width: normalize(45),
+        marginLeft: normalize(26),
+        marginBottom: normalize(12),
+        fontSize: normalize(14),
         color: '#7F7F7F',
         fontFamily: 'Montserrat-Regular'
     },
 
     txtYear: {
-        width: 35,
-        height: 18,
-        marginLeft: 250,
-        fontSize: 14,
+        width: normalize(35),
+        marginLeft: normalize(237),
+        fontSize: normalize(14),
         fontFamily: 'Montserrat-Medium'
     },
 
@@ -319,20 +314,20 @@ const styles = StyleSheet.create({
     },
 
     txtJarak: {
-        width: 100,
-        height: 18,
-        marginLeft: 26,
-        marginBottom: 12,
-        fontSize: 14,
+        width: normalize(100),
+        height: normalize(18),
+        marginLeft: normalize(26),
+        marginBottom: normalize(12),
+        fontSize: normalize(14),
         color: '#7F7F7F',
         fontFamily: 'Montserrat-Regular'
     },
 
     txtDistance: {
-        width: 70,
-        height: 18,
-        marginLeft: 160,
-        fontSize: 14,
+        width: normalize(70),
+        height: normalize(18),
+        marginLeft: normalize(152),
+        fontSize: normalize(14),
         fontFamily: 'Montserrat-Medium'
     },
 
@@ -341,20 +336,18 @@ const styles = StyleSheet.create({
     },
 
     txtKapasitas: {
-        width: 112,
-        height: 18,
-        marginLeft: 26,
-        marginBottom: 12,
-        fontSize: 14,
+        width: normalize(112),
+        marginLeft: normalize(26),
+        marginBottom: normalize(12),
+        fontSize: normalize(14),
         color: '#7F7F7F',
         fontFamily: 'Montserrat-Regular'
     },
 
     txtCapacity: {
-        width: 45,
-        height: 18,
-        marginLeft: 173,
-        fontSize: 14,
+        width: normalize(45),
+        marginLeft: normalize(161),
+        fontSize: normalize(14),
         fontFamily: 'Montserrat-Medium'
     },
 
@@ -363,70 +356,66 @@ const styles = StyleSheet.create({
     },
 
     txtTransmisi: {
-        width: 70,
-        height: 18,
-        marginLeft: 26,
-        marginBottom: 12,
-        fontSize: 14,
+        width: normalize(70),
+        height: normalize(18),
+        marginLeft: normalize(26),
+        marginBottom: normalize(12),
+        fontSize: normalize(14),
         color: '#7F7F7F',
         fontFamily: 'Montserrat-Regular'
     },
 
     txtTransmission: {
-        width: 70,
-        height: 18,
-        marginLeft: 190,
-        fontSize: 14,
+        width: normalize(70),
+        height: normalize(18),
+        marginLeft: normalize(181),
+        fontSize: normalize(14),
         fontFamily: 'Montserrat-Medium'
     },
 
     bidderCounter: {
-        marginLeft: 310,
-        marginBottom: 10,
+        marginLeft: normalize(280),
+        marginBottom: normalize(10),
     },
 
     countedBidder: {
-        width: 85,
-        height: 18,
-        fontSize: 14,
+        width: normalize(85),
+        fontSize: normalize(14),
         fontFamily: 'Montserrat-SemiBold'
     },
 
     whiteBox2: {
-        width: 378,
-        height: 84,
-        marginBottom: 16,
-        marginLeft: 16,
+        width: normalize(348),
+        height: normalize(80),
+        marginBottom: normalize(16),
+        marginLeft: normalize(16),
         borderRadius: 6,
         elevation: 3,
         backgroundColor: '#FFFFFF'
     },
 
     txtPenawaran: {
-        width: 210,
-        height: 18,
-        marginTop: 12,
-        marginLeft: 16,
-        marginBottom: 8,
-        fontSize: 14,
+        width: normalize(210),
+        marginTop: normalize(12),
+        marginLeft: normalize(16),
+        marginBottom: normalize(8),
+        fontSize: normalize(14),
         fontFamily: 'Montserrat-Medium'
     },
 
     highestBid: {
-        width: 200,
-        height: 32,
-        marginLeft: 16,
-        fontSize: 26,
+        width: normalize(200),
+        marginLeft: normalize(16),
+        fontSize: normalize(26),
         color: '#0064D0',
         fontFamily: 'Montserrat-Bold'
     },
 
     txtMasukkanHarga: {
-        width: 208,
-        height: 18,
-        marginBottom: 12,
-        marginLeft: 16,
-        fontSize: 14,
+        width: normalize(208),
+        marginBottom: normalize(12),
+        marginLeft: normalize(16),
+        fontSize: normalize(14),
         fontFamily: 'Montserrat-SemiBold'
     },
 
@@ -435,33 +424,32 @@ const styles = StyleSheet.create({
     },
 
     txtInpBidPrice: {
-        width: 292,
-        height: 40,
-        marginBottom: 25,
-        marginLeft: 16,
+        width: normalize(268),
+        height: normalize(40),
+        marginBottom: normalize(25),
+        marginLeft: normalize(16),
         borderWidth: 1,
         borderRadius: 6,
         borderColor: '#C8C8C8'
     },
 
     txtBidPrice: {
-        marginLeft: 16,
+        marginLeft: normalize(16),
         fontFamily: 'Montserrat-SemiBold'
     },
 
     btnTawar: {
-        width: 78,
-        height: 40,
-        marginLeft: 8,
+        width: normalize(78),
+        height: normalize(40),
+        marginLeft: normalize(8),
         borderRadius: 6,
         backgroundColor: '#C8C8C8'
     },
 
     txtTawar: {
-        width: 44,
-        height: 18,
-        marginTop: 11,
-        marginLeft: 17,
+        width: normalize(44),
+        marginTop: normalize(11),
+        marginLeft: normalize(23),
         color: '#FFFFFF',
         fontFamily: '#Montserrat-SemiBold'
     }

@@ -7,6 +7,7 @@ import {
     Text,
     TouchableOpacity
 } from 'react-native'
+import normalize from 'react-native-normalize';
 
 class JualCepat extends Component {
 
@@ -105,7 +106,7 @@ render() {
                </TouchableOpacity>
            </View>
 
-           <View style={styles.WhiteBox}>
+           <View style={styles.WhiteBox2}>
                <View style={styles.boxContainer1}>
                    <TouchableOpacity>
                     <Image
@@ -159,52 +160,52 @@ const styles = StyleSheet.create({
     },
 
     Header: {
-        width: 412,
-        height: 70,
+        width: normalize(380),
+        height: normalize(65),
         flexDirection: 'row',
         backgroundColor: '#0064D0',
     },
 
     btnBack: {
-        width: 32,
-        height: 16,
-        marginTop: 30,
-        marginLeft: 16,
+        width: normalize(32),
+        height: normalize(16),
+        marginTop: normalize(30),
+        marginLeft: normalize(16),
     },
        
     btnWrapper: {
-        marginLeft: 60,
+        marginLeft: normalize(60),
         flexDirection: 'row'
     },
     
     btnSearch: {
-        width: 18,
-        height: 18,
-        marginTop: 26,
-        marginRight: 13,
+        width: normalize(18),
+        height: normalize(18),
+        marginTop: normalize(26),
+        marginRight: normalize(13),
     },
 
     btnHistory: {
-        width: 21,
-        height: 18,
-        marginTop: 26,
+        width: normalize(21),
+        height: normalize(18),
+        marginTop: normalize(26),
     },
 
     txtJual: {
-        width: 120,
-        height: 20,
-        marginTop: 25,
-        marginLeft: 115,
-        fontSize: 16,
+        width: normalize(100),
+        marginTop: normalize(25),
+        marginLeft: normalize(113),
+        fontSize: normalize(16),
         color: '#FFFFFF',
         fontFamily: 'Montserrat-Bold'
     },
 
     WhiteBox: {
-        width: 380,
-        height: 144,
-        marginTop: 16,
-        marginLeft: 16,
+        width: normalize(350),
+        height: normalize(142),
+        marginTop: normalize(16),
+        marginBottom: normalize(16),
+        marginLeft: normalize(16),
         borderRadius: 6,
         elevation: 5,
         backgroundColor: '#FFFFFF',
@@ -212,10 +213,10 @@ const styles = StyleSheet.create({
     },
 
     WhiteBox2: {
-        width: 380,
-        height: 121,
-        marginBottom: 16,
-        marginLeft: 16,
+        width: normalize(350),
+        height: normalize(142),
+        marginBottom: normalize(16),
+        marginLeft: normalize(16),
         borderRadius: 6,
         elevation: 5,
         backgroundColor: '#FFFFFF',
@@ -223,83 +224,78 @@ const styles = StyleSheet.create({
     },
 
     boxContainer1: {
-        marginLeft: 16
+        marginLeft: normalize(16)
     },
 
     imgUnit: {
-        width: 120,
-        height: 120,
+        width: normalize(115),
+        height: normalize(115),
         borderRadius: 4,
-        marginTop: 12,
+        marginTop: normalize(12),
     },
 
     boxContainer2: {
-        marginLeft: 16,
+        marginLeft: normalize(16),
     },
 
     section1: {
-        width: 210,
+        width: normalize(115),
         marginBottom: 12,
-        borderBottomWidth: 1,
-        borderBottomColor: '#0000001A'
     },
 
     txtModel: {
-        width: 160,
-        height: 22,
-        marginTop: 12,
-        marginBottom: 6,
-        fontSize: 18,
+        width: normalize(160),
+        marginTop: normalize(12),
+        marginBottom: normalize(6),
+        fontSize: normalize(18),
         fontFamily: 'Montserrat-SemiBold'
     },
 
     txtPrice: {
-        width: 120,
-        height: 20,
-        marginBottom: 6,
-        fontSize: 16,
+        width: normalize(120),
+        marginBottom: normalize(6),
+        fontSize: normalize(16),
         fontFamily: 'Montserrat-SemiBold'
     },
 
     txtYear: {
-        width: 120,
-        height: 20,
-        marginBottom: 12,
-        fontSize: 12,
+        width: normalize(120),
+        marginBottom: normalize(12),
+        fontSize: normalize(13),
         fontFamily: 'Montserrat-Medium',
         color: '#7F7F7F'
     },
 
     btnTawar: {
-        width: 90,
-        height: 32,
+        width: normalize(80),
+        height: normalize(32),
         borderRadius: 6,
-        marginTop: 105,
+        marginTop: normalize(90),
         backgroundColor: '#0064D0'
     },
 
     txtTawar: {
-        width: 50,
-        height: 20,
-        marginTop: 7,
-        marginLeft: 23,
-        fontSize: 14,
+        width: normalize(50),
+        height: normalize(20),
+        marginTop: normalize(7),
+        marginLeft: normalize(23),
+        fontSize: normalize(14),
         color: '#FFFFFF',
         fontFamily: 'Montserrat-Bold'
     },
     
     txtStatus1: {
-        width: 50,
-        height: 15,
-        fontSize: 14,
+        width: normalize(50),
+        height: normalize(15),
+        fontSize: normalize(14),
         color: '#3CB13C',
         fontFamily: 'Montserrat-Bold'
     },
 
     txtStatus2: {
-        width: 60,
-        height: 16,
-        fontSize: 14,
+        width: normalize(60),
+        height: normalize(16),
+        fontSize: normalize(14),
         color: '#E56464',
         fontFamily: 'Montserrat-Bold'
     }

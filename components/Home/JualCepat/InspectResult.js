@@ -8,6 +8,7 @@ import {
     Image
 } from 'react-native'
 import CustomSlider from '../CustomSlider'
+import normalize from 'react-native-normalize';
 
 class InspectResult extends Component{
     constructor(props){
@@ -156,242 +157,225 @@ const styles = StyleSheet.create({
     },
 
     Header: {
-        width: 412,
-        height: 70,
+        width: normalize(380),
+        height: normalize(65),
         flexDirection: 'row',
         backgroundColor: '#0064D0',
     },
 
     btnBack: {
-        width: 32,
-        height: 16,
-        marginTop: 30,
-        marginLeft: 16,
+        width: normalize(32),
+        height: normalize(16),
+        marginTop: normalize(30),
+        marginLeft: normalize(16),
     },
 
     txtInspeksi: {
-        width: 200,
-        height: 20,
-        marginTop: 25,
-        marginLeft: 100,
-        fontSize: 16,
+        width: normalize(200),
+        height: normalize(20),
+        marginTop: normalize(25),
+        marginLeft: normalize(98),
+        fontSize: normalize(16),
         color: '#FFFFFF',
         fontFamily: 'Montserrat-Bold'
     },
 
     infoSection: {
-        width: 378,
-        height: 275,
-        marginTop: 14,
-        marginBottom: 24,
-        marginLeft: 16,
+        width: normalize(348),
+        height: normalize(245),
+        marginTop: normalize(14),
+        marginBottom: normalize(24),
+        marginLeft: normalize(16),
         borderWidth: 1,
         borderRadius: 6,
         borderColor: '#B7B7B7'
     },
 
     InfoContainer: {
-        width: 340,
-        marginBottom: 10,
-        marginLeft: 16,
+        width: normalize(340),
+        marginBottom: normalize(10),
+        marginLeft: normalize(16),
         borderBottomColor: '#0000001A',
         borderBottomWidth: 1
     },
 
     txtInfo: {
-        width: 135,
-        height: 19,
-        marginTop: 16,
-        marginBottom: 10,
-        fontSize: 16,
+        width: normalize(135),
+        marginTop: normalize(16),
+        marginBottom: normalize(10),
+        fontSize: normalize(16),
         fontFamily: 'Montserrat-SemiBold'
     },
 
     typeContainer: {
         flexDirection: 'row',
-        marginBottom: 12,
+        marginBottom: normalize(12),
     },
 
     txtJenis: {
-        width: 82,
-        height: 18,
-        marginLeft: 16,
-        fontSize: 14,
+        width: normalize(82),
+        marginLeft: normalize(16),
+        fontSize: normalize(14),
         fontFamily: 'Montserrat-Regular'
     },
 
     txtType: {
-        width: 130,
-        height: 18,
-        marginLeft: 145,
-        fontSize: 14,
+        width: normalize(130),
+        marginLeft: normalize(145),
+        fontSize: normalize(14),
         fontFamily: 'Montserrat-Medium'
     },
 
     yearContainer: {
         flexDirection: 'row',
-        marginBottom: 12,
+        marginBottom: normalize(12),
     },
 
     txtTahun: {
-        width: 45,
-        height: 18,
-        marginLeft: 16,
-        fontSize: 14,
+        width: normalize(45),
+        marginLeft: normalize(16),
+        fontSize: normalize(14),
         fontFamily: 'Montserrat-Regular'
     },
 
     txtYear: {
-        width: 32,
-        height: 18,
-        marginLeft: 260,
-        fontSize: 14,
+        width: normalize(32),
+        marginLeft: normalize(251),
+        fontSize: normalize(14),
         fontFamily: 'Montserrat-Medium'
     },
 
     distanceContainer: {
         flexDirection: 'row',
-        marginBottom: 12,
+        marginBottom: normalize(12),
     },
 
     txtJarak: {
-        width: 100,
-        height: 18,
-        marginLeft: 16,
-        fontSize: 14,
+        width: normalize(100),
+        marginLeft: normalize(16),
+        fontSize: normalize(14),
         fontFamily: 'Montserrat-Regular'
     },
 
     txtDistance: {
-        width: 130,
-        height: 18,
-        marginLeft: 170,
-        fontSize: 14,
+        width: normalize(130),
+        marginLeft: normalize(165),
+        fontSize: normalize(14),
         fontFamily: 'Montserrat-Medium'
     },
 
     capacityContainer: {
         flexDirection: 'row',
-        marginBottom: 12,
+        marginBottom: normalize(12),
     },
 
     txtKapasitas: {
-        width: 115,
-        height: 18,
-        marginLeft: 16,
-        fontSize: 14,
+        width: normalize(115),
+        marginLeft: normalize(16),
+        fontSize: normalize(14),
         fontFamily: 'Montserrat-Regular'
     },
 
     txtCapacity: {
-        width: 42,
-        height: 18,
-        marginLeft: 180,
-        fontSize: 14,
+        width: normalize(42),
+        marginLeft: normalize(172),
+        fontSize: normalize(14),
         fontFamily: 'Montserrat-Medium'
     },
     
     transmissionContainer: {
         flexDirection: 'row',
-        marginBottom: 12,
+        marginBottom: normalize(12),
     },
 
     txtTransmisi: {
-        width: 70,
-        height: 18,
-        marginLeft: 16,
-        fontSize: 14,
+        width: normalize(70),
+        marginLeft: normalize(16),
+        fontSize: normalize(14),
         fontFamily: 'Montserrat-Regular'
     },
 
     txtTransmission: {
-        width: 68,
-        height: 18,
-        marginLeft: 200,
-        fontSize: 14,
+        width: normalize(68),
+        marginLeft: normalize(195),
+        fontSize: normalize(14),
         fontFamily: 'Montserrat-Medium'
     },
 
     dateContainer: {
         flexDirection: 'row',
-        marginBottom: 12,
+        marginBottom: normalize(12),
     },
 
     txtTanggal: {
-        width: 120,
-        height: 18,
-        marginLeft: 16,
-        fontSize: 14,
+        width: normalize(120),
+        marginLeft: normalize(16),
+        fontSize: normalize(14),
         fontFamily: 'Montserrat-Regular'
     },
 
     txtDate: {
-        width: 72,
-        height: 18,
-        marginLeft: 145,
-        fontSize: 14,
+        width: normalize(72),
+        marginLeft: normalize(141),
+        fontSize: normalize(14),
         fontFamily: 'Montserrat-Medium'
     },
 
     locationContainer: {
         flexDirection: 'row',
-        marginBottom: 12,
+        marginBottom: normalize(12),
     },
 
     txtLokasi: {
-        width: 46,
-        height: 18,
-        marginLeft: 16,
-        fontSize: 14,
+        width: normalize(46),
+        marginLeft: normalize(16),
+        fontSize: normalize(14),
         fontFamily: 'Montserrat-Regular'
     },
 
     txtLocation: {
-        width: 98,
-        height: 18,
-        marginLeft: 195,
-        fontSize: 14,
+        width: normalize(98),
+        marginLeft: normalize(193),
+        fontSize: normalize(14),
         fontFamily: 'Montserrat-Medium'
     },
 
     gradeSection: {
-        width: 378,
-        height: 100,
-        marginBottom: 24,
-        marginLeft: 16,
+        width: normalize(348),
+        height: normalize(100),
+        marginBottom: normalize(24),
+        marginLeft: normalize(16),
         borderRadius: 6,
         elevation: 5,
         backgroundColor: '#FFFFFF'
     },
 
     priceRangeSection: {
-        width: 378,
-        height: 130,
-        marginBottom: 24,
-        marginLeft: 16,
+        width: normalize(348),
+        height: normalize(130),
+        marginBottom: normalize(24),
+        marginLeft: normalize(16),
         borderRadius: 6,
         elevation: 5,
         backgroundColor: '#FFFFFF'
     },
 
     txtGrade: {
-        width: 46,
-        height: 18,
-        marginTop: 12,
-        marginBottom: 11,
-        marginLeft: 12,
-        fontSize: 14,
+        width: normalize(46),
+        marginTop: normalize(12),
+        marginBottom: normalize(11),
+        marginLeft: normalize(12),
+        fontSize: normalize(14),
         fontFamily: 'Montserrat-Bold',
         color: '#225C9A'
     },
 
     txtPerkiraan: {
-        width: 122,
-        height: 18,
-        marginTop: 12,
-        marginBottom: 16,
-        marginLeft: 12,
-        fontSize: 14,
+        width: normalize(122),
+        marginTop: normalize(12),
+        marginBottom: normalize(16),
+        marginLeft: normalize(12),
+        fontSize: normalize(14),
         fontFamily: 'Montserrat-Bold',
         color: '#225C9A'
     }

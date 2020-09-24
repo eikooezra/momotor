@@ -7,6 +7,7 @@ import {
     Text,
     TouchableOpacity
 } from 'react-native'
+import normalize from 'react-native-normalize';
 
 class HistoryFst extends Component {
 
@@ -16,7 +17,7 @@ goBack = () => {
 
 render() {
     return (
-        <View style={styles.Header}>
+        <View style={styles.container}>
            <View style={styles.Header}>
                 <TouchableOpacity
                         onPress={this.goBack}
@@ -172,84 +173,79 @@ const styles = StyleSheet.create({
     },
 
     Header: {
-        width: 412,
-        height: 70,
+        width: normalize(380),
+        height: normalize(65),
         flexDirection: 'row',
         backgroundColor: '#0064D0',
     },
 
     btnBack: {
-        width: 32,
-        height: 16,
-        marginTop: 30,
-        marginLeft: 16,
+        width: normalize(32),
+        height: normalize(16),
+        marginTop: normalize(30),
+        marginLeft: normalize(16),
     },
 
     txtJual: {
-        width: 200,
-        height: 20,
-        marginTop: 25,
-        marginLeft: 80,
-        fontSize: 16,
+        width: normalize(200),
+        marginTop: normalize(25),
+        marginLeft: normalize(80),
+        fontSize: normalize(16),
         color: '#FFFFFF',
         fontFamily: 'Montserrat-Bold'
     },
 
     FlatContainer: {
-        width: 380 ,
-        height: 144,
-        marginLeft: 16,
+        width: normalize(350),
+        height: normalize(140),
+        marginLeft: normalize(16),
         borderBottomWidth: 1,
         borderBottomColor: '#0000001A',
         flexDirection: 'row'
     },
 
     boxContainer1: {
-        marginLeft: 16
+        marginLeft: normalize(16)
     },
 
     imgUnit: {
-        width: 120,
-        height: 120,
+        width: normalize(115),
+        height: normalize(115),
         borderRadius: 4,
-        marginTop: 12,
+        marginTop: normalize(12),
     },
 
     boxContainer2: {
-        marginLeft: 16,
+        marginLeft: normalize(16),
     },
 
     txtModel: {
-        width: 160,
-        height: 22,
-        marginTop: 12,
-        marginBottom: 6,
-        fontSize: 18,
+        width: normalize(160),
+        marginTop: normalize(12),
+        marginBottom: normalize(6),
+        fontSize: normalize(18),
         fontFamily: 'Montserrat-SemiBold'
     },
 
     txtPrice: {
-        width: 120,
-        height: 20,
-        marginBottom: 6,
-        fontSize: 16,
+        width: normalize(120),
+        marginBottom: normalize(6),
+        fontSize: normalize(16),
         fontFamily: 'Montserrat-SemiBold',
         color: '#2A77CB'
     },
 
     txtDate: {
-        width: 120,
-        height: 20,
-        marginBottom: 20,
-        fontSize: 12,
+        width: normalize(120),
+        marginBottom: normalize(20),
+        fontSize: normalize(12),
         fontFamily: 'Montserrat-SemiBold',
         color: '#7F7F7F'
     },
     
     txtStatus1: {
-        width: 50,
-        height: 15,
-        fontSize: 14,
+        width: normalize(50),
+        fontSize: normalize(14),
         color: '#3CB13C',
         fontFamily: 'Montserrat-Bold'
     },

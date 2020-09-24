@@ -295,7 +295,7 @@ const styles = StyleSheet.create({
     },
 
     txtNoRef: {
-        marginLeft: normalize(91),
+        marginLeft: normalize(92),
         fontSize: normalize(14),
         fontFamily: 'Montserrat-SemiBold'
     },
@@ -312,7 +312,7 @@ const styles = StyleSheet.create({
     },
 
     txtTenorMonths: {
-        marginLeft: normalize(216),
+        marginLeft: normalize(219),
         fontSize: normalize(14),
         fontFamily: 'Montserrat-SemiBold'
     },
@@ -329,7 +329,7 @@ const styles = StyleSheet.create({
     },
 
     txtDate: {
-        marginLeft: normalize(120),
+        marginLeft: normalize(136),
         fontSize: normalize(14),
         fontFamily: 'Montserrat-SemiBold'
     },
