@@ -10,6 +10,7 @@ import {
 import RBSheet from 'react-native-raw-bottom-sheet'
 import BottomSheet from '../BottomSheet'
 import normalize from 'react-native-normalize';
+import Test from '../../../api/Test'
 
 class SemuaProduk extends Component {
     constructor(props){
@@ -38,7 +39,7 @@ render() {
 
                 <View style={styles.boxContainer2}>
                     <Text style={styles.namaMotor}>
-                        Honda Vario 125
+                        <Test/>
                     </Text>
 
                     <View style={styles.speedoContainer}>
@@ -102,7 +103,7 @@ render() {
 
                 <View style={styles.boxContainer2}>
                     <Text style={styles.namaMotor}>
-                        Honda Vario 125
+                        <Test/>
                     </Text>
 
                     <View style={styles.speedoContainer}>
