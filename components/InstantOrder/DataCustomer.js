@@ -270,10 +270,6 @@ render() {
                         value={this.state.name}
                         onChangeText={name => this.handleChangeName(name)}
                     />
-
-                    <Image
-                        source={this.state.checkRender}
-                    />
             </View>
 
             <Text style={styles.errorStyle}>
