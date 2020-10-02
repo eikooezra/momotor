@@ -12,18 +12,22 @@ import { TextInput } from 'react-native-gesture-handler'
 import normalize from 'react-native-normalize'
 import axios from 'axios'
 
-const NODEAPI = 'http://192.168.0.13:3000'
-
 class EditProfile extends Component{
     constructor(props){
         super(props)
         this.state = {
          dealername: '',
+         isNameFilled: false,
+         errorName: '',
          address: '',
-         phone: '',
+         isAddressFilled: false,
+         errorAddress: '',
          email: '',
-         isEmailValid: false,
-         isPhoneValid: false,
+         isEmaillFilled: false,
+         errorEmail: '',
+         phone: '',
+         isPhoneFilled: false,
+         errorPhone: '',
         }
     }
     
@@ -31,29 +35,46 @@ goToAccount = () => {
     this.props.navigation.navigate('Account')
   }
 
+handleChangeName = (dealername) => {
+    this.setState({dealername})
+    let reg = /([^\s])/
+    if(reg.test(dealername) === true){
+        this.setState({isNameFilled: true, errorName: ''})
+    }else{
+        this.setState({errorName: 'Tidak boleh kosong'})
+    }
+}
+
+handleChangeAddress = (address) => {
+    this.setState({address})
+    let reg = /([^\s])/
+    if(reg.test(address) === true){
+        this.setState({isAddressFilled: true, errorAddress: ''})
+    }else{
+        this.setState({errorAddress: 'Tidak boleh kosong'})
+    }
+}
+
+handleChangePhone = (phone) => {
+    this.setState({phone})
+    if(phone.length >= 11){
+        this.setState({isPhoneFilled: true, errorPhone: ''})
+    }else{
+        this.setState({errorPhone: 'Minimal 11 karakter'})
+    }
+}
 
 handleChangeEmail = (email) => {
     this.setState({email});
     let reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/
 
     if (reg.test(email) === true) {
-        this.setState({isEmailValid: true})
+        this.setState({isEmailFilled: true, errorEmail: ''})
     } else {
-        this.setState({isEmailValid: false})
+        this.setState({errorEmail: 'Format: Example@adira.com'})
     }
 }
 
-// checkUser = () => {
-//     const _this = this
-//     const {dealername, address, phone, email} = this.state
-
-//     axios.post(`${NODEAPI}/editProfile/validate`, {
-//         'dealername': dealername,
-//         'address': address,
-//         'phone': phone,
-//         'email': email
-//     })
-// }
 
 render(){
     return(
@@ -76,42 +97,57 @@ render(){
             <Text style={styles.txtName}>
                 Nama Dealer
             </Text>
-
+          
+          <View style={styles.inputName}>
             <TextInput
-                style={styles.inputName}
+                style={styles.txtinName}
+                returnKeyType='next'
+                value={this.state.dealername}
+                onChangeText={dealername => this.handleChangeName(dealername)}
             />
+          </View>
 
             <Text style={styles.txtAddress}>
                 Alamat Dealer
             </Text>
 
+          <View style={styles.inputAddress}>
             <TextInput
-                style={styles.inputAddress}
+                style={styles.txtinAddress}
+                returnKeyType='next'
+                value={this.state.address}
+                onChangeText={address => this.handleChangeAddress(address)}
             />
+          </View>
 
             <Text style={styles.txtPhone}>
                 No. Handphone
             </Text>
 
+          <View style={styles.inputPhone}>
             <TextInput
-                style={styles.inputPhone}
-                onChangeText={phone => this.handleChangePhone(phone)}
+                style={styles.txtinPhone}
+                keyboardType={'numeric'}
+                returnKeyType='next'
+                maxLength={13}
                 value={this.state.phone}
-                keyboardType='numeric'
+                onChangeText={phone => this.handleChangePhone(phone)}
             />
+          </View>
 
             <Text style={styles.txtEmail}>
                 Email
             </Text>
         
-        <KeyboardAvoidingView>
+          <View style={styles.inputEmail}>
             <TextInput
-                style={styles.inputEmail}
-                onChangeText={email => this.handleChangeEmail(email)}
-                value={this.state.email}
+                style={styles.txtinEmail}
                 keyboardType='email-address'
+                returnKeyType='next'
+                value={this.state.email}
+                onChangeText={email => this.handleChangeEmail(email)}
             />
-        </KeyboardAvoidingView>
+          </View>
 
             <View style={styles.Areabtn}>
                 <TouchableOpacity
@@ -180,6 +216,12 @@ const styles = StyleSheet.create({
       fontFamily: 'Montserrat-Medium'
     },
 
+    txtinName: {
+        marginLeft: normalize(8),
+        color: '#7F7F7F',
+        fontFamily: 'Montserrat-Medium'
+    },
+
     txtAddress: {
         width: normalize(150),
         height: normalize(15),
@@ -197,6 +239,12 @@ const styles = StyleSheet.create({
       marginRight: normalize(20),
       fontSize: normalize(14),
       fontFamily: 'Montserrat-Medium'
+    },
+
+    txtinAddress: {
+        marginLeft: normalize(8),
+        color: '#7F7F7F',
+        fontFamily: 'Montserrat-Medium'
     },
 
     txtPhone: {
@@ -218,6 +266,12 @@ const styles = StyleSheet.create({
       fontFamily: 'Montserrat-Medium'
     },
 
+    txtinPhone: {
+        marginLeft: normalize(8),
+        color: '#7F7F7F',
+        fontFamily: 'Montserrat-Medium'
+    },
+
     txtEmail: {
         width: normalize(150),
         height: normalize(15),
@@ -235,6 +289,12 @@ const styles = StyleSheet.create({
       marginRight: normalize(20),
       fontSize: normalize(14),
       fontFamily: 'Montserrat-Medium'
+    },
+
+    txtinEmail: {
+        marginLeft: normalize(8),
+        color: '#7F7F7F',
+        fontFamily: 'Montserrat-Medium'
     },
 
     Areabtn: {
