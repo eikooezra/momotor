@@ -35,6 +35,11 @@ goToAccount = () => {
     this.props.navigation.navigate('Account')
   }
 
+dataSaved = () => {
+    this.props.navigation.navigate('Account')
+    alert('Data berhasil diubah!')
+}
+
 handleChangeName = (dealername) => {
     this.setState({dealername})
     let reg = /([^\s])/
@@ -77,6 +82,22 @@ handleChangeEmail = (email) => {
 
 
 render(){
+    const{
+        dealername,
+        address,
+        phone,
+        email
+     } = this.state
+
+     let emailReg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/
+     let emptyReg = /([^\s])/
+
+     const enabled = 
+     (emptyReg.test(dealername) === true) &&
+     phone.length >= 11 &&
+     (emailReg.test(email) === true) &&
+     (emptyReg.test(address) === true)
+
     return(
     <View style={styles.container}>
         <View style={styles.Header}>
@@ -152,6 +173,8 @@ render(){
             <View style={styles.Areabtn}>
                 <TouchableOpacity
                     style={styles.btnSave}
+                    onPress={this.dataSaved}
+                   // disabled = {!enabled}
                 >
                     <Text style={styles.txtSave}>
                         SIMPAN
