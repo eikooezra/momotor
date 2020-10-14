@@ -4,39 +4,121 @@ import {
     View,
     Text,
     Image,
-    TouchableOpacity
+    TouchableOpacity,
+    ScrollView
 } from 'react-native'
-import ImagePicker from 'react-native-image-picker'
-import normalize from 'react-native-normalize';
+import {ActionSheet, Root} from 'native-base'
+import ImagePicker from 'react-native-image-crop-picker'
+import normalize from 'react-native-normalize'
+import { FlatList } from 'react-native-gesture-handler'
 
 class AddPics extends Component{
     constructor(props){
         super(props)
         this.state = {
             isAllFilled: false,
-            imgSource: null
+            fileList: [],
+            image: null,
+            images: null,
         }
     }
     
     // function image picker
-    imgPickr = () => {
-        ImagePicker.showImagePicker((response) => {
-            console.log('Response = ', response )
-        
-            if (response.didCancel) {
-                console.log('User cancelled image picker');
-              } else if (response.error) {
-                console.log('ImagePicker Error: ', response.error);
-              } else {
-                const source = { uri: response.uri };
-        
-                this.setState({
-                    imgSource: source,
-                  });
-                }
+    takePhotoFromCam = (cropping, mediaType = 'photo') => {
+        ImagePicker.openCamera({
+            cropping: cropping,
+            width: 500,
+            height: 500,
+            includeExif: true,
+            mediaType,
+          })
+            .then((image) => {
+              console.log('received image', image);
+              this.setState({
+                image: {
+                  uri: image.path,
+                  width: image.width,
+                  height: image.height,
+                  mime: image.mime,
+                },
+                images: null,
               });
-    }
+            })
+            .catch((e) => alert(e));
+      }
+    
+    choosePhotoFromLib = () => {
+        ImagePicker.openPicker({
+            multiple: true,
+            waitAnimationEnd: false,
+            sortOrder: 'desc',
+            includeExif: true,
+            forceJpg: true,
+          })
+            .then((images) => {
+              this.setState({
+                image: null,
+                images: images.map((i) => {
+                  console.log('received image', i);
+                  return {
+                    uri: i.path,
+                    width: i.width,
+                    height: i.height,
+                    mime: i.mime,
+                  };
+                }),
+              });
+            })
+            .catch((e) => alert(e));
+      }    
+    
+    onClickAddImage = () => {
+        const buttons = ['Take Photo', 'Choose Photo Library', 'Cancel']
+        ActionSheet.show(
+            {
+                options: buttons, 
+                cancelButtonIndex: 2, 
+                title: 'Select a Photo'
+            },
+            buttonIndex => {
+                switch (buttonIndex) {
+                    case 0:
+                        this.takePhotoFromCam.bind()
+                        break;
+                    case 1:
+                        this.choosePhotoFromLib.bind()
+                        break;
+                    case 2:
+                        break;
+                            }
+                        },
+                        )
+                    }
+                    
+    renderItem = ({item, index}) => {
+        return (
+            <View>
+                <Image source={item.url}/>
+            </View>
+             )
+          }
 
+    renderImage(image) {
+        return (
+            <Image
+                style={{ width: 300, height: 300, resizeMode: 'contain' }}
+                source={image}
+            />
+            );
+            }
+        
+    renderAsset(image) {
+        if (image.mime && image.mime.toLowerCase().indexOf('video/') !== -1) {
+            return this.renderVideo(image);
+        }
+        return this.renderImage(image);
+        }
+                    
     // Navigation
     goBack = () => {
         this.props.navigation.navigate('Add')
@@ -48,6 +130,8 @@ class AddPics extends Component{
 
     render(){
         return(
+         <Root>
+
             <View style={styles.container}>
                 <View style={styles.Header}>
                 <TouchableOpacity
@@ -67,7 +151,7 @@ class AddPics extends Component{
                 <View style={styles.imgContainer}>
                     <TouchableOpacity
                         style={styles.bluRectangle}
-                        onPress={this.imgPickr}
+                        onPress={this.onClickAddImage}
                     >
                         <Image
                             style={styles.camLogo}
@@ -75,6 +159,16 @@ class AddPics extends Component{
                         />
                     </TouchableOpacity>
                 </View>
+
+                <ScrollView>
+                    {this.state.image ? this.renderAsset(this.state.image) : null}
+                    {this.state.images
+                    ? this.state.images.map((i) => (
+                    <View key={i.uri}>{this.renderAsset(i)}</View>
+                    ))
+                    : null}
+                </ScrollView>
+
 
                 <View style={styles.btnNxtArea}>
                  <TouchableOpacity
@@ -90,9 +184,9 @@ class AddPics extends Component{
                     SELANJUTNYA
                  </Text>
             </TouchableOpacity>
-        </View>
-                
+                </View>
             </View>
+         </Root>
         )
     }
 }
