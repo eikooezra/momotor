@@ -9,7 +9,6 @@ import {
   StatusBar
 } from 'react-native'
 import normalize from 'react-native-normalize';
-import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
 
 class Home extends Component{
     constructor(props){
@@ -56,7 +55,7 @@ render(){
               source={require('../../assets/images/Momotor.id.png')}
           /> 
           <View style={styles.upperBar}>
-              <TouchableWithoutFeedback
+              <TouchableOpacity
                 onPress={this.goToProductList}
                 activeOpacity={0.1}
               >
@@ -68,9 +67,9 @@ render(){
                     Daftar
                     Produk
                   </Text>
-              </TouchableWithoutFeedback>
+              </TouchableOpacity>
                                
-              <TouchableWithoutFeedback
+              <TouchableOpacity
                 onPress={this.goToOrderList}
               >
                   <Image
@@ -81,7 +80,7 @@ render(){
                     Daftar
                     Pesanan
                   </Text>
-              </TouchableWithoutFeedback>
+              </TouchableOpacity>
 
               <TouchableOpacity
                 onPress={this.goToJualCpt}
