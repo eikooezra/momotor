@@ -9,8 +9,8 @@ import {
 } from 'react-native'
 import {ActionSheet, Root} from 'native-base'
 import ImagePicker from 'react-native-image-crop-picker'
+import { RNCamera } from 'react-native-camera'
 import normalize from 'react-native-normalize'
-import { FlatList } from 'react-native-gesture-handler'
 
 class AddPics extends Component{
     constructor(props){
@@ -22,30 +22,17 @@ class AddPics extends Component{
             images: null,
         }
     }
-    
-    // function image picker
-    takePhotoFromCam = (cropping, mediaType = 'photo') => {
+
+    takePicture = () => {
         ImagePicker.openCamera({
-            cropping: cropping,
-            width: 500,
-            height: 500,
-            includeExif: true,
-            mediaType,
+            width: 300,
+            height: 400,
+            cropping: true,
+          }).then(image => {
+            console.log(image);
           })
-            .then((image) => {
-              console.log('received image', image);
-              this.setState({
-                image: {
-                  uri: image.path,
-                  width: image.width,
-                  height: image.height,
-                  mime: image.mime,
-                },
-                images: null,
-              });
-            })
-            .catch((e) => alert(e));
-      }
+        .catch((err) => { console.log("openCam catch" + err.toString()) })
+    }
     
     choosePhotoFromLib = () => {
         ImagePicker.openPicker({
@@ -69,7 +56,7 @@ class AddPics extends Component{
                 }),
               });
             })
-            .catch((e) => alert(e));
+            .catch((err) => { console.log("openGallery catch" + err.toString()) })
       }    
     
     onClickAddImage = () => {
@@ -83,10 +70,10 @@ class AddPics extends Component{
             buttonIndex => {
                 switch (buttonIndex) {
                     case 0:
-                        this.takePhotoFromCam.bind()
+                        this.takePicture()
                         break;
                     case 1:
-                        this.choosePhotoFromLib.bind()
+                        this.choosePhotoFromLib()
                         break;
                     case 2:
                         break;
@@ -94,30 +81,6 @@ class AddPics extends Component{
                         },
                         )
                     }
-                    
-    renderItem = ({item, index}) => {
-        return (
-            <View>
-                <Image source={item.url}/>
-            </View>
-             )
-          }
-
-    renderImage(image) {
-        return (
-            <Image
-                style={{ width: 300, height: 300, resizeMode: 'contain' }}
-                source={image}
-            />
-            );
-            }
-        
-    renderAsset(image) {
-        if (image.mime && image.mime.toLowerCase().indexOf('video/') !== -1) {
-            return this.renderVideo(image);
-        }
-        return this.renderImage(image);
-        }
                     
     // Navigation
     goBack = () => {
@@ -131,7 +94,6 @@ class AddPics extends Component{
     render(){
         return(
          <Root>
-
             <View style={styles.container}>
                 <View style={styles.Header}>
                 <TouchableOpacity
@@ -151,7 +113,7 @@ class AddPics extends Component{
                 <View style={styles.imgContainer}>
                     <TouchableOpacity
                         style={styles.bluRectangle}
-                        onPress={this.onClickAddImage}
+                        onPress={this.onClickAddImage.bind(this)}
                     >
                         <Image
                             style={styles.camLogo}
@@ -159,16 +121,6 @@ class AddPics extends Component{
                         />
                     </TouchableOpacity>
                 </View>
-
-                <ScrollView>
-                    {this.state.image ? this.renderAsset(this.state.image) : null}
-                    {this.state.images
-                    ? this.state.images.map((i) => (
-                    <View key={i.uri}>{this.renderAsset(i)}</View>
-                    ))
-                    : null}
-                </ScrollView>
-
 
                 <View style={styles.btnNxtArea}>
                  <TouchableOpacity
@@ -263,5 +215,5 @@ const styles = StyleSheet.create({
         fontSize: normalize(16),
         fontFamily: 'Montserrat-SemiBold',
         color: '#FFFFFF',
-    }
+    },
 })
