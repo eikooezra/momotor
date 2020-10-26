@@ -39,6 +39,7 @@
     "react-native-svg": "^12.1.0",
     "react-native-webview": "^10.2.3",
     "react-navigation-tabs": "^2.8.13",
+    "reanimated-bottom-sheet": "^1.0.0-alpha.22",
     "toggle-switch-react-native": "^2.1.0"
   },
   "devDependencies": {
