@@ -7,10 +7,10 @@ import {
     Text,
     TouchableOpacity
 } from 'react-native'
-import RBSheet from 'react-native-raw-bottom-sheet'
+import RBSheet from "react-native-raw-bottom-sheet";
 import BottomSheet from '../BottomSheet'
 import normalize from 'react-native-normalize';
-import Test from '../../../api/Test'
+// import Test from '../../../api/Test'
 
 class SemuaProduk extends Component {
     constructor(props){
@@ -23,6 +23,22 @@ class SemuaProduk extends Component {
 render() {
     return (
         <View style={styles.container}>
+         <RBSheet
+                    ref={ref => {
+                        this.RBSheet = ref
+                    }}
+                    height={300}
+                    openDuration={250}
+                    customStyles={{
+                        container: {
+                            height: 224,
+                            borderTopStartRadius: 10,
+                            borderTopEndRadius: 10,
+                        }
+                    }}
+                >
+                    <BottomSheet/>
+                </RBSheet>
          <ScrollView>
             <View style={styles.WhiteBox}>
 
@@ -39,7 +55,7 @@ render() {
 
                 <View style={styles.boxContainer2}>
                     <Text style={styles.namaMotor}>
-                        <Test/>
+                        Honda Vario 125
                     </Text>
 
                     <View style={styles.speedoContainer}>
@@ -103,7 +119,7 @@ render() {
 
                 <View style={styles.boxContainer2}>
                     <Text style={styles.namaMotor}>
-                        <Test/>
+                        Honda Vario 125
                     </Text>
 
                     <View style={styles.speedoContainer}>
@@ -152,22 +168,6 @@ render() {
                 </TouchableOpacity>
             </View>  
          </ScrollView>
-         <RBSheet
-                    ref={ref => {
-                        this.RBSheet = ref
-                    }}
-                    height={300}
-                    openDuration={250}
-                    customStyles={{
-                        container: {
-                            height: 224,
-                            borderTopStartRadius: 10,
-                            borderTopEndRadius: 10,
-                        }
-                    }}
-                >
-                    <BottomSheet/>
-                </RBSheet>
         </View>
     )
 }}

@@ -7,7 +7,7 @@ import {
     Text,
     TouchableOpacity
 } from 'react-native'
-import RBSheet from 'react-native-raw-bottom-sheet'
+import RBSheet from "react-native-raw-bottom-sheet";
 import BottomSheet from '../BottomSheet'
 import normalize from 'react-native-normalize';
 
@@ -15,6 +15,22 @@ class Pending extends Component {
 render() {
     return (
         <View style={styles.container}>
+            <RBSheet
+                    ref={ref => {
+                        this.RBSheet = ref
+                    }}
+                    height={300}
+                    openDuration={250}
+                    customStyles={{
+                        container: {
+                            height: 224,
+                            borderTopStartRadius: 10,
+                            borderTopEndRadius: 10,
+                        }
+                    }}
+                >
+                    <BottomSheet/>
+                </RBSheet>
         <ScrollView>
            <View style={styles.WhiteBox}>
 
@@ -80,22 +96,6 @@ render() {
                </TouchableOpacity>
            </View>
         </ScrollView>
-        <RBSheet
-                    ref={ref => {
-                        this.RBSheet = ref
-                    }}
-                    height={300}
-                    openDuration={250}
-                    customStyles={{
-                        container: {
-                            height: 224,
-                            borderTopStartRadius: 10,
-                            borderTopEndRadius: 10,
-                        }
-                    }}
-                >
-                    <BottomSheet/>
-                </RBSheet>
     </View>
     )
 }}
