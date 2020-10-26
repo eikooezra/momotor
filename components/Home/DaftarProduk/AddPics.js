@@ -1,40 +1,44 @@
-import React, { Component } from 'react'
+import React, { useState } from 'react'
 import {
     StyleSheet,
     View,
     Text,
     Image,
     TouchableOpacity,
-    ScrollView
+    ScrollView,
 } from 'react-native'
 import {ActionSheet, Root} from 'native-base'
 import ImagePicker from 'react-native-image-crop-picker'
-import { RNCamera } from 'react-native-camera'
 import normalize from 'react-native-normalize'
 
-class AddPics extends Component{
-    constructor(props){
-        super(props)
-        this.state = {
-            isAllFilled: false,
-            fileList: [],
-            image: null,
-            images: null,
-        }
-    }
+const AddPics = () =>{
+    const [image, setImage] = useState(null)
+    const [images, setImages] = useState(null)
+    const [isAllFilled] = useState(true)
 
-    takePicture = () => {
+    // add image function
+   const takePicture = (cropping, mediaType = 'photo') => {
         ImagePicker.openCamera({
-            width: 300,
-            height: 400,
-            cropping: true,
-          }).then(image => {
-            console.log(image);
+            cropping: cropping,
+            width: 500,
+            height: 500,
+            includeExif: true,
+            mediaType,
           })
+            .then((image) => {
+              console.log('received image', image);
+              setImage({
+                  uri: image.path,
+                  width: image.width,
+                  height: image.height,
+                  mime: image.mime,
+              })
+              setImages(null)
+            })
         .catch((err) => { console.log("openCam catch" + err.toString()) })
     }
     
-    choosePhotoFromLib = () => {
+    const choosePhotoFromGal = () => {
         ImagePicker.openPicker({
             multiple: true,
             waitAnimationEnd: false,
@@ -43,24 +47,24 @@ class AddPics extends Component{
             forceJpg: true,
           })
             .then((images) => {
-              this.setState({
-                image: null,
-                images: images.map((i) => {
-                  console.log('received image', i);
-                  return {
-                    uri: i.path,
-                    width: i.width,
-                    height: i.height,
-                    mime: i.mime,
-                  };
-                }),
-              });
-            })
+              setImage(null)
+              setImages(
+                images.map((i) => {
+                    console.log('received image', i)
+                    return {
+                      uri: i.path,
+                      width: i.width,
+                      height: i.height,
+                      mime: i.mime,
+                    }
+                  }),
+                )
+              })
             .catch((err) => { console.log("openGallery catch" + err.toString()) })
       }    
     
-    onClickAddImage = () => {
-        const buttons = ['Take Photo', 'Choose Photo Library', 'Cancel']
+    const onClickAddImage = () => {
+        const buttons = ['Take Photo', 'Choose Photo Gallery', 'Cancel']
         ActionSheet.show(
             {
                 options: buttons, 
@@ -70,10 +74,10 @@ class AddPics extends Component{
             buttonIndex => {
                 switch (buttonIndex) {
                     case 0:
-                        this.takePicture()
+                        takePicture()
                         break;
                     case 1:
-                        this.choosePhotoFromLib()
+                        choosePhotoFromGal()
                         break;
                     case 2:
                         break;
@@ -82,22 +86,39 @@ class AddPics extends Component{
                         )
                     }
                     
+    const renderAsset = (image) => {
+        return renderImage(image);
+    }
+
+    const renderImage = (image) => {
+        return (
+          <Image
+            style={{ 
+                width: normalize(125),
+                height: normalize(125),
+                marginTop: normalize(5),
+                marginLeft: normalize(5), 
+                resizeMode: 'contain' }}
+            source={image}
+          />
+        );
+      }
+    
     // Navigation
-    goBack = () => {
+    const goBack = () => {
         this.props.navigation.navigate('Add')
     }
 
-    goToVerif = () => {
+    const goToVerif = () => {
         this.props.navigation.navigate('Verification')
     }
 
-    render(){
         return(
          <Root>
             <View style={styles.container}>
                 <View style={styles.Header}>
                 <TouchableOpacity
-                    onPress={this.goBack}
+                    onPress={goBack}
                 >
                     <Image 
                         style={styles.btnBack}
@@ -110,10 +131,10 @@ class AddPics extends Component{
                 </Text>
                 </View>
 
-                <View style={styles.imgContainer}>
+                <View>
                     <TouchableOpacity
                         style={styles.bluRectangle}
-                        onPress={this.onClickAddImage.bind(this)}
+                        onPress={onClickAddImage.bind(this)}
                     >
                         <Image
                             style={styles.camLogo}
@@ -122,15 +143,24 @@ class AddPics extends Component{
                     </TouchableOpacity>
                 </View>
 
+                <ScrollView>
+                    {image ? renderAsset(image) : null}
+                    {images
+                    ? images.map((i) => (
+                        <View key={i.uri}>{renderAsset(i)}</View>
+                    ))
+                    : null}
+                </ScrollView>
+
                 <View style={styles.btnNxtArea}>
                  <TouchableOpacity
                     style={[styles.btnNxt, {
-                    backgroundColor: (this.state.isAllFilled === true)
+                    backgroundColor: (isAllFilled === false)
                     ? '#0064D0' 
                     : '#B7B7B7'
                     }
                 ]}
-                onPress={this.goToVerif}
+                onPress={goToVerif}
             >
                  <Text style={styles.txtNxt}>
                     SELANJUTNYA
@@ -141,7 +171,6 @@ class AddPics extends Component{
          </Root>
         )
     }
-}
 
 export default AddPics
 
@@ -175,10 +204,6 @@ const styles = StyleSheet.create({
         fontFamily: 'Montserrat-Bold'
     },
 
-    imgContainer:{
-        
-    },
-
     bluRectangle: {
         width: normalize(125),
         height: normalize(125),
@@ -193,6 +218,10 @@ const styles = StyleSheet.create({
         height: normalize(24),
         marginTop: normalize(56),
         alignSelf: 'center'
+    },
+
+    imgContainer: {
+        flexDirection: 'row'
     },
 
     btnNxtArea: {
