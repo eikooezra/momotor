@@ -84,13 +84,18 @@ class BottomSheet extends Component{
                 <Animated.View style={[styles.containerSwitch,
                     {opacity: this.animatedValue}
                 ]}>
-                    <Text style={styles.txtTampilkan}>
-                        Tampilkan Produk
-                    </Text>
-
                     <ToggleSwitch
                         onColor='#0064D0'
                         isOn={this.state.isSwitchOn}
+                        label='Tampilkan Produk'
+                        labelStyle={{ 
+                            width: normalize(129),
+                            height: normalize(18),
+                            marginLeft: normalize(26),
+                            marginRight: normalize(150),
+                            fontSize: normalize(14),
+                            fontFamily: 'Montserrat-Regular'
+                        }}
                         onToggle={isSwitchOn => {
                             this.setState({isSwitchOn})
                             this.onToggle({isSwitchOn})

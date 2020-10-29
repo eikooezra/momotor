@@ -50,13 +50,19 @@ render(){
             </TouchableOpacity>
 
           <View style={styles.notif}>
-                <Text style={styles.txtNotif}>
-                    Notifikasi
-                </Text>
-
                 <ToggleSwitch
                     onColor='#0064D0'
                     isOn={this.state.isSwitchOn}
+                    label='Notifikasi'
+                    labelStyle={{
+                        height: normalize(18),
+                        marginLeft: normalize(20),
+                        marginRight: normalize(220),
+                        marginTop: normalize(35),
+                        marginBottom: normalize(35),
+                        fontSize: normalize(16),
+                        fontFamily: 'Montserrat-Medium'
+                    }}
                     onToggle={isSwitchOn => {
                         this.setState({isSwitchOn})
                         this.onToggle({isSwitchOn})
@@ -112,20 +118,6 @@ const styles = StyleSheet.create({
         width: normalize(100),
         height: normalize(18),
         marginLeft: normalize(20),
-        marginBottom: normalize(36),
-        fontSize: normalize(16),
-        fontFamily: 'Montserrat-Medium'
-    },
-
-    notif: {
-        flexDirection: 'row'
-    },
-
-    txtNotif: {
-        width: normalize(100),
-        height: normalize(18),
-        marginLeft: normalize(20),
-        marginBottom: normalize(36),
         fontSize: normalize(16),
         fontFamily: 'Montserrat-Medium'
     },
