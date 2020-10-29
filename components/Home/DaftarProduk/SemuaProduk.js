@@ -29,9 +29,10 @@ render() {
                     }}
                     height={300}
                     openDuration={250}
+                    closeOnDragDown={true}
                     customStyles={{
                         container: {
-                            height: 224,
+                            height: 250,
                             borderTopStartRadius: 10,
                             borderTopEndRadius: 10,
                         }
