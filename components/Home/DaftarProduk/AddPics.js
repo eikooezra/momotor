@@ -8,15 +8,11 @@ import {
     FlatList,
 } from 'react-native'
 import {ActionSheet, Root} from 'native-base'
-import RBSheet from "react-native-raw-bottom-sheet"
 import Animated from 'react-native-reanimated'
 import BottomSheet from 'reanimated-bottom-sheet'
 import ImagePicker from 'react-native-image-crop-picker'
 import normalize from 'react-native-normalize'
 import {TouchableOpacity} from 'react-native-gesture-handler'
-import BSaddPics from '../BSaddPics'
-
-
 
 class AddPics extends Component {
     constructor(props){
