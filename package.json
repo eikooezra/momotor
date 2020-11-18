@@ -10,6 +10,7 @@
     "lint": "eslint ."
   },
   "dependencies": {
+    "@gorhom/bottom-sheet": "^1.4.1",
     "@ptomasroos/react-native-multi-slider": "^2.2.2",
     "@react-native-community/checkbox": "^0.4.1",
     "@react-native-community/cli": "^4.9.0",
@@ -36,6 +37,7 @@
     "react-native-safe-area-context": "^3.0.2",
     "react-native-screens": "^2.8.0",
     "react-native-search-filter": "^0.1.5",
+    "react-native-super-grid": "^4.0.3",
     "react-native-svg": "^12.1.0",
     "react-native-webview": "^10.2.3",
     "react-navigation-tabs": "^2.8.13",
