@@ -14,7 +14,9 @@ class Home extends Component{
     constructor(props){
         super(props)
         this.state = {
-         isPressed: false
+         isPressed: false,
+         showJual: true,
+         showPesanan: true,
         }
     }
 
@@ -36,20 +38,30 @@ class Home extends Component{
         this.props.navigation.navigate('Home')
     }
 
+    //Homepage tab
+    toggleShowJual = () => {
+      if(this.state.showJual === false) {
+        this.setState({showJual: this.state.showPesanan, showPesanan: !this.state.showJual})
+      }else{
+        this.setState({showPesanan: !this.state.showJual, showJual: this.state.showJual})
+      }
+    }
+
+    toggleShowPesanan = () => {
+      if(this.state.showPesanan === false) {
+        this.setState({showPesanan: this.state.showJual, showPesanan: !this.state.showPesanan})
+      }else{
+        this.setState({showJual: !this.state.showPesanan, showJual: this.state.showJual})
+      }
+    }
+
+
+
 render(){
     return(
     <View style={styles.container}>
       <StatusBar backgroundColor='#0064D0'/>
         <View style={styles.Header}>
-         {/* <Svg>
-          <Circle
-              cx={415 / 2}
-              cy={`-${898 - 160 + 2}`}
-              r="898.5"
-              fill="#0064D0"
-              strokeWidth="2"
-          />
-          </Svg> */}
           <Image 
               style={styles.momotor}
               source={require('../../assets/images/Momotor.id.png')}
@@ -112,27 +124,77 @@ render(){
 
             <View style={styles.dblTxtContainer}>
               <TouchableOpacity
-                // onPress={this.goToNewOrder}
+                onPress={this.toggleShowPesanan}
               >
                 <Text style={[styles.txtPesanan, {
-                    color: (this.state.isPressed === true) ? '#000000' : '#7F7F7F'
+                    color: (this.state.isPesanan === true) ? '#000000' : '#7F7F7F'
                 }
                 ]}>
                     Pesanan Terbaru
                 </Text>
               </TouchableOpacity>
-                            
-              <TouchableOpacity>
+
+              <TouchableOpacity
+                onPress={this.toggleShowJual}
+              >
                 <Text style={[styles.txtJual, {
-                    color: (this.state.isPressed === true) ? '#000000' : '#7F7F7F'
+                    color: (this.state.isJual === true) ? '#000000' : '#7F7F7F'
                 }
                 ]}>
                     Jual Cepat
                 </Text>
               </TouchableOpacity>
             </View>
-                
-                <ScrollView style={styles.scrollContainer}>
+
+            <View>
+                {this.state.showPesanan && <ShowPesanan/> || this.state.showJual && <ShowJual/>}
+            </View>
+        </View>
+        )
+    }
+}
+
+export default Home
+
+export class ShowJual extends Component {
+  render() {
+    return (
+      <ScrollView style={styles.scrollContainer}>
+                  <TouchableOpacity style={styles.btnImg}>
+                    <Image
+                      style={styles.imgContainer}
+                      source={require('../../assets/images/caferacer.png')}
+                    >
+
+                    </Image>
+                  </TouchableOpacity>
+                  
+                  <TouchableOpacity style={styles.btnImg}>
+                    <Image
+                      style={styles.imgContainer}
+                      source={require('../../assets/images/caferacer.png')}
+                    >
+
+                    </Image>
+                  </TouchableOpacity>
+
+                  <TouchableOpacity style={styles.btnImg}>
+                    <Image
+                      style={styles.imgContainer}
+                      source={require('../../assets/images/caferacer.png')}
+                    >
+
+                    </Image>
+                  </TouchableOpacity>
+                </ScrollView>
+    );
+  }
+}
+
+export class ShowPesanan extends Component {
+  render() {
+    return (
+      <ScrollView style={styles.scrollContainer}>
                   <TouchableOpacity style={styles.btnImg}>
                     <Image
                       style={styles.imgContainer}
@@ -160,12 +222,9 @@ render(){
                     </Image>
                   </TouchableOpacity>
                 </ScrollView>
-        </View>
-        )
-    }
+    );
+  }
 }
-
-export default Home
 
 const styles = StyleSheet.create({
     container: {
@@ -273,7 +332,6 @@ const styles = StyleSheet.create({
 
     dblTxtContainer: {
         marginBottom: normalize(20),
-        justifyContent: 'space-between',
         flexDirection: 'row'
     },
 
@@ -281,6 +339,7 @@ const styles = StyleSheet.create({
         width: normalize(150),
         fontSize: normalize(16),
         marginLeft: normalize(60),
+        marginRight: normalize(30),
         fontFamily: 'Montserrat-SemiBold',
         color: '#000000'
     },
@@ -288,7 +347,6 @@ const styles = StyleSheet.create({
     txtJual: {
         width: normalize(110),
         fontSize: normalize(16),
-        marginRight: normalize(30),
         fontFamily: 'Montserrat-SemiBold',
         color: '#000000'
     },
