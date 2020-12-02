@@ -1,10 +1,11 @@
-import React, { Component, useRef, useMemo } from 'react'
+import React, { Component } from 'react'
 import {
     StyleSheet,
     View,
     Text,
     Image,
     SafeAreaView,
+    ScrollView,
     FlatList,
 } from 'react-native'
 import {ActionSheet, Root} from 'native-base'
@@ -152,8 +153,8 @@ class AddPics extends Component {
            <Text style={styles.txtChsPic}>
                     Foto yang dipilih
                 </Text>
-
-                <View style={styles.images}>
+            
+                <ScrollView horizontal>
                     <Image 
                         style={styles.img}
                         source={require('../../../assets/images/vario.png')}
@@ -173,7 +174,7 @@ class AddPics extends Component {
                         style={styles.img}
                         source={require('../../../assets/images/vario.png')}
                     />
-                </View>
+                </ScrollView>
     
                 <Text style={styles.txtUtama}>
                     Utama
@@ -424,8 +425,7 @@ const styles = StyleSheet.create({
     },
 
     images: {
-        flexDirection: 'row',
-        backgroundColor: '#FFFFFF'
+        flex: 1,
     },
 
     img: {

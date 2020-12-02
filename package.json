@@ -37,6 +37,7 @@
     "react-native-safe-area-context": "^3.0.2",
     "react-native-screens": "^2.8.0",
     "react-native-search-filter": "^0.1.5",
+    "react-native-snap-carousel": "^3.9.1",
     "react-native-super-grid": "^4.0.3",
     "react-native-svg": "^12.1.0",
     "react-native-webview": "^10.2.3",
