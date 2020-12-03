@@ -7,7 +7,6 @@ import {
   Image,
   ScrollView,
   StatusBar,
-  Dimensions
 } from 'react-native'
 import normalize from 'react-native-normalize';
 
@@ -157,6 +156,9 @@ render(){
 export default Home
 
 export class ShowJual extends Component {
+  goToJualCpt = () => {
+    this.props.navigation.navigate('JualCepat')
+  }
   render() {
     return (
       <ScrollView style={styles.scrollContainer}>
@@ -189,7 +191,6 @@ export class ShowJual extends Component {
 
                   <View style={styles.txtLihatContainer}>
                     <TouchableOpacity
-                      onPress={this.goToJualCpt}
                     >
                       <Text style={styles.txtLihat}>
                         Lihat Semua
@@ -234,7 +235,6 @@ export class ShowPesanan extends Component {
 
                   <View style={styles.txtLihatContainer}>
                     <TouchableOpacity
-                      onPress={this.goToOrderList}
                     >
                       <Text style={styles.txtLihat}>
                         Lihat Semua
