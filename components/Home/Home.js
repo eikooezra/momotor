@@ -50,7 +50,7 @@ class Home extends Component{
       if(this.state.showPesanan === false) {
         this.setState({showPesanan: this.state.showJual, showPesanan: !this.state.showPesanan})
       }else{
-        this.setState({showJual: !this.state.showPesanan, showJual: this.state.showJual})
+        this.setState({showJual: !this.state.showPesanan, showJual: this.state.showPesanan})
       }
     }
 
@@ -126,7 +126,7 @@ render(){
                 onPress={this.toggleShowPesanan}
               >
                 <Text style={[styles.txtPesanan, {
-                    color: (this.state.isPesanan === true) ? '#000000' : '#7F7F7F'
+                    color: (this.state.showPesanan === true) ? '#000000' : '#7F7F7F'
                 }
                 ]}>
                     Pesanan Terbaru
@@ -137,7 +137,7 @@ render(){
                 onPress={this.toggleShowJual}
               >
                 <Text style={[styles.txtJual, {
-                    color: (this.state.isJual === true) ? '#000000' : '#7F7F7F'
+                    color: (this.state.showPesanan === true) ? '#7F7F7F' : '#000000'
                 }
                 ]}>
                     Jual Cepat
@@ -156,9 +156,6 @@ render(){
 export default Home
 
 export class ShowJual extends Component {
-  goToJualCpt = () => {
-    this.props.navigation.navigate('JualCepat')
-  }
   render() {
     return (
       <ScrollView style={styles.scrollContainer}>
