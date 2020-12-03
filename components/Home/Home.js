@@ -27,7 +27,6 @@ class Home extends Component{
     }
     goToOrderList = () => {
         this.props.navigation.navigate('DaftarPesanan')
-        console.log('hehe')
     }
     goToJualCpt = () => {
         this.props.navigation.navigate('JualCepat')
