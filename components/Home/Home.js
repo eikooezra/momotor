@@ -6,7 +6,8 @@ import {
   Text,
   Image,
   ScrollView,
-  StatusBar
+  StatusBar,
+  Dimensions
 } from 'react-native'
 import normalize from 'react-native-normalize';
 
@@ -186,6 +187,14 @@ export class ShowJual extends Component {
 
                     </Image>
                   </TouchableOpacity>
+
+                  <View style={styles.txtLihatContainer}>
+                    <TouchableOpacity>
+                      <Text style={styles.txtLihat}>
+                        Lihat Semua
+                      </Text>
+                    </TouchableOpacity>
+                  </View>
                 </ScrollView>
     );
   }
@@ -221,6 +230,14 @@ export class ShowPesanan extends Component {
 
                     </Image>
                   </TouchableOpacity>
+
+                  <View style={styles.txtLihatContainer}>
+                    <TouchableOpacity>
+                      <Text style={styles.txtLihat}>
+                        Lihat Semua
+                      </Text>
+                    </TouchableOpacity>
+                  </View>
                 </ScrollView>
     );
   }
@@ -352,7 +369,7 @@ const styles = StyleSheet.create({
     },
 
     scrollContainer: {
-        flexGrow: 1,
+        height: normalize(400)
     },
 
     btnImg: {
@@ -367,4 +384,15 @@ const styles = StyleSheet.create({
         marginRight: 16,
         marginBottom: 16,
     },
+
+    txtLihatContainer: {
+      marginLeft: normalize(155),
+      marginBottom: normalize(40),
+    },
+
+    txtLihat: {
+      fontSize: normalize(14),
+      fontFamily: 'Montserrat-SemiBold',
+      color: '#0064D0'
+    }
 })
