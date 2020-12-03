@@ -35,7 +35,7 @@ class Home extends Component{
     goToCalc = () => {
         this.props.navigation.navigate('Calculator')
     }
-     goToHome = () => {
+    goToHome = () => {
         this.props.navigation.navigate('Home')
     }
 
@@ -189,7 +189,9 @@ export class ShowJual extends Component {
                   </TouchableOpacity>
 
                   <View style={styles.txtLihatContainer}>
-                    <TouchableOpacity>
+                    <TouchableOpacity
+                      onPress={this.goToJualCpt}
+                    >
                       <Text style={styles.txtLihat}>
                         Lihat Semua
                       </Text>
@@ -232,7 +234,9 @@ export class ShowPesanan extends Component {
                   </TouchableOpacity>
 
                   <View style={styles.txtLihatContainer}>
-                    <TouchableOpacity>
+                    <TouchableOpacity
+                      onPress={this.goToOrderList}
+                    >
                       <Text style={styles.txtLihat}>
                         Lihat Semua
                       </Text>
