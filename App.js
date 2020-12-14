@@ -68,24 +68,19 @@ function HomeStackScreen(){
   )
 }
 
-function LogoHome(selected) {
-if(!selected){ 
+function LogoHome({color, focused, size}) {
+  if(focused){
+    console.log('onclick')
+  }
   return (
     <Image
       style={{ 
         width: 32, height: 32,}}
-      source={require('./assets/images/home.png')}
+      source={(focused) 
+        ? require('./assets/images/homeblu.png') 
+        : require('./assets/images/home.png')}
     />
   ); 
- } else{
-  return (
-    <Image
-      style={{ 
-        width: 32, height: 32,}}
-      source={require('./assets/images/homeblu.png')}
-    />
-  ); 
- }
 } 
 
 function LogoAdd() {
@@ -342,11 +337,13 @@ function InstantOrderStackScreen(){
   )
 }
 
-function LogoInstanOrder() {
+function LogoInstanOrder({focused}) {
   return (
     <Image
       style={{ width: 32, height: 32 }}
-      source={require('./assets/images/instant.png')}
+      source={(focused) 
+        ? require('./assets/images/instantblu.png') 
+        : require('./assets/images/instant.png')}
     />
   );
 }
@@ -415,11 +412,13 @@ function NotificationTabScreen(){
   )
 }
 
-function LogoNotification() {
+function LogoNotification({focused}) {
   return (
     <Image
       style={{ width: 32, height: 32 }}
-      source={require('./assets/images/notif.png')}
+      source={(focused) 
+        ? require('./assets/images/notifblu.png') 
+        : require('./assets/images/notif.png')}
     />
   );
 }
@@ -435,11 +434,13 @@ function AccountStackScreen(){
   )
 }
 
-function LogoAccount() {
+function LogoAccount({focused}) {
   return (
     <Image
       style={{ width: 32, height: 32 }}
-      source={require('./assets/images/user.png')}
+      source={(focused) 
+        ? require('./assets/images/userblu.png') 
+        : require('./assets/images/user.png')}
     />
   );
 }
@@ -462,14 +463,14 @@ function TabScreen(){
       name='Beranda' component={HomeStackScreen}
       options={{
         title: 'Beranda',
-        tabBarIcon: props => <LogoHome {...props} color={props}/>
+        tabBarIcon: props => <LogoHome {...props}/>
     }}/>
 
       <Tab.Screen 
       name='Instant Order' component={InstantOrderStackScreen}
       options={{
         title: 'Instant Order',
-        tabBarIcon: props => <LogoInstanOrder {...props} color={props}/>,
+        tabBarIcon: props => <LogoInstanOrder {...props}/>,
     }}/>
 
       <Tab.Screen 
