@@ -11,6 +11,11 @@ import {
 import axios from 'axios'
 import normalize from 'react-native-normalize';
 import LinearGradient from 'react-native-linear-gradient'
+import {
+    showNotification, 
+    handleScheduleNotification, 
+    handleCancel
+} from '../src/LocalPushController'
 
 const NODEAPI = 'http://10.3.110.149:3000'
 
@@ -192,7 +197,9 @@ render() {
 
              <View style={styles.sandiArea}>
                 <TouchableOpacity 
-                    onPress={this.goToForg}>
+                    onPress={() => showNotification(
+                        'momotor', 
+                        'testing react native push notification')}>
                     <Text style={ styles.txtSandi}>
                         Lupa kata Sandi?
                     </Text>
