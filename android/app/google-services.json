@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "87556405818",
+    "project_id": "momotor-id",
+    "storage_bucket": "momotor-id.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:87556405818:android:f990b192efb642a536d303",
+        "android_client_info": {
+          "package_name": "com.momotor"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "87556405818-joo4b353gf7tu49l5216tbqiqc3d2564.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.momotor",
+            "certificate_hash": "8667bbc759bc6f3055b1e8222f6a585643c2d838"
+          }
+        },
+        {
+          "client_id": "87556405818-masdhm92133ndilkpqs08qispv8450dt.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDeSH3JweosL61V1BG4iliXXAaEuSgl13s"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "87556405818-masdhm92133ndilkpqs08qispv8450dt.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
