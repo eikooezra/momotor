@@ -25,8 +25,9 @@ PushNotification.configure({
 
   PushNotification.createChannel(
     {
-      channelId: "channel-id", // (required)
-      channelName: "My channel", // (required)
+      channelId: "dealer-id", // (required)
+      channelName: "momotor channel", // (required)
+      channelDescription: "channel dedicated for dealer only"
     },
     (created) => console.log(`createChannel returned '${created}'`) // (optional) callback returns whether the channel was created, false means it already existed.
   );
