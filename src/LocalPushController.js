@@ -1,24 +1,109 @@
 import PushNotification from 'react-native-push-notification'
+import React, {useState} from 'react'
 
-const showNotification = (title, message) => {
+const {
+    name,
+    ID,
+    productName
+} = useState
+
+// activity
+const showAdRejected = () => {
     PushNotification.localNotification({
-        channelId: "channel-id",
-        title: title,
-        message: message,
-    })
-    console.log(message + title)
-}
-
-const handleScheduleNotification = (title, message) => {
-    PushNotification.localNotificationSchedule({
-        title: title,
-        message: message,
-        date: new Date(Date.now() + 5 * 1000)
+        channelId: "dealer-id",
+        title: 'Ups! Iklan yang kamu pasang tidak disetujui',
+        message: 'pastikan data kendaraan telah sesuai',
     })
 }
 
-const handleCancel = () => {
-    PushNotification.cancelAllLocalNotifications
+const showAdApproved = () => {
+    PushNotification.localNotification({
+        channelId: "dealer-id",
+        title: 'Selamat! Iklan yang kamu pasang telah disetujui',
+        message: 'Silakan cek daftar produk anda',
+    })
 }
 
-export {showNotification, handleScheduleNotification, handleCancel}
+// pesanan baru
+const showOrderSucceed = () => {
+    PushNotification.localNotification({
+        channelId: "dealer-id",
+        title: `Pesanan dengan nama '${name}' berhasil diajukan`,
+        message: `Order ID '${ID}'`,
+    })
+}
+
+const showOrderApproved = () => {
+    PushNotification.localNotification({
+        channelId: "dealer-id",
+        title: `Pesanan dengan nama '${name}' telah disetujui`,
+        message: `Order ID '${ID}'`,
+    })
+}
+
+const showOrderDenied = () => {
+    PushNotification.localNotification({
+        channelId: "dealer-id",
+        title: `Pesanan dengan nama '${name}' tidak disetujui`,
+        message: `Order ID '${ID}'`
+    })
+}
+
+const showOrderPostponed = () => {
+    PushNotification.localNotification({
+        channelId: "dealer-id",
+        title: `Pesanan dengan nama '${name}' ditunda`,
+        message: `Order ID '${ID}'`,
+    })
+}
+
+// Jual Cepat
+const showBidWon = () => {
+    PushNotification.localNotification({
+        channelId: "dealer-id",
+        title: `Selamat! Anda menang produk "'${productName}'"`,
+        message: 'Kami akan menghubungi anda untuk melanjutkan proses transaksi',
+    })
+}
+
+const showIncreaseBid = () => {
+    PushNotification.localNotification({
+        channelId: "dealer-id",
+        title: `Ayo! Naikkan tawaranmu pada produk "'${productName}'"`,
+        message: 'Silakan cek menu Jual Cepat',
+    })
+}
+
+const showBidEnds = () => {
+    PushNotification.localNotification({
+        channelId: "dealer-id",
+        title: `Ups! Produk "'${productName}'" telah berakhir`,
+        message: 'Silakan cek menu Jual Cepat',
+    })
+}
+
+// const handleScheduleNotification = (title, message) => {
+//     PushNotification.localNotificationSchedule({
+//         title: title,
+//         message: message,
+//         date: new Date(Date.now() + 5 * 1000)
+//     })
+// }
+
+// const handleCancel = () => {
+//     PushNotification.cancelAllLocalNotifications
+// }
+
+export {
+    showAdRejected,
+    showAdApproved,
+    showOrderSucceed,
+    showOrderApproved,
+    showOrderDenied,
+    showOrderPostponed,
+    showBidWon,
+    showIncreaseBid,
+    showBidEnds,
+    // handleScheduleNotification, 
+    // handleCancel,
+}
