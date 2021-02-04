@@ -21,6 +21,10 @@ class Settings extends Component{
     this.props.navigation.navigate('Account')
   }
 
+  goToKritik = () => {
+    this.props.navigation.navigate('KritikSaran')
+  }
+
   onToggle(isOn){
     console.log("Changed to" + isOn)
   }
@@ -69,12 +73,6 @@ render(){
                     }}
                     />
           </View>
-
-            <TouchableOpacity>
-                <Text style={styles.txtKritik}>
-                    Kirim kritik dan saran
-                </Text>
-            </TouchableOpacity>
         </View>
   </View>
         )
