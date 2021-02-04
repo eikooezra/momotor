@@ -8,7 +8,7 @@ render(){
     return(
     <View style={styles.container}>
        <WebView
-        source={{uri: 'https://momotor.id/faq'}}
+        source={{uri: 'https://momotor.id/pusat-bantuan/list#tentang'}}
        />
   </View>
         )
