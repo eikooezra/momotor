@@ -12,7 +12,7 @@ import Logout from './components/Logout'
 
 import Home from './components/Home/Home'
 
-import SemuaProduk from './components/Home/DaftarProduk/SemuaProduk'
+import SemuaProduk from './components/Home/DaftarProduk/SemuaProduk' // 1st screen for daftar produk page
 import Approved from './components/Home/DaftarProduk/Approved'
 import Pending from './components/Home/DaftarProduk/Pending'
 import Unapplied from './components/Home/DaftarProduk/Unapplied'
@@ -21,14 +21,17 @@ import Add from './components/Home/DaftarProduk/Add'
 import AddPics from './components/Home/DaftarProduk/AddPics'
 import Verification from './components/Home/DaftarProduk/Verification'
 
-import SemuaPesanan from './components/Home/DaftarPesanan/SemuaPesanan'
+import SemuaPesanan from './components/Home/DaftarPesanan/SemuaPesanan' // 1st screen for daftar pesanan page
 import Verifikasi from './components/Home/DaftarPesanan/Verifikasi'
 import Survey from './components/Home/DaftarPesanan/Survey'
+import AnalisaKredit from './components/Home/DaftarPesanan/AnalisaKredit'
+import Disetujui from './components/Home/DaftarPesanan/Disetujui'
+import Ditolak from './components/Home/DaftarPesanan/Ditolak'
 import Dibatalkan from './components/Home/DaftarPesanan/Dibatalkan'
 import SearchOrd from './components/Home/DaftarPesanan/SearchOrd'
 import ProsesVerif from './components/Home/DaftarPesanan/ProsesVerif'
 
-import JualCepat from './components/Home/JualCepat/JualCepat'
+import JualCepat from './components/Home/JualCepat/JualCepat' // 1st screen for jual cepat page
 import SearchFst from './components/Home/JualCepat/SearchFst'
 import HistoryFst from './components/Home/JualCepat/HistoryFst'
 import Tawar from './components/Home/JualCepat/Tawar'
@@ -36,23 +39,26 @@ import InspectResult from './components/Home/JualCepat/InspectResult'
 
 import Calculator from './components/Home/Calculator'
 
-import DataCustomer from './components/InstantOrder/DataCustomer'
+import DataCustomer from './components/InstantOrder/DataCustomer' // 1st screen for instant order page
 import DataPekerjaan from './components/InstantOrder/DataPekerjaan'
 import DataMotor from './components/InstantOrder/DataMotor'
 import DataKredit from './components/InstantOrder/DataKredit'
 import UploadDocs from './components/InstantOrder/UploadDocs'
 
-import NotifActivity from './components/Notification/NotifActivity'
+import NotifActivity from './components/Notification/NotifActivity' // 1st screen for notif page
 import NotifNewOrder from './components/Notification/NotifNewOrder'
 import NotifJualCepat from './components/Notification/NotifJualCepat'
 
-import Account from './components/Account/Account'
+import Account from './components/Account/Account' // 1st screen for account page
 import Settings from './components/Account/Settings'
 import EditProfile from './components/Account/EditProfile'
 import About from './components/Account/About'
 import PrivacyPolicy from './components/Account/PrivacyPolicy'
 import Terms from './components/Account/Terms'
 import FAQ from './components/Account/FAQ'
+
+import ConfirmEmail from './components/Account/ConfirmEmail' // 1st screen for change password page
+import ChangePass from './components/Account/ChangePass'
 
 const HomeStack = createStackNavigator()
 
@@ -173,7 +179,8 @@ function DaftarProdukTabScreen(){
       tabBarOptions={{
         labelStyle: {
           fontFamily: 'Monserrat-Medium'
-        }
+        },
+        scrollEnabled: true
       }}
     >
       <DaftarProdukTab.Screen
@@ -188,10 +195,10 @@ function DaftarProdukTabScreen(){
       />
 
       <DaftarProdukTab.Screen
-        name='Approved'
+        name='Disetujui'
         component={Approved}
         options={{
-          title: 'Approved',
+          title: 'Disetujui',
           labelStyle: {
             fontFamily: 'Montserrat-Medium'
           }
@@ -210,10 +217,10 @@ function DaftarProdukTabScreen(){
       />
 
       <DaftarProdukTab.Screen
-        name='Unapplied'
+        name='Ditolak'
         component={Unapplied}
         options={{
-          title: 'Unapplied',
+          title: 'Ditolak',
           labelStyle: {
             fontFamily: 'Montserrat-Medium'
           }
@@ -270,10 +277,12 @@ function DaftarPesananStackScreen({navigation: {navigate}}){
 function DaftarPesananTabScreen(){
   return(
     <DaftarPesananTab.Navigator
+      swipeEnabled={true}
       tabBarOptions={{
         labelStyle: {
           fontFamily: 'Monserrat-Medium'
-        }
+        },
+        scrollEnabled: true
       }}
     >
       <DaftarPesananTab.Screen
@@ -283,7 +292,7 @@ function DaftarPesananTabScreen(){
           title: 'Semua Pesanan',
           labelStyle: {
             fontFamily: 'Montserrat-Medium'
-          }
+          },
         }}
       />
 
@@ -303,6 +312,39 @@ function DaftarPesananTabScreen(){
         component={Survey}
         options={{
           title: 'Survey',
+          labelStyle: {
+            fontFamily: 'Montserrat-Medium'
+          }
+        }}
+      />
+
+      <DaftarPesananTab.Screen
+        name='AnalisaKredit'
+        component={Survey}
+        options={{
+          title: 'Analisa Kredit',
+          labelStyle: {
+            fontFamily: 'Montserrat-Medium'
+          }
+        }}
+      />  
+
+      <DaftarPesananTab.Screen
+        name='Disetujui'
+        component={Survey}
+        options={{
+          title: 'Disetujui',
+          labelStyle: {
+            fontFamily: 'Montserrat-Medium'
+          }
+        }}
+      />
+
+      <DaftarPesananTab.Screen
+        name='Ditolak'
+        component={Survey}
+        options={{
+          title: 'Ditolak',
           labelStyle: {
             fontFamily: 'Montserrat-Medium'
           }
@@ -513,6 +555,8 @@ class App extends Component {
           <Stack.Screen name='Verification' component={Verification}/>
           <Stack.Screen name='EditProfile' component={EditProfile}/>
           <Stack.Screen name='Settings' component={Settings}/>
+          <Stack.Screen name='ConfirmEmail' component={ConfirmEmail}/>
+          <Stack.Screen name='ChangePass' component={ChangePass}/>
           <Stack.Screen name='About' component={About}/>
           <Stack.Screen name='PrivacyPolicy' component={PrivacyPolicy}/>
           <Stack.Screen name='Terms' component={Terms}/>
