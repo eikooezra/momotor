@@ -21,8 +21,8 @@ class Settings extends Component{
     this.props.navigation.navigate('Account')
   }
 
-  goToKritik = () => {
-    this.props.navigation.navigate('KritikSaran')
+  goToChangePass = () => {
+    this.props.navigation.navigate('ConfirmEmail')
   }
 
   onToggle(isOn){
@@ -47,7 +47,9 @@ render(){
         </View>
 
         <View>
-            <TouchableOpacity>
+            <TouchableOpacity
+                onPress={this.goToChangePass}
+            >
                 <Text style={styles.txtSandi}>
                     Kata Sandi
                 </Text>
