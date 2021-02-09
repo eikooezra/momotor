@@ -5,6 +5,7 @@ import { NavigationContainer } from '@react-navigation/native'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import { createStackNavigator } from '@react-navigation/stack'
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs'
+import normalize from 'react-native-normalize'
 
 import Login from './components/Login'
 import Forgot from './components/Forgot'
@@ -93,7 +94,7 @@ function LogoAdd() {
   return (
     <Image
       style={{ 
-        width: 18, height: 18, marginRight: 16}}
+        width: normalize(18), height: normalize(18), marginRight: normalize(16)}}
       source={require('./assets/images/add.png')}
     />
   );
@@ -103,7 +104,7 @@ function LogoSearch() {
   return (
     <Image
     style={{ 
-      width: 18, height: 18, marginRight: 16}}
+      width: normalize(18), height: normalize(18), marginRight: normalize(16)}}
     source={require('./assets/images/search.png')}
     />
   )
@@ -113,7 +114,7 @@ function LogoBack(){
   return(
     <Image
     style={{ 
-      width: 35, height: 18, marginLeft: 16}}
+      width: normalize(32), height: normalize(16), marginLeft: normalize(16)}}
     source={require('./assets/images/back.png')}
     />
   )
@@ -138,7 +139,7 @@ function DaftarProdukStackScreen({navigation: {navigate}}){
             headerTitleStyle: {
               width: 200,
               height: 20,
-              marginLeft: 75,
+              marginLeft: normalize(70),
               fontSize: 16,
               fontFamily: 'Montserrat-Bold'
             },
@@ -249,7 +250,7 @@ function DaftarPesananStackScreen({navigation: {navigate}}){
            headerTitleStyle: {
              width: 200,
              height: 20,
-             marginLeft: 75,
+             marginLeft: normalize(70),
              fontSize: 16,
              fontFamily: 'Montserrat-Bold'
            },
