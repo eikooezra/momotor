@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import{ Image, View } from 'react-native'
+import{ Image, View, StyleSheet} from 'react-native'
 import { TouchableOpacity } from 'react-native-gesture-handler'
 import { NavigationContainer } from '@react-navigation/native'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
@@ -93,8 +93,7 @@ function LogoHome({color, focused, size}) {
 function LogoAdd() {
   return (
     <Image
-      style={{ 
-        width: normalize(18), height: normalize(18), marginRight: normalize(16)}}
+      style={stylesLogo.logoAdd}
       source={require('./assets/images/add.png')}
     />
   );
@@ -103,8 +102,7 @@ function LogoAdd() {
 function LogoSearch() {
   return (
     <Image
-    style={{ 
-      width: normalize(18), height: normalize(18), marginRight: normalize(16)}}
+    style={stylesLogo.logoSearch}
     source={require('./assets/images/search.png')}
     />
   )
@@ -113,12 +111,31 @@ function LogoSearch() {
 function LogoBack(){
   return(
     <Image
-    style={{ 
-      width: normalize(32), height: normalize(16), marginLeft: normalize(16)}}
+    style={stylesLogo.logoBack}
     source={require('./assets/images/back.png')}
     />
   )
 }
+
+const stylesLogo = StyleSheet.create({
+  logoAdd:{
+    width: normalize(18), 
+    height: normalize(18), 
+    marginRight: normalize(16)
+  },
+
+  logoSearch:{
+      width: normalize(18), 
+      height: normalize(18), 
+      marginRight: normalize(16)
+  },
+
+  logoBack: {
+    width: normalize(32),  
+    height: normalize(16), 
+    marginLeft: normalize(16)
+  }
+})
 
 const DaftarProdukStack = createStackNavigator()
 const DaftarProdukTab = createMaterialTopTabNavigator()
@@ -137,10 +154,8 @@ function DaftarProdukStackScreen({navigation: {navigate}}){
           },
             headerTintColor: '#FFFFFF',
             headerTitleStyle: {
-              width: 200,
-              height: 20,
-              marginLeft: normalize(70),
-              fontSize: 16,
+              marginLeft: normalize(75),
+              fontSize: normalize(16),
               fontFamily: 'Montserrat-Bold'
             },
             headerRight: () => (
@@ -248,10 +263,8 @@ function DaftarPesananStackScreen({navigation: {navigate}}){
          },
            headerTintColor: '#FFFFFF',
            headerTitleStyle: {
-             width: 200,
-             height: 20,
              marginLeft: normalize(70),
-             fontSize: 16,
+             fontSize: normalize(16),
              fontFamily: 'Montserrat-Bold'
            },
            headerRight: () => (
