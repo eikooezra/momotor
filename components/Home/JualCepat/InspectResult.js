@@ -18,6 +18,10 @@ class InspectResult extends Component{
         }
     }
 
+    goBack = () =>{
+        this.props.navigation.navigate('Tawar')
+    }
+
     singleSliderValueCallback =(values)=> {
         this.setState({singleSliderValues : values})
       }
@@ -52,72 +56,72 @@ class InspectResult extends Component{
                             </Text>
                         </View>
 
-                        <View style={styles.typeContainer}>
-                            <Text style={styles.txtJenis}>
+                        <View style={styles.rowTxtContainer}>
+                            <Text style={styles.txtLeft}>
                                 Jenis Motor
                             </Text>
 
-                            <Text style={styles.txtType}>
+                            <Text style={styles.txtRight}>
                                 Honda Vario 125
                             </Text>
                         </View>
 
-                        <View style={styles.yearContainer}>
-                            <Text style={styles.txtTahun}>
+                        <View style={styles.rowTxtContainer}>
+                            <Text style={styles.txtLeft}>
                                 Tahun
                             </Text>
 
-                            <Text style={styles.txtYear}>
+                            <Text style={styles.txtRight}>
                                 2017
                             </Text>
                         </View>
 
-                        <View style={styles.distanceContainer}>
-                            <Text style={styles.txtJarak}>
+                        <View style={styles.rowTxtContainer}>
+                            <Text style={styles.txtLeft}>
                                 Jarak Tempuh
                             </Text>
 
-                            <Text style={styles.txtDistance}>
+                            <Text style={styles.txtRight}>
                                 2.008 KM
                             </Text>
                         </View>
 
-                        <View style={styles.capacityContainer}>
-                            <Text style={styles.txtKapasitas}>
+                        <View style={styles.rowTxtContainer}>
+                            <Text style={styles.txtLeft}>
                                 Kapasitas Mesin
                             </Text>
 
-                            <Text style={styles.txtCapacity}>
+                            <Text style={styles.txtRight}>
                                 125 cc
                             </Text>
                         </View>
 
-                        <View style={styles.transmissionContainer}>
-                            <Text style={styles.txtTransmisi}>
+                        <View style={styles.rowTxtContainer}>
+                            <Text style={styles.txtLeft}>
                                 Transmisi
                             </Text>
 
-                            <Text style={styles.txtTransmission}>
+                            <Text style={styles.txtRight}>
                                 Otomatis
                             </Text>
                         </View>
 
-                        <View style={styles.dateContainer}>
-                            <Text style={styles.txtTanggal}>
+                        <View style={styles.rowTxtContainer}>
+                            <Text style={styles.txtLeft}>
                                 Tanggal Inspeksi
                             </Text>
 
-                            <Text style={styles.txtDate}>
+                            <Text style={styles.txtRight}>
                                 22/12/2019
                             </Text>
                         </View>
 
-                        <View style={styles.locationContainer}>
-                            <Text style={styles.txtLokasi}>
+                        <View style={styles.rowTxtContainer}>
+                            <Text style={styles.txtLeft}>
                                 Lokasi
                             </Text>
 
-                            <Text style={styles.txtLocation}>
+                            <Text style={styles.txtRight}>
                                 Jakarta Barat
                             </Text>
                         </View>
@@ -192,7 +196,7 @@ const styles = StyleSheet.create({
     },
 
     InfoContainer: {
-        width: normalize(340),
+        width: normalize(320),
         marginBottom: normalize(10),
         marginLeft: normalize(16),
         borderBottomColor: '#0000001A',
@@ -207,135 +211,20 @@ const styles = StyleSheet.create({
         fontFamily: 'Montserrat-SemiBold'
     },
 
-    typeContainer: {
+    rowTxtContainer: {
         flexDirection: 'row',
+        justifyContent: 'space-between',
         marginBottom: normalize(12),
     },
 
-    txtJenis: {
-        width: normalize(82),
+    txtLeft: {
         marginLeft: normalize(16),
         fontSize: normalize(14),
         fontFamily: 'Montserrat-Regular'
     },
 
-    txtType: {
-        width: normalize(130),
-        marginLeft: normalize(145),
-        fontSize: normalize(14),
-        fontFamily: 'Montserrat-Medium'
-    },
-
-    yearContainer: {
-        flexDirection: 'row',
-        marginBottom: normalize(12),
-    },
-
-    txtTahun: {
-        width: normalize(45),
-        marginLeft: normalize(16),
-        fontSize: normalize(14),
-        fontFamily: 'Montserrat-Regular'
-    },
-
-    txtYear: {
-        width: normalize(32),
-        marginLeft: normalize(251),
-        fontSize: normalize(14),
-        fontFamily: 'Montserrat-Medium'
-    },
-
-    distanceContainer: {
-        flexDirection: 'row',
-        marginBottom: normalize(12),
-    },
-
-    txtJarak: {
-        width: normalize(100),
-        marginLeft: normalize(16),
-        fontSize: normalize(14),
-        fontFamily: 'Montserrat-Regular'
-    },
-
-    txtDistance: {
-        width: normalize(130),
-        marginLeft: normalize(165),
-        fontSize: normalize(14),
-        fontFamily: 'Montserrat-Medium'
-    },
-
-    capacityContainer: {
-        flexDirection: 'row',
-        marginBottom: normalize(12),
-    },
-
-    txtKapasitas: {
-        width: normalize(115),
-        marginLeft: normalize(16),
-        fontSize: normalize(14),
-        fontFamily: 'Montserrat-Regular'
-    },
-
-    txtCapacity: {
-        width: normalize(42),
-        marginLeft: normalize(172),
-        fontSize: normalize(14),
-        fontFamily: 'Montserrat-Medium'
-    },
-    
-    transmissionContainer: {
-        flexDirection: 'row',
-        marginBottom: normalize(12),
-    },
-
-    txtTransmisi: {
-        width: normalize(70),
-        marginLeft: normalize(16),
-        fontSize: normalize(14),
-        fontFamily: 'Montserrat-Regular'
-    },
-
-    txtTransmission: {
-        width: normalize(68),
-        marginLeft: normalize(195),
-        fontSize: normalize(14),
-        fontFamily: 'Montserrat-Medium'
-    },
-
-    dateContainer: {
-        flexDirection: 'row',
-        marginBottom: normalize(12),
-    },
-
-    txtTanggal: {
-        width: normalize(120),
-        marginLeft: normalize(16),
-        fontSize: normalize(14),
-        fontFamily: 'Montserrat-Regular'
-    },
-
-    txtDate: {
-        width: normalize(72),
-        marginLeft: normalize(141),
-        fontSize: normalize(14),
-        fontFamily: 'Montserrat-Medium'
-    },
-
-    locationContainer: {
-        flexDirection: 'row',
-        marginBottom: normalize(12),
-    },
-
-    txtLokasi: {
-        width: normalize(46),
-        marginLeft: normalize(16),
-        fontSize: normalize(14),
-        fontFamily: 'Montserrat-Regular'
-    },
-
-    txtLocation: {
-        width: normalize(98),
-        marginLeft: normalize(193),
+    txtRight: {
+        marginRight: normalize(16),
         fontSize: normalize(14),
         fontFamily: 'Montserrat-Medium'
     },

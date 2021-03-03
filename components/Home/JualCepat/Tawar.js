@@ -88,42 +88,42 @@ class Tawar extends Component{
                         Informasi Motor
                     </Text>
 
-                    <View style={styles.YearContainer}>
-                        <Text style={styles.txtTahun}>
+                    <View style={styles.rowTxtContainer}>
+                        <Text style={styles.txtLeft}>
                             Tahun
                         </Text>
 
-                        <Text style={styles.txtYear}>
+                        <Text style={styles.txtRight}>
                             2017
                         </Text>
                     </View>
 
-                    <View style={styles.DistanceContainer}>
-                        <Text style={styles.txtJarak}>
+                    <View style={styles.rowTxtContainer}>
+                        <Text style={styles.txtLeft}>
                             Jarak Tempuh
                         </Text>
 
-                        <Text style={styles.txtDistance}>
+                        <Text style={styles.txtRight}>
                             2.008 KM
                         </Text>
                     </View>
 
-                    <View style={styles.CapacityContainer}>
-                        <Text style={styles.txtKapasitas}>
+                    <View style={styles.rowTxtContainer}>
+                        <Text style={styles.txtLeft}>
                             Kapasitas Mesin
                         </Text>
 
-                        <Text style={styles.txtCapacity}>
+                        <Text style={styles.txtRight}>
                             125 cc
                         </Text>
                     </View>
 
-                    <View style={styles.TransmissionContainer}>
-                        <Text style={styles.txtTransmisi}>
+                    <View style={styles.rowTxtContainer}>
+                        <Text style={styles.txtLeft}>
                             Transmisi
                         </Text>
 
-                        <Text style={styles.txtTransmission}>
+                        <Text style={styles.txtRight}>
                             Otomatis
                         </Text>
                     </View>
@@ -289,88 +289,24 @@ const styles = StyleSheet.create({
         fontFamily: 'Montserrat-SemiBold'
     },
 
-    YearContainer: {
-        flexDirection: 'row'
+    rowTxtContainer: {
+        marginBottom: normalize(12),
+        flexDirection: 'row',
+        justifyContent: 'space-between'
     },
 
-    txtTahun: {
-        width: normalize(45),
+    txtLeft: {
         marginLeft: normalize(26),
-        marginBottom: normalize(12),
         fontSize: normalize(14),
         color: '#7F7F7F',
         fontFamily: 'Montserrat-Regular'
     },
 
-    txtYear: {
-        width: normalize(35),
-        marginLeft: normalize(237),
-        fontSize: normalize(14),
-        fontFamily: 'Montserrat-Medium'
-    },
-
-    DistanceContainer: {
-        flexDirection: 'row'
-    },
-
-    txtJarak: {
-        width: normalize(100),
-        height: normalize(18),
-        marginLeft: normalize(26),
-        marginBottom: normalize(12),
+    txtRight: {
+        marginRight: normalize(23),
         fontSize: normalize(14),
         color: '#7F7F7F',
         fontFamily: 'Montserrat-Regular'
-    },
-
-    txtDistance: {
-        width: normalize(70),
-        height: normalize(18),
-        marginLeft: normalize(152),
-        fontSize: normalize(14),
-        fontFamily: 'Montserrat-Medium'
-    },
-
-    CapacityContainer: {
-        flexDirection: 'row'
-    },
-
-    txtKapasitas: {
-        width: normalize(112),
-        marginLeft: normalize(26),
-        marginBottom: normalize(12),
-        fontSize: normalize(14),
-        color: '#7F7F7F',
-        fontFamily: 'Montserrat-Regular'
-    },
-
-    txtCapacity: {
-        width: normalize(45),
-        marginLeft: normalize(161),
-        fontSize: normalize(14),
-        fontFamily: 'Montserrat-Medium'
-    },
-
-    TransmissionContainer: {
-        flexDirection: 'row'
-    },
-
-    txtTransmisi: {
-        width: normalize(70),
-        height: normalize(18),
-        marginLeft: normalize(26),
-        marginBottom: normalize(12),
-        fontSize: normalize(14),
-        color: '#7F7F7F',
-        fontFamily: 'Montserrat-Regular'
-    },
-
-    txtTransmission: {
-        width: normalize(70),
-        height: normalize(18),
-        marginLeft: normalize(181),
-        fontSize: normalize(14),
-        fontFamily: 'Montserrat-Medium'
     },
 
     bidderCounter: {
