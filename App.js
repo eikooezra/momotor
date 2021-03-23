@@ -7,59 +7,59 @@ import { createStackNavigator } from '@react-navigation/stack'
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs'
 import normalize from 'react-native-normalize'
 
-import Login from './components/Login'
-import Forgot from './components/Forgot'
-import Logout from './components/Logout'
+import Login from './page/Login'
+import Forgot from './page/Forgot'
+import Logout from './page/Logout'
 
-import Home from './components/Home/Home'
+import Home from './page/Home/Home'
 
-import SemuaProduk from './components/Home/DaftarProduk/SemuaProduk' // 1st screen for daftar produk page
-import Approved from './components/Home/DaftarProduk/Approved'
-import Pending from './components/Home/DaftarProduk/Pending'
-import Unapplied from './components/Home/DaftarProduk/Unapplied'
-import SearchPrd from './components/Home/DaftarProduk/SearchPrd'
-import Add from './components/Home/DaftarProduk/Add'
-import AddPics from './components/Home/DaftarProduk/AddPics'
-import Verification from './components/Home/DaftarProduk/Verification'
+import SemuaProduk from './page/Home/DaftarProduk/SemuaProduk' // 1st screen for daftar produk page
+import Approved from './page/Home/DaftarProduk/Approved'
+import Pending from './page/Home/DaftarProduk/Pending'
+import Unapplied from './page/Home/DaftarProduk/Unapplied'
+import SearchPrd from './page/Home/DaftarProduk/SearchPrd'
+import Add from './page/Home/DaftarProduk/Add'
+import AddPics from './page/Home/DaftarProduk/AddPics'
+import Verification from './page/Home/DaftarProduk/Verification'
 
-import SemuaPesanan from './components/Home/DaftarPesanan/SemuaPesanan' // 1st screen for daftar pesanan page
-import Verifikasi from './components/Home/DaftarPesanan/Verifikasi'
-import Survey from './components/Home/DaftarPesanan/Survey'
-import AnalisaKredit from './components/Home/DaftarPesanan/AnalisaKredit'
-import Disetujui from './components/Home/DaftarPesanan/Disetujui'
-import Ditolak from './components/Home/DaftarPesanan/Ditolak'
-import Dibatalkan from './components/Home/DaftarPesanan/Dibatalkan'
-import SearchOrd from './components/Home/DaftarPesanan/SearchOrd'
-import ProsesVerif from './components/Home/DaftarPesanan/ProsesVerif'
+import SemuaPesanan from './page/Home/DaftarPesanan/SemuaPesanan' // 1st screen for daftar pesanan page
+import Verifikasi from './page/Home/DaftarPesanan/Verifikasi'
+import Survey from './page/Home/DaftarPesanan/Survey'
+import AnalisaKredit from './page/Home/DaftarPesanan/AnalisaKredit'
+import Disetujui from './page/Home/DaftarPesanan/Disetujui'
+import Ditolak from './page/Home/DaftarPesanan/Ditolak'
+import Dibatalkan from './page/Home/DaftarPesanan/Dibatalkan'
+import SearchOrd from './page/Home/DaftarPesanan/SearchOrd'
+import ProsesVerif from './page/Home/DaftarPesanan/ProsesVerif'
 
-import JualCepat from './components/Home/JualCepat/JualCepat' // 1st screen for jual cepat page
-import SearchFst from './components/Home/JualCepat/SearchFst'
-import HistoryFst from './components/Home/JualCepat/HistoryFst'
-import Tawar from './components/Home/JualCepat/Tawar'
-import InspectResult from './components/Home/JualCepat/InspectResult'
+import JualCepat from './page/Home/JualCepat/JualCepat' // 1st screen for jual cepat page
+import SearchFst from './page/Home/JualCepat/SearchFst'
+import HistoryFst from './page/Home/JualCepat/HistoryFst'
+import Tawar from './page/Home/JualCepat/Tawar'
+import InspectResult from './page/Home/JualCepat/InspectResult'
 
-import Calculator from './components/Home/Calculator'
+import Calculator from './page/Home/Calculator'
 
-import DataCustomer from './components/InstantOrder/DataCustomer' // 1st screen for instant order page
-import DataPekerjaan from './components/InstantOrder/DataPekerjaan'
-import DataMotor from './components/InstantOrder/DataMotor'
-import DataKredit from './components/InstantOrder/DataKredit'
-import UploadDocs from './components/InstantOrder/UploadDocs'
+import DataCustomer from './page/InstantOrder/DataCustomer' // 1st screen for instant order page
+import DataPekerjaan from './page/InstantOrder/DataPekerjaan'
+import DataMotor from './page/InstantOrder/DataMotor'
+import DataKredit from './page/InstantOrder/DataKredit'
+import UploadDocs from './page/InstantOrder/UploadDocs'
 
-import NotifActivity from './components/Notification/NotifActivity' // 1st screen for notif page
-import NotifNewOrder from './components/Notification/NotifNewOrder'
-import NotifJualCepat from './components/Notification/NotifJualCepat'
+import NotifActivity from './page/Notification/NotifActivity' // 1st screen for notif page
+import NotifNewOrder from './page/Notification/NotifNewOrder'
+import NotifJualCepat from './page/Notification/NotifJualCepat'
 
-import Account from './components/Account/Account' // 1st screen for account page
-import Settings from './components/Account/Settings'
-import EditProfile from './components/Account/EditProfile'
-import About from './components/Account/About'
-import PrivacyPolicy from './components/Account/PrivacyPolicy'
-import Terms from './components/Account/Terms'
-import FAQ from './components/Account/FAQ'
+import Account from './page/Account/Account' // 1st screen for account page
+import Settings from './page/Account/Settings'
+import EditProfile from './page/Account/EditProfile'
+import About from './page/Account/About'
+import PrivacyPolicy from './page/Account/PrivacyPolicy'
+import Terms from './page/Account/Terms'
+import FAQ from './page/Account/FAQ'
 
-import ConfirmEmail from './components/Account/ConfirmEmail' // 1st screen for change password page
-import ChangePass from './components/Account/ChangePass'
+import ConfirmEmail from './page/Account/ConfirmEmail' // 1st screen for change password page
+import ChangePass from './page/Account/ChangePass'
 
 const HomeStack = createStackNavigator()
 
