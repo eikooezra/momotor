@@ -22,7 +22,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center'
     },
     title: {
-        fontSize: 16,
+        fontSize: 14,
         color: '#000000',
         fontFamily: 'Montserrat-SemiBold',
     }

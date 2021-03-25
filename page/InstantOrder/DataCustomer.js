@@ -1,11 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { StyleSheet, View, Text, TouchableOpacity, TextInput } from 'react-native';
 import DropDownPicker from 'react-native-dropdown-picker';
 import { ScrollView } from 'react-native-gesture-handler';
 import normalize from 'react-native-normalize'
-import { DropDown, Gap, Header, Input, Title } from '../../components/components';
+import { Button, DropDown, Gap, Header, Input, Title } from '../../components/components';
 
 const DataCustomer = ({ navigation }) => {
+    const[value, setValue] = useState(null);
     return (
         <View style={styles.page}>
             <Header title="Instant Order" />
@@ -22,10 +23,11 @@ const DataCustomer = ({ navigation }) => {
                                 { label: 'Pria', value: 'pria' },
                                 { label: 'Wanita', value: 'Wanita' }
                             ]}
-                            placeholder='Jenis Kelamin'
-                            style={{
-                                // paddingVertical: 20
-                            }}
+                            // defaultValue={value}
+                            placeholder="Jenis Kelamin"
+                            // style={{
+                            //     // paddingVertical: 20
+                            // }}
                             containerStyle={{
                                 // width: normalize(350),
                                 // height: normalize(46),
@@ -36,13 +38,13 @@ const DataCustomer = ({ navigation }) => {
                                 backgroundColor: '#FFFFFF'
                             }}
                             labelStyle={{
-                                paddingHorizontal: 16,
-                                fontSize: 16,
+                                // paddingHorizontal: 16,
+                                paddingRight: 290,
+                                fontSize: 15,
                                 color: '#7F7F7F',
-                                fontFamily: 'Montserrat-Medium'
+                                fontFamily: 'Montserrat-Medium',
                             }}
                             arrowStyle={{
-                                // marginLeft: normalize(205)
                                 // paddingHorizontal: 16
                             }}
                         />
@@ -88,11 +90,14 @@ const DataCustomer = ({ navigation }) => {
                     <Gap height={34} />
                     <Input placeholder="Kelurahan Domisili Ibu" />
                     <Gap height={34} />
-
-                    <TouchableOpacity onPress={() => navigation.navigate('DataPekerjaan')}>
+                    <Button
+                        onPress={() => navigation.navigate('DataPekerjaan')}
+                        title="SELANJUTNYA"
+                    />
+                    {/* <TouchableOpacity onPress={() => navigation.navigate('DataPekerjaan')}>
                         <Text style={styles.txtButton}>SELANJUTNYA</Text>
-                    </TouchableOpacity>
-                    <Gap height={50} />
+                    </TouchableOpacity> */}
+                    <Gap height={18} />
                 </ScrollView>
             </View>
         </View>
@@ -107,9 +112,10 @@ const styles = StyleSheet.create({
         flex: 1
     },
     content: {
+        flex: 1,
         padding: 16,
         paddingTop: 0,
-        paddingBottom: 100
+        // paddingBottom: 100
     },
     RtRw: {
         flex: 1,
