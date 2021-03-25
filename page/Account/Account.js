@@ -1,4 +1,4 @@
-import React, {Component} from 'react'
+import React, {useState} from 'react'
 import {
   StyleSheet,
   TouchableOpacity,
@@ -8,37 +8,7 @@ import {
 } from 'react-native'
 import normalize from 'react-native-normalize'
 
-class Account extends Component{
-    constructor(props){
-        super(props)
-        this.state = {
-
-        }
-    }
-
-  goToLogout = () => {
-     this.props.navigation.navigate('Logout')
-  }
-  goToEdit = () => {
-    this.props.navigation.navigate('EditProfile')
-  }
-  goToSettings = () => {
-    this.props.navigation.navigate('Settings')
-  }
-  goToAbout = () => {
-    this.props.navigation.navigate('About')
-  }
-  goToPrivacy = () => {
-    this.props.navigation.navigate('PrivacyPolicy')
-  }
-  goToTerms = () => {
-    this.props.navigation.navigate('Terms')
-  }
-  goToFAQ = () => {
-    this.props.navigation.navigate('FAQ')
-  }
-
-render(){
+const Account = ({navigation}) => {
     return(
     <View style={styles.container}>
         <View style={styles.Header}>
@@ -49,7 +19,7 @@ render(){
             />
 
             <TouchableOpacity
-              onPress={this.goToSettings}
+              onPress={() => navigation.navigate('Settings')}
             >
               <Image
                 style={styles.btnSettings}
@@ -86,7 +56,7 @@ render(){
               </View>
               
               <TouchableOpacity
-                onPress={this.goToEdit}
+                onPress={() => navigation.navigate('EditProfile')}
               >
                 <Image
                  style={styles.btnEdit}
@@ -98,7 +68,7 @@ render(){
 
     <View style={styles.middle}>
       <TouchableOpacity style={styles.btnAbout}
-        onPress={this.goToAbout}
+        onPress={() => navigation.navigate('About')}
       >
         <Image
         style={styles.imgAbout}
@@ -111,7 +81,7 @@ render(){
       </TouchableOpacity>
 
       <TouchableOpacity style={styles.btnPrivacy}
-        onPress={this.goToPrivacy}
+        onPress={() => navigation.navigate('PrivacyPolicy')}
       >
         <Image
         style={styles.imgPrivacy}
@@ -124,7 +94,7 @@ render(){
       </TouchableOpacity>
 
       <TouchableOpacity style={styles.btnTerms}
-        onPress={this.goToTerms}
+        onPress={() => navigation.navigate('Terms')}
       >
         <Image
         style={styles.imgTerms}
@@ -137,7 +107,7 @@ render(){
       </TouchableOpacity>
 
       <TouchableOpacity style={styles.btnFaq}
-        onPress={this.goToFAQ}
+        onPress={() => navigation.navigate('FAQ')}
       >
         <Image
         style={styles.imgFaq}
@@ -150,7 +120,7 @@ render(){
       </TouchableOpacity>
 
       <TouchableOpacity
-        onPress={this.goToLogout}
+        onPress={() => navigation.navigate('Logout')}
       >
         <Text style={styles.txtKeluar}>
           Keluar
@@ -158,14 +128,13 @@ render(){
       </TouchableOpacity>
 
       <Text style={styles.txtVer}>
-        App version 0.0
+        App version prototype
       </Text>
     </View>
 
   
   </View>
-        )
-    }
+      )
 }
 
 export default Account
