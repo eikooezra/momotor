@@ -1,4 +1,4 @@
-import React, {Component} from 'react'
+import React, {useState} from 'react'
 import {
   StyleSheet,
   TouchableOpacity,
@@ -10,53 +10,28 @@ import {
 } from 'react-native'
 import normalize from 'react-native-normalize';
 
-class Home extends Component{
-    constructor(props){
-        super(props)
-        this.state = {
-         isPressed: false,
-         showJual: true,
-         showPesanan: true,
-        }
-    }
-
-    //navigation
-    goToProductList = () => {
-        this.props.navigation.navigate('DaftarProduk')
-    }
-    goToOrderList = () => {
-        this.props.navigation.navigate('DaftarPesanan')
-    }
-    goToJualCpt = () => {
-        this.props.navigation.navigate('JualCepat')
-    }
-    goToCalc = () => {
-        this.props.navigation.navigate('Calculator')
-    }
-    goToHome = () => {
-        this.props.navigation.navigate('Home')
-    }
+const Home = ({navigation}) => {
+    
+    const [showJual, setShowJual] = useState(true)
+    const [showPesanan, setShowPesanan] = useState(true)
 
     //Homepage tab
-    toggleShowJual = () => {
-      if(this.state.showJual === false) {
-        this.setState({showJual: this.state.showPesanan, showPesanan: !this.state.showJual})
+    const toggleShowJual = () => {
+      if(showJual === false) {
+        setShowJual({showJual: showPesanan, showPesanan: !showJual})
       }else{
-        this.setState({showPesanan: !this.state.showJual, showJual: this.state.showJual})
+        setShowPesanan({showPesanan: !showJual, showJual: showJual})
       }
     }
 
-    toggleShowPesanan = () => {
-      if(this.state.showPesanan === false) {
-        this.setState({showPesanan: this.state.showJual, showPesanan: !this.state.showPesanan})
+    const toggleShowPesanan = () => {
+      if(showPesanan === false) {
+        setShowPesanan({showPesanan: showJual, showPesanan: !showPesanan})
       }else{
-        this.setState({showJual: !this.state.showPesanan, showJual: this.state.showPesanan})
+        setShowJual({showJual: !showPesanan, showJual: showPesanan})
       }
     }
 
-
-
-render(){
     return(
     <View style={styles.container}>
       <StatusBar backgroundColor='#0064D0'/>
@@ -67,7 +42,7 @@ render(){
           /> 
           <View style={styles.upperBar}>
               <TouchableOpacity
-                onPress={this.goToProductList}
+                onPress={() => navigation.navigate('DaftarProduk')}
                 activeOpacity={0.1}
               >
                   <Image
@@ -81,7 +56,7 @@ render(){
               </TouchableOpacity>
                                
               <TouchableOpacity
-                onPress={this.goToOrderList}
+                onPress={() => navigation.navigate('DaftarPesanan')}
               >
                   <Image
                     style={styles.btnClist}
@@ -94,7 +69,7 @@ render(){
               </TouchableOpacity>
 
               <TouchableOpacity
-                onPress={this.goToJualCpt}
+                onPress={() => navigation.navigate('JualCepat')}
               >
                   <Image
                     style={styles.btnJualCpt}
@@ -107,7 +82,7 @@ render(){
               </TouchableOpacity>
 
               <TouchableOpacity
-                onPress={this.goToCalc}
+                onPress={() => navigation.navigate('Calculator')}
               >
                   <Image
                     style={styles.btnCalc}
@@ -134,10 +109,10 @@ render(){
               </TouchableOpacity>
 
               <TouchableOpacity
-                onPress={this.toggleShowJual}
+                onPress={toggleShowJual}
               >
                 <Text style={[styles.txtJual, {
-                    color: (this.state.showPesanan === true) ? '#7F7F7F' : '#000000'
+                    color: (showPesanan === true) ? '#7F7F7F' : '#000000'
                 }
                 ]}>
                     Jual Cepat
@@ -146,17 +121,15 @@ render(){
             </View>
 
             <View>
-                {this.state.showPesanan && <ShowPesanan/> || this.state.showJual && <ShowJual/>}
+                {showPesanan && <ShowPesanan/> || showJual && <ShowJual/>}
             </View>
         </View>
         )
-    }
 }
 
 export default Home
 
-export class ShowJual extends Component {
-  render() {
+export const ShowJual = () => {
     return (
       <ScrollView style={styles.scrollContainer}>
                   <TouchableOpacity style={styles.btnImg}>
@@ -197,10 +170,8 @@ export class ShowJual extends Component {
                 </ScrollView>
     );
   }
-}
 
-export class ShowPesanan extends Component {
-  render() {
+export const ShowPesanan = () => {
     return (
       <ScrollView style={styles.scrollContainer}>
                   <TouchableOpacity style={styles.btnImg}>
@@ -241,7 +212,6 @@ export class ShowPesanan extends Component {
                 </ScrollView>
     );
   }
-}
 
 const styles = StyleSheet.create({
     container: {
