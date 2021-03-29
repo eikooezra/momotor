@@ -1,93 +1,39 @@
-import React, {Component} from 'react'
+import React, {useState} from 'react'
 import {
     StyleSheet,
     KeyboardAvoidingView,
     Image,
     View,
     Text,
-    TouchableOpacity
+    TouchableOpacity,
+    TextInput
 } from 'react-native'
-import { TextInput } from 'react-native-gesture-handler'
 import DropDownPicker from 'react-native-dropdown-picker'
 import normalize from 'react-native-normalize';
+import {calcForm} from '../../utils/utils'
 
+const Calculator = ({navigation}) => {
 
-class Calculator extends Component {
-constructor(props){
-    super(props)
-    this.state = {
+    const [isPressed, setPressed] = useState(true)
+
+    const [form, setForm] = calcForm({
         model: '',
         prodYear: '',
         price: '',
         dp: '',
-        location: '',
-    }
-}
+        location: ''
+    })
 
-goBack = () => {
-    this.props.navigation.navigate('Home')
-}
-
-nullChecker = () => {
-    if(this.state.isPressed === false){
-        this.setState({null: true})
+const nullChecker = () => {
+    if(isPressed === false){
+        setPressed({null: true})
     } 
-}
 
-handleChangeModel = (model) => {
-    this.setState({model})
-    let reg = /([^\s])/
-    if(reg.test(model) === true){
-        this.setState({isModelFilled: true, errorModel: ''})
-    }else{
-        this.setState({errorModel: 'Tidak boleh kosong'})
-    }
-}
-
-handleChangeProd = (prodYear) => {
-    this.setState({prodYear})
-    let reg = /([^\s])/
-    if(reg.test(prodYear) === true){
-        this.setState({isProdFilled: true, errorProd: ''})
-    }else{
-        this.setState({errorProd: 'Tidak boleh kosong'})
-    }
-}
-
-handleChangePrice = (price) => {
-    this.setState({price})
-    let reg = /([^\s])/
-    if(reg.test(price) === true){
-        this.setState({isPriceFilled: true, errorPrice: ''})
-    }else{
-        this.setState({errorPrice: 'Tidak Boleh kosong'})
-    }
-}
-
-handleChangeDP = (dp) => {
-    this.setState({dp})
-    let reg = /([^\s])/
-    if(reg.test(dp) === true){
-        this.setState({isDpFilled: true})
-    }
-}
-
-handleChangeLocation = (location) => {
-    this.setState({location})
-    let reg = /([^\s])/
-    if(reg.test(location) === true){
-        this.setState({isLocationFilled: true, errorLocation: ''})
-    }else{
-        this.setState({errorLocation: 'Tidak boleh kosong'})
-    }
-}
-
-render() {
     return (
         <View style={styles.container}>
             <View style={styles.Header}>
                 <TouchableOpacity
-                        onPress={this.goBack}
+                        onPress={() => navigation.navigate('Home')}
                     >
                         <Image
                             style={styles.btnBack}
@@ -109,7 +55,8 @@ render() {
                     <TextInput
                         style={styles.txtContoh}
                         placeholder='Contoh: Honda Beat'
-                        onChangeText={(model) => this.handleChangeModel(model)}
+                        value={form.model}
+                        onChangeText={value => setForm('model', value)}
                     />
                 </View>
 
@@ -129,7 +76,7 @@ render() {
                                     {label: '2019', value: '19'},
                                     {label: '2020', value: '20'}
                                 ]}
-                                defaultNull={this.nullChecker}
+                                defaultNull={nullChecker}
                                 placeholder='Pilih Tahun'
                                 style={{
                                     paddingVertical: 20
@@ -152,12 +99,12 @@ render() {
                                 arrowStyle={{
                                     marginLeft: normalize(205)
                                 }}
-                                onChangeItem={
-                                    item => this.setState({
-                                        prodYear: item
-                                    })
-                                }
-                                onChangeText={prodYear => this.handleChangeProdYear(prodYear)}
+                                // onChangeItem={
+                                //     item => setForm({
+                                //         prodYear: item
+                                //     })
+                                // }
+                                onChangeText={value => setForm('prodYear', value)}
                             />
                         </View>
                     </View>
@@ -171,7 +118,8 @@ render() {
                             <TextInput
                                 style={styles.txtHarga}
                                 placeholder='Rp 15,000,000'
-                                onChangeText={(price) => this.handleChangePrice(price)}
+                                value={form.price}
+                                onChangeText={value => setForm('price', value)}
                             />
                         </View>
                     </View>
@@ -186,7 +134,8 @@ render() {
                         <TextInput
                             style={styles.txtUangMuka}
                             placeholder='Rp 1,500,000'
-                            onChangeText={(dp) => this.handleChangeDP(dp)}
+                            value={form.dp}
+                            onChangeText={value => setForm('dp', value)}
                         />
                     </View>
 
@@ -204,7 +153,8 @@ render() {
                         <TextInput
                             style={styles.txtLokasi}
                             placeholder='Contoh: Menteng'
-                            onChangeText={(location) => this.handleChangeLocation(location)}
+                            value={form.location}
+                            onChangeText={value => setForm('location', value)}
                         />
                     </View>
                 </View>
@@ -224,7 +174,8 @@ render() {
            </View>
         </View>
     )
-}}
+  }  
+}
 
 export default Calculator
 
