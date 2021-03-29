@@ -98,10 +98,10 @@ const Home = ({navigation}) => {
 
             <View style={styles.dblTxtContainer}>
               <TouchableOpacity
-                onPress={this.toggleShowPesanan}
+                onPress={toggleShowPesanan}
               >
                 <Text style={[styles.txtPesanan, {
-                    color: (this.state.showPesanan === true) ? '#000000' : '#7F7F7F'
+                    color: (showPesanan === true) ? '#000000' : '#7F7F7F'
                 }
                 ]}>
                     Pesanan Terbaru

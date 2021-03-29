@@ -1,16 +1,19 @@
 import React from 'react';
 import { StyleSheet, View, Text } from 'react-native';
 import normalize from 'react-native-normalize'
-import { Button } from '../../atoms/atoms';
+import { Button, Gap } from '../../atoms/atoms';
 
-const Header = ({ title, onPress, type }) => {
-  if(type === 'back'){
+const Header = ({ title, onPress, back, search, add }) => {
+  // if(type === 'back'){
 
-  }
+  // }
   return (
     <View style={styles.container}>
-      {type === 'back' && <Button type='icon-only' icon='back-button' onPress={onPress}/>}
+      {back && <Button type='icon-only' icon='back-button' onPress={onPress}/>}
       <Text style={styles.text}>{title}</Text>
+      {search && <Button type='icon-only' icon='search-button' onPress={onPress}/>}
+      <Gap width={10}/>
+      {add && <Button type='icon-only' icon='add-button' onPress={onPress}/>}
     </View>
   );
 };
@@ -22,8 +25,9 @@ const styles = StyleSheet.create({
     // width: normalize(380),
     // height: normalize(70),
     paddingVertical: 19,
-    paddingLeft: 16,
-    paddingRight: 35,
+    paddingHorizontal: 16,
+    // paddingLeft: 16,
+    // paddingRight: 35,
     flexDirection: 'row',
     alignItems: 'center',
     backgroundColor: '#0064D0',

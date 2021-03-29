@@ -8,6 +8,7 @@ import {
     TouchableOpacity
 } from 'react-native'
 import normalize from 'react-native-normalize'
+import { Header, Title } from '../../components/components'
 
 class DataKredit extends Component{
     constructor(props){
@@ -24,27 +25,8 @@ class DataKredit extends Component{
     render(){
         return(
             <View style={styles.container}>
-                <View style={styles.Header}>
-                    <TouchableOpacity
-                        onPress={this.goBack}
-                    >
-                        <Image
-                            style={styles.btnBack}
-                            source={require('../../assets/images/back.png')}
-                        />
-                    </TouchableOpacity>
-
-                    <Text style={styles.txtInstant}>
-                        Instant Order
-                    </Text>
-                </View>
-
-                <View style={styles.containerTxt}>
-                    <Text style={styles.txtUpload}>
-                        Upload Dokumen
-                    </Text>
-                </View>
-
+                <Header title="Instant Order" onPress={this.goBack} back/>
+                <Title text="Upload"/>
                 <ScrollView>
                     <View style={styles.DisclaimerContainer}>
                         <Image
@@ -241,48 +223,6 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: '#FFFFFF'
     },
-
-    Header: {
-        width: normalize(412),
-        height: normalize(70),
-        flexDirection: 'row',
-        backgroundColor: '#0064D0',
-    },
-
-    btnBack: {
-        width: normalize(32),
-        height: normalize(16),
-        marginLeft: normalize(16),
-        marginTop: normalize(30)
-    },
-
-    txtInstant: {
-        width: normalize(200),
-        height: normalize(20),
-        marginTop: normalize(25),
-        marginLeft: normalize(103),
-        fontSize: normalize(16),
-        color: '#FFFFFF',
-        fontFamily: 'Montserrat-Bold'
-    },
-
-    containerTxt: {
-        width: normalize(420),
-        height: normalize(48),
-        marginBottom: normalize(15),
-        elevation: 4,
-        backgroundColor: '#FFFFFF',
-    },
-
-    txtUpload: {
-        width: normalize(124),
-        height: normalize(19),
-        marginTop: normalize(15),
-        marginLeft: normalize(16),
-        color: '#000000',
-        fontFamily: 'Montserrat-SemiBold'
-    },
-
     DisclaimerContainer: {
         width: normalize(350),
         height: normalize(35),

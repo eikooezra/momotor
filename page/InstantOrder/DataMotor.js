@@ -89,7 +89,7 @@ class DataMotor extends Component {
 
         return (
             <View style={styles.container}>
-                <Header title="Instant Order" type="back" onPress={this.goBack}/>
+                <Header title="Instant Order" onPress={this.goBack} back/>
                 <Title text="Data Motor" />
 
                 <View style={styles.content}>
