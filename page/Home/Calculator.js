@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, { useState } from 'react'
 import {
     StyleSheet,
     KeyboardAvoidingView,
@@ -10,43 +10,43 @@ import {
 } from 'react-native'
 import DropDownPicker from 'react-native-dropdown-picker'
 import normalize from 'react-native-normalize';
-import {calcForm} from '../../utils/utils'
+import { useForm } from '../../utils/utils'
 
-const Calculator = ({navigation}) => {
-
-    const [isPressed, setPressed] = useState(true)
-
-    const [form, setForm] = calcForm({
+const Calculator = ({ navigation }) => {
+    const [form, setForm] = useForm({
         model: '',
         prodYear: '',
         price: '',
         dp: '',
         location: ''
     })
+    const [isPressed, setPressed] = useState(true)
 
-const nullChecker = () => {
-    if(isPressed === false){
-        setPressed({null: true})
-    } 
+
+    const nullChecker = () => {
+        if (isPressed === false) {
+            setPressed({ null: true })
+        }
+    }
 
     return (
         <View style={styles.container}>
             <View style={styles.Header}>
                 <TouchableOpacity
-                        onPress={() => navigation.navigate('Home')}
-                    >
-                        <Image
-                            style={styles.btnBack}
-                            source={require('../../assets/images/back.png')}
-                        />
+                    onPress={() => navigation.navigate('Home')}
+                >
+                    <Image
+                        style={styles.btnBack}
+                        source={require('../../assets/images/back.png')}
+                    />
                 </TouchableOpacity>
 
                 <Text style={styles.txtKalkulator}>
-                   Kalkulator Kredit
+                    Kalkulator Kredit
                 </Text>
-           </View>
+            </View>
 
-           <View style={styles.WhiteContainer}>
+            <View style={styles.WhiteContainer}>
                 <Text style={styles.txtModel}>
                     Model Motor
                 </Text>
@@ -69,12 +69,12 @@ const nullChecker = () => {
                         <View>
                             <DropDownPicker
                                 items={[
-                                    {label: '2015', value: '15'},
-                                    {label: '2016', value: '16'},
-                                    {label: '2017', value: '17'},
-                                    {label: '2018', value: '18'},
-                                    {label: '2019', value: '19'},
-                                    {label: '2020', value: '20'}
+                                    { label: '2015', value: '15' },
+                                    { label: '2016', value: '16' },
+                                    { label: '2017', value: '17' },
+                                    { label: '2018', value: '18' },
+                                    { label: '2019', value: '19' },
+                                    { label: '2020', value: '20' }
                                 ]}
                                 defaultNull={nullChecker}
                                 placeholder='Pilih Tahun'
@@ -93,7 +93,7 @@ const nullChecker = () => {
                                 labelStyle={{
                                     marginLeft: normalize(8),
                                     fontSize: normalize(14),
-                                    color:'#7F7F7F',
+                                    color: '#7F7F7F',
                                     fontFamily: 'Montserrat-SemiBold'
                                 }}
                                 arrowStyle={{
@@ -129,7 +129,7 @@ const nullChecker = () => {
                     <Text style={styles.txtDP}>
                         Uang Muka
                     </Text>
-                    
+
                     <View style={styles.txtInpUangMuka}>
                         <TextInput
                             style={styles.txtUangMuka}
@@ -161,6 +161,7 @@ const nullChecker = () => {
 
                 <TouchableOpacity
                     style={styles.btnCount}
+                    onPress={console.log(form)}
                 >
                     <Text style={styles.txtHitung}>
                         Hitung
@@ -171,13 +172,12 @@ const nullChecker = () => {
                     *Harga merupakan kisaran, dan dapat berubah,
                     sewaktu-waktu tanpa pemberitahuan
                 </Text>
-           </View>
+            </View>
         </View>
     )
-  }  
 }
 
-export default Calculator
+export default Calculator;
 
 const styles = StyleSheet.create({
     container: {
@@ -210,7 +210,7 @@ const styles = StyleSheet.create({
     },
 
     WhiteContainer: {
-        width: normalize(350) ,
+        width: normalize(350),
         height: normalize(530),
         marginTop: normalize(14),
         marginBottom: normalize(22),
