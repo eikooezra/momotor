@@ -1,4 +1,4 @@
-import React, {Component} from 'react'
+import React, {useState} from 'react'
 import {
     StyleSheet,
     Image,
@@ -10,20 +10,7 @@ import {
 import SearchInput from 'react-native-search-filter'
 import normalize from 'react-native-normalize';
 
-class Search extends Component {
-
-    constructor(props){
-        super(props)
-        this.state = {
-            searchFocused: false
-        }
-    }
-
-    goToDaftarProduk = () => {
-        this.props.navigation.navigate('JualCepat')
-    }
-
-render() {
+const Search = ({navigation}) => {
     return (
         <View style={styles.container}>
           <StatusBar backgroundColor='#FFFFFF'/>
@@ -42,18 +29,16 @@ render() {
                 </View>
                 
                 <TouchableOpacity
-                    onPress={this.goToDaftarProduk}
+                    onPress={() => navigation.navigate('JualCepat')}
                 >
                     <Text style={styles.txtBatal}>
                         Batal
                     </Text>
                 </TouchableOpacity>
             </View>
-
-
         </View>
     )
-}}
+}
 
 export default Search
 
@@ -100,4 +85,3 @@ const styles = StyleSheet.create({
         color: '#2A77CB'
     }
 })
-

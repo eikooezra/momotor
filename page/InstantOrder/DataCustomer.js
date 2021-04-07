@@ -4,9 +4,10 @@ import DropDownPicker from 'react-native-dropdown-picker';
 import { ScrollView } from 'react-native-gesture-handler';
 import normalize from 'react-native-normalize'
 import { Button, DropDown, Gap, Header, Input, Title } from '../../components/components';
+import ModalDropdown from 'react-native-modal-dropdown';
 
 const DataCustomer = ({ navigation }) => {
-    const[value, setValue] = useState(null);
+    const [value, setValue] = useState(null);
     return (
         <View style={styles.page}>
             <Header title="Instant Order" />
@@ -18,34 +19,63 @@ const DataCustomer = ({ navigation }) => {
                     <Gap height={34} />
                     {/* <Input placeholder="Jenis Kelamin" /> */}
                     <View>
+                        {/* <ModalDropdown
+                            options={[
+                                'Pria',
+                                'Wanita'
+                                // { label: 'Pria', value: 'pria' },
+                                // { label: 'Wanita', value: 'Wanita' }
+                            ]}
+                            defaultValue='Jenis Kelamin'
+                            style={{
+                                paddingHorizontal: 16,
+                                paddingVertical: 15,
+                                borderWidth: 1,
+                                borderRadius: 4,
+                                borderColor: '#EBEBEB',
+                            }}
+                            dropDownStyle={{
+                                backgroundColor: '#FFFFFF',
+                                width: 300
+                            }}
+                            textStyle={{
+                                // paddingHorizontal: 16,
+                                // paddingRight: 290,
+                                fontSize: 15,
+                                color: '#7F7F7F',
+                                fontFamily: 'Montserrat-Medium',
+                            }}
+                            isFullWidth={true}
+                        /> */}
                         <DropDownPicker
                             items={[
                                 { label: 'Pria', value: 'pria' },
                                 { label: 'Wanita', value: 'Wanita' }
                             ]}
-                            // defaultValue={value}
+                            defaultNull
                             placeholder="Jenis Kelamin"
-                            // style={{
-                            //     // paddingVertical: 20
-                            // }}
-                            containerStyle={{
-                                // width: normalize(350),
-                                // height: normalize(46),
-                                // marginLeft: normalize(16),
-                                // marginBottom: normalize(6),
+                            style={{
+                                // paddingHorizontal: 16,
+                                // paddingVertical: 15,
+                                borderWidth: 1,
+                                borderRadius: 4,
+                                borderColor: '#EBEBEB',
                             }}
+                            // containerStyle={{
+                            //     // width: normalize(350),
+                            //     // height: normalize(46),
+                            //     // marginLeft: normalize(16),
+                            //     // marginBottom: normalize(6),
+                            // }}
                             dropDownStyle={{
                                 backgroundColor: '#FFFFFF'
                             }}
                             labelStyle={{
                                 // paddingHorizontal: 16,
-                                paddingRight: 290,
+                                // paddingRight: 290,
                                 fontSize: 15,
                                 color: '#7F7F7F',
                                 fontFamily: 'Montserrat-Medium',
-                            }}
-                            arrowStyle={{
-                                // paddingHorizontal: 16
                             }}
                         />
                     </View>
@@ -142,7 +172,7 @@ const styles = StyleSheet.create({
         height: normalize(46),
         // marginLeft: normalize(16),
         // marginBottom: normalize(6),
-        borderWidth: 2,
+        borderWidth: 1,
         borderRadius: 4,
         borderColor: '#EBEBEB',
     },
@@ -158,7 +188,7 @@ const styles = StyleSheet.create({
         height: normalize(46),
         // marginLeft: normalize(16),
         // marginBottom: normalize(6),
-        borderWidth: 2,
+        borderWidth: 1,
         borderRadius: 4,
         borderColor: '#EBEBEB',
     },

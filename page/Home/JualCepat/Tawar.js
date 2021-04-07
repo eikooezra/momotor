@@ -1,4 +1,4 @@
-import React, {Component} from 'react'
+import React, {useState} from 'react'
 import {
     Text,
     ScrollView,
@@ -11,30 +11,22 @@ import {
 import {SliderBox} from 'react-native-image-slider-box'
 import normalize from 'react-native-normalize';
 
-class Tawar extends Component{
-    constructor(props){
-        super(props)
-        this.state = {
-            images: [
-                require('../../../assets/images/vario.png'),
-                require('../../../assets/images/vario.png'),
-                require('../../../assets/images/vario.png'),
-                require('../../../assets/images/vario.png'),
-                require('../../../assets/images/vario.png')
-            ]
-        }
-    }
+const Tawar = () => {
 
-    goToHasilInspeksi = () =>{
-        this.props.navigation.navigate('InspectResult')
-    }
-
-    render(){
-        return(
+    const [images, setImages] = useState(
+        [
+        require('../../../assets/images/vario.png'),
+        require('../../../assets/images/vario.png'),
+        require('../../../assets/images/vario.png'),
+        require('../../../assets/images/vario.png'),
+        require('../../../assets/images/vario.png')
+    ])
+        
+    return(
          <View style={styles.container}>
              <ScrollView>
                 <SliderBox
-                    images={this.state.images}
+                    images={images}
                     sliderBoxHeight={400}
                 />
 
@@ -66,22 +58,6 @@ class Tawar extends Component{
                         </Text>
                     </View>
                 </View>
-
-                <TouchableOpacity
-                    style={styles.btnHasil}
-                    onPress={this.goToHasilInspeksi}
-                >
-                    <View style={styles.btnHasilContainer}>
-                        <Image
-                            style={styles.imgLoupe}
-                            source={require('../../../assets/images/loupe.png')}
-                        />
-
-                        <Text style={styles.txtHasil}>
-                            HASIL INSPEKSI
-                        </Text>
-                    </View>
-                </TouchableOpacity>
 
                 <View style={styles.whiteBox1}>
                     <Text style={styles.txtInfoMotor}>
@@ -168,7 +144,6 @@ class Tawar extends Component{
              </ScrollView>
          </View>
         )
-    }
 }
 
 export default Tawar
@@ -237,36 +212,6 @@ const styles = StyleSheet.create({
         marginBottom: normalize(12),
         fontSize: normalize(20),
         color: '#0064D0',
-        fontFamily: 'Montserrat-Bold'
-    },
-
-    btnHasil: {
-        width: normalize(348),
-        height: normalize(38),
-        marginLeft: normalize(16),
-        marginBottom: normalize(16),
-        borderRadius: 8,
-        backgroundColor: '#0064D0'
-    },
-
-    btnHasilContainer: {
-        flexDirection: 'row',
-    },
-
-    imgLoupe: {
-        width: normalize(20),
-        height: normalize(20),
-        marginTop: normalize(10),
-        marginLeft: normalize(117),
-    },
-
-    txtHasil: {
-        width: normalize(120),
-        height: normalize(18),
-        marginTop: normalize(10),
-        marginLeft: normalize(6),
-        fontSize: normalize(14.5),
-        color: '#FFFFFF',
         fontFamily: 'Montserrat-Bold'
     },
 

@@ -1,4 +1,4 @@
-import React, {Component} from 'react'
+import React, {useState} from 'react'
 import {
     StyleSheet,
     Image,
@@ -9,30 +9,12 @@ import {
 } from 'react-native'
 import normalize from 'react-native-normalize';
 
-class JualCepat extends Component {
-
-goBack = () => {
-    this.props.navigation.navigate('Home')
-}
-
-goToSearch = () => {
-    this.props.navigation.navigate('SearchFst')
-}
-
-goToHistory = () => {
-    this.props.navigation.navigate('HistoryFst')
-}
-
-goToTawar = () => {
-    this.props.navigation.navigate('Tawar')
-}
-
-render() {
+const JualCepat = ({navigation}) => {
     return (
         <View>
            <View style={styles.Header}>
                 <TouchableOpacity
-                        onPress={this.goBack}
+                        onPress={() => navigation.navigate('Home')}
                     >
                         <Image
                             style={styles.btnBack}
@@ -46,7 +28,7 @@ render() {
 
             <View style={styles.btnWrapper}>
                 <TouchableOpacity
-                    onPress={this.goToSearch}
+                    onPress={() => navigation.navigate('SearchFst')}
                 >
                     <Image
                         style={styles.btnSearch}
@@ -55,7 +37,7 @@ render() {
                 </TouchableOpacity>
 
                 <TouchableOpacity
-                    onPress={this.goToHistory}
+                    onPress={() => navigation.navigate('HistoryFst')}
                 >
                     <Image
                         style={styles.btnHistory}
@@ -98,7 +80,7 @@ render() {
 
                <TouchableOpacity 
                style={styles.btnTawar}
-               onPress={this.goToTawar}
+               onPress={() => navigation.navigate('Tawar')}
                >
                    <Text style={styles.txtTawar}>
                        Tawar
@@ -138,7 +120,7 @@ render() {
 
                <TouchableOpacity 
                style={styles.btnTawar}
-               onPress={this.goToTawar}
+               onPress={() => navigation.navigate('Tawar')}
                >
                    <Text style={styles.txtTawar}>
                        Tawar
@@ -148,7 +130,7 @@ render() {
         </ScrollView>
         </View>
     )
-}}
+}
 
 export default JualCepat
 

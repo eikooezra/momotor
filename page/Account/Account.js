@@ -128,7 +128,7 @@ const Account = ({navigation}) => {
       </TouchableOpacity>
 
       <Text style={styles.txtVer}>
-        App version prototype
+        App version 0.0
       </Text>
     </View>
 
@@ -224,7 +224,7 @@ const styles = StyleSheet.create({
 
     txtAddress: {
       width: normalize(170),
-      height: normalize(34),
+      height: normalize(40),
       fontSize: normalize(12),
       marginLeft: normalize(9),
       color: '#7F7F7F',

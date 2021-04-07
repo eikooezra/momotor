@@ -1,4 +1,4 @@
-import React, {Component} from 'react'
+import React, {useState} from 'react'
 import {
     StyleSheet,
     Image,
@@ -9,18 +9,13 @@ import {
 } from 'react-native'
 import normalize from 'react-native-normalize';
 
-class HistoryFst extends Component {
+const HistoryFst = ({navigation}) => {
 
-goBack = () => {
-    this.props.navigation.navigate('Home')
-}
-
-render() {
     return (
         <View style={styles.container}>
            <View style={styles.Header}>
                 <TouchableOpacity
-                        onPress={this.goBack}
+                        onPress={() => navigation.navigate('JualCepat')}
                     >
                         <Image
                             style={styles.btnBack}
@@ -161,7 +156,7 @@ render() {
         </ScrollView>
         </View>
     )
-}}
+}
 
 export default HistoryFst
 
@@ -249,7 +244,4 @@ const styles = StyleSheet.create({
         color: '#3CB13C',
         fontFamily: 'Montserrat-Bold'
     },
-
-
-
 })
