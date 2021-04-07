@@ -23,8 +23,17 @@ const Login = ({ navigation }) => {
     const login = () => {
         console.log('form: ', form)
         Fire.auth().signInWithEmailAndPassword(form.email, form.password)
-        .then(res => {
-            console.log('success: ', res)
+        .then(success => {
+            const data = {
+                fullName: '',
+                phoneNo: '',
+                address: ''
+            }
+            Fire
+            .database()
+            .ref('users/' + success.user.uid + '/')
+            .set(data);
+            console.log('success: ', success)
             navigation.navigate('Home')
         })
         .catch(err => {

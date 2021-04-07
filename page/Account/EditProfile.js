@@ -1,4 +1,4 @@
-import React, {Component} from 'react'
+import React, {useState} from 'react'
 import {
   StyleSheet,
   TouchableOpacity,
@@ -10,99 +10,27 @@ import {
 } from 'react-native'
 import { TextInput } from 'react-native-gesture-handler'
 import normalize from 'react-native-normalize'
-import axios from 'axios'
+import {useForm} from '../../utils/utils'
 
-class EditProfile extends Component{
-    constructor(props){
-        super(props)
-        this.state = {
-         dealername: '',
-         isNameFilled: false,
-         errorName: '',
-         address: '',
-         isAddressFilled: false,
-         errorAddress: '',
-         email: '',
-         isEmaillFilled: false,
-         errorEmail: '',
-         phone: '',
-         isPhoneFilled: false,
-         errorPhone: '',
-        }
-    }
-    
-goToAccount = () => {
-    this.props.navigation.navigate('Account')
-  }
+const EditProfile = ({navigation}) => {
 
-dataSaved = () => {
-    this.props.navigation.navigate('Account')
+const [form, setForm] = useForm({
+    dealername: '',
+    address: '',
+    email: '',
+    phone: ''
+})
+
+const dataSaved = () => {
+    navigation.navigate('Account')
     alert('Data berhasil diubah!')
 }
-
-handleChangeName = (dealername) => {
-    this.setState({dealername})
-    let reg = /([^\s])/
-    if(reg.test(dealername) === true){
-        this.setState({isNameFilled: true, errorName: ''})
-    }else{
-        this.setState({errorName: 'Tidak boleh kosong'})
-    }
-}
-
-handleChangeAddress = (address) => {
-    this.setState({address})
-    let reg = /([^\s])/
-    if(reg.test(address) === true){
-        this.setState({isAddressFilled: true, errorAddress: ''})
-    }else{
-        this.setState({errorAddress: 'Tidak boleh kosong'})
-    }
-}
-
-handleChangePhone = (phone) => {
-    this.setState({phone})
-    if(phone.length >= 11){
-        this.setState({isPhoneFilled: true, errorPhone: ''})
-    }else{
-        this.setState({errorPhone: 'Minimal 11 karakter'})
-    }
-}
-
-handleChangeEmail = (email) => {
-    this.setState({email});
-    let reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/
-
-    if (reg.test(email) === true) {
-        this.setState({isEmailFilled: true, errorEmail: ''})
-    } else {
-        this.setState({errorEmail: 'Format: Example@adira.com'})
-    }
-}
-
-
-render(){
-    const{
-        dealername,
-        address,
-        phone,
-        email
-     } = this.state
-
-     let emailReg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/
-     let emptyReg = /([^\s])/
-
-     const enabled = 
-     (emptyReg.test(dealername) === true) &&
-     phone.length >= 11 &&
-     (emailReg.test(email) === true) &&
-     (emptyReg.test(address) === true)
 
     return(
     <View style={styles.container}>
         <View style={styles.Header}>
          <TouchableOpacity
-            onPress={this.goToAccount}
+            onPress={() => navigation.navigate('Account')}
          >
           <Image 
               style={styles.btnBack}
@@ -123,8 +51,8 @@ render(){
             <TextInput
                 style={styles.txtinName}
                 returnKeyType='next'
-                value={this.state.dealername}
-                onChangeText={dealername => this.handleChangeName(dealername)}
+                value={form.dealername}
+                onChangeText={value => setForm('dealername', value)}
             />
           </View>
 
@@ -136,8 +64,8 @@ render(){
             <TextInput
                 style={styles.txtinAddress}
                 returnKeyType='next'
-                value={this.state.address}
-                onChangeText={address => this.handleChangeAddress(address)}
+                value={form.address}
+                onChangeText={value => ('address', value)}
             />
           </View>
 
@@ -151,8 +79,8 @@ render(){
                 keyboardType={'numeric'}
                 returnKeyType='next'
                 maxLength={13}
-                value={this.state.phone}
-                onChangeText={phone => this.handleChangePhone(phone)}
+                value={form.phone}
+                onChangeText={value => ('phone', value)}
             />
           </View>
 
@@ -165,15 +93,15 @@ render(){
                 style={styles.txtinEmail}
                 keyboardType='email-address'
                 returnKeyType='next'
-                value={this.state.email}
-                onChangeText={email => this.handleChangeEmail(email)}
+                value={form.email}
+                onChangeText={value => ('email', value)}
             />
           </View>
 
             <View style={styles.Areabtn}>
                 <TouchableOpacity
                     style={styles.btnSave}
-                    onPress={this.dataSaved}
+                    onPress={dataSaved}
                    // disabled = {!enabled}
                 >
                     <Text style={styles.txtSave}>
@@ -184,7 +112,6 @@ render(){
         </View>
   </View>
         )
-    }
 }
 
 export default EditProfile
