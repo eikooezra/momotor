@@ -10,6 +10,7 @@ import normalize from 'react-native-normalize'
 import Login from './page/Login'
 import Forgot from './page/Forgot'
 import Logout from './page/Logout'
+import Register from './page/Register'
 
 import Home from './page/Home/Home'
 
@@ -574,6 +575,7 @@ class App extends Component {
           <Stack.Screen name='Terms' component={Terms}/>
           <Stack.Screen name='FAQ' component={FAQ}/>
           <Stack.Screen name='Logout' component={Logout}/>
+          <Stack.Screen name='Register' component={Register}/>
         </Stack.Navigator>
       </NavigationContainer>
     )

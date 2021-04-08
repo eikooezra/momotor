@@ -23,22 +23,22 @@ const Login = ({ navigation }) => {
     const login = () => {
         console.log('form: ', form)
         Fire.auth().signInWithEmailAndPassword(form.email, form.password)
-        .then(success => {
-            const data = {
-                fullName: '',
-                phoneNo: '',
-                address: ''
-            }
-            Fire
-            .database()
-            .ref('users/' + success.user.uid + '/')
-            .set(data);
-            console.log('success: ', success)
-            navigation.navigate('Home')
-        })
-        .catch(err => {
-            console.log('error: ', err)
-        })
+            .then(success => {
+                const data = {
+                    fullName: '',
+                    phoneNo: '',
+                    address: ''
+                }
+                Fire
+                    .database()
+                    .ref('users/' + success.user.uid + '/')
+                    .set(data);
+                console.log('success: ', success)
+                navigation.navigate('Home')
+            })
+            .catch(err => {
+                console.log('error: ', err)
+            })
     }
 
     const [press, setPress] = useState(false)
@@ -129,6 +129,14 @@ const Login = ({ navigation }) => {
                     </Text>
                         </TouchableOpacity>
                     </View>
+                    <View style={styles.registerArea}>
+                        <TouchableOpacity
+                            onPress={() => navigation.navigate('Register')}>
+                            <Text style={styles.txtSandi}>
+                                Buat akun baru
+                    </Text>
+                        </TouchableOpacity>
+                    </View>
                 </View>
             </View>
         </KeyboardAvoidingView>
@@ -210,6 +218,14 @@ const styles = StyleSheet.create({
         alignSelf: 'center',
         justifyContent: 'center',
         marginBottom: 24
+    },
+
+    registerArea: {
+        alignSelf: 'center',
+        justifyContent: 'center',
+        marginBottom: 24,
+        paddingHorizontal: 70,
+        textAlign: 'justify'
     },
 
     dealerArea: {
