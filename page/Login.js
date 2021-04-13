@@ -22,17 +22,18 @@ const Login = ({ navigation }) => {
 
     const login = () => {
         console.log('form: ', form)
-        Fire.auth().signInWithEmailAndPassword(form.email, form.password)
+        Fire.auth()
+            .signInWithEmailAndPassword(form.email, form.password)
             .then(success => {
-                const data = {
-                    fullName: '',
-                    phoneNo: '',
-                    address: ''
-                }
-                Fire
-                    .database()
-                    .ref('users/' + success.user.uid + '/')
-                    .set(data);
+                // const data = {
+                //     fullName: '',
+                //     phoneNo: '',
+                //     address: ''
+                // }
+                // Fire
+                //     .database()
+                //     .ref('users/' + success.user.uid + '/')
+                //     .set(data);
                 console.log('success: ', success)
                 navigation.navigate('Home')
             })

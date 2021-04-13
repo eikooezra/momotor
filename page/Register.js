@@ -1,35 +1,90 @@
 import React from 'react';
-import {StyleSheet, View, Text} from 'react-native';
+import { StyleSheet, View, Text } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 import { Button, Gap, Header, Input } from '../components/components';
+import { Fire } from '../config';
+import { useForm } from '../utils/utils';
 
-const Register = ({navigation}) => {
-  return (
-    <View style={styles.container}>
-        <Header title="Register" back onPress={() => navigation.goBack()}/>
-        <Gap height={8}/>
-        <View style={styles.content}>
-            <ScrollView showsVerticalScrollIndicator={false}>
-                <Gap height={34} />
-                <Input placeholder="Nama Lengkap"/>
-                <Gap height={34} />
-                <Input placeholder="Nomor HP"/>
-                <Gap height={34} />
-                <Input placeholder="Alamat"/>
-                <Gap height={34} />
-                <Input placeholder="Email"/>
-                <Gap height={34} />
-                <Input placeholder="Password"/>
-                <Gap height={34} />
-                <Button
-                    onPress={() => navigation.navigate('Home')}
-                    title="SELANJUTNYA"
-                />
-                <Gap height={18} />
-            </ScrollView>
+const Register = ({ navigation }) => {
+    const [form, setForm] = useForm({
+        fullName: '',
+        phoneNo: '',
+        address: '',
+        email: '',
+        password: ''
+    })
+
+    const onContinue = () => {
+        console.log('form: ', form)
+        Fire.auth()
+            .createUserWithEmailAndPassword(form.email, form.password)
+            .then((success) => {
+                const data = {
+                    fullName: form.fullName,
+                    phoneNo: form.phoneNo,
+                    address: form.address,
+                    email: form.email,
+                  }
+          
+                  Fire
+                    .database()
+                    .ref('users/' + success.user.uid + '/')
+                    .set(data)
+                
+                console.log('register success: ', success)
+            })
+            .catch((err) => {
+                console.log('error: ', err)
+            })
+        // navigation.navigate('Home')
+    }
+    return (
+        <View style={styles.container}>
+            <Header title="Register" back onPress={() => navigation.goBack()} />
+            <Gap height={8} />
+            <View style={styles.content}>
+                <ScrollView showsVerticalScrollIndicator={false}>
+                    <Gap height={34} />
+                    <Input
+                        placeholder="Nama Lengkap"
+                        value={form.fullName}
+                        onChangeText={value => setForm('fullName', value)}
+                    />
+                    <Gap height={34} />
+                    <Input
+                        placeholder="Nomor HP"
+                        type="numeric"
+                        value={form.phoneNo}
+                        onChangeText={value => setForm('phoneNo', value)}
+                    />
+                    <Gap height={34} />
+                    <Input
+                        placeholder="Alamat"
+                        value={form.address}
+                        onChangeText={value => setForm('address', value)}
+                    />
+                    <Gap height={34} />
+                    <Input
+                        placeholder="Email"
+                        value={form.email}
+                        onChangeText={value => setForm('email', value)}
+                    />
+                    <Gap height={34} />
+                    <Input
+                        placeholder="Password"
+                        value={form.password}
+                        onChangeText={value => setForm('password', value)}
+                    />
+                    <Gap height={34} />
+                    <Button
+                        onPress={onContinue}
+                        title="SELANJUTNYA"
+                    />
+                    <Gap height={18} />
+                </ScrollView>
+            </View>
         </View>
-    </View>
-  );
+    );
 };
 
 export default Register;
