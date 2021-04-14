@@ -4,7 +4,6 @@ import DropDownPicker from 'react-native-dropdown-picker';
 import { ScrollView } from 'react-native-gesture-handler';
 import normalize from 'react-native-normalize'
 import { Button, DropDown, Gap, Header, Input, Title } from '../../components/components';
-import ModalDropdown from 'react-native-modal-dropdown';
 
 const DataCustomer = ({ navigation }) => {
     const [value, setValue] = useState(null);
