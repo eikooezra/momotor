@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, { useState } from 'react'
 import {
   StyleSheet,
   TouchableOpacity,
@@ -8,348 +8,348 @@ import {
 } from 'react-native'
 import normalize from 'react-native-normalize'
 
-const Account = ({navigation}) => {
-    return(
+const Account = ({ navigation, route }) => {
+  const {fullName, phoneNo, address} = route.params;
+  return (
     <View style={styles.container}>
-        <View style={styles.Header}>
-          <View style={styles.insideHeader}>
-            <Image 
-                style={styles.momotor}
-                source={require('../../assets/images/Momotor.id.png')}
+      <View style={styles.Header}>
+        <View style={styles.insideHeader}>
+          <Image
+            style={styles.momotor}
+            source={require('../../assets/images/Momotor.id.png')}
+          />
+
+          <TouchableOpacity
+            onPress={() => navigation.navigate('Settings')}
+          >
+            <Image
+              style={styles.btnSettings}
+              source={require('../../assets/images/settings.png')}
             />
+          </TouchableOpacity>
+        </View>
+        <View style={styles.upperBar}>
+          <Image
+            style={styles.dealerLogo}
+            source={require('../../assets/images/dealer1.png')}
+          />
 
-            <TouchableOpacity
-              onPress={() => navigation.navigate('Settings')}
-            >
-              <Image
-                style={styles.btnSettings}
-                source={require('../../assets/images/settings.png')}
-              />
-            </TouchableOpacity>
-          </View>
-          <View style={styles.upperBar}>
-              <Image
-                style={styles.dealerLogo}
-                source={require('../../assets/images/dealer1.png')}
-              />
-              
-              <View style={styles.infoArea}>
-                <Text style={styles.name}>
-                  Zemly Octo Pratama
+          <View style={styles.infoArea}>
+            <Text style={styles.name}>
+              {fullName}
                 </Text>
 
-                <Text style={styles.phone}>
-                  +6281234567890
+            <Text style={styles.phone}>
+              {phoneNo}
                 </Text>
 
-                <View style={styles.address}>
-                  <Image
-                  style={styles.imgLoc}
-                  source={require('../../assets/images/location.png')}
-                  />
+            <View style={styles.address}>
+              <Image
+                style={styles.imgLoc}
+                source={require('../../assets/images/location.png')}
+              />
 
-                  <Text style={styles.txtAddress}>
-                    Jl. Kemanggisan Raya 15, Jakarta
-                    Barat, DKI Jakarta, Indonesia
+              <Text style={styles.txtAddress}>
+                {address}
                   </Text>
-                </View>
-              </View>
-              
-              <TouchableOpacity
-                onPress={() => navigation.navigate('EditProfile')}
-              >
-                <Image
-                 style={styles.btnEdit}
-                 source={require('../../assets/images/edit.png')}
-                />
-              </TouchableOpacity>
+            </View>
           </View>
-    </View>
 
-    <View style={styles.middle}>
-      <TouchableOpacity style={styles.btnAbout}
-        onPress={() => navigation.navigate('About')}
-      >
-        <Image
-        style={styles.imgAbout}
-        source={require('../../assets/images/about.png')}
-        />
+          <TouchableOpacity
+            onPress={() => navigation.navigate('EditProfile')}
+          >
+            <Image
+              style={styles.btnEdit}
+              source={require('../../assets/images/edit.png')}
+            />
+          </TouchableOpacity>
+        </View>
+      </View>
 
-        <Text style={styles.txtAbout}>
-          Tentang Kami
+      <View style={styles.middle}>
+        <TouchableOpacity style={styles.btnAbout}
+          onPress={() => navigation.navigate('About')}
+        >
+          <Image
+            style={styles.imgAbout}
+            source={require('../../assets/images/about.png')}
+          />
+
+          <Text style={styles.txtAbout}>
+            Tentang Kami
         </Text>
-      </TouchableOpacity>
+        </TouchableOpacity>
 
-      <TouchableOpacity style={styles.btnPrivacy}
-        onPress={() => navigation.navigate('PrivacyPolicy')}
-      >
-        <Image
-        style={styles.imgPrivacy}
-        source={require('../../assets/images/privacypolicy.png')}
-        />
+        <TouchableOpacity style={styles.btnPrivacy}
+          onPress={() => navigation.navigate('PrivacyPolicy')}
+        >
+          <Image
+            style={styles.imgPrivacy}
+            source={require('../../assets/images/privacypolicy.png')}
+          />
 
-        <Text style={styles.txtPrivacy}>
-          Kebijakan Privasi
+          <Text style={styles.txtPrivacy}>
+            Kebijakan Privasi
         </Text>
-      </TouchableOpacity>
+        </TouchableOpacity>
 
-      <TouchableOpacity style={styles.btnTerms}
-        onPress={() => navigation.navigate('Terms')}
-      >
-        <Image
-        style={styles.imgTerms}
-        source={require('../../assets/images/termscondition.png')}
-        />
+        <TouchableOpacity style={styles.btnTerms}
+          onPress={() => navigation.navigate('Terms')}
+        >
+          <Image
+            style={styles.imgTerms}
+            source={require('../../assets/images/termscondition.png')}
+          />
 
-        <Text style={styles.txtTerms}>
-          Syarat dan Ketentuan
+          <Text style={styles.txtTerms}>
+            Syarat dan Ketentuan
         </Text>
-      </TouchableOpacity>
+        </TouchableOpacity>
 
-      <TouchableOpacity style={styles.btnFaq}
-        onPress={() => navigation.navigate('FAQ')}
-      >
-        <Image
-        style={styles.imgFaq}
-        source={require('../../assets/images/faq.png')}
-        />
+        <TouchableOpacity style={styles.btnFaq}
+          onPress={() => navigation.navigate('FAQ')}
+        >
+          <Image
+            style={styles.imgFaq}
+            source={require('../../assets/images/faq.png')}
+          />
 
-        <Text style={styles.txtFaq}>
-          Pertanyaan Umum
+          <Text style={styles.txtFaq}>
+            Pertanyaan Umum
         </Text>
-      </TouchableOpacity>
+        </TouchableOpacity>
 
-      <TouchableOpacity
-        onPress={() => navigation.navigate('Logout')}
-      >
-        <Text style={styles.txtKeluar}>
-          Keluar
+        <TouchableOpacity
+          onPress={() => navigation.navigate('Logout')}
+        >
+          <Text style={styles.txtKeluar}>
+            Keluar
         </Text>
-      </TouchableOpacity>
+        </TouchableOpacity>
 
-      <Text style={styles.txtVer}>
-        App version 0.0
+        <Text style={styles.txtVer}>
+          App version 0.0
       </Text>
-    </View>
+      </View>
 
-  
-  </View>
-      )
+
+    </View>
+  )
 }
 
 export default Account
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: '#FFFFFF'
-    },
+  container: {
+    flex: 1,
+    backgroundColor: '#FFFFFF'
+  },
 
-    Header: {
-        width: normalize(380),
-        height: normalize(130),
-        marginBottom: normalize(104),
-        borderBottomLeftRadius: normalize(25),
-        borderBottomRightRadius: normalize(25),
-        backgroundColor: '#0064D0',
-    },
+  Header: {
+    width: normalize(380),
+    height: normalize(130),
+    marginBottom: normalize(104),
+    borderBottomLeftRadius: normalize(25),
+    borderBottomRightRadius: normalize(25),
+    backgroundColor: '#0064D0',
+  },
 
-    insideHeader: {
-      flexDirection: 'row'
-    },
+  insideHeader: {
+    flexDirection: 'row'
+  },
 
-    momotor: {
-        width: normalize(145),
-        height: normalize(24),
-        marginTop: normalize(40),
-        marginBottom: normalize(22.13),
-        marginLeft: normalize(16),
-        marginRight: normalize(185)
-    },
+  momotor: {
+    width: normalize(145),
+    height: normalize(24),
+    marginTop: normalize(40),
+    marginBottom: normalize(22.13),
+    marginLeft: normalize(16),
+    marginRight: normalize(185)
+  },
 
-    btnSettings: {
-      width: normalize(20),
-      height: normalize(20),
-      marginTop: normalize(40),
-    },
-    
-    upperBar: {
-        height: normalize(120),
-        borderRadius: 10,
-        marginLeft: normalize(16),
-        marginRight: normalize(16),
-        elevation: 5,
-        backgroundColor: '#FFFFFF',
-        justifyContent: 'space-between',
-        flexDirection: 'row'
-    },
+  btnSettings: {
+    width: normalize(20),
+    height: normalize(20),
+    marginTop: normalize(40),
+  },
 
-    dealerLogo: {
-        width: normalize(84),
-        height: normalize(84),
-        marginTop: normalize(16),
-        marginBottom: normalize(41),
-        marginLeft: normalize(20)
-    },
+  upperBar: {
+    height: normalize(120),
+    borderRadius: 10,
+    marginLeft: normalize(16),
+    marginRight: normalize(16),
+    elevation: 5,
+    backgroundColor: '#FFFFFF',
+    justifyContent: 'space-between',
+    flexDirection: 'row'
+  },
 
-    infoArea:{
-      marginLeft: normalize(10)
-    },
+  dealerLogo: {
+    width: normalize(84),
+    height: normalize(84),
+    marginTop: normalize(16),
+    marginBottom: normalize(41),
+    marginLeft: normalize(20)
+  },
 
-    name: {
-        width: normalize(174),
-        height: normalize(20),
-        marginTop: normalize(16),
-        marginBottom: normalize(8),
-        fontSize: normalize(16),
-        fontFamily: 'Montserrat-SemiBold'
-    },
+  infoArea: {
+    marginLeft: normalize(10)
+  },
 
-    phone: {
-        width: normalize(116),
-        height: normalize(18),
-        marginBottom: normalize(8),
-        fontSize: normalize(14),
-        fontFamily: 'Montserrat-Medium'
-    },
+  name: {
+    width: normalize(174),
+    height: normalize(20),
+    marginTop: normalize(16),
+    marginBottom: normalize(8),
+    fontSize: normalize(16),
+    fontFamily: 'Montserrat-SemiBold'
+  },
 
-    address: {
-      flexDirection: 'row'
-    },
+  phone: {
+    width: normalize(116),
+    height: normalize(18),
+    marginBottom: normalize(8),
+    fontSize: normalize(14),
+    fontFamily: 'Montserrat-Medium'
+  },
 
-    imgLoc: {
-      width: normalize(10),
-      height: normalize(13)
-    },
+  address: {
+    flexDirection: 'row'
+  },
 
-    txtAddress: {
-      width: normalize(170),
-      height: normalize(40),
-      fontSize: normalize(12),
-      marginLeft: normalize(9),
-      color: '#7F7F7F',
-      fontFamily: 'Montserrat-Medium'
-    },
+  imgLoc: {
+    width: normalize(10),
+    height: normalize(13)
+  },
 
-    btnEdit: {
-        width: normalize(34),
-        height: normalize(34),
-        marginTop: normalize(6),
-        marginBottom: normalize(91),
-        marginRight: normalize(7),
-    },
+  txtAddress: {
+    width: normalize(170),
+    height: normalize(40),
+    fontSize: normalize(12),
+    marginLeft: normalize(9),
+    color: '#7F7F7F',
+    fontFamily: 'Montserrat-Medium'
+  },
 
-    btnAbout: {
-      flexDirection: 'row',
-      borderBottomWidth: 1,
-      borderBottomColor: '#E3DFDF',
-      marginBottom: normalize(17),
-      marginLeft: normalize(25),
-      marginRight: normalize(25)
-    },
+  btnEdit: {
+    width: normalize(34),
+    height: normalize(34),
+    marginTop: normalize(6),
+    marginBottom: normalize(91),
+    marginRight: normalize(7),
+  },
 
-    imgAbout: {
-      width: normalize(35),
-      height: normalize(25),
-    },
+  btnAbout: {
+    flexDirection: 'row',
+    borderBottomWidth: 1,
+    borderBottomColor: '#E3DFDF',
+    marginBottom: normalize(17),
+    marginLeft: normalize(25),
+    marginRight: normalize(25)
+  },
 
-    txtAbout: {
-      width: normalize(200),
-      height: normalize(21),
-      marginLeft: normalize(16),
-      marginBottom: normalize(18),
-      fontSize: normalize(16),
-      fontFamily: 'Montserrat-Medium'
-    },
+  imgAbout: {
+    width: normalize(35),
+    height: normalize(25),
+  },
 
-    btnPrivacy: {
-      flexDirection: 'row',
-      borderBottomWidth: 1,
-      borderBottomColor: '#E3DFDF',
-      marginBottom: normalize(16),
-      marginLeft: normalize(25),
-      marginRight: normalize(25)
-    },
+  txtAbout: {
+    width: normalize(200),
+    height: normalize(21),
+    marginLeft: normalize(16),
+    marginBottom: normalize(18),
+    fontSize: normalize(16),
+    fontFamily: 'Montserrat-Medium'
+  },
 
-    imgPrivacy: {
-      width: normalize(21),
-      height: normalize(25),
-      marginLeft: normalize(6)
-    },
+  btnPrivacy: {
+    flexDirection: 'row',
+    borderBottomWidth: 1,
+    borderBottomColor: '#E3DFDF',
+    marginBottom: normalize(16),
+    marginLeft: normalize(25),
+    marginRight: normalize(25)
+  },
 
-    txtPrivacy: {
-      width: normalize(300),
-      height: normalize(20),
-      marginLeft: normalize(24),
-      marginBottom: normalize(18),
-      fontSize: normalize(16),
-      fontFamily: 'Montserrat-Medium'
-    },
+  imgPrivacy: {
+    width: normalize(21),
+    height: normalize(25),
+    marginLeft: normalize(6)
+  },
 
-    btnTerms: {
-      flexDirection: 'row',
-      borderBottomWidth: 1,
-      borderBottomColor: '#E3DFDF',
-      marginBottom: normalize(17),
-      marginLeft: normalize(25),
-      marginRight: normalize(25)
-    },
+  txtPrivacy: {
+    width: normalize(300),
+    height: normalize(20),
+    marginLeft: normalize(24),
+    marginBottom: normalize(18),
+    fontSize: normalize(16),
+    fontFamily: 'Montserrat-Medium'
+  },
 
-    imgTerms: {
-      width: normalize(25),
-      height: normalize(26),
-      marginLeft: normalize(7)
-    },
+  btnTerms: {
+    flexDirection: 'row',
+    borderBottomWidth: 1,
+    borderBottomColor: '#E3DFDF',
+    marginBottom: normalize(17),
+    marginLeft: normalize(25),
+    marginRight: normalize(25)
+  },
 
-    txtTerms: {
-      width: normalize(200),
-      height: normalize(20),
-      marginLeft: normalize(20),
-      marginBottom: normalize(18),
-      fontSize: normalize(16),
-      fontFamily: 'Montserrat-Medium'
-    },
+  imgTerms: {
+    width: normalize(25),
+    height: normalize(26),
+    marginLeft: normalize(7)
+  },
 
-    btnFaq: {
-      flexDirection: 'row',
-      borderBottomWidth: 1,
-      borderBottomColor: '#E3DFDF',
-      marginBottom: normalize(102),
-      marginLeft: normalize(25),
-      marginRight: normalize(25)
-    }, 
+  txtTerms: {
+    width: normalize(200),
+    height: normalize(20),
+    marginLeft: normalize(20),
+    marginBottom: normalize(18),
+    fontSize: normalize(16),
+    fontFamily: 'Montserrat-Medium'
+  },
 
-    imgFaq: {
-      width: normalize(30),
-      height: normalize(23),
-      marginLeft: normalize(6)
-    },
+  btnFaq: {
+    flexDirection: 'row',
+    borderBottomWidth: 1,
+    borderBottomColor: '#E3DFDF',
+    marginBottom: normalize(102),
+    marginLeft: normalize(25),
+    marginRight: normalize(25)
+  },
 
-    txtFaq: {
-      width: normalize(200),
-      height: normalize(20),
-      marginLeft: normalize(17),
-      marginBottom: normalize(18),
-      fontSize: normalize(16),
-      fontFamily: 'Montserrat-Medium'
-    },
+  imgFaq: {
+    width: normalize(30),
+    height: normalize(23),
+    marginLeft: normalize(6)
+  },
 
-    txtKeluar: {
-      width: normalize(400),
-      height: normalize(20), 
-      fontSize: normalize(16),
-      marginBottom: normalize(5),
-      marginLeft: normalize(170),
-      color: '#0064D0',
-      fontFamily: 'Montserrat-SemiBold'
-    },
+  txtFaq: {
+    width: normalize(200),
+    height: normalize(20),
+    marginLeft: normalize(17),
+    marginBottom: normalize(18),
+    fontSize: normalize(16),
+    fontFamily: 'Montserrat-Medium'
+  },
 
-    txtVer: {
-      width: normalize(400),
-      height: normalize(20),
-      fontSize: normalize(14),
-      marginLeft: normalize(145),
-      color: '#7F7F7F',
-      fontFamily: 'Montserrat-Medium',
-    }
+  txtKeluar: {
+    width: normalize(400),
+    height: normalize(20),
+    fontSize: normalize(16),
+    marginBottom: normalize(5),
+    marginLeft: normalize(170),
+    color: '#0064D0',
+    fontFamily: 'Montserrat-SemiBold'
+  },
+
+  txtVer: {
+    width: normalize(400),
+    height: normalize(20),
+    fontSize: normalize(14),
+    marginLeft: normalize(145),
+    color: '#7F7F7F',
+    fontFamily: 'Montserrat-Medium',
+  }
 })

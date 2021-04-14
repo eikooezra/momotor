@@ -556,6 +556,7 @@ class App extends Component {
         <Stack.Navigator initialRouteName='Login' screenOptions={{headerShown:false}}>
           <Stack.Screen name='Login' component={Login}/>
           <Stack.Screen name='Forgot' component={Forgot}/>
+          <Stack.Screen name='Account' component={Account}/>
           <Stack.Screen name='Home' component={TabScreen}/>
           <Stack.Screen name='SearchPrd' component={SearchPrd}/>
           <Stack.Screen name='SearchOrd' component={SearchOrd}/>

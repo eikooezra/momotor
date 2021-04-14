@@ -24,19 +24,19 @@ const Register = ({ navigation }) => {
                     phoneNo: form.phoneNo,
                     address: form.address,
                     email: form.email,
-                  }
-          
-                  Fire
+                }
+
+                Fire
                     .database()
                     .ref('users/' + success.user.uid + '/')
                     .set(data)
-                
+
+                navigation.navigate('Home', data)
                 console.log('register success: ', success)
             })
             .catch((err) => {
                 console.log('error: ', err)
             })
-        // navigation.navigate('Home')
     }
     return (
         <View style={styles.container}>
