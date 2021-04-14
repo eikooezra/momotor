@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, View, Text } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
-import { Button, Gap, Header, Input } from '../components/components';
+import { Button2, Gap, Header, Input } from '../components/components';
 import { Fire } from '../config';
 import { useForm } from '../utils/utils';
 
@@ -76,10 +76,12 @@ const Register = ({ navigation }) => {
                         onChangeText={value => setForm('password', value)}
                     />
                     <Gap height={34} />
-                    <Button
-                        onPress={onContinue}
-                        title="SELANJUTNYA"
-                    />
+                    <View style={styles.btnArea}>
+                        <Button2
+                            onPress={onContinue}
+                            title="DAFTAR"
+                        />
+                    </View>
                     <Gap height={18} />
                 </ScrollView>
             </View>
@@ -98,5 +100,9 @@ const styles = StyleSheet.create({
         flex: 1,
         padding: 16,
         paddingTop: 0,
+    },
+    btnArea: {
+        justifyContent: 'center',
+        alignSelf: 'center'
     },
 });

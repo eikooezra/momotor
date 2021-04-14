@@ -7,11 +7,13 @@ import {
     TouchableOpacity,
     StyleSheet,
     Image,
+    StatusBar
 } from 'react-native'
 import normalize from 'react-native-normalize';
 import LinearGradient from 'react-native-linear-gradient'
 import { useForm } from '../utils/utils'
 import { Fire } from '../config'
+import { Button2 } from '../components/components';
 
 const Login = ({ navigation }) => {
 
@@ -55,6 +57,7 @@ const Login = ({ navigation }) => {
 
     return (
         <KeyboardAvoidingView style={styles.container} behavior="position">
+            <StatusBar backgroundColor='#0064D0'/>
             <View style={styles.split1}>
                 <LinearGradient colors={['#0A4D96', '#1E87F8']}>
                     <Image style={styles.logo}
@@ -112,14 +115,10 @@ const Login = ({ navigation }) => {
                     </Text>}
 
                     <View style={styles.btnArea}>
-                        <TouchableOpacity style={styles.btnMasuk}
+                        <Button2
                             onPress={login}
-                        // disabled={!enabled}
-                        >
-                            <Text style={styles.txtMasuk}>
-                                MASUK
-                    </Text>
-                        </TouchableOpacity>
+                            title='MASUK'
+                        />
                     </View>
 
                     <View style={styles.sandiArea}>
@@ -181,7 +180,7 @@ const styles = StyleSheet.create({
         height: normalize(18),
         fontSize: normalize(14),
         fontFamily: 'Monserrat-Medium',
-        color: '#E56464',
+        color: '#FFFFFF',
         marginBottom: normalize(8),
         marginLeft: normalize(30)
     },
@@ -191,7 +190,7 @@ const styles = StyleSheet.create({
         height: normalize(18),
         fontSize: normalize(14),
         fontFamily: 'Monserrat-Medium',
-        color: '#E56464',
+        color: '#FFFFFF',
         marginBottom: normalize(12),
         marginLeft: normalize(30)
     },
@@ -202,7 +201,8 @@ const styles = StyleSheet.create({
         borderRadius: 6,
         justifyContent: 'center',
         alignItems: 'center',
-        marginBottom: normalize(16)
+        marginBottom: normalize(16),
+        backgroundColor: '#B7B7B7'
     },
 
     btnEye: {
