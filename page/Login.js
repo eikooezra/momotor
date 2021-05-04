@@ -14,6 +14,7 @@ import LinearGradient from 'react-native-linear-gradient'
 import { useForm } from '../utils/utils'
 import { Fire } from '../config'
 import { Button2 } from '../components/components';
+import { storeData } from '../utils/localstorage/localstorage';
 
 const Login = ({ navigation }) => {
 
@@ -27,15 +28,15 @@ const Login = ({ navigation }) => {
         Fire.auth()
             .signInWithEmailAndPassword(form.email, form.password)
             .then(success => {
-                // const data = {
-                //     fullName: '',
-                //     phoneNo: '',
-                //     address: ''
-                // }
-                // Fire
-                //     .database()
-                //     .ref('users/' + success.user.uid + '/')
-                //     .set(data);
+                Fire.database()
+                .ref(`users/${success.user.uid}`)
+                .once('value')
+                .then(resDB => {
+                    console.log('data user: ', resDB.val())
+                    if(resDB.val()){
+                        storeData('user', resDB.val())
+                    }
+                })
                 console.log('success: ', success)
                 navigation.navigate('Home')
             })

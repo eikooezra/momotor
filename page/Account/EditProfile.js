@@ -1,117 +1,151 @@
-import React, {useState} from 'react'
+import React, { useState } from 'react'
+import { useEffect } from 'react'
 import {
-  StyleSheet,
-  TouchableOpacity,
-  KeyboardAvoidingView,
-  Keyboard,
-  View,
-  Text,
-  Image,
+    StyleSheet,
+    TouchableOpacity,
+    KeyboardAvoidingView,
+    Keyboard,
+    View,
+    Text,
+    Image,
 } from 'react-native'
 import { TextInput } from 'react-native-gesture-handler'
 import normalize from 'react-native-normalize'
-import {useForm} from '../../utils/utils'
+import { Fire } from '../../config'
+import { getData, storeData } from '../../utils/localstorage/localstorage'
+import { useForm } from '../../utils/utils'
 
-const EditProfile = ({navigation}) => {
+const EditProfile = ({ navigation }) => {
 
-const [form, setForm] = useForm({
-    dealername: '',
-    address: '',
-    email: '',
-    phone: ''
-})
+    const [profile, setProfile] = useState({
+        fullName: '',
+        address: '',
+        phoneNo: '',
+        email: ''
+    })
 
-const dataSaved = () => {
-    navigation.navigate('Account')
-    alert('Data berhasil diubah!')
-}
+    useEffect(() => {
+        getData('user').then(res => {
+            const data = res
+            setProfile(data)
+        })
+    })
 
-    return(
-    <View style={styles.container}>
-        <View style={styles.Header}>
-         <TouchableOpacity
-            onPress={() => navigation.navigate('Account')}
-         >
-          <Image 
-              style={styles.btnBack}
-              source={require('../../assets/images/back.png')}
-          />
-         </TouchableOpacity>
-          <Text style={styles.txtEdit}>
-              Edit Profile
-          </Text>
-        </View>
-        
-        <View>
-            <Text style={styles.txtName}>
-                Nama Dealer
-            </Text>
-          
-          <View style={styles.inputName}>
-            <TextInput
-                style={styles.txtinName}
-                returnKeyType='next'
-                value={form.dealername}
-                onChangeText={value => setForm('dealername', value)}
-            />
-          </View>
+    const update = () => {
+        console.log('profile: ', profile)
+        Fire.database()
+        .ref(`users/${profile.uid}/`)
+        .update(profile)
+        .then(data => {
+            console.log('success: ', data)
+            storeData('user', data)
+            navigation.navigate('Account')
+            alert('Data berhasil diubah!')
+        })
+        .catch(err => {
+            console.log('error: ', err)
+        })
+    }
 
-            <Text style={styles.txtAddress}>
-                Alamat Dealer
-            </Text>
+    const changeText = (key, value) => {
+        setProfile({
+            ...profile,
+            [key]: value,
+        })
+    }
 
-          <View style={styles.inputAddress}>
-            <TextInput
-                style={styles.txtinAddress}
-                returnKeyType='next'
-                value={form.address}
-                onChangeText={value => ('address', value)}
-            />
-          </View>
+    const dataSaved = () => {
+       
+    }
 
-            <Text style={styles.txtPhone}>
-                No. Handphone
-            </Text>
-
-          <View style={styles.inputPhone}>
-            <TextInput
-                style={styles.txtinPhone}
-                keyboardType={'numeric'}
-                returnKeyType='next'
-                maxLength={13}
-                value={form.phone}
-                onChangeText={value => ('phone', value)}
-            />
-          </View>
-
-            <Text style={styles.txtEmail}>
-                Email
-            </Text>
-        
-          <View style={styles.inputEmail}>
-            <TextInput
-                style={styles.txtinEmail}
-                keyboardType='email-address'
-                returnKeyType='next'
-                value={form.email}
-                onChangeText={value => ('email', value)}
-            />
-          </View>
-
-            <View style={styles.Areabtn}>
+    return (
+        <View style={styles.container}>
+            <View style={styles.Header}>
                 <TouchableOpacity
-                    style={styles.btnSave}
-                    onPress={dataSaved}
-                   // disabled = {!enabled}
+                    onPress={() => navigation.navigate('Account')}
                 >
-                    <Text style={styles.txtSave}>
-                        SIMPAN
-                    </Text>
+                    <Image
+                        style={styles.btnBack}
+                        source={require('../../assets/images/back.png')}
+                    />
                 </TouchableOpacity>
+                <Text style={styles.txtEdit}>
+                    Edit Profile
+          </Text>
+            </View>
+
+            <View>
+                <Text style={styles.txtName}>
+                    Nama Dealer
+            </Text>
+
+                <View style={styles.inputName}>
+                    <TextInput
+                        style={styles.txtinName}
+                        returnKeyType='next'
+                        value={profile.fullName}
+                        onChangeText={(value) => changeText('fullName', value)}
+                    />
+                </View>
+
+                <Text style={styles.txtAddress}>
+                    Alamat Dealer
+            </Text>
+
+                <View style={styles.inputAddress}>
+                    <TextInput
+                        style={styles.txtinAddress}
+                        returnKeyType='next'
+                        value={profile.address}
+                        onChangeText={(value) => changeText('address', value)}
+                    />
+                </View>
+
+                <Text style={styles.txtPhone}>
+                    No. Handphone
+            </Text>
+
+                <View style={styles.inputPhone}>
+                    <TextInput
+                        style={styles.txtinPhone}
+                        keyboardType={'numeric'}
+                        returnKeyType='next'
+                        maxLength={13}
+                        value={profile.phoneNo}
+                        onChangeText={(value) => changeText('phoneNo', value)}
+                    />
+                </View>
+
+                <Text style={styles.txtEmail}>
+                    Email
+            </Text>
+
+                <View style={styles.inputEmail}>
+                    <TextInput
+                        style={styles.txtinEmail}
+                        keyboardType='email-address'
+                        returnKeyType='next'
+                        value={profile.email}
+                        onChangeText={value => ('email', value)}
+                        editable={false}
+                        selectTextOnFocus={false}
+                    />
+                </View>
+
+                <View style={styles.Areabtn}>
+                    <TouchableOpacity
+                        style={styles.btnSave}
+                        onPress={update}
+                    // disabled = {!enabled}
+                    >
+                        <Text style={styles.txtSave}>
+                            SIMPAN
+                    </Text>
+                    </TouchableOpacity>
+                </View>
             </View>
         </View>
-  </View>
-        )
+    )
 }
 
 export default EditProfile
@@ -157,13 +191,13 @@ const styles = StyleSheet.create({
     },
 
     inputName: {
-      borderBottomWidth: 1,
-      borderBottomColor: '#E3DFDF',
-      marginBottom: normalize(24),
-      marginLeft: normalize(20),
-      marginRight: normalize(20),
-      fontSize: normalize(14),
-      fontFamily: 'Montserrat-Medium'
+        borderBottomWidth: 1,
+        borderBottomColor: '#E3DFDF',
+        marginBottom: normalize(24),
+        marginLeft: normalize(20),
+        marginRight: normalize(20),
+        fontSize: normalize(14),
+        fontFamily: 'Montserrat-Medium'
     },
 
     txtinName: {
@@ -182,13 +216,13 @@ const styles = StyleSheet.create({
     },
 
     inputAddress: {
-      borderBottomWidth: 1,
-      borderBottomColor: '#E3DFDF',
-      marginBottom: normalize(24),
-      marginLeft: normalize(20),
-      marginRight: normalize(20),
-      fontSize: normalize(14),
-      fontFamily: 'Montserrat-Medium'
+        borderBottomWidth: 1,
+        borderBottomColor: '#E3DFDF',
+        marginBottom: normalize(24),
+        marginLeft: normalize(20),
+        marginRight: normalize(20),
+        fontSize: normalize(14),
+        fontFamily: 'Montserrat-Medium'
     },
 
     txtinAddress: {
@@ -207,13 +241,13 @@ const styles = StyleSheet.create({
     },
 
     inputPhone: {
-      borderBottomWidth: 1,
-      borderBottomColor: '#E3DFDF',
-      marginBottom: normalize(24),
-      marginLeft: normalize(20),
-      marginRight: normalize(20),
-      fontSize: normalize(14),
-      fontFamily: 'Montserrat-Medium'
+        borderBottomWidth: 1,
+        borderBottomColor: '#E3DFDF',
+        marginBottom: normalize(24),
+        marginLeft: normalize(20),
+        marginRight: normalize(20),
+        fontSize: normalize(14),
+        fontFamily: 'Montserrat-Medium'
     },
 
     txtinPhone: {
@@ -230,15 +264,15 @@ const styles = StyleSheet.create({
         color: '#7F7F7F',
         fontFamily: 'Montserrat-Medium'
     },
-    
+
     inputEmail: {
-      borderBottomWidth: 1,
-      borderBottomColor: '#E3DFDF',
-      marginBottom: normalize(120),
-      marginLeft: normalize(20),
-      marginRight: normalize(20),
-      fontSize: normalize(14),
-      fontFamily: 'Montserrat-Medium'
+        borderBottomWidth: 1,
+        borderBottomColor: '#E3DFDF',
+        marginBottom: normalize(120),
+        marginLeft: normalize(20),
+        marginRight: normalize(20),
+        fontSize: normalize(14),
+        fontFamily: 'Montserrat-Medium'
     },
 
     txtinEmail: {
@@ -248,8 +282,8 @@ const styles = StyleSheet.create({
     },
 
     Areabtn: {
-     justifyContent: 'center',
-     alignSelf: 'center'
+        justifyContent: 'center',
+        alignSelf: 'center'
     },
 
     btnSave: {
@@ -259,7 +293,7 @@ const styles = StyleSheet.create({
         backgroundColor: '#0064D0'
     },
 
-    txtSave:{
+    txtSave: {
         width: normalize(100),
         height: normalize(18),
         marginTop: normalize(11),

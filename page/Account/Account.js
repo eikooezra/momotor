@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { useEffect } from 'react'
 import {
   StyleSheet,
   TouchableOpacity,
@@ -7,9 +8,24 @@ import {
   Image,
 } from 'react-native'
 import normalize from 'react-native-normalize'
+import { getData } from '../../utils/localstorage/localstorage'
 
 const Account = ({ navigation, route }) => {
-  const {fullName, phoneNo, address} = route.params;
+  // const {fullName, phoneNo, address} = route.params;
+  const [profile, setProfile] = useState({
+    fullName: '',
+    phoneNo: '',
+    address: '',
+  })
+
+  useEffect(() => {
+    getData('user').then(res => {
+      const data = res
+      // console.log('new profile: ', data)
+      setProfile(res)
+
+    })
+  })
   return (
     <View style={styles.container}>
       <View style={styles.Header}>
@@ -36,12 +52,12 @@ const Account = ({ navigation, route }) => {
 
           <View style={styles.infoArea}>
             <Text style={styles.name}>
-              {fullName}
-                </Text>
+              {profile.fullName}
+            </Text>
 
             <Text style={styles.phone}>
-              {phoneNo}
-                </Text>
+              {profile.phoneNo}
+            </Text>
 
             <View style={styles.address}>
               <Image
@@ -50,8 +66,8 @@ const Account = ({ navigation, route }) => {
               />
 
               <Text style={styles.txtAddress}>
-                {address}
-                  </Text>
+                {profile.address}
+              </Text>
             </View>
           </View>
 

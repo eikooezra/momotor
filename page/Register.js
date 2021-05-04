@@ -3,6 +3,7 @@ import { StyleSheet, View, Text } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 import { Button2, Gap, Header, Input } from '../components/components';
 import { Fire } from '../config';
+import { getData, storeData } from '../utils/localstorage/localstorage';
 import { useForm } from '../utils/utils';
 
 const Register = ({ navigation }) => {
@@ -24,12 +25,15 @@ const Register = ({ navigation }) => {
                     phoneNo: form.phoneNo,
                     address: form.address,
                     email: form.email,
+                    uid: success.user.uid
                 }
 
                 Fire
                     .database()
                     .ref('users/' + success.user.uid + '/')
                     .set(data)
+
+                storeData('user', data);
 
                 navigation.navigate('Home', data)
                 console.log('register success: ', success)
