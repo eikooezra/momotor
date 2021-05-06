@@ -1,4 +1,4 @@
-import React, {Component} from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import {
     StyleSheet,
     Image,
@@ -7,171 +7,47 @@ import {
     Text,
     TouchableOpacity
 } from 'react-native'
-import RBSheet from "react-native-raw-bottom-sheet";
-import BottomSheet from '../BottomSheet'
 import normalize from 'react-native-normalize';
+import { Fire } from '../../../config'
+import { ProductItem } from '../../../components/components';
 // import Test from '../../../api/Test'
 
-class SemuaProduk extends Component {
-    constructor(props){
-        super(props)
-        this.state = {
-            
-        }
-    }
-
-render() {
+const SemuaProduk = () => {
+    const [product, setProduct] = useState([])
+    useEffect(() => {
+        Fire.database()
+            .ref('product/')
+            .once('value')
+            .then(res => {
+                console.log('data: ', res.val())
+                if(res.val()){
+                    setProduct(res.val())
+                }
+            })
+            .catch(err => {
+                console.log('error: ', err)
+            })
+    }, [])
     return (
         <View style={styles.container}>
-         <RBSheet
-                    ref={ref => {
-                        this.RBSheet = ref
-                    }}
-                    height={300}
-                    openDuration={250}
-                    closeOnDragDown={true}
-                    customStyles={{
-                        container: {
-                            height: 250,
-                            borderTopStartRadius: 10,
-                            borderTopEndRadius: 10,
-                        }
-                    }}
-                >
-                    <BottomSheet/>
-                </RBSheet>
-         <ScrollView>
-            <View style={styles.WhiteBox}>
-
-                <View style={styles.boxContainer1}>
-                    <Image
-                      style={styles.imgUnit}
-                      source={require('../../../assets/images/vario.png')}
-                    />
-
-                    <Text style={styles.date}>
-                        22/07/2020
-                    </Text>
-                </View> 
-
-                <View style={styles.boxContainer2}>
-                    <Text style={styles.namaMotor}>
-                        Honda Vario 125
-                    </Text>
-
-                    <View style={styles.speedoContainer}>
-                        <Image
-                            style={styles.imgSpeedo}
-                            source={require('../../../assets/images/speedo.png')}
+            <ScrollView>
+                {product.map(item => {
+                    return (
+                        <ProductItem
+                            date={item.date}
+                            name={item.name}
+                            kilometer={item.kilometer}
+                            image={item.image}
+                            location={item.location}
+                            year={item.year}
+                            price={item.price}
                         />
-
-                        <Text style={styles.txtSpeedo}>
-                            2.008 KM
-                        </Text>
-
-                        <Image
-                            style={styles.imgYear}
-                            source={require('../../../assets/images/year.png')}
-                        />
-
-                        <Text style={styles.txtYear}>
-                            2012
-                        </Text>
-                    </View>
-
-                    <View style={styles.locContainer}>
-                        <Image
-                            style={styles.imgLoc}
-                            source={require('../../../assets/images/location.png')}
-                        />
-                        
-                        <Text style={styles.txtLoc}>
-                            Jakarta
-                        </Text>
-                    </View>
-
-                    <Text style={styles.txtPrice}>
-                        Rp 13.000.000
-                    </Text>
-                </View>
-
-                <TouchableOpacity
-                    onPress={() => this.RBSheet.open()}
-                >
-                    <Image
-                        style={styles.triDots}
-                        source={require('../../../assets/images/3dots.png')}
-                    />
-                </TouchableOpacity>
-            </View>    
-
-            <View style={styles.WhiteBox2}>
-
-                <View style={styles.boxContainer1}>
-                    <Image
-                      style={styles.imgUnit}
-                      source={require('../../../assets/images/vario.png')}
-                    />
-
-                    <Text style={styles.date}>
-                        22/07/2020
-                    </Text>
-                </View> 
-
-                <View style={styles.boxContainer2}>
-                    <Text style={styles.namaMotor}>
-                        Honda Vario 125
-                    </Text>
-
-                    <View style={styles.speedoContainer}>
-                        <Image
-                            style={styles.imgSpeedo}
-                            source={require('../../../assets/images/speedo.png')}
-                        />
-
-                        <Text style={styles.txtSpeedo}>
-                            2.008 KM
-                        </Text>
-
-                        <Image
-                            style={styles.imgYear}
-                            source={require('../../../assets/images/year.png')}
-                        />
-
-                        <Text style={styles.txtYear}>
-                            2012
-                        </Text>
-                    </View>
-
-                    <View style={styles.locContainer}>
-                        <Image
-                            style={styles.imgLoc}
-                            source={require('../../../assets/images/location.png')}
-                        />
-                        
-                        <Text style={styles.txtLoc}>
-                            Jakarta
-                        </Text>
-                    </View>
-
-                    <Text style={styles.txtPrice}>
-                        Rp 13.000.000
-                    </Text>
-                </View>
-
-                <TouchableOpacity
-                    onPress={() => this.RBSheet.open()}
-                >
-                    <Image
-                        style={styles.triDots}
-                        source={require('../../../assets/images/3dots.png')}
-                    />
-                </TouchableOpacity>
-            </View>  
-         </ScrollView>
+                    )
+                })}
+            </ScrollView>
         </View>
     )
-}}
+}
 
 export default SemuaProduk
 
@@ -183,7 +59,7 @@ const styles = StyleSheet.create({
     },
 
     WhiteBox: {
-        width: normalize(350) ,
+        width: normalize(350),
         height: normalize(121),
         marginTop: normalize(16),
         marginBottom: normalize(16),
