@@ -1,61 +1,56 @@
-import React, { Component, useEffect, useState } from 'react'
+import React from 'react';
 import {
     StyleSheet,
     Image,
-    ScrollView,
     View,
     Text,
     TouchableOpacity
 } from 'react-native'
 import normalize from 'react-native-normalize';
-import { OrderItem } from '../../../components/components';
-import { Fire } from '../../../config';
 
-const SemuaPesanan = ({navigation}) => {
-    const [order, setOrder] = useState([])
-    useEffect(() => {
-        Fire.database()
-            .ref('order/')
-            .once('value')
-            .then(res => {
-                console.log('data: ', res.val())
-                if (res.val()) {
-                    setOrder(res.val())
-                }
-            })
-            .catch(err => {
-                console.log('error: ', err)
-            })
-    }, [])
+const OrderItem = ({image, name, product, date, status, onPress}) => {
     return (
-        <View style={styles.container}>
-            <ScrollView>
-                {order.map(item => {
-                    return (
-                        <OrderItem 
-                            image={item.image}
-                            name={item.name}
-                            product={item.product}
-                            date={item.date}
-                            status={item.status}
-                            onPress={() => navigation.navigate('ProsesVerif')}
+        <View>
+            <View style={styles.WhiteBox}>
+                <View style={styles.boxContainer1}>
+                    <TouchableOpacity>
+                        <Image
+                            style={styles.imgUnit}
+                            source={{uri:image}}
                         />
-                    )
-                })}
-            </ScrollView>
-        </View>
-    )
-}
+                    </TouchableOpacity>
+                </View>
 
-export default SemuaPesanan
+                <View style={styles.boxContainer2}>
+                    <Text style={styles.txtName}>
+                        {name}
+                   </Text>
+
+                    <Text style={styles.txtModel}>
+                        {product}
+                   </Text>
+
+                    <Text style={styles.txtDate}>
+                        {date}
+                   </Text>
+
+                    <TouchableOpacity
+                        style={styles.btnProsesVerif}
+                        onPress={onPress}
+                    >
+                        <Text style={styles.txtProsesVerif}>
+                            {status}
+                       </Text>
+                    </TouchableOpacity>
+                </View>
+            </View>
+        </View>
+    );
+};
+
+export default OrderItem;
 
 const styles = StyleSheet.create({
-
-    container: {
-        flex: 1,
-        backgroundColor: '#FFFFFF'
-    },
-
     WhiteBox: {
         width: normalize(350),
         height: normalize(121),
@@ -129,10 +124,12 @@ const styles = StyleSheet.create({
     },
 
     txtProsesVerif: {
-        marginTop: normalize(4),
-        marginLeft: normalize(8),
+        textAlign: 'center',
+        paddingVertical: 4,
+        // marginTop: normalize(4),
+        // marginLeft: normalize(8),
         fontSize: normalize(12),
         fontFamily: 'Montserrat-SemiBold',
         color: '#3CB13C'
     }
-})
+});
