@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { useState } from 'react'
 import {
     StyleSheet,
     View,
@@ -15,35 +15,11 @@ import ImagePicker from 'react-native-image-crop-picker'
 import normalize from 'react-native-normalize'
 import {TouchableOpacity} from 'react-native-gesture-handler'
 
-class AddPics extends Component {
-    constructor(props){
-        super(props)
-        this.state = {
-            isAllFilled: false,
-            collectionImages: [
-                // {
-                //     "albumId": 1,
-                //     "id": 1,
-                //     "title": "accusamus beatae ad facilis cum similique qui sunt",
-                //     "url": "https://via.placeholder.com/600/92c952",
-                //     "thumbnailUrl": "https://via.placeholder.com/150/92c952"
-                //   },
-                //   {
-                //     "albumId": 1,
-                //     "id": 2,
-                //     "title": "reprehenderit est deserunt velit ipsam",
-                //     "url": "https://via.placeholder.com/600/771796",
-                //     "thumbnailUrl": "https://via.placeholder.com/150/771796"
-                //   }
-            ],
-            selectedImages: [],
-            isSelect: false,
-            pressStatus: false
-        }
-    }
+const AddPics = ({navigation}) =>  {
+    const [collectionImages, setCImages] = useState([])
 
     // add image function
-    takePicture = (cropping, mediaType = 'photo') => {
+    const takePicture = (cropping, mediaType = 'photo') => {
     ImagePicker.openCamera({
         cropping: cropping,
         width: 500,
@@ -58,13 +34,13 @@ class AddPics extends Component {
             height: image.height,
             mime: image.mime
           }
-          this.setState({ collectionImages :[...this.state.collectionImages, newData]});
-          console.log('log state baru', this.state.collectionImages)
+          setCImages({ collectionImages :[...collectionImages, newData]});
+          console.log('log state baru', collectionImages)
         })
         .catch((err) => { console.log("openCam catch" + err.toString()) })
     }
     
-    choosePhotoFromGal = () => {
+    const choosePhotoFromGal = () => {
         ImagePicker.openPicker({
             multiple: true,
             waitAnimationEnd: false,
@@ -80,14 +56,14 @@ class AddPics extends Component {
                         height: i.height,
                         mime: i.mime,
                       }
-                    this.setState({ collectionImages :[...this.state.collectionImages, newData]});
+                    setCImages({ collectionImages :[...collectionImages, newData]});
                 })
-                  console.log('log state baru', this.state.collectionImages)
+                  console.log('log state baru', collectionImages)
             })
             .catch((err) => { console.log("openGallery catch" + err.toString()) })
       }    
 
-    onClickAddImage = () => {
+    const onClickAddImage = () => {
         const buttons = ['Take Photo', 'Choose Photo Gallery', 'Cancel']
         ActionSheet.show(
             {
@@ -98,10 +74,10 @@ class AddPics extends Component {
             buttonIndex => {
                 switch (buttonIndex) {
                     case 0:
-                        this.takePicture()
+                        takePicture()
                         break;
                     case 1:
-                        this.choosePhotoFromGal()
+                        choosePhotoFromGal()
                         break;
                     case 2:
                         break;
@@ -110,11 +86,11 @@ class AddPics extends Component {
                         )
                     }
  
-    renderAsset = (image) => {
-        return this.renderImage(image);
+    const renderAsset = (image) => {
+        return renderImage(image);
     }
     
-    renderImage = (image) => {
+    const renderImage = (image) => {
         return (
           <Image
             style={{ 
@@ -128,90 +104,62 @@ class AddPics extends Component {
         );
       }
 
-    // highlight & multi-select items
-    renderItem = () => {
-        let {itemStyle} = styles
-        return (
-            <View style={itemStyle}>
-                {this.state.collectionImages
-                    ? this.state.collectionImages.map((i) => (
-                            <View 
-                                key={i.uri}
-                            >
-                                {this.renderAsset(i)}
-                            </View>
-                    ))
-                    : []}
-            </View>
-        )
-    }
-
     // bottom sheet
-    renderScreen = () => {
-        return(
-        <View style={styles.panel}>
-           <Text style={styles.txtChsPic}>
-                    Foto yang dipilih
-                </Text>
+    // renderScreen = () => {
+    //     return(
+    //     <View style={styles.panel}>
+    //        <Text style={styles.txtChsPic}>
+    //                 Foto yang dipilih
+    //             </Text>
             
-                <ScrollView horizontal>
-                    <Image 
-                        style={styles.img}
-                        source={require('../../../assets/images/vario.png')}
-                    />
+    //             <ScrollView horizontal>
+    //                 <Image 
+    //                     style={styles.img}
+    //                     source={require('../../../assets/images/vario.png')}
+    //                 />
 
-                    <Image 
-                        style={styles.img}
-                        source={require('../../../assets/images/vario.png')}
-                    />
+    //                 <Image 
+    //                     style={styles.img}
+    //                     source={require('../../../assets/images/vario.png')}
+    //                 />
 
-                    <Image 
-                        style={styles.img}
-                        source={require('../../../assets/images/vario.png')}
-                    />
+    //                 <Image 
+    //                     style={styles.img}
+    //                     source={require('../../../assets/images/vario.png')}
+    //                 />
 
-                    <Image 
-                        style={styles.img}
-                        source={require('../../../assets/images/vario.png')}
-                    />
-                </ScrollView>
+    //                 <Image 
+    //                     style={styles.img}
+    //                     source={require('../../../assets/images/vario.png')}
+    //                 />
+    //             </ScrollView>
     
-                <Text style={styles.txtUtama}>
-                    Utama
-                </Text>
-        </View>
-        )
-    }
+    //             <Text style={styles.txtUtama}>
+    //                 Utama
+    //             </Text>
+    //     </View>
+    //     )
+    // }
 
-    renderHeader = () => {
-        return(
-            <View style={styles.bsHeader}>
-                <View style={styles.panelHeader}>
-        <           View style={styles.panelHandle} />
-                </View>
-            </View>
-        )
-    }
+    // renderHeader = () => {
+    //     return(
+    //         <View style={styles.bsHeader}>
+    //             <View style={styles.panelHeader}>
+    //     <           View style={styles.panelHandle} />
+    //             </View>
+    //         </View>
+    //     )
+    // }
     
-    sheetRef = React.createRef()
-    fall = new Animated.Value(1)
-    
-    // navigation
-    goBack = () => {
-        this.props.navigation.navigate('Add')
-    }
-    
-    goToVerif = () => {
-        this.props.navigation.navigate('Verification')
-    }
-    
-    render(){
+    // sheetRef = React.createRef()
+    // fall = new Animated.Value(1)
+
         return (
             <Root>
             <View style={styles.container}>
                 <View style={styles.Header}>
                     <TouchableOpacity
-                        onPress={this.goBack}
+                        onPress={() => navigate.navigation('Add')}
                     >
                         <Image 
                             style={styles.btnBack}
@@ -227,7 +175,16 @@ class AddPics extends Component {
                 <SafeAreaView>
                         <View style={styles.chosenPic}>
                             <TouchableOpacity
-                                onPress={this.onClickAddImage.bind(this)}
+                                onPress={onClickAddImage}
+                                style={styles.bluRectangle}
+                            >
+                                <Image
+                                    style={styles.camLogo}
+                                    source={require('../../../assets/images/camLogo.png')}/>
+                            </TouchableOpacity>
+                            
+                            <TouchableOpacity
+                                onPress={onClickAddImage}
                                 style={styles.bluRectangle}
                             >
                                 <Image
@@ -235,19 +192,55 @@ class AddPics extends Component {
                                     source={require('../../../assets/images/camLogo.png')}/>
                             </TouchableOpacity>
 
-                            {this.state.collectionImages
-                            ? this.state.collectionImages.map((i) => (
+                            <TouchableOpacity
+                                onPress={onClickAddImage}
+                                style={styles.bluRectangle}
+                            >
+                                <Image
+                                    style={styles.camLogo}
+                                    source={require('../../../assets/images/camLogo.png')}/>
+                            </TouchableOpacity>
+
+                            <TouchableOpacity
+                                onPress={onClickAddImage}
+                                style={styles.bluRectangle}
+                            >
+                                <Image
+                                    style={styles.camLogo}
+                                    source={require('../../../assets/images/camLogo.png')}/>
+                            </TouchableOpacity>
+
+                            <TouchableOpacity
+                                onPress={onClickAddImage}
+                                style={styles.bluRectangle}
+                            >
+                                <Image
+                                    style={styles.camLogo}
+                                    source={require('../../../assets/images/camLogo.png')}/>
+                            </TouchableOpacity>
+
+                            <TouchableOpacity
+                                onPress={onClickAddImage}
+                                style={styles.bluRectangle}
+                            >
+                                <Image
+                                    style={styles.camLogo}
+                                    source={require('../../../assets/images/camLogo.png')}/>
+                            </TouchableOpacity>
+                            
+                            {collectionImages
+                            ? collectionImages.map((i) => (
                                     <View 
                                         key={i.uri}
                                     >
-                                        {this.renderAsset(i)}
+                                        {renderAsset(i)}
                                     </View>
                             ))
                             : []}
                         </View>
                 </SafeAreaView>
 
-                        <View style={styles.btmSht}>
+                        {/* <View style={styles.btmSht}>
                             <TouchableOpacity
                             onPress={
                                 () => this.sheetRef.current.snapTo(0)
@@ -257,9 +250,9 @@ class AddPics extends Component {
                                     Foto yang dipilih
                                 </Text>
                             </TouchableOpacity>
-                        </View>
+                        </View> */}
 
-                        <BottomSheet
+                        {/* <BottomSheet
                             ref={this.sheetRef}
                             snapPoints={[330, 0]}
                             initialSnap={1}
@@ -267,17 +260,12 @@ class AddPics extends Component {
                             renderHeader={this.renderHeader}
                             renderContent={this.renderScreen}
                             enabledGestureInteraction={true}
-                        />
+                        /> */}
 
                 <View style={styles.btnNxtArea}>
                     <TouchableOpacity
-                        style={[styles.btnNxt, {
-                        backgroundColor: (this.isAllFilled === true)
-                        ? '#0064D0' 
-                        : '#B7B7B7'
-                        }
-                        ]}
-                        onPress={this.goToVerif}
+                        style={styles.btnNxt}
+                        onPress={() => navigate.navigation('Verification')}
                     >
                         <Text style={styles.txtNxt}>
                             SELANJUTNYA
@@ -287,7 +275,6 @@ class AddPics extends Component {
             </View>
          </Root>
         )
-    }
 }
 
 export default AddPics
