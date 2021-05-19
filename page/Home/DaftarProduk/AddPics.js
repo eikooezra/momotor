@@ -16,7 +16,7 @@ import normalize from 'react-native-normalize'
 import {TouchableOpacity} from 'react-native-gesture-handler'
 
 const AddPics = ({navigation}) =>  {
-    const [collectionImages, setCImages] = useState([])
+    const [Images, setImages] = useState(null)
 
     // add image function
     const takePicture = (cropping, mediaType = 'photo') => {
@@ -34,8 +34,8 @@ const AddPics = ({navigation}) =>  {
             height: image.height,
             mime: image.mime
           }
-          setCImages({ collectionImages :[...collectionImages, newData]});
-          console.log('log state baru', collectionImages)
+          setImages({ Images :[...Images, newData]});
+          console.log('log state baru', Images)
         })
         .catch((err) => { console.log("openCam catch" + err.toString()) })
     }
@@ -56,9 +56,9 @@ const AddPics = ({navigation}) =>  {
                         height: i.height,
                         mime: i.mime,
                       }
-                    setCImages({ collectionImages :[...collectionImages, newData]});
+                    setCImages({ Images :[...Images, newData]});
                 })
-                  console.log('log state baru', collectionImages)
+                  console.log('log state baru', Images)
             })
             .catch((err) => { console.log("openGallery catch" + err.toString()) })
       }    
@@ -228,8 +228,8 @@ const AddPics = ({navigation}) =>  {
                                     source={require('../../../assets/images/camLogo.png')}/>
                             </TouchableOpacity>
                             
-                            {collectionImages
-                            ? collectionImages.map((i) => (
+                            {Images
+                            ? Images.map((i) => (
                                     <View 
                                         key={i.uri}
                                     >
