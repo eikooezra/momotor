@@ -56,7 +56,7 @@ const AddPics = ({navigation}) =>  {
                         height: i.height,
                         mime: i.mime,
                       }
-                    setCImages({ Images :[...Images, newData]});
+                    setImages({ Images :[...Images, newData]});
                 })
                   console.log('log state baru', Images)
             })
