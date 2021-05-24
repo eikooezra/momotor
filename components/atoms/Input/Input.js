@@ -27,14 +27,14 @@ const styles = StyleSheet.create({
   //   alignItems: 'center'
   // },
   input: {
-    paddingHorizontal: 16,
     // paddingVertical: 15,
     // width: 350,
     // height: 46,
-    borderWidth: 1,
+    paddingHorizontal: 16,
+    borderWidth: 2,
     borderRadius: 4,
     borderColor: '#EBEBEB',
     color: '#7F7F7F',
-    fontFamily: 'Montserrat-Medium',
+    fontFamily: 'Montserrat-SemiBold',
   }
 });
