@@ -6,7 +6,7 @@ buildscript {
         firebaseMessagingVersion = '21.1.0' // default: "+"
 
         buildToolsVersion = "29.0.3"
-        minSdkVersion = 16
+        minSdkVersion = 21
         compileSdkVersion = 29
         targetSdkVersion = 28
         supportLibVersion = "27.1.1"
