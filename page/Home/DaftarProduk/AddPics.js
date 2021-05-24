@@ -4,162 +4,28 @@ import {
     View,
     Text,
     Image,
-    SafeAreaView,
-    ScrollView,
-    FlatList,
+    TouchableOpacity
 } from 'react-native'
-import {ActionSheet, Root} from 'native-base'
 import Animated from 'react-native-reanimated'
-import BottomSheet from 'reanimated-bottom-sheet'
-import ImagePicker from 'react-native-image-crop-picker'
+import {launchCamera, launchImageLibrary} from 'react-native-image-picker';
 import normalize from 'react-native-normalize'
-import {TouchableOpacity} from 'react-native-gesture-handler'
 
 const AddPics = ({navigation}) =>  {
-    const [Images, setImages] = useState(null)
+    const [photo, setPhoto] = useState(require('../../../assets/images/camLogo.png'))
 
-    // add image function
-    const takePicture = (cropping, mediaType = 'photo') => {
-    ImagePicker.openCamera({
-        cropping: cropping,
-        width: 500,
-        height: 500,
-        includeExif: true,
-        mediaType,
-      })
-        .then((image) => {
-          const newData = {
-            uri: image.path,
-            width: image.width,
-            height: image.height,
-            mime: image.mime
-          }
-          setImages({ Images :[...Images, newData]});
-          console.log('log state baru', Images)
+    const getImage = () => {
+        launchImageLibrary({}, response => {
+            console.log('response: ', response)
+            const source = {uri: response.uri}
+            setPhoto(source)
         })
-        .catch((err) => { console.log("openCam catch" + err.toString()) })
     }
-    
-    const choosePhotoFromGal = () => {
-        ImagePicker.openPicker({
-            multiple: true,
-            waitAnimationEnd: false,
-            sortOrder: 'desc',
-            includeExif: true,
-            forceJpg: true,
-          })
-            .then((images) => {
-                images.map(i => {    
-                    const newData = {
-                        uri: i.path,
-                        width: i.width,
-                        height: i.height,
-                        mime: i.mime,
-                      }
-                    setImages({ Images :[...Images, newData]});
-                })
-                  console.log('log state baru', Images)
-            })
-            .catch((err) => { console.log("openGallery catch" + err.toString()) })
-      }    
-
-    const onClickAddImage = () => {
-        const buttons = ['Take Photo', 'Choose Photo Gallery', 'Cancel']
-        ActionSheet.show(
-            {
-                options: buttons, 
-                cancelButtonIndex: 2, 
-                title: 'Select a Photo'
-            },
-            buttonIndex => {
-                switch (buttonIndex) {
-                    case 0:
-                        takePicture()
-                        break;
-                    case 1:
-                        choosePhotoFromGal()
-                        break;
-                    case 2:
-                        break;
-                            }
-                        },
-                        )
-                    }
- 
-    const renderAsset = (image) => {
-        return renderImage(image);
-    }
-    
-    const renderImage = (image) => {
-        return (
-          <Image
-            style={{ 
-                width: normalize(120),
-                height: normalize(120),
-                marginTop: normalize(5),
-                marginLeft: normalize(5),
-                resizeMode: 'contain' }}
-            source={image}
-          />
-        );
-      }
-
-    // bottom sheet
-    // renderScreen = () => {
-    //     return(
-    //     <View style={styles.panel}>
-    //        <Text style={styles.txtChsPic}>
-    //                 Foto yang dipilih
-    //             </Text>
-            
-    //             <ScrollView horizontal>
-    //                 <Image 
-    //                     style={styles.img}
-    //                     source={require('../../../assets/images/vario.png')}
-    //                 />
-
-    //                 <Image 
-    //                     style={styles.img}
-    //                     source={require('../../../assets/images/vario.png')}
-    //                 />
-
-    //                 <Image 
-    //                     style={styles.img}
-    //                     source={require('../../../assets/images/vario.png')}
-    //                 />
-
-    //                 <Image 
-    //                     style={styles.img}
-    //                     source={require('../../../assets/images/vario.png')}
-    //                 />
-    //             </ScrollView>
-    
-    //             <Text style={styles.txtUtama}>
-    //                 Utama
-    //             </Text>
-    //     </View>
-    //     )
-    // }
-
-    // renderHeader = () => {
-    //     return(
-    //         <View style={styles.bsHeader}>
-    //             <View style={styles.panelHeader}>
-    //     <           View style={styles.panelHandle} />
-    //             </View>
-    //         </View>
-    //     )
-    // }
-    
-    // sheetRef = React.createRef()
-    // fall = new Animated.Value(1)
 
         return (
-            <Root>
             <View style={styles.container}>
                 <View style={styles.Header}>
                     <TouchableOpacity
-                        onPress={() => navigate.navigation('Add')}
+                        onPress={() => navigation.navigate('Add')}
                     >
                         <Image 
                             style={styles.btnBack}
@@ -172,95 +38,14 @@ const AddPics = ({navigation}) =>  {
                     </Text>
                 </View>
 
-                <SafeAreaView>
-                        <View style={styles.chosenPic}>
-                            <TouchableOpacity
-                                onPress={onClickAddImage}
-                                style={styles.bluRectangle}
-                            >
-                                <Image
-                                    style={styles.camLogo}
-                                    source={require('../../../assets/images/camLogo.png')}/>
-                            </TouchableOpacity>
-                            
-                            <TouchableOpacity
-                                onPress={onClickAddImage}
-                                style={styles.bluRectangle}
-                            >
-                                <Image
-                                    style={styles.camLogo}
-                                    source={require('../../../assets/images/camLogo.png')}/>
-                            </TouchableOpacity>
-
-                            <TouchableOpacity
-                                onPress={onClickAddImage}
-                                style={styles.bluRectangle}
-                            >
-                                <Image
-                                    style={styles.camLogo}
-                                    source={require('../../../assets/images/camLogo.png')}/>
-                            </TouchableOpacity>
-
-                            <TouchableOpacity
-                                onPress={onClickAddImage}
-                                style={styles.bluRectangle}
-                            >
-                                <Image
-                                    style={styles.camLogo}
-                                    source={require('../../../assets/images/camLogo.png')}/>
-                            </TouchableOpacity>
-
-                            <TouchableOpacity
-                                onPress={onClickAddImage}
-                                style={styles.bluRectangle}
-                            >
-                                <Image
-                                    style={styles.camLogo}
-                                    source={require('../../../assets/images/camLogo.png')}/>
-                            </TouchableOpacity>
-
-                            <TouchableOpacity
-                                onPress={onClickAddImage}
-                                style={styles.bluRectangle}
-                            >
-                                <Image
-                                    style={styles.camLogo}
-                                    source={require('../../../assets/images/camLogo.png')}/>
-                            </TouchableOpacity>
-                            
-                            {Images
-                            ? Images.map((i) => (
-                                    <View 
-                                        key={i.uri}
-                                    >
-                                        {renderAsset(i)}
-                                    </View>
-                            ))
-                            : []}
-                        </View>
-                </SafeAreaView>
-
-                        {/* <View style={styles.btmSht}>
-                            <TouchableOpacity
-                            onPress={
-                                () => this.sheetRef.current.snapTo(0)
-                            }
-                            >
-                                <Text style={styles.txtFoto}>
-                                    Foto yang dipilih
-                                </Text>
-                            </TouchableOpacity>
-                        </View> */}
-
-                        {/* <BottomSheet
-                            ref={this.sheetRef}
-                            snapPoints={[330, 0]}
-                            initialSnap={1}
-                            callbackNode={this.fall}
-                            renderHeader={this.renderHeader}
-                            renderContent={this.renderScreen}
-                            enabledGestureInteraction={true}
-                        /> */}
+                <View style={styles.chosenPic}>
+                    <TouchableOpacity
+                        onPress={getImage}
+                        // style={styles.bluRectangle}
+                    >
+                        <Image source={photo}/>
+                    </TouchableOpacity>
+                </View>
 
                 <View style={styles.btnNxtArea}>
                     <TouchableOpacity
@@ -273,7 +58,6 @@ const AddPics = ({navigation}) =>  {
                     </TouchableOpacity>
                 </View>
             </View>
-         </Root>
         )
 }
 
@@ -314,7 +98,7 @@ const styles = StyleSheet.create({
         width: normalize(120),
         marginTop: normalize(5),
         marginLeft: normalize(5),
-        backgroundColor: '#0064D0',
+        backgroundColor: 'transparent',
     },
 
     camLogo: {
