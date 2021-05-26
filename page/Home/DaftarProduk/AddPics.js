@@ -9,43 +9,166 @@ import {
 import Animated from 'react-native-reanimated'
 import {launchCamera, launchImageLibrary} from 'react-native-image-picker';
 import normalize from 'react-native-normalize'
+import { ScrollView } from 'react-native-gesture-handler';
 
 const AddPics = ({navigation}) =>  {
     const [photo, setPhoto] = useState(require('../../../assets/images/camLogo.png'))
+    const [photo1, setPhoto1] = useState(require('../../../assets/images/camLogo.png'))
+    const [photo2, setPhoto2] = useState(require('../../../assets/images/camLogo.png'))
+    const [photo3, setPhoto3] = useState(require('../../../assets/images/camLogo.png'))
+    const [photo4, setPhoto4] = useState(require('../../../assets/images/camLogo.png'))
+    const [photo5, setPhoto5] = useState(require('../../../assets/images/camLogo.png'))
 
     const getImage = () => {
-        launchImageLibrary({}, response => {
+        launchImageLibrary(
+            {mediaType: 'photo', quality: 1}, 
+            (response) => {
             console.log('response: ', response)
             const source = {uri: response.uri}
             setPhoto(source)
         })
     }
 
+    const getImage1 = () => {
+        launchImageLibrary(
+            {mediaType: 'photo', quality: 1}, 
+            (response) => {
+            console.log('response: ', response)
+            const source = {uri: response.uri}
+            setPhoto1(source)
+        })
+    }
+
+    const getImage2 = () => {
+        launchImageLibrary(
+            {mediaType: 'photo', quality: 1}, 
+            (response) => {
+            console.log('response: ', response)
+            const source = {uri: response.uri}
+            setPhoto2(source)
+        })
+    }
+
+    const getImage3 = () => {
+        launchImageLibrary(
+            {mediaType: 'photo', quality: 1}, 
+            (response) => {
+            console.log('response: ', response)
+            const source = {uri: response.uri}
+            setPhoto3(source)
+        })
+    }
+
+    const getImage4 = () => {
+        launchImageLibrary(
+            {mediaType: 'photo', quality: 1}, 
+            (response) => {
+            console.log('response: ', response)
+            const source = {uri: response.uri}
+            setPhoto4(source)
+        })
+    }
+
+    const getImage5 = () => {
+        launchImageLibrary(
+            {mediaType: 'photo', quality: 1}, 
+            (response) => {
+            console.log('response: ', response)
+            const source = {uri: response.uri}
+            setPhoto5(source)
+        })
+    }
+
         return (
             <View style={styles.container}>
-                <View style={styles.Header}>
-                    <TouchableOpacity
-                        onPress={() => navigation.navigate('Add')}
-                    >
-                        <Image 
-                            style={styles.btnBack}
-                            source={require('../../../assets/images/back.png')}
-                        />
-                    </TouchableOpacity>
-    
-                    <Text style={styles.txtAddPic}>
-                        Tambah Foto
-                    </Text>
-                </View>
+                    <View style={styles.Header}>
+                        <TouchableOpacity
+                            onPress={() => navigation.navigate('Add')}
+                        >
+                            <Image 
+                                style={styles.btnBack}
+                                source={require('../../../assets/images/back.png')}
+                            />
+                        </TouchableOpacity>
+        
+                        <Text style={styles.txtAddPic}>
+                            Tambah Foto
+                        </Text>
+                    </View>
 
-                <View style={styles.chosenPic}>
-                    <TouchableOpacity
-                        onPress={getImage}
-                        // style={styles.bluRectangle}
-                    >
-                        <Image source={photo}/>
-                    </TouchableOpacity>
-                </View>
+                    <View style={styles.chosenPic}>
+                        <TouchableOpacity
+                            onPress={getImage}
+                            style={styles.bluRectangle}
+                        >
+                            <Image source={photo}
+                            style={{
+                                height: normalize(180),
+                                width: normalize(180)
+                            }}
+                            />
+                        </TouchableOpacity>
+
+                        <TouchableOpacity
+                            onPress={getImage1}
+                            style={styles.bluRectangle}
+                        >
+                            <Image source={photo1}
+                            style={{
+                                height: normalize(180),
+                                width: normalize(180)
+                            }}
+                            />
+                        </TouchableOpacity>
+
+                        <TouchableOpacity
+                            onPress={getImage2}
+                            style={styles.bluRectangle}
+                        >
+                            <Image source={photo2}
+                            style={{
+                                height: normalize(180),
+                                width: normalize(180)
+                            }}
+                            />
+                        </TouchableOpacity>
+
+                        <TouchableOpacity
+                            onPress={getImage3}
+                            style={styles.bluRectangle}
+                        >
+                            <Image source={photo3}
+                            style={{
+                                height: normalize(180),
+                                width: normalize(180)
+                            }}
+                            />
+                        </TouchableOpacity>
+
+                        <TouchableOpacity
+                            onPress={getImage4}
+                            style={styles.bluRectangle}
+                        >
+                            <Image source={photo4}
+                            style={{
+                                height: normalize(180),
+                                width: normalize(180)
+                            }}
+                            />
+                        </TouchableOpacity>
+
+                        <TouchableOpacity
+                            onPress={getImage5}
+                            style={styles.bluRectangle}
+                        >
+                            <Image source={photo5}
+                            style={{
+                                height: normalize(180),
+                                width: normalize(180)
+                            }}
+                            />
+                        </TouchableOpacity>
+                    </View>
 
                 <View style={styles.btnNxtArea}>
                     <TouchableOpacity
@@ -94,11 +217,8 @@ const styles = StyleSheet.create({
     },
 
     bluRectangle: {
-        height: normalize(120),
-        width: normalize(120),
-        marginTop: normalize(5),
-        marginLeft: normalize(5),
-        backgroundColor: 'transparent',
+        marginTop: normalize(8),
+        marginLeft: normalize(8),
     },
 
     camLogo: {
@@ -142,7 +262,8 @@ const styles = StyleSheet.create({
 
     btnNxt: {
         width: normalize(420),
-        height: normalize(60),
+        height: normalize(58),
+        backgroundColor: '#0064D0'
     },
     
     txtNxt: {
@@ -154,65 +275,4 @@ const styles = StyleSheet.create({
         fontFamily: 'Montserrat-SemiBold',
         color: '#FFFFFF',
     },
-
-    //for bottom sheet screen
-    bsHeader: {
-        backgroundColor: '#FFFFFF',
-        shadowColor: '#333333',
-        shadowOffset: {width: -1, height: -3},
-        shadowRadius: 2,
-        shadowOpacity: 0.4,
-        // elevation: 5,
-        paddingTop: 20,
-        borderTopLeftRadius: 20,
-        borderTopRightRadius: 20,
-    },
-
-    panel: {
-        padding: 10,
-        backgroundColor: '#FFFFFF',
-        paddingTop: 20,
-      },
-
-    panelHeader: {
-        alignItems: 'center',
-    },
-
-    panelHandle: {
-        width: 40,
-        height: 8,
-        borderRadius: 4,
-        backgroundColor: '#00000040',
-        marginBottom: 10,
-    },
-
-    txtChsPic: {
-        marginTop: normalize(21),
-        marginLeft: normalize(12),
-        marginBottom: normalize(18),
-        fontSize: normalize(14),
-        fontFamily: 'Montserrat-SemiBold',
-        backgroundColor: '#FFFFFF'
-    },
-
-    images: {
-        flex: 1,
-    },
-
-    img: {
-        width: normalize(90),
-        height: normalize(90),
-        marginLeft: normalize(12),
-        marginBottom: normalize(8),
-        backgroundColor: '#FFFFFF'
-    },
-
-    txtUtama: {
-        marginLeft: normalize(36),
-        marginBottom: normalize(8),
-        fontSize: normalize(12),
-        fontFamily: 'Montserrat-SemiBold',
-        color: '#0064D0',
-        backgroundColor: '#FFFFFF'
-    }
 })
