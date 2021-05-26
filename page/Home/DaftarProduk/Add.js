@@ -4,7 +4,7 @@ import { StyleSheet, View, Text, Image, TextInput, } from 'react-native';
 import DropDownPicker from 'react-native-dropdown-picker';
 import { ScrollView, TouchableOpacity } from 'react-native-gesture-handler';
 import normalize from 'react-native-normalize';
-import { Gap, Header, Input } from '../../../components/components';
+import { Button2, Gap, Header, Input } from '../../../components/components';
 import { Fire } from '../../../config';
 import { useForm } from '../../../utils/utils';
 
@@ -15,23 +15,25 @@ const Add = ({ navigation }) => {
         location: '',
         price: '',
         ref_code: '',
-        desc: ''
+        desc: '',
+        kilometer: '',
     })
 
     const onContinue = () => {
         console.log('form', form)
         const data = {
-            year: form.year,
-            location: form.location,
+            year: form.year.value,
+            location: form.location.value,
             price: form.price,
             ref_code: form.ref_code,
-            desc: form.desc
+            desc: form.desc,
+            kilometer: '',
         }
         Fire
             .database()
             .ref('product/3/')
             .set(data)
-        // navigation.navigate('AddPics')
+        navigation.navigate('AddPics')
     }
     return (
         <View style={styles.container}>
@@ -52,25 +54,87 @@ const Add = ({ navigation }) => {
             </View>
             <View style={styles.content}>
                 <ScrollView showsVerticalScrollIndicator={false}>
+                    <View style={styles.content}>
 
-                    <View style={styles.dropDownBorder}>
+                    </View>
+
+                    <DropDownPicker
+                        items={[
+                            { label: '2015', value: '2015' },
+                            { label: '2016', value: '2016' },
+                            { label: '2017', value: '2017' },
+                            { label: '2018', value: '2018' },
+                            { label: '2019', value: '2019' },
+                            { label: '2020', value: '2020' },
+                        ]}
+                        // defaultNull
+                        placeholder='Tahun Produksi'
+                        containerStyle={{
+                            // width: normalize(350),
+                            // marginLeft: normalize(16),
+                            // marginBottom: normalize(34),
+                        }}
+                        dropDownStyle={{
+                            backgroundColor: '#FFFFFF'
+                        }}
+                        labelStyle={{
+                            // marginLeft: 16,
+                            fontSize: 14,
+                            color: '#7F7F7F',
+                            fontFamily: 'Montserrat-SemiBold',
+                        }}
+                        arrowStyle={{
+                            
+                        }}
+                        value={form.year}
+                        onChangeItem={value => setForm('year', value)}
+                    />
+
+                    {/* <View style={styles.dropDownBorder}>
                         <Picker
                             // style='@style/SpinnerDropDownItem'
                             selectedValue={form.year}
                             onValueChange={value => setForm('year', value)}
                             mode='dropdown'
                         >
-                            <Picker.Item label='2015' value='15' />
-                            <Picker.Item label='2016' value='16' />
-                            <Picker.Item label='2017' value='17' />
-                            <Picker.Item label='2018' value='18' />
-                            <Picker.Item label='2019' value='19' />
-                            <Picker.Item label='2020' value='20' />
+                            <Picker.Item label='2015' value='2015' />
+                            <Picker.Item label='2016' value='2016' />
+                            <Picker.Item label='2017' value='2017' />
+                            <Picker.Item label='2018' value='2018' />
+                            <Picker.Item label='2019' value='2019' />
+                            <Picker.Item label='2020' value='2020' />
                         </Picker>
 
-                    </View>
+                    </View> */}
                     <Gap height={34} />
-                    <View style={styles.dropDownBorder}>
+                    <DropDownPicker
+                        items={[
+                            { label: 'Jakarta', value: 'jakarta' },
+                            { label: 'Bogor', value: 'bogor' },
+                            { label: 'Depok', value: 'depok' },
+                            { label: 'Tangerang', value: 'tangerang' },
+                            { label: 'Bekasi', value: 'bekasi' },
+                        ]}
+                        // defaultNull
+                        placeholder='Lokasi'
+                        containerStyle={{
+                            // width: normalize(350),
+                            // marginLeft: normalize(16),
+                            // marginBottom: normalize(34),
+                        }}
+                        dropDownStyle={{
+                            backgroundColor: '#FFFFFF'
+                        }}
+                        labelStyle={{
+                            marginLeft: 0,
+                            fontSize: 14,
+                            color: '#7F7F7F',
+                            fontFamily: 'Montserrat-SemiBold',
+                        }}
+                        value={form.location}
+                        onChangeItem={value => setForm('location', value)}
+                    />
+                    {/* <View style={styles.dropDownBorder}>
                         <Picker
                             selectedValue={form.location}
                             onValueChange={value => setForm('location', value)}
@@ -82,12 +146,18 @@ const Add = ({ navigation }) => {
                             <Picker.Item label='Tangerang' value='Tangerang' />
                             <Picker.Item label='Bekasi' value='Bekasi' />
                         </Picker>
-                    </View>
+                    </View> */}
                     <Gap height={34} />
                     <Input
                         placeholder='Harga'
                         value={form.price}
                         onChangeText={value => setForm('price', value)}
+                    />
+                    <Gap height={34} />
+                    <Input
+                        placeholder='Kilometer'
+                        value={form.kilometer}
+                        onChangeText={value => setForm('kilometer', value)}
                     />
                     <Gap height={34} />
                     <Input
@@ -105,18 +175,23 @@ const Add = ({ navigation }) => {
                             onChangeText={value => setForm('desc', value)}
                         />
                     </View>
-                </ScrollView>
-            </View>
-            <View style={styles.btnNxtArea}>
-                <TouchableOpacity
-                    style={[styles.btnNxt]}
-                    onPress={onContinue}
-                // disabled={!enabled}
-                >
-                    <Text style={styles.txtNxt}>
-                        SELANJUTNYA
+                    <Gap height={34} />
+                    <View style={styles.btnNxtArea}>
+                        <Button2
+                            onPress={onContinue}
+                            title="SELANJUTNYA"
+                        />
+                        {/* <TouchableOpacity
+                            style={[styles.btnNxt]}
+                            onPress={onContinue}
+                        // disabled={!enabled}
+                        >
+                            <Text style={styles.txtNxt}>
+                                SELANJUTNYA
                         </Text>
-                </TouchableOpacity>
+                        </TouchableOpacity> */}
+                    </View>
+                </ScrollView>
             </View>
         </View>
     );
@@ -158,7 +233,7 @@ const styles = StyleSheet.create({
 
     content: {
         flex: 1,
-        padding: 16
+        paddingHorizontal: 16
     },
 
     dropDownBorder: {
@@ -169,7 +244,7 @@ const styles = StyleSheet.create({
 
     txtInpDesc: {
         height: 150,
-        borderWidth: 2,
+        borderWidth: 1,
         borderRadius: 4,
         borderColor: '#EBEBEB',
     },
@@ -178,6 +253,13 @@ const styles = StyleSheet.create({
         paddingLeft: 16,
         color: '#7F7F7F',
         fontFamily: 'Montserrat-SemiBold'
+    },
+
+    btnNxtArea: {
+        // bottom: normalize(0),
+        justifyContent: 'center',
+        alignSelf: 'center',
+        // position: 'absolute'
     },
 
     btnNxt: {

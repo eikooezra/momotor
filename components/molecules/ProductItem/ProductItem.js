@@ -181,8 +181,6 @@ const styles = StyleSheet.create({
     },
 
     txtYear: {
-        width: normalize(27),
-        height: normalize(15),
         marginLeft: normalize(8),
         fontSize: normalize(12),
         fontFamily: 'Montserrat-Medium',
@@ -200,8 +198,6 @@ const styles = StyleSheet.create({
     },
 
     txtLoc: {
-        width: normalize(50),
-        height: normalize(15),
         marginLeft: normalize(13),
         marginBottom: normalize(12),
         fontSize: normalize(12),
