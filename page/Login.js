@@ -13,6 +13,7 @@ import normalize from 'react-native-normalize';
 import LinearGradient from 'react-native-linear-gradient'
 import { useForm } from '../utils/utils'
 import { Fire } from '../config'
+// import { showMessage, hideMessage } from "react-native-flash-message";
 import { Button2 } from '../components/components';
 import { storeData } from '../utils/localstorage/localstorage';
 
@@ -40,10 +41,19 @@ const Login = ({ navigation }) => {
                 console.log('success: ', success)
                 navigation.navigate('Home')
             })
-            .catch(err => {
-                console.log('error: ', err)
+            .catch(error => {
+                const errorMessage = error.message
+                showMessage({
+                    message: errorMessage,
+                    type: 'default',
+                    backgroundColor: '#E06379',
+                    color: '#FFFFFF'
+                })
+                console.log('error: ', error)
             })
+        
     }
+
 
     const [press, setPress] = useState(false)
     const [showPass, setShowPass] = useState(true)
@@ -138,6 +148,10 @@ const Login = ({ navigation }) => {
                     </Text>
                         </TouchableOpacity>
                     </View>
+
+                    <View>
+                        {errorHandling}
+                    </View>
                 </View>
             </View>
         </KeyboardAvoidingView>
@@ -174,6 +188,16 @@ const styles = StyleSheet.create({
         fontFamily: 'Montserrat-SemiBold',
         fontSize: normalize(14),
         color: '#FFFFFF'
+    },
+
+    txtError: {
+        width: normalize(200),
+        height: normalize(18),
+        fontSize: normalize(14),
+        fontFamily: 'Monserrat-Medium',
+        color: '#FFFFFF',
+        marginBottom: normalize(8),
+        marginLeft: normalize(30)
     },
 
     txtError1: {
