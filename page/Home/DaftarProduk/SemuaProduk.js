@@ -40,7 +40,7 @@ const SemuaProduk = () => {
                             image={item.image}
                             location={item.location}
                             year={item.year}
-                            price={item.price}
+                            price={'Rp ' + item.price}
                         />
                     )
                 })}
