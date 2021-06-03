@@ -13,7 +13,7 @@ import normalize from 'react-native-normalize';
 import LinearGradient from 'react-native-linear-gradient'
 import { useForm } from '../utils/utils'
 import { Fire } from '../config'
-// import { showMessage, hideMessage } from "react-native-flash-message";
+import { showMessage, hideMessage } from "react-native-flash-message";
 import { Button2 } from '../components/components';
 import { storeData } from '../utils/localstorage/localstorage';
 
@@ -147,10 +147,6 @@ const Login = ({ navigation }) => {
                                 Buat akun baru
                     </Text>
                         </TouchableOpacity>
-                    </View>
-
-                    <View>
-                        {errorHandling}
                     </View>
                 </View>
             </View>

@@ -5,7 +5,7 @@ import { NavigationContainer } from '@react-navigation/native'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import { createStackNavigator } from '@react-navigation/stack'
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs'
-// import FlashMessage from "react-native-flash-message"
+import FlashMessage from "react-native-flash-message"
 import normalize from 'react-native-normalize'
 
 import Login from './page/Login'
@@ -581,6 +581,7 @@ class App extends Component {
           <Stack.Screen name='Register' component={Register}/>
         </Stack.Navigator>
       </NavigationContainer>
+      <FlashMessage position='top'/>
       </>
     )
   }
