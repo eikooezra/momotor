@@ -39,7 +39,14 @@ const Register = ({ navigation }) => {
                 console.log('register success: ', success)
             })
             .catch((err) => {
-                console.log('error: ', err)
+                const errorMessage = error.message
+                showMessage({
+                    message: errorMessage,
+                    type: 'default',
+                    backgroundColor: '#E06379',
+                    color: '#FFFFFF'
+                })
+                console.log('error: ', error)
             })
     }
     return (
