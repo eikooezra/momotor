@@ -5,6 +5,7 @@ import { Button2, Gap, Header, Input } from '../components/components';
 import { Fire } from '../config';
 import { getData, storeData } from '../utils/localstorage/localstorage';
 import { useForm } from '../utils/utils';
+import { showMessage, hideMessage } from "react-native-flash-message";
 
 const Register = ({ navigation }) => {
     const [form, setForm] = useForm({
