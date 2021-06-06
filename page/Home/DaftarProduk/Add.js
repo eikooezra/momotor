@@ -22,14 +22,15 @@ const Add = ({ navigation }) => {
 
     const onContinue = () => {
         console.log('form', form)
-        const data = [
-            year = form.year.value,
-            location = form.location.value,
-            price = form.price,
-            ref_code = form.ref_code,
-            desc = form.desc,
-            kilometer = form.kilometer,
-        ]
+        const data = {
+            year: form.year.value,
+            location: form.location.value,
+            price: form.price,
+            ref_code: form.ref_code,
+            desc: form.desc,
+            kilometer: form.kilometer,
+        }
+
         let id
         if(id == null){
             id=0

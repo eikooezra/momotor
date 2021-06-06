@@ -22,7 +22,17 @@ const SemuaProduk = () => {
             .then(res => {
                 console.log('data: ', res.val())
                 if (res.val()) {
-                    setProduct(res.val())
+                    console.log('a', Object.values(res.val()))
+                    // Object.values(this.state.datas).map((data, i) => {
+
+                        // obtain the categories, i.e. bbc, cnn from the entry
+                        // let categories = Object.keys(data);
+
+                        // pop the "title" key so it doesn't get returned
+                        // categories.pop();
+
+                    // })
+                    setProduct(Object.values(res.val()))
                 }
             })
             .catch(err => {
@@ -36,10 +46,12 @@ const SemuaProduk = () => {
                 console.log('error: ', error)
             })
     }, [])
+    console.log(product)
     return (
         <View style={styles.container}>
             <ScrollView>
                 {product.map(item => {
+                    console.log('b', item)
                     return (
                         <ProductItem
                             key={item.id}
