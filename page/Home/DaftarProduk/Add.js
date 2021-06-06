@@ -17,22 +17,30 @@ const Add = ({ navigation }) => {
         ref_code: '',
         desc: '',
         kilometer: '',
+        id: '',
     })
 
     const onContinue = () => {
         console.log('form', form)
-        const data = {
-            year: form.year.value,
-            location: form.location.value,
-            price: form.price,
-            ref_code: form.ref_code,
-            desc: form.desc,
-            kilometer: '',
+        const data = [
+            year = form.year.value,
+            location = form.location.value,
+            price = form.price,
+            ref_code = form.ref_code,
+            desc = form.desc,
+            kilometer = form.kilometer,
+        ]
+        let id
+        if(id == null){
+            id=0
+        }else{
+            id+=1
         }
+
         Fire
             .database()
-            .ref('product/3/')
-            .set(data)
+            .ref('product/')
+            .push(data)
         navigation.navigate('AddPics')
     }
     return (

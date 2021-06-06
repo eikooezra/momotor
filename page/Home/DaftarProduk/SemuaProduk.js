@@ -21,7 +21,7 @@ const SemuaProduk = () => {
             .once('value')
             .then(res => {
                 console.log('data: ', res.val())
-                if(res.val()){
+                if (res.val()) {
                     setProduct(res.val())
                 }
             })
@@ -42,9 +42,10 @@ const SemuaProduk = () => {
                 {product.map(item => {
                     return (
                         <ProductItem
+                            key={item.id}
                             date={item.date}
                             name={item.name}
-                            kilometer={item.kilometer}
+                            kilometer={item.kilometer + ' KM'}
                             image={item.image}
                             location={item.location}
                             year={item.year}
