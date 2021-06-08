@@ -1,4 +1,3 @@
-import { Picker, Spinner } from 'native-base';
 import React, { useState } from 'react';
 import { StyleSheet, View, Text, Image, TextInput, } from 'react-native';
 import DropDownPicker from 'react-native-dropdown-picker';
