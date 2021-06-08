@@ -173,7 +173,7 @@ const AddPics = ({navigation}) =>  {
                 <View style={styles.btnNxtArea}>
                     <TouchableOpacity
                         style={styles.btnNxt}
-                        onPress={() => navigate.navigation('Verification')}
+                        onPress={() => navigation.navigate('Verification')}
                     >
                         <Text style={styles.txtNxt}>
                             SELANJUTNYA

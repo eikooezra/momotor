@@ -5,6 +5,7 @@ import { Button2, Gap, Header, Input } from '../components/components';
 import { Fire } from '../config';
 import { getData, storeData } from '../utils/localstorage/localstorage';
 import { useForm } from '../utils/utils';
+import { showMessage, hideMessage } from "react-native-flash-message";
 
 const Register = ({ navigation }) => {
     const [form, setForm] = useForm({
@@ -39,7 +40,14 @@ const Register = ({ navigation }) => {
                 console.log('register success: ', success)
             })
             .catch((err) => {
-                console.log('error: ', err)
+                const errorMessage = error.message
+                showMessage({
+                    message: errorMessage,
+                    type: 'default',
+                    backgroundColor: '#E06379',
+                    color: '#FFFFFF'
+                })
+                console.log('error: ', error)
             })
     }
     return (
