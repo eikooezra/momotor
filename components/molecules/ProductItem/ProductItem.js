@@ -135,9 +135,8 @@ const styles = StyleSheet.create({
     },
 
     date: {
-        width: normalize(70),
-        height: normalize(15),
-        fontSize: normalize(12),
+        fontSize: 13,
+        textAlign: 'center',
         fontFamily: 'Montserrat-Medium',
         color: '#7F7F7F'
     },
@@ -147,11 +146,9 @@ const styles = StyleSheet.create({
     },
 
     namaMotor: {
-        width: normalize(115),
-        height: normalize(18),
-        marginTop: normalize(16),
-        marginBottom: normalize(6),
-        fontSize: normalize(14),
+        marginTop: 16,
+        marginBottom: 6,
+        fontSize: 16,
         fontFamily: 'Montserrat-SemiBold'
     },
 
@@ -165,11 +162,11 @@ const styles = StyleSheet.create({
     },
 
     txtSpeedo: {
-        width: normalize(60),
-        height: normalize(15),
+        // width: normalize(60),
+        // height: normalize(15),
         marginLeft: normalize(8),
         marginBottom: normalize(6),
-        fontSize: normalize(12),
+        fontSize: 12,
         fontFamily: 'Montserrat-Medium',
         color: '#7F7F7F'
     },
@@ -206,16 +203,17 @@ const styles = StyleSheet.create({
     },
 
     txtPrice: {
-        width: normalize(220),
-        height: normalize(22),
+        // width: normalize(220),
+        // height: normalize(22),
         fontSize: normalize(16),
         fontFamily: 'Montserrat-Bold',
     },
 
     triDots: {
-        width: normalize(25),
-        height: normalize(25),
-        marginTop: normalize(16),
-        marginLeft: normalize(15)
+        width: 24,
+        height: 24,
+        marginTop: 16,
+        marginLeft: 90
+        // marginLeft: normalize(15)
     }
 });

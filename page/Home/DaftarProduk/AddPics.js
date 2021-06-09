@@ -7,11 +7,23 @@ import {
     TouchableOpacity
 } from 'react-native'
 import Animated from 'react-native-reanimated'
-import {launchCamera, launchImageLibrary} from 'react-native-image-picker';
+import { launchCamera, launchImageLibrary } from 'react-native-image-picker';
 import normalize from 'react-native-normalize'
 import { ScrollView } from 'react-native-gesture-handler';
+import { Fire } from '../../../config';
 
-const AddPics = ({navigation}) =>  {
+const AddPics = ({ navigation, route }) => {
+    const {
+        name, 
+        year, 
+        location, 
+        price, 
+        ref_code, 
+        desc, 
+        kilometer, 
+        id 
+    } = route.params
+    const [photoForDB, setPhotoForDB] = useState('')
     const [photo, setPhoto] = useState(require('../../../assets/images/camLogo.png'))
     const [photo1, setPhoto1] = useState(require('../../../assets/images/camLogo.png'))
     const [photo2, setPhoto2] = useState(require('../../../assets/images/camLogo.png'))
@@ -21,167 +33,176 @@ const AddPics = ({navigation}) =>  {
 
     const getImage = () => {
         launchImageLibrary(
-            {mediaType: 'photo', quality: 1}, 
+            { mediaType: 'photo', quality: 1, includeBase64: true },
             (response) => {
-            console.log('response: ', response)
-            const source = {uri: response.uri}
-            setPhoto(source)
-        })
+                console.log('response: ', response)
+                const source = { uri: response.uri }
+                setPhotoForDB(`data:${response.type};base64, ${response.base64}`)
+                setPhoto(source)
+            })
+    }
+
+    const uploadAndContinue = () => {
+        Fire
+            .database()
+            .ref('product/' + id + '/')
+            .update({image: photoForDB})
+        navigation.navigate('Verification')
     }
 
     const getImage1 = () => {
         launchImageLibrary(
-            {mediaType: 'photo', quality: 1}, 
+            { mediaType: 'photo', quality: 1, includeBase64: true },
             (response) => {
-            console.log('response: ', response)
-            const source = {uri: response.uri}
-            setPhoto1(source)
-        })
+                console.log('response: ', response)
+                const source = { uri: response.uri }
+                setPhoto1(source)
+            })
     }
 
     const getImage2 = () => {
         launchImageLibrary(
-            {mediaType: 'photo', quality: 1}, 
+            { mediaType: 'photo', quality: 1, includeBase64: true },
             (response) => {
-            console.log('response: ', response)
-            const source = {uri: response.uri}
-            setPhoto2(source)
-        })
+                console.log('response: ', response)
+                const source = { uri: response.uri }
+                setPhoto2(source)
+            })
     }
 
     const getImage3 = () => {
         launchImageLibrary(
-            {mediaType: 'photo', quality: 1}, 
+            { mediaType: 'photo', quality: 1, includeBase64: true },
             (response) => {
-            console.log('response: ', response)
-            const source = {uri: response.uri}
-            setPhoto3(source)
-        })
+                console.log('response: ', response)
+                const source = { uri: response.uri }
+                setPhoto3(source)
+            })
     }
 
     const getImage4 = () => {
         launchImageLibrary(
-            {mediaType: 'photo', quality: 1}, 
+            { mediaType: 'photo', quality: 1, includeBase64: true },
             (response) => {
-            console.log('response: ', response)
-            const source = {uri: response.uri}
-            setPhoto4(source)
-        })
+                console.log('response: ', response)
+                const source = { uri: response.uri }
+                setPhoto4(source)
+            })
     }
 
     const getImage5 = () => {
         launchImageLibrary(
-            {mediaType: 'photo', quality: 1}, 
+            { mediaType: 'photo', quality: 1, includeBase64: true },
             (response) => {
-            console.log('response: ', response)
-            const source = {uri: response.uri}
-            setPhoto5(source)
-        })
+                console.log('response: ', response)
+                const source = { uri: response.uri }
+                setPhoto5(source)
+            })
     }
 
-        return (
-            <View style={styles.container}>
-                    <View style={styles.Header}>
-                        <TouchableOpacity
-                            onPress={() => navigation.navigate('Add')}
-                        >
-                            <Image 
-                                style={styles.btnBack}
-                                source={require('../../../assets/images/back.png')}
-                            />
-                        </TouchableOpacity>
-        
-                        <Text style={styles.txtAddPic}>
-                            Tambah Foto
+    return (
+        <View style={styles.container}>
+            <View style={styles.Header}>
+                <TouchableOpacity
+                    onPress={() => navigation.navigate('Add')}
+                >
+                    <Image
+                        style={styles.btnBack}
+                        source={require('../../../assets/images/back.png')}
+                    />
+                </TouchableOpacity>
+
+                <Text style={styles.txtAddPic}>
+                    Tambah Foto
                         </Text>
-                    </View>
-
-                    <View style={styles.chosenPic}>
-                        <TouchableOpacity
-                            onPress={getImage}
-                            style={styles.bluRectangle}
-                        >
-                            <Image source={photo}
-                            style={{
-                                height: normalize(180),
-                                width: normalize(180)
-                            }}
-                            />
-                        </TouchableOpacity>
-
-                        <TouchableOpacity
-                            onPress={getImage1}
-                            style={styles.bluRectangle}
-                        >
-                            <Image source={photo1}
-                            style={{
-                                height: normalize(180),
-                                width: normalize(180)
-                            }}
-                            />
-                        </TouchableOpacity>
-
-                        <TouchableOpacity
-                            onPress={getImage2}
-                            style={styles.bluRectangle}
-                        >
-                            <Image source={photo2}
-                            style={{
-                                height: normalize(180),
-                                width: normalize(180)
-                            }}
-                            />
-                        </TouchableOpacity>
-
-                        <TouchableOpacity
-                            onPress={getImage3}
-                            style={styles.bluRectangle}
-                        >
-                            <Image source={photo3}
-                            style={{
-                                height: normalize(180),
-                                width: normalize(180)
-                            }}
-                            />
-                        </TouchableOpacity>
-
-                        <TouchableOpacity
-                            onPress={getImage4}
-                            style={styles.bluRectangle}
-                        >
-                            <Image source={photo4}
-                            style={{
-                                height: normalize(180),
-                                width: normalize(180)
-                            }}
-                            />
-                        </TouchableOpacity>
-
-                        <TouchableOpacity
-                            onPress={getImage5}
-                            style={styles.bluRectangle}
-                        >
-                            <Image source={photo5}
-                            style={{
-                                height: normalize(180),
-                                width: normalize(180)
-                            }}
-                            />
-                        </TouchableOpacity>
-                    </View>
-
-                <View style={styles.btnNxtArea}>
-                    <TouchableOpacity
-                        style={styles.btnNxt}
-                        onPress={() => navigation.navigate('Verification')}
-                    >
-                        <Text style={styles.txtNxt}>
-                            SELANJUTNYA
-                        </Text>
-                    </TouchableOpacity>
-                </View>
             </View>
-        )
+
+            <View style={styles.chosenPic}>
+                <TouchableOpacity
+                    onPress={getImage}
+                    style={styles.bluRectangle}
+                >
+                    <Image source={photo}
+                        style={{
+                            height: normalize(180),
+                            width: normalize(180)
+                        }}
+                    />
+                </TouchableOpacity>
+
+                <TouchableOpacity
+                    onPress={getImage1}
+                    style={styles.bluRectangle}
+                >
+                    <Image source={photo1}
+                        style={{
+                            height: normalize(180),
+                            width: normalize(180)
+                        }}
+                    />
+                </TouchableOpacity>
+
+                <TouchableOpacity
+                    onPress={getImage2}
+                    style={styles.bluRectangle}
+                >
+                    <Image source={photo2}
+                        style={{
+                            height: normalize(180),
+                            width: normalize(180)
+                        }}
+                    />
+                </TouchableOpacity>
+
+                <TouchableOpacity
+                    onPress={getImage3}
+                    style={styles.bluRectangle}
+                >
+                    <Image source={photo3}
+                        style={{
+                            height: normalize(180),
+                            width: normalize(180)
+                        }}
+                    />
+                </TouchableOpacity>
+
+                <TouchableOpacity
+                    onPress={getImage4}
+                    style={styles.bluRectangle}
+                >
+                    <Image source={photo4}
+                        style={{
+                            height: normalize(180),
+                            width: normalize(180)
+                        }}
+                    />
+                </TouchableOpacity>
+
+                <TouchableOpacity
+                    onPress={getImage5}
+                    style={styles.bluRectangle}
+                >
+                    <Image source={photo5}
+                        style={{
+                            height: normalize(180),
+                            width: normalize(180)
+                        }}
+                    />
+                </TouchableOpacity>
+            </View>
+
+            <View style={styles.btnNxtArea}>
+                <TouchableOpacity
+                    style={styles.btnNxt}
+                    onPress={uploadAndContinue}
+                >
+                    <Text style={styles.txtNxt}>
+                        SELANJUTNYA
+                        </Text>
+                </TouchableOpacity>
+            </View>
+        </View>
+    )
 }
 
 export default AddPics
@@ -227,7 +248,7 @@ const styles = StyleSheet.create({
         marginTop: normalize(50),
         alignSelf: 'center'
     },
-    
+
     chosenPic: {
         flexWrap: 'wrap',
         flexDirection: 'row',
@@ -242,7 +263,7 @@ const styles = StyleSheet.create({
         borderRadius: 10,
         backgroundColor: '#0064D0',
         position: 'absolute',
-    },  
+    },
 
     txtFoto: {
         width: normalize(125),
@@ -265,7 +286,7 @@ const styles = StyleSheet.create({
         height: normalize(58),
         backgroundColor: '#0064D0'
     },
-    
+
     txtNxt: {
         width: normalize(125),
         height: normalize(20),

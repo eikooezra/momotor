@@ -23,15 +23,6 @@ const SemuaProduk = () => {
                 console.log('data: ', res.val())
                 if (res.val()) {
                     console.log('a', Object.values(res.val()))
-                    // Object.values(this.state.datas).map((data, i) => {
-
-                        // obtain the categories, i.e. bbc, cnn from the entry
-                        // let categories = Object.keys(data);
-
-                        // pop the "title" key so it doesn't get returned
-                        // categories.pop();
-
-                    // })
                     setProduct(Object.values(res.val()))
                 }
             })
@@ -51,7 +42,6 @@ const SemuaProduk = () => {
         <View style={styles.container}>
             <ScrollView>
                 {product.map(item => {
-                    console.log('b', item)
                     return (
                         <ProductItem
                             key={item.id}

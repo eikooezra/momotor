@@ -6,52 +6,50 @@ import { ScrollView, TouchableOpacity } from 'react-native-gesture-handler';
 import normalize from 'react-native-normalize';
 import { Button2, Gap, Header, Input } from '../../../components/components';
 import { Fire } from '../../../config';
+import { storeData } from '../../../utils/localstorage/localstorage';
 import { useForm } from '../../../utils/utils';
 
 const Add = ({ navigation }) => {
     const [form, setForm] = useForm({
-        model: '',
+        name: '',
         year: '',
         location: '',
         price: '',
         ref_code: '',
         desc: '',
         kilometer: '',
-        id: '',
     })
 
     const onContinue = () => {
-        console.log('form', form)
+        const newPostKey = Fire.database().ref().child('post').push().key
         const data = {
+            name: form.name,
             year: form.year.value,
             location: form.location.value,
             price: form.price,
             ref_code: form.ref_code,
             desc: form.desc,
             kilometer: form.kilometer,
+            date: new Date().getDate() + '/' + new Date().getMonth() + 1 + '/' + new Date().getFullYear(),
+            id: newPostKey
         }
-
-        let id
-        if(id == null){
-            id=0
-        }else{
-            id+=1
-        }
-
         Fire
             .database()
-            .ref('product/')
-            .push(data)
-        navigation.navigate('AddPics')
+            .ref('product/' + newPostKey + '/')
+            .set(data)
+        storeData('product', data)
+
+        navigation.navigate('AddPics', data)
     }
     return (
         <View style={styles.container}>
             <Header title="Tambah Produk" back onPress={() => navigation.goBack()} />
-            <View style={styles.searchContainer}>
+            {/* <View style={styles.searchContainer}>
                 <Image
                     source={require('../../../assets/images/greysearch.png')}
                     style={styles.imgSearch}
                 />
+
 
                 <View style={styles.modelContainer}>
                     <TextInput
@@ -60,9 +58,16 @@ const Add = ({ navigation }) => {
                         placeholderTextColor='#7F7F7F'
                     />
                 </View>
-            </View>
+            </View> */}
             <View style={styles.content}>
                 <ScrollView showsVerticalScrollIndicator={false}>
+                    <Gap height={25} />
+                    <Input
+                        placeholder='Nama Produk'
+                        value={form.name}
+                        onChangeText={value => setForm('name', value)}
+                    />
+                    <Gap height={34} />
                     <View style={styles.content}>
 
                     </View>
@@ -93,28 +98,11 @@ const Add = ({ navigation }) => {
                             fontFamily: 'Montserrat-SemiBold',
                         }}
                         arrowStyle={{
-                            
+
                         }}
                         value={form.year}
                         onChangeItem={value => setForm('year', value)}
                     />
-
-                    {/* <View style={styles.dropDownBorder}>
-                        <Picker
-                            // style='@style/SpinnerDropDownItem'
-                            selectedValue={form.year}
-                            onValueChange={value => setForm('year', value)}
-                            mode='dropdown'
-                        >
-                            <Picker.Item label='2015' value='2015' />
-                            <Picker.Item label='2016' value='2016' />
-                            <Picker.Item label='2017' value='2017' />
-                            <Picker.Item label='2018' value='2018' />
-                            <Picker.Item label='2019' value='2019' />
-                            <Picker.Item label='2020' value='2020' />
-                        </Picker>
-
-                    </View> */}
                     <Gap height={34} />
                     <DropDownPicker
                         items={[
@@ -143,19 +131,6 @@ const Add = ({ navigation }) => {
                         value={form.location}
                         onChangeItem={value => setForm('location', value)}
                     />
-                    {/* <View style={styles.dropDownBorder}>
-                        <Picker
-                            selectedValue={form.location}
-                            onValueChange={value => setForm('location', value)}
-                            mode='dropdown'
-                        >
-                            <Picker.Item label='Jakarta' value='Jakarta' />
-                            <Picker.Item label='Bogor' value='Bogor' />
-                            <Picker.Item label='Depok' value='Depok' />
-                            <Picker.Item label='Tangerang' value='Tangerang' />
-                            <Picker.Item label='Bekasi' value='Bekasi' />
-                        </Picker>
-                    </View> */}
                     <Gap height={34} />
                     <Input
                         placeholder='Harga'
