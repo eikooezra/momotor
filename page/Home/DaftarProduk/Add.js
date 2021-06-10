@@ -19,6 +19,14 @@ const Add = ({ navigation }) => {
         kilometer: '',
     })
 
+    const [pressed, setPressed] = useState(false)
+
+    const nullChecker = () => {
+        if(pressed === false){
+            setPressed({null: true})
+        }
+    }
+
     const onContinue = () => {
         const newPostKey = Fire.database().ref().child('post').push().key
         const data = {
@@ -58,8 +66,8 @@ const Add = ({ navigation }) => {
                     />
                 </View>
             </View> */}
-            <View style={styles.content}>
-                <ScrollView showsVerticalScrollIndicator={false}>
+            <ScrollView showsVerticalScrollIndicator={false}>
+                <View style={styles.content}>
                     <Gap height={25} />
                     <Input
                         placeholder='Nama Produk'
@@ -92,6 +100,8 @@ const Add = ({ navigation }) => {
                         }}
                         labelStyle={{
                             // marginLeft: 16,
+                            width: 120,
+                            marginRight: 200,
                             fontSize: 14,
                             color: '#7F7F7F',
                             fontFamily: 'Montserrat-SemiBold',
@@ -122,7 +132,8 @@ const Add = ({ navigation }) => {
                             backgroundColor: '#FFFFFF'
                         }}
                         labelStyle={{
-                            marginLeft: 0,
+                            width: 120,
+                            marginRight: 200,
                             fontSize: 14,
                             color: '#7F7F7F',
                             fontFamily: 'Montserrat-SemiBold',
@@ -159,23 +170,24 @@ const Add = ({ navigation }) => {
                         />
                     </View>
                     <Gap height={34} />
-                    <View style={styles.btnNxtArea}>
-                        <Button2
+                </View>
+                <View style={styles.btnNxtArea}>
+                    {/* <Button2
                             onPress={onContinue}
                             title="SELANJUTNYA"
-                        />
-                        {/* <TouchableOpacity
-                            style={[styles.btnNxt]}
-                            onPress={onContinue}
-                        // disabled={!enabled}
-                        >
-                            <Text style={styles.txtNxt}>
-                                SELANJUTNYA
+                        /> */}
+                    <TouchableOpacity
+                        style={[styles.btnNxt]}
+                        onPress={onContinue}
+                    // disabled={!enabled}
+                    >
+                        <Text style={styles.txtNxt}>
+                            SELANJUTNYA
                         </Text>
-                        </TouchableOpacity> */}
-                    </View>
-                </ScrollView>
-            </View>
+                    </TouchableOpacity>
+                </View>
+
+            </ScrollView>
         </View>
     );
 };
@@ -239,14 +251,16 @@ const styles = StyleSheet.create({
     },
 
     btnNxtArea: {
-        // bottom: normalize(0),
+        bottom: normalize(0),
         justifyContent: 'center',
-        alignSelf: 'center',
-        // position: 'absolute'
+        alignSelf: 'center'
     },
 
     btnNxt: {
         paddingVertical: 15,
+        paddingHorizontal: 127,
+        width: normalize(420),
+        height: normalize(58),
         backgroundColor: '#0064D0'
     },
 

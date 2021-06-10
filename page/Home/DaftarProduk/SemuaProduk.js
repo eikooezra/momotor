@@ -48,7 +48,7 @@ const SemuaProduk = () => {
                             date={item.date}
                             name={item.name}
                             kilometer={item.kilometer + ' KM'}
-                            image={item.image}
+                            image={item.images.image}
                             location={item.location}
                             year={item.year}
                             price={'Rp ' + item.price}

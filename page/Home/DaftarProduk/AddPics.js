@@ -24,6 +24,11 @@ const AddPics = ({ navigation, route }) => {
         id 
     } = route.params
     const [photoForDB, setPhotoForDB] = useState('')
+    const [photoForDB1, setPhotoForDB1] = useState('')
+    const [photoForDB2, setPhotoForDB2] = useState('')
+    const [photoForDB3, setPhotoForDB3] = useState('')
+    const [photoForDB4, setPhotoForDB4] = useState('')
+    const [photoForDB5, setPhotoForDB5] = useState('')
     const [photo, setPhoto] = useState(require('../../../assets/images/camLogo.png'))
     const [photo1, setPhoto1] = useState(require('../../../assets/images/camLogo.png'))
     const [photo2, setPhoto2] = useState(require('../../../assets/images/camLogo.png'))
@@ -42,20 +47,13 @@ const AddPics = ({ navigation, route }) => {
             })
     }
 
-    const uploadAndContinue = () => {
-        Fire
-            .database()
-            .ref('product/' + id + '/')
-            .update({image: photoForDB})
-        navigation.navigate('Verification')
-    }
-
     const getImage1 = () => {
         launchImageLibrary(
             { mediaType: 'photo', quality: 1, includeBase64: true },
             (response) => {
                 console.log('response: ', response)
                 const source = { uri: response.uri }
+                setPhotoForDB1(`data:${response.type};base64, ${response.base64}`)
                 setPhoto1(source)
             })
     }
@@ -66,6 +64,7 @@ const AddPics = ({ navigation, route }) => {
             (response) => {
                 console.log('response: ', response)
                 const source = { uri: response.uri }
+                setPhotoForDB2(`data:${response.type};base64, ${response.base64}`)
                 setPhoto2(source)
             })
     }
@@ -76,6 +75,7 @@ const AddPics = ({ navigation, route }) => {
             (response) => {
                 console.log('response: ', response)
                 const source = { uri: response.uri }
+                setPhotoForDB3(`data:${response.type};base64, ${response.base64}`)
                 setPhoto3(source)
             })
     }
@@ -86,6 +86,7 @@ const AddPics = ({ navigation, route }) => {
             (response) => {
                 console.log('response: ', response)
                 const source = { uri: response.uri }
+                setPhotoForDB4(`data:${response.type};base64, ${response.base64}`)
                 setPhoto4(source)
             })
     }
@@ -96,8 +97,24 @@ const AddPics = ({ navigation, route }) => {
             (response) => {
                 console.log('response: ', response)
                 const source = { uri: response.uri }
+                setPhotoForDB5(`data:${response.type};base64, ${response.base64}`)
                 setPhoto5(source)
             })
+    }
+
+    const uploadAndContinue = () => {
+        Fire
+            .database()
+            .ref('product/' + id + '/images' + '/')
+            .update({
+                image: photoForDB,
+                image1: photoForDB1,
+                image2: photoForDB2,
+                image3: photoForDB3,
+                image4: photoForDB4,
+                image5: photoForDB5,
+            })
+        navigation.navigate('Verification')
     }
 
     return (
