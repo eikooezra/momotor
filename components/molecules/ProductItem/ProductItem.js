@@ -2,96 +2,101 @@ import React, { useRef } from 'react';
 import normalize from 'react-native-normalize';
 import RBSheet from "react-native-raw-bottom-sheet"
 import BottomSheet from '../../../page/Home/BottomSheet'
-import { 
-    StyleSheet, 
-    View, 
-    Text, 
-    Image, 
-    TouchableOpacity 
+import {
+    StyleSheet,
+    View,
+    Text,
+    Image,
+    TouchableOpacity
 } from 'react-native';
 
-const ProductItem = ({ date, name, kilometer, image, location, year, price }) => {
+const ProductItem = ({ date, name, kilometer, image, location, year, price, onPress }) => {
     const refRBSheet = useRef()
     return (
         <View>
-            <RBSheet
-                ref={refRBSheet}
-                height={300}
-                openDuration={250}
-                closeOnDragDown={true}
-                customStyles={{
-                    container: {
-                        height: 250,
-                        borderTopStartRadius: 10,
-                        borderTopEndRadius: 10,
-                    }
-                }}
+            <TouchableOpacity
+                onPress={onPress}
             >
-                <BottomSheet />
-            </RBSheet>
-            <View style={styles.WhiteBox}>
 
-                <View style={styles.boxContainer1}>
-                    <Image
-                        style={styles.imgUnit}
-                        source={{uri:image}}
-                    />
-
-                    <Text style={styles.date}>
-                        {date}
-                    </Text>
-                </View>
-
-                <View style={styles.boxContainer2}>
-                    <Text style={styles.namaMotor}>
-                        {name}
-                    </Text>
-
-                    <View style={styles.speedoContainer}>
-                        <Image
-                            style={styles.imgSpeedo}
-                            source={require('../../../assets/images/speedo.png')}
-                        />
-
-                        <Text style={styles.txtSpeedo}>
-                            {kilometer}
-                        </Text>
-
-                        <Image
-                            style={styles.imgYear}
-                            source={require('../../../assets/images/year.png')}
-                        />
-
-                        <Text style={styles.txtYear}>
-                            {year}
-                        </Text>
-                    </View>
-
-                    <View style={styles.locContainer}>
-                        <Image
-                            style={styles.imgLoc}
-                            source={require('../../../assets/images/location.png')}
-                        />
-
-                        <Text style={styles.txtLoc}>
-                            {location}
-                        </Text>
-                    </View>
-
-                    <Text style={styles.txtPrice}>
-                        {price}
-                    </Text>
-                </View>
-
-                <TouchableOpacity
-                    onPress={() => refRBSheet.current.open()}
+                <RBSheet
+                    ref={refRBSheet}
+                    height={300}
+                    openDuration={250}
+                    closeOnDragDown={true}
+                    customStyles={{
+                        container: {
+                            height: 250,
+                            borderTopStartRadius: 10,
+                            borderTopEndRadius: 10,
+                        }
+                    }}
                 >
-                    <Image
-                        style={styles.triDots}
-                        source={require('../../../assets/images/3dots.png')}
-                    />
-                </TouchableOpacity>
-            </View>
+                    <BottomSheet />
+                </RBSheet>
+                <View style={styles.WhiteBox}>
+
+                    <View style={styles.boxContainer1}>
+                        <Image
+                            style={styles.imgUnit}
+                            source={{ uri: image }}
+                        />
+
+                        <Text style={styles.date}>
+                            {date}
+                        </Text>
+                    </View>
+
+                    <View style={styles.boxContainer2}>
+                        <Text style={styles.namaMotor}>
+                            {name}
+                        </Text>
+
+                        <View style={styles.speedoContainer}>
+                            <Image
+                                style={styles.imgSpeedo}
+                                source={require('../../../assets/images/speedo.png')}
+                            />
+
+                            <Text style={styles.txtSpeedo}>
+                                {kilometer}
+                            </Text>
+
+                            <Image
+                                style={styles.imgYear}
+                                source={require('../../../assets/images/year.png')}
+                            />
+
+                            <Text style={styles.txtYear}>
+                                {year}
+                            </Text>
+                        </View>
+
+                        <View style={styles.locContainer}>
+                            <Image
+                                style={styles.imgLoc}
+                                source={require('../../../assets/images/location.png')}
+                            />
+
+                            <Text style={styles.txtLoc}>
+                                {location}
+                            </Text>
+                        </View>
+
+                        <Text style={styles.txtPrice}>
+                            {price}
+                        </Text>
+                    </View>
+
+                    <TouchableOpacity
+                        onPress={() => refRBSheet.current.open()}
+                    >
+                        <Image
+                            style={styles.triDots}
+                            source={require('../../../assets/images/3dots.png')}
+                        />
+                    </TouchableOpacity>
+                </View>
+            </TouchableOpacity>
         </View>
     );
 };

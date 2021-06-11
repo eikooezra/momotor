@@ -13,7 +13,7 @@ import { Fire } from '../../../config'
 import { ProductItem } from '../../../components/components';
 // import Test from '../../../api/Test'
 
-const SemuaProduk = () => {
+const SemuaProduk = ({navigation}) => {
     const [product, setProduct] = useState([])
     useEffect(() => {
         Fire.database()
@@ -52,6 +52,7 @@ const SemuaProduk = () => {
                             location={item.location}
                             year={item.year}
                             price={'Rp ' + item.price}
+                            onPress={() => navigation.navigate('DetailProduk')}
                         />
                     )
                 })}
