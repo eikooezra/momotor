@@ -167,6 +167,7 @@ const Add = ({ navigation }) => {
                             placeholderTextColor='#7F7F7F'
                             value={form.desc}
                             onChangeText={value => setForm('desc', value)}
+                            multiline={true}
                         />
                     </View>
                     <Gap height={34} />

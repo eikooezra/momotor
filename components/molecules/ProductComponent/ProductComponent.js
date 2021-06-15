@@ -10,18 +10,29 @@ import {
   ImageBackground,
 } from 'react-native'
 import { SliderBox } from 'react-native-image-slider-box'
-import normalize from 'react-native-normalize';
-import { Button, Gap } from '../../atoms/atoms';
+import { Gap } from '../../atoms/atoms';
 
-const images = [
-  require('../../../assets/images/vario.png'),
-  require('../../../assets/images/vario.png'),
-  require('../../../assets/images/vario.png'),
-  require('../../../assets/images/vario.png'),
-  require('../../../assets/images/vario.png'),
-]
+// const images = [
+//   require('../../../assets/images/vario.png'),
+//   require('../../../assets/images/vario.png'),
+//   require('../../../assets/images/vario.png'),
+//   require('../../../assets/images/vario.png'),
+//   require('../../../assets/images/vario.png'),
+// ]
 
-const ProductComponent = ({ text, back }) => {
+const ProductComponent = ({
+  images,
+  status, 
+  name, 
+  price, 
+  location, 
+  kilometer, 
+  ref_code, 
+  year, 
+  date,
+  desc, 
+  back 
+}) => {
 
   return (
     <View style={styles.container}>
@@ -43,31 +54,37 @@ const ProductComponent = ({ text, back }) => {
         <View style={styles.content}>
 
           <View style={styles.status}>
-            <Text style={styles.txtStatus}>{text}</Text>
+            <Text style={styles.txtStatus}>{status}</Text>
           </View>
 
           <View style={styles.section}>
-            <Text style={styles.txtModel}>HONDA VARIO 125 CBS EPS ISS</Text>
-            <Text style={styles.txtPrice}>Rp. 20.000.000</Text>
+            <Text style={styles.txtModel}>{name}</Text>
+            <Text style={styles.txtPrice}>{'Rp ' + price}</Text>
           </View>
 
           <View style={styles.whiteBox}>
             <Text style={styles.detailTitle}>Detail Produk</Text>
-            <Text style={styles.txtDetailLeft}>Nama Pemesan</Text>
-            <Text style={styles.txtDetailRight}>Sumanto Wijaya</Text>
+            <Text style={styles.txtDetailLeft}>Lokasi</Text>
+            <Text style={styles.txtDetailRight}>{location}</Text>
             <Gap height={12} />
-            <Text style={styles.txtDetailLeft}>Kode</Text>
-            <Text style={styles.txtDetailRight}>1569825581305</Text>
+            <Text style={styles.txtDetailLeft}>Jarak Tempuh</Text>
+            <Text style={styles.txtDetailRight}>{kilometer + ' KM'}</Text>
             <Gap height={12} />
-            <Text style={styles.txtDetailLeft}>Kode Referensi</Text>
-            <Text style={styles.txtDetailRight}>55555</Text>
+            <Text style={styles.txtDetailLeft}>Kode Referral</Text>
+            <Text style={styles.txtDetailRight}>{ref_code}</Text>
             <Gap height={12} />
-            <Text style={styles.txtDetailLeft}>Tenor</Text>
-            <Text style={styles.txtDetailRight}>12 Bulan</Text>
+            <Text style={styles.txtDetailLeft}>Tahun</Text>
+            <Text style={styles.txtDetailRight}>{year}</Text>
             <Gap height={12} />
-            <Text style={styles.txtDetailLeft}>Tanggal Pembayaran</Text>
-            <Text style={styles.txtDetailRight}>21/12/19</Text>
+            <Text style={styles.txtDetailLeft}>Tanggal Penambahan</Text>
+            <Text style={styles.txtDetailRight}>{date}</Text>
             <Gap height={16} />
+          </View>
+
+          <View style={styles.whiteBox}>
+            <Text style={styles.detailTitle}>Deskripsi</Text>
+            <Text style={styles.txtDetailLeft}>{desc}</Text>
+            <Gap height={16}/>
           </View>
 
           <Text style={styles.txtTindakan}>Tindakan</Text>
