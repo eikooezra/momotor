@@ -3,11 +3,18 @@ import { StyleSheet, View, Text } from 'react-native';
 import { ProductComponent } from '../../../components/components';
 import { Fire } from '../../../config';
 
-const DetailProduk = ({ navigation }) => {
+const DetailProduk = ({ navigation, route }) => {
+  const detail = route.params
   const [productDetail, setProductDetail] = useState([])
   useEffect(() => {
+    getDetailById(detail.id)
+  }, [])
+
+  const getDetailById = (id) => {
     Fire.database()
       .ref('product/')
+      .orderByChild('id')
+      .equalTo(id)
       .once('value')
       .then(res => {
         console.log('data: ', res.val())
@@ -26,7 +33,8 @@ const DetailProduk = ({ navigation }) => {
         })
         console.log('error: ', error)
       })
-  }, [])
+  }
+
   return (
     <View>
       {productDetail.map(item => {

@@ -52,7 +52,7 @@ const SemuaProduk = ({navigation}) => {
                             location={item.location}
                             year={item.year}
                             price={'Rp ' + item.price}
-                            onPress={() => navigation.navigate('DetailProduk')}
+                            onPress={() => navigation.navigate('DetailProduk', item)}
                         />
                     )
                 })}
