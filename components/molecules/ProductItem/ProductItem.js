@@ -7,32 +7,41 @@ import {
     View,
     Text,
     Image,
-    TouchableOpacity
+    TouchableOpacity,
+    ImageBackground,
 } from 'react-native';
 
-const ProductItem = ({ date, name, kilometer, image, location, year, price, onPress }) => {
+const ProductItem = ({
+    date,
+    name,
+    kilometer,
+    image,
+    location,
+    year,
+    price,
+    onPress,
+    status
+}) => {
     const refRBSheet = useRef()
     return (
         <View>
-            <TouchableOpacity
-                onPress={onPress}
+            <RBSheet
+                ref={refRBSheet}
+                height={300}
+                openDuration={250}
+                closeOnDragDown={true}
+                customStyles={{
+                    container: {
+                        height: 250,
+                        borderTopStartRadius: 10,
+                        borderTopEndRadius: 10,
+                    }
+                }}
             >
+                <BottomSheet />
+            </RBSheet>
 
-                <RBSheet
-                    ref={refRBSheet}
-                    height={300}
-                    openDuration={250}
-                    closeOnDragDown={true}
-                    customStyles={{
-                        container: {
-                            height: 250,
-                            borderTopStartRadius: 10,
-                            borderTopEndRadius: 10,
-                        }
-                    }}
-                >
-                    <BottomSheet />
-                </RBSheet>
+            <TouchableOpacity onPress={onPress}>
                 <View style={styles.WhiteBox}>
 
                     <View style={styles.boxContainer1}>
@@ -85,16 +94,26 @@ const ProductItem = ({ date, name, kilometer, image, location, year, price, onPr
                         <Text style={styles.txtPrice}>
                             {price}
                         </Text>
+
+
                     </View>
 
-                    <TouchableOpacity
-                        onPress={() => refRBSheet.current.open()}
-                    >
-                        <Image
-                            style={styles.triDots}
-                            source={require('../../../assets/images/3dots.png')}
-                        />
-                    </TouchableOpacity>
+                    <View style={styles.btnArea}>
+                        <TouchableOpacity
+                            onPress={() => refRBSheet.current.open()}
+                        // style={styles.touch}
+                        >
+                            <Image
+                                style={styles.triDots}
+                                source={require('../../../assets/images/3dots.png')}
+                            />
+
+                        </TouchableOpacity>
+                    </View>
+
+                    <View style={styles.status}>
+                        <Text style={styles.txtStatus}>{status}</Text>
+                    </View>
                 </View>
             </TouchableOpacity>
         </View>
@@ -214,11 +233,33 @@ const styles = StyleSheet.create({
         fontFamily: 'Montserrat-Bold',
     },
 
+    status: {
+        width: 100,
+        height: 25,
+        marginTop: 85,
+        marginLeft: 5,
+        borderRadius: 4,
+        backgroundColor: '#EAF7EE'
+    },
+
+    txtStatus: {
+        alignSelf: 'center',
+        paddingVertical: 4,
+        fontSize: 12,
+        fontFamily: 'Montserrat-SemiBold',
+        color: '#3CB13C'
+    },
+
+    btnArea: {
+        width: 24,
+        height: 24,
+        marginLeft: 335,
+        marginTop: 16,
+        position: 'absolute'
+    },
+
     triDots: {
         width: 24,
         height: 24,
-        marginTop: 16,
-        marginLeft: 90
-        // marginLeft: normalize(15)
     }
 });

@@ -8,7 +8,7 @@ import { Fire } from '../../../config';
 import { storeData } from '../../../utils/localstorage/localstorage';
 import { useForm } from '../../../utils/utils';
 
-const Add = ({ navigation }) => {
+const EditProduct = ({ navigation }) => {
     const [form, setForm] = useForm({
         name: '',
         year: '',
@@ -51,22 +51,7 @@ const Add = ({ navigation }) => {
     }
     return (
         <View style={styles.container}>
-            <Header title="Tambah Produk" back onPress={() => navigation.goBack()} />
-            {/* <View style={styles.searchContainer}>
-                <Image
-                    source={require('../../../assets/images/greysearch.png')}
-                    style={styles.imgSearch}
-                />
-
-
-                <View style={styles.modelContainer}>
-                    <TextInput
-                        style={styles.txtModel}
-                        placeholder='Model Motor'
-                        placeholderTextColor='#7F7F7F'
-                    />
-                </View>
-            </View> */}
+            <Header title="Edit Produk" back onPress={() => navigation.goBack()} />
             <ScrollView showsVerticalScrollIndicator={false}>
                 <View style={styles.content}>
                     <Gap height={25} />
@@ -196,7 +181,7 @@ const Add = ({ navigation }) => {
     );
 };
 
-export default Add;
+export default EditProduct;
 
 const styles = StyleSheet.create({
     container: {

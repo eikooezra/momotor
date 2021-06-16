@@ -1,15 +1,9 @@
-import React, { useState } from 'react'
+import React, { useState } from 'react';
 import {
-    StyleSheet,
-    View,
-    Text,
-    Image,
-    TouchableOpacity
-} from 'react-native'
-import Animated from 'react-native-reanimated'
-import { launchCamera, launchImageLibrary } from 'react-native-image-picker';
-import normalize from 'react-native-normalize'
-import { ScrollView } from 'react-native-gesture-handler';
+    Image, StyleSheet, Text, TouchableOpacity, View
+} from 'react-native';
+import { launchImageLibrary } from 'react-native-image-picker';
+import normalize from 'react-native-normalize';
 import { Fire } from '../../../config';
 
 const AddPics = ({ navigation, route }) => {

@@ -24,6 +24,7 @@ import Add from './page/Home/DaftarProduk/Add'
 import AddPics from './page/Home/DaftarProduk/AddPics'
 import Verification from './page/Home/DaftarProduk/Verification'
 import DetailProduk from './page/Home/DaftarProduk/DetailProduk'
+import EditProduct from './page/Home/DaftarProduk/EditProduct'
 
 import SemuaPesanan from './page/Home/DaftarPesanan/SemuaPesanan' // 1st screen for daftar pesanan page
 import Verifikasi from './page/Home/DaftarPesanan/Verifikasi'
@@ -571,6 +572,7 @@ class App extends Component {
           <Stack.Screen name='AddPics' component={AddPics}/>
           <Stack.Screen name='Verification' component={Verification}/>
           <Stack.Screen name='DetailProduk' component={DetailProduk}/>
+          <Stack.Screen name='EditProduct' component={EditProduct}/>
           <Stack.Screen name='EditProfile' component={EditProfile}/>
           <Stack.Screen name='Settings' component={Settings}/>
           <Stack.Screen name='ConfirmEmail' component={ConfirmEmail}/>

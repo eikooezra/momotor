@@ -2,13 +2,9 @@ import React, { useEffect, useRef, useState } from 'react'
 import { showMessage, hideMessage } from "react-native-flash-message";
 import {
     StyleSheet,
-    Image,
     ScrollView,
     View,
-    Text,
-    TouchableOpacity
 } from 'react-native'
-import normalize from 'react-native-normalize';
 import { Fire } from '../../../config'
 import { ProductItem } from '../../../components/components';
 // import Test from '../../../api/Test'
@@ -22,7 +18,7 @@ const SemuaProduk = ({navigation}) => {
             .then(res => {
                 console.log('data: ', res.val())
                 if (res.val()) {
-                    console.log('a', Object.values(res.val()))
+                    // console.log('a', Object.values(res.val()))
                     setProduct(Object.values(res.val()))
                 }
             })
@@ -37,7 +33,7 @@ const SemuaProduk = ({navigation}) => {
                 console.log('error: ', error)
             })
     }, [])
-    console.log(product)
+    // console.log(product)
     return (
         <View style={styles.container}>
             <ScrollView>
@@ -52,6 +48,7 @@ const SemuaProduk = ({navigation}) => {
                             location={item.location}
                             year={item.year}
                             price={'Rp ' + item.price}
+                            status={item.status}
                             onPress={() => navigation.navigate('DetailProduk', item)}
                         />
                     )
