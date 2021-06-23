@@ -31,7 +31,9 @@ const ProductComponent = ({
   year, 
   date,
   desc, 
-  back 
+  back,
+  next,
+  onPress 
 }) => {
 
   return (
@@ -89,7 +91,10 @@ const ProductComponent = ({
 
           <Text style={styles.txtTindakan}>Tindakan</Text>
 
-          <TouchableOpacity style={styles.btnPerbarui}>
+          <TouchableOpacity 
+            style={styles.btnPerbarui}
+            onPress={onPress}
+          >
             <Text style={styles.txtPerbarui}>Perbarui</Text>
           </TouchableOpacity>
         </View>

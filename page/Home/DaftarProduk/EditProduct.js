@@ -1,23 +1,41 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { StyleSheet, View, Text, Image, TextInput, } from 'react-native';
 import DropDownPicker from 'react-native-dropdown-picker';
 import { ScrollView, TouchableOpacity } from 'react-native-gesture-handler';
 import normalize from 'react-native-normalize';
 import { Button2, Gap, Header, Input } from '../../../components/components';
 import { Fire } from '../../../config';
-import { storeData } from '../../../utils/localstorage/localstorage';
+import { getData, storeData } from '../../../utils/localstorage/localstorage';
 import { useForm } from '../../../utils/utils';
 
-const EditProduct = ({ navigation }) => {
-    const [form, setForm] = useForm({
-        name: '',
-        year: '',
-        location: '',
-        price: '',
-        ref_code: '',
-        desc: '',
-        kilometer: '',
+const EditProduct = ({ navigation, route }) => {
+    const { id, name, year, location, price, ref_code, kilometer, desc, images } = route.params
+    console.log('id: ', id)
+    const [product, setProduct] = useState({
+        id,
+        name,
+        year,
+        location,
+        price,
+        ref_code,
+        kilometer,
+        desc,
+        images
     })
+
+    const changeText = (key, value) => {
+        setProduct({
+            ...product,
+            [key]: value
+        })
+    }
+
+    // useEffect(() => {
+    //     getData('product').then(res => {
+    //         const data = res
+    //         console.log('data', data)
+    //     })
+    // })
 
     const [pressed, setPressed] = useState(false)
 
@@ -30,24 +48,26 @@ const EditProduct = ({ navigation }) => {
     const onContinue = () => {
         const newPostKey = Fire.database().ref().child('post').push().key
         const data = {
-            name: form.name,
-            year: form.year.value,
-            location: form.location.value,
-            price: form.price,
-            ref_code: form.ref_code,
-            desc: form.desc,
-            kilometer: form.kilometer,
+            name: product.name,
+            year: product.year.value,
+            location: product.location.value,
+            price: product.price,
+            ref_code: product.ref_code,
+            desc: product.desc,
+            kilometer: product.kilometer,
             date: new Date().getDate() + '/' + new Date().getMonth() + 1 + '/' + new Date().getFullYear(),
-            id: newPostKey,
-            status: 'Pending'
+            id: product.id,
+            status: 'Pending',
+            images: product.images
         }
+        console.log('new data: ', data)
         Fire
             .database()
-            .ref('product/' + newPostKey + '/')
-            .set(data)
+            .ref('product/' + id + '/')
+            .update(data)
         storeData('product', data)
 
-        navigation.navigate('AddPics', data)
+        navigation.navigate('EditPics', data)
     }
     return (
         <View style={styles.container}>
@@ -57,8 +77,8 @@ const EditProduct = ({ navigation }) => {
                     <Gap height={25} />
                     <Input
                         placeholder='Nama Produk'
-                        value={form.name}
-                        onChangeText={value => setForm('name', value)}
+                        value={product.name}
+                        onChangeText={(value) => changeText('name', value)}
                     />
                     <Gap height={34} />
                     <View style={styles.content}>
@@ -95,8 +115,8 @@ const EditProduct = ({ navigation }) => {
                         arrowStyle={{
 
                         }}
-                        value={form.year}
-                        onChangeItem={value => setForm('year', value)}
+                        value={product.year}
+                        onChangeItem={(value) => changeText('year', value)}
                     />
                     <Gap height={34} />
                     <DropDownPicker
@@ -124,28 +144,28 @@ const EditProduct = ({ navigation }) => {
                             color: '#7F7F7F',
                             fontFamily: 'Montserrat-SemiBold',
                         }}
-                        value={form.location}
-                        onChangeItem={value => setForm('location', value)}
+                        value={product.location}
+                        onChangeItem={(value) => changeText('location', value)}
                     />
                     <Gap height={34} />
                     <Input
                         placeholder='Harga'
-                        value={form.price}
-                        onChangeText={value => setForm('price', value)}
+                        value={product.price}
+                        onChangeText={(value) => changeText('price', value)}
                         type='numeric'
                     />
                     <Gap height={34} />
                     <Input
                         placeholder='Kilometer'
-                        value={form.kilometer}
-                        onChangeText={value => setForm('kilometer', value)}
+                        value={product.kilometer}
+                        onChangeText={(value) => changeText('kilometer', value)}
                         type='numeric'
                     />
                     <Gap height={34} />
                     <Input
                         placeholder='Kode Referral'
-                        value={form.ref_code}
-                        onChangeText={value => setForm('ref_code', value)}
+                        value={product.ref_code}
+                        onChangeText={(value) => changeText('ref_code', value)}
                     />
                     <Gap height={34} />
                     <View style={styles.txtInpDesc}>
@@ -153,8 +173,8 @@ const EditProduct = ({ navigation }) => {
                             style={styles.txtDesc}
                             placeholder='Deskripsi'
                             placeholderTextColor='#7F7F7F'
-                            value={form.desc}
-                            onChangeText={value => setForm('desc', value)}
+                            value={product.desc}
+                            onChangeText={(value) => changeText('desc', value)}
                             multiline={true}
                         />
                     </View>

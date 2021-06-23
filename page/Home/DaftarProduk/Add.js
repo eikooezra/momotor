@@ -41,6 +41,7 @@ const Add = ({ navigation }) => {
             id: newPostKey,
             status: 'Pending'
         }
+        console.log('cek: ', data)
         Fire
             .database()
             .ref('product/' + newPostKey + '/')
@@ -145,15 +146,15 @@ const Add = ({ navigation }) => {
                     <Gap height={34} />
                     <Input
                         placeholder='Harga'
-                        value={form.price}
-                        onChangeText={value => setForm('price', value)}
+                        value={form.price.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1.")}
+                        onChangeText={value => setForm('price', value.toString().replace(/\./g, ""))}
                         type='numeric'
                     />
                     <Gap height={34} />
                     <Input
                         placeholder='Kilometer'
-                        value={form.kilometer}
-                        onChangeText={value => setForm('kilometer', value)}
+                        value={form.kilometer.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1.")}
+                        onChangeText={value => setForm('kilometer', value.toString().replace(/\./g, ""))}
                         type='numeric'
                     />
                     <Gap height={34} />

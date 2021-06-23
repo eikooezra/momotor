@@ -38,9 +38,10 @@ const DetailProduk = ({ navigation, route }) => {
   return (
     <View>
       {productDetail.map(item => {
+        console.log('data', item)
         return (
           <ProductComponent
-            key={item.id}
+            id={item.id}
             status={'Pending'}
             name={item.name}
             price={item.price}
@@ -59,6 +60,7 @@ const DetailProduk = ({ navigation, route }) => {
             date={item.date}
             desc={item.desc}
             back={() => navigation.goBack()}
+            onPress={() => navigation.navigate('EditProduct', item)}
           />
         )
       })}
