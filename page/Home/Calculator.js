@@ -105,6 +105,7 @@ class Calculator extends Component {
                             }]}>
                                 <TextInput
                                     style={styles.txtHarga}
+                                    keyboardType='number-pad'
                                     placeholder='Rp 15,000,000'
                                     value={this.state.price}
                                     onChangeText={price => this.isPriceFilled(price)}
@@ -126,6 +127,7 @@ class Calculator extends Component {
                             ]}>
                                 <TextInput
                                     style={styles.txtUangMuka}
+                                    keyboardType='number-pad'
                                     placeholder='Rp 1,500,000'
                                     value={this.state.dp}
                                     onChangeText={dp => this.isDpFilled(dp)}
