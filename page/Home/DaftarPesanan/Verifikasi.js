@@ -1,4 +1,4 @@
-import React, {Component} from 'react'
+import React, { Component, useEffect, useState } from 'react'
 import {
     StyleSheet,
     Image,
@@ -8,40 +8,47 @@ import {
     TouchableOpacity
 } from 'react-native'
 import normalize from 'react-native-normalize';
+import { OrderItem } from '../../../components/components';
+import { Fire } from '../../../config';
 
-class Verifikasi extends Component {
-render() {
+const Verifikasi = ({navigation}) => {
+    const [order, setOrder] = useState([])
+    useEffect(() => {
+        Fire.database()
+            .ref('order/')
+            .orderByChild('status')
+            .equalTo('Proses Verifikasi')
+            .once('value')
+            .then(res => {
+                console.log('data: ', res.val())
+                if (res.val()) {
+                    setOrder(Object.values(res.val()))
+                }
+            })
+            .catch(err => {
+                console.log('error: ', err)
+            })
+    }, [])
     return (
         <View style={styles.container}>
-        <ScrollView>
-           <View style={styles.WhiteBox}>
-               <View style={styles.boxContainer1}>
-                   <TouchableOpacity>
-                    <Image
-                        style={styles.imgUnit}
-                        source={require('../../../assets/images/vario.png')}
-                    />
-                   </TouchableOpacity>
-               </View> 
-
-               <View style={styles.boxContainer2}>
-                   <Text style={styles.txtName}>
-                       Sumanto Wijaya
-                   </Text>
-
-                   <Text style={styles.txtModel}>
-                        Honda Vario 125
-                   </Text>
-
-                   <Text style={styles.txtDate}>
-                       12/10/2019
-                   </Text>
-               </View>
-           </View>
-        </ScrollView>
-    </View>
+            <ScrollView>
+                {order.map(item => {
+                    return (
+                        <OrderItem
+                            id={item.id} 
+                            image={item.images.image}
+                            name={item.name}
+                            product={item.product}
+                            date={item.date}
+                            status={item.status}
+                            onPress={() => navigation.navigate('DetailPesanan', item)}
+                        />
+                    )
+                })}
+            </ScrollView>
+        </View>
     )
-}}
+}
 
 export default Verifikasi
 
@@ -53,7 +60,7 @@ const styles = StyleSheet.create({
     },
 
     WhiteBox: {
-        width: normalize(350) ,
+        width: normalize(350),
         height: normalize(121),
         marginTop: normalize(16),
         marginBottom: normalize(16),
@@ -114,5 +121,21 @@ const styles = StyleSheet.create({
         fontSize: normalize(12),
         fontFamily: 'Montserrat-Medium',
         color: '#7F7F7F'
-    },   
+    },
+
+    btnProsesVerif: {
+        width: normalize(100),
+        height: normalize(25),
+        marginLeft: normalize(115),
+        borderRadius: 4,
+        backgroundColor: '#EAF7EE'
+    },
+
+    txtProsesVerif: {
+        marginTop: normalize(4),
+        marginLeft: normalize(8),
+        fontSize: normalize(12),
+        fontFamily: 'Montserrat-SemiBold',
+        color: '#3CB13C'
+    }
 })

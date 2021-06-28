@@ -20,7 +20,7 @@ const SemuaPesanan = ({navigation}) => {
             .then(res => {
                 console.log('data: ', res.val())
                 if (res.val()) {
-                    setOrder(res.val())
+                    setOrder(Object.values(res.val()))
                 }
             })
             .catch(err => {
@@ -32,13 +32,14 @@ const SemuaPesanan = ({navigation}) => {
             <ScrollView>
                 {order.map(item => {
                     return (
-                        <OrderItem 
-                            image={item.image}
+                        <OrderItem
+                            id={item.id} 
+                            image={item.images.image}
                             name={item.name}
                             product={item.product}
                             date={item.date}
                             status={item.status}
-                            onPress={() => navigation.navigate('ProsesVerif')}
+                            onPress={() => navigation.navigate('DetailPesanan', item)}
                         />
                     )
                 })}

@@ -35,7 +35,7 @@ import Disetujui from './page/Home/DaftarPesanan/Disetujui'
 import Ditolak from './page/Home/DaftarPesanan/Ditolak'
 import Dibatalkan from './page/Home/DaftarPesanan/Dibatalkan'
 import SearchOrd from './page/Home/DaftarPesanan/SearchOrd'
-import ProsesVerif from './page/Home/DaftarPesanan/ProsesVerif'
+import DetailPesanan from './page/Home/DaftarPesanan/DetailPesanan'
 
 import JualCepat from './page/Home/JualCepat/JualCepat' // 1st screen for jual cepat page
 import SearchFst from './page/Home/JualCepat/SearchFst'
@@ -338,7 +338,7 @@ function DaftarPesananTabScreen(){
 
       <DaftarPesananTab.Screen
         name='AnalisaKredit'
-        component={Survey}
+        component={AnalisaKredit}
         options={{
           title: 'Analisa Kredit',
           labelStyle: {
@@ -349,7 +349,7 @@ function DaftarPesananTabScreen(){
 
       <DaftarPesananTab.Screen
         name='Disetujui'
-        component={Survey}
+        component={Disetujui}
         options={{
           title: 'Disetujui',
           labelStyle: {
@@ -360,7 +360,7 @@ function DaftarPesananTabScreen(){
 
       <DaftarPesananTab.Screen
         name='Ditolak'
-        component={Survey}
+        component={Ditolak}
         options={{
           title: 'Ditolak',
           labelStyle: {
@@ -565,7 +565,7 @@ class App extends Component {
           <Stack.Screen name='Home' component={TabScreen}/>
           <Stack.Screen name='SearchPrd' component={SearchPrd}/>
           <Stack.Screen name='SearchOrd' component={SearchOrd}/>
-          <Stack.Screen name='ProsesVerif' component={ProsesVerif}/>
+          <Stack.Screen name='DetailPesanan' component={DetailPesanan}/>
           <Stack.Screen name='SearchFst' component={SearchFst}/>
           <Stack.Screen name='HistoryFst' component={HistoryFst}/>
           <Stack.Screen name='Tawar' component={Tawar}/>

@@ -8,42 +8,41 @@ import {
 } from 'react-native'
 import normalize from 'react-native-normalize';
 
-const OrderItem = ({image, name, product, date, status, onPress}) => {
+const OrderItem = ({ image, name, product, date, status, onPress }) => {
     return (
         <View>
-            <View style={styles.WhiteBox}>
-                <View style={styles.boxContainer1}>
-                    <TouchableOpacity>
+            <TouchableOpacity onPress={onPress}>
+                <View style={styles.WhiteBox}>
+                    <View style={styles.boxContainer1}>
                         <Image
                             style={styles.imgUnit}
-                            source={{uri:image}}
+                            source={{ uri: image }}
                         />
-                    </TouchableOpacity>
+                    </View>
+
+                    <View style={styles.boxContainer2}>
+                        <Text style={styles.txtName}>
+                            {name}
+                        </Text>
+
+                        <Text style={styles.txtModel}>
+                            {product}
+                        </Text>
+
+                        <Text style={styles.txtDate}>
+                            {date}
+                        </Text>
+
+                        <View style={styles.btnProsesVerif}>
+                            <Text style={styles.txtProsesVerif}>
+                                {status}
+                            </Text>
+
+                        </View>
+
+                    </View>
                 </View>
-
-                <View style={styles.boxContainer2}>
-                    <Text style={styles.txtName}>
-                        {name}
-                   </Text>
-
-                    <Text style={styles.txtModel}>
-                        {product}
-                   </Text>
-
-                    <Text style={styles.txtDate}>
-                        {date}
-                   </Text>
-
-                    <TouchableOpacity
-                        style={styles.btnProsesVerif}
-                        onPress={onPress}
-                    >
-                        <Text style={styles.txtProsesVerif}>
-                            {status}
-                       </Text>
-                    </TouchableOpacity>
-                </View>
-            </View>
+            </TouchableOpacity>
         </View>
     );
 };
@@ -116,9 +115,11 @@ const styles = StyleSheet.create({
     },
 
     btnProsesVerif: {
-        width: normalize(100),
-        height: normalize(25),
-        marginLeft: normalize(115),
+        // width: normalize(100),
+        // height: normalize(25),
+        // marginLeft: normalize(115),
+        // position: 'absolute',
+        alignContent: 'flex-end',
         borderRadius: 4,
         backgroundColor: '#EAF7EE'
     },
@@ -126,6 +127,7 @@ const styles = StyleSheet.create({
     txtProsesVerif: {
         textAlign: 'center',
         paddingVertical: 4,
+        paddingHorizontal: 8,
         // marginTop: normalize(4),
         // marginLeft: normalize(8),
         fontSize: normalize(12),
