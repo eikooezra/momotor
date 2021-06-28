@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { Component } from 'react'
 import {
     StyleSheet,
     KeyboardAvoidingView,
@@ -8,174 +8,121 @@ import {
     TouchableOpacity,
     TextInput
 } from 'react-native'
-import DropDownPicker from 'react-native-dropdown-picker'
 import normalize from 'react-native-normalize';
-import { useForm } from '../../utils/utils'
-
-const Calculator = ({ navigation }) => {
-    const [form, setForm] = useForm({
-        model: '',
-        prodYear: '',
-        price: '',
-        dp: '',
-        location: ''
-    })
-    const [isPressed, setPressed] = useState(true)
-
-
-    const nullChecker = () => {
-        if (isPressed === false) {
-            setPressed({ null: true })
+class Calculator extends Component {
+    constructor(props){
+        super(props)
+        this.state={
+            price: 0,
+            dp: 0,
+            total: 0,
         }
     }
 
-    return (
-        <View style={styles.container}>
-            <View style={styles.Header}>
-                <TouchableOpacity
-                    onPress={() => navigation.navigate('Home')}
-                >
-                    <Image
-                        style={styles.btnBack}
-                        source={require('../../assets/images/back.png')}
-                    />
-                </TouchableOpacity>
+    goBack = () => {
+        this.props.navigation.navigate('Home')
+    }
+    
+    calculate = () => {
+        if((this.state.price !=='')&&(this.state.dp !== '')){
+            let price = this.state.price;
+            let dp = this.state.dp;
+            let minus = price - dp
+            let tenor36 = minus/36;
+            this.setState({
+                total:tenor36
+            });
+        }if((this.state.price !=='')&&(this.state.dp !== '')){
+            let price = this.state.price;
+            let dp = this.state.dp;
+            let minus = price - dp
+            let tenor24 = minus/24;
+            this.setState({
+                total:tenor24
+            });
+        }
+        if((this.state.price !=='')&&(this.state.dp !== '')){
+            let price = this.state.price;
+            let dp = this.state.dp;
+            let minus = price - dp
+            let tenor12 = minus/12;
+            this.setState({
+                total:tenor12
+            });
+        }
+    }
 
-                <Text style={styles.txtKalkulator}>
-                    Kalkulator Kredit
-                </Text>
-            </View>
-
-            <View style={styles.WhiteContainer}>
-                <Text style={styles.txtModel}>
-                    Model Motor
-                </Text>
-
-                <View style={styles.txtInpModel}>
-                    <TextInput
-                        style={styles.txtContoh}
-                        placeholder='Contoh: Honda Beat'
-                        value={form.model}
-                        onChangeText={value => setForm('model', value)}
-                    />
-                </View>
-
-                <View style={styles.flexContainer}>
-                    <View>
-                        <Text style={styles.txtTahun}>
-                            Tahun Produksi
+        render(){
+            return (
+                <View style={styles.container}>
+                    <View style={styles.Header}>
+                        <TouchableOpacity
+                            onPress={this.goBack}
+                        >
+                            <Image
+                                style={styles.btnBack}
+                                source={require('../../assets/images/back.png')}
+                            />
+                        </TouchableOpacity>
+        
+                        <Text style={styles.txtKalkulator}>
+                            Kalkulator Kredit
                         </Text>
-
+                    </View>
+        
+                    <View style={styles.WhiteContainer}>   
                         <View>
-                            <DropDownPicker
-                                items={[
-                                    { label: '2015', value: '15' },
-                                    { label: '2016', value: '16' },
-                                    { label: '2017', value: '17' },
-                                    { label: '2018', value: '18' },
-                                    { label: '2019', value: '19' },
-                                    { label: '2020', value: '20' }
-                                ]}
-                                defaultNull={nullChecker}
-                                placeholder='Pilih Tahun'
-                                style={{
-                                    paddingVertical: 20
-                                }}
-                                containerStyle={{
-                                    width: normalize(140),
-                                    height: normalize(48),
-                                    marginLeft: normalize(16),
-                                    marginBottom: normalize(6),
-                                }}
-                                dropDownStyle={{
-                                    backgroundColor: '#FFFFFF'
-                                }}
-                                labelStyle={{
-                                    marginLeft: normalize(8),
-                                    fontSize: normalize(14),
-                                    color: '#7F7F7F',
-                                    fontFamily: 'Montserrat-SemiBold'
-                                }}
-                                arrowStyle={{
-                                    marginLeft: normalize(205)
-                                }}
-                                // onChangeItem={
-                                //     item => setForm({
-                                //         prodYear: item
-                                //     })
-                                // }
-                                onChangeText={value => setForm('prodYear', value)}
-                            />
+                            <Text style={styles.txtPrice}>
+                                Harga
+                            </Text>
+        
+                                <View style={styles.txtInpHarga}>
+                                    <TextInput
+                                        style={styles.txtHarga}
+                                        placeholder='Rp 15,000,000'
+                                        value={this.state.price}
+                                        onChangeText={price => this.calculate(price)}
+                                    />
+                                </View>
+                            </View>
                         </View>
-                    </View>
-
-                    <View>
-                        <Text style={styles.txtPrice}>
-                            Harga
+        
+                        <View>
+                            <Text style={styles.txtDP}>
+                                Uang Muka
+                            </Text>
+        
+                            <View style={styles.txtInpUangMuka}>
+                                <TextInput
+                                    style={styles.txtUangMuka}
+                                    placeholder='Rp 1,500,000'
+                                    value={this.state.dp}
+                                    onChangeText={dp => this.calculate(dp)}
+                                />
+                            </View>
+        
+                            <Text style={styles.txtMinDp}>
+                                *Minimal DP Rp 1,500,000
+                            </Text>
+                        </View>
+        
+                        <TouchableOpacity
+                            style={styles.btnCount}
+                            onPress={console.log(form)}
+                        >
+                            <Text style={styles.txtHitung}>
+                                Hitung
+                            </Text>
+                        </TouchableOpacity>
+        
+                        <Text style={styles.txtDisclaimer}>
+                            *Harga merupakan kisaran, dan dapat berubah,
+                            sewaktu-waktu tanpa pemberitahuan
                         </Text>
-
-                        <View style={styles.txtInpHarga}>
-                            <TextInput
-                                style={styles.txtHarga}
-                                placeholder='Rp 15,000,000'
-                                value={form.price}
-                                onChangeText={value => setForm('price', value)}
-                            />
-                        </View>
                     </View>
-                </View>
-
-                <View>
-                    <Text style={styles.txtDP}>
-                        Uang Muka
-                    </Text>
-
-                    <View style={styles.txtInpUangMuka}>
-                        <TextInput
-                            style={styles.txtUangMuka}
-                            placeholder='Rp 1,500,000'
-                            value={form.dp}
-                            onChangeText={value => setForm('dp', value)}
-                        />
-                    </View>
-
-                    <Text style={styles.txtMinDp}>
-                        *Minimal DP Rp 1,500,000
-                    </Text>
-                </View>
-
-                <View>
-                    <Text style={styles.txtLocation}>
-                        Lokasi Motor
-                    </Text>
-
-                    <View style={styles.txtInpLokasi}>
-                        <TextInput
-                            style={styles.txtLokasi}
-                            placeholder='Contoh: Menteng'
-                            value={form.location}
-                            onChangeText={value => setForm('location', value)}
-                        />
-                    </View>
-                </View>
-
-                <TouchableOpacity
-                    style={styles.btnCount}
-                    onPress={console.log(form)}
-                >
-                    <Text style={styles.txtHitung}>
-                        Hitung
-                    </Text>
-                </TouchableOpacity>
-
-                <Text style={styles.txtDisclaimer}>
-                    *Harga merupakan kisaran, dan dapat berubah,
-                    sewaktu-waktu tanpa pemberitahuan
-                </Text>
-            </View>
-        </View>
-    )
-}
+            )
+        }   
+    }
 
 export default Calculator;
 
