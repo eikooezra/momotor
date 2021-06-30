@@ -5,31 +5,32 @@ import {
 import { launchImageLibrary } from 'react-native-image-picker';
 import normalize from 'react-native-normalize';
 import { Fire } from '../../../config';
+import { getData } from '../../../utils/localstorage/localstorage';
 
 const AddPics = ({ navigation, route }) => {
     const {
-        name, 
-        year, 
-        location, 
-        price, 
-        ref_code, 
-        desc, 
-        kilometer, 
-        images, 
+        name,
+        year,
+        location,
+        price,
+        ref_code,
+        desc,
+        kilometer,
+        images,
         id,
     } = route.params
-    const [photoForDB, setPhotoForDB] = useState({uri: images.image})
-    const [photoForDB1, setPhotoForDB1] = useState({uri: images.image1})
-    const [photoForDB2, setPhotoForDB2] = useState({uri: images.image2})
-    const [photoForDB3, setPhotoForDB3] = useState({uri: images.image3})
-    const [photoForDB4, setPhotoForDB4] = useState({uri: images.image4})
-    const [photoForDB5, setPhotoForDB5] = useState({uri: images.image5})
-    const [photo, setPhoto] = useState({uri: images.image})
-    const [photo1, setPhoto1] = useState({uri: images.image1})
-    const [photo2, setPhoto2] = useState({uri: images.image2})
-    const [photo3, setPhoto3] = useState({uri: images.image3})
-    const [photo4, setPhoto4] = useState({uri: images.image4})
-    const [photo5, setPhoto5] = useState({uri: images.image5})
+    const [photoForDB, setPhotoForDB] = useState({ uri: images.image })
+    const [photoForDB1, setPhotoForDB1] = useState({ uri: images.image1 })
+    const [photoForDB2, setPhotoForDB2] = useState({ uri: images.image2 })
+    const [photoForDB3, setPhotoForDB3] = useState({ uri: images.image3 })
+    const [photoForDB4, setPhotoForDB4] = useState({ uri: images.image4 })
+    const [photoForDB5, setPhotoForDB5] = useState({ uri: images.image5 })
+    const [photo, setPhoto] = useState({ uri: images.image })
+    const [photo1, setPhoto1] = useState({ uri: images.image1 })
+    const [photo2, setPhoto2] = useState({ uri: images.image2 })
+    const [photo3, setPhoto3] = useState({ uri: images.image3 })
+    const [photo4, setPhoto4] = useState({ uri: images.image4 })
+    const [photo5, setPhoto5] = useState({ uri: images.image5 })
 
     const getImage = () => {
         launchImageLibrary(
@@ -37,7 +38,7 @@ const AddPics = ({ navigation, route }) => {
             (response) => {
                 console.log('response: ', response)
                 const source = { uri: response.uri }
-                const data = { uri: `data:${response.type};base64, ${response.base64}`}
+                const data = { uri: `data:${response.type};base64, ${response.base64}` }
                 setPhotoForDB(data)
                 setPhoto(source)
             })
@@ -49,7 +50,7 @@ const AddPics = ({ navigation, route }) => {
             (response) => {
                 console.log('response: ', response)
                 const source = { uri: response.uri }
-                const data = { uri: `data:${response.type};base64, ${response.base64}`}
+                const data = { uri: `data:${response.type};base64, ${response.base64}` }
                 setPhotoForDB1(data)
                 setPhoto1(source)
             })
@@ -61,7 +62,7 @@ const AddPics = ({ navigation, route }) => {
             (response) => {
                 console.log('response: ', response)
                 const source = { uri: response.uri }
-                const data = { uri: `data:${response.type};base64, ${response.base64}`}
+                const data = { uri: `data:${response.type};base64, ${response.base64}` }
                 setPhotoForDB2(data)
                 setPhoto2(source)
             })
@@ -73,7 +74,7 @@ const AddPics = ({ navigation, route }) => {
             (response) => {
                 console.log('response: ', response)
                 const source = { uri: response.uri }
-                const data = { uri: `data:${response.type};base64, ${response.base64}`}
+                const data = { uri: `data:${response.type};base64, ${response.base64}` }
                 setPhotoForDB3(data)
                 setPhoto3(source)
             })
@@ -85,7 +86,7 @@ const AddPics = ({ navigation, route }) => {
             (response) => {
                 console.log('response: ', response)
                 const source = { uri: response.uri }
-                const data = { uri: `data:${response.type};base64, ${response.base64}`}
+                const data = { uri: `data:${response.type};base64, ${response.base64}` }
                 setPhotoForDB4(data)
                 setPhoto4(source)
             })
@@ -97,25 +98,27 @@ const AddPics = ({ navigation, route }) => {
             (response) => {
                 console.log('response: ', response)
                 const source = { uri: response.uri }
-                const data = { uri: `data:${response.type};base64, ${response.base64}`}
+                const data = { uri: `data:${response.type};base64, ${response.base64}` }
                 setPhotoForDB5(data)
                 setPhoto5(source)
             })
     }
 
     const uploadAndContinue = () => {
-        Fire
-            .database()
-            .ref('product/' + id + '/images' + '/')
-            .update({
-                image: photoForDB.uri,
-                image1: photoForDB1.uri,
-                image2: photoForDB2.uri,
-                image3: photoForDB3.uri,
-                image4: photoForDB4.uri,
-                image5: photoForDB5.uri,
-            })
-        navigation.navigate('Verification')
+        getData('user').then(res => {
+            Fire
+                .database()
+                .ref('product/' + res.uid + '/' + id + '/images' + '/')
+                .update({
+                    image: photoForDB.uri,
+                    image1: photoForDB1.uri,
+                    image2: photoForDB2.uri,
+                    image3: photoForDB3.uri,
+                    image4: photoForDB4.uri,
+                    image5: photoForDB5.uri,
+                })
+            navigation.navigate('Verification')
+        })
     }
 
     return (
@@ -132,7 +135,7 @@ const AddPics = ({ navigation, route }) => {
 
                 <Text style={styles.txtAddPic}>
                     Tambah Foto
-                        </Text>
+                </Text>
             </View>
 
             <View style={styles.chosenPic}>
@@ -216,7 +219,7 @@ const AddPics = ({ navigation, route }) => {
                 >
                     <Text style={styles.txtNxt}>
                         SELANJUTNYA
-                        </Text>
+                    </Text>
                 </TouchableOpacity>
             </View>
         </View>

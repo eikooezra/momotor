@@ -5,7 +5,7 @@ import { ScrollView, TouchableOpacity } from 'react-native-gesture-handler';
 import normalize from 'react-native-normalize';
 import { Button2, Gap, Header, Input } from '../../../components/components';
 import { Fire } from '../../../config';
-import { storeData } from '../../../utils/localstorage/localstorage';
+import { getData, storeData } from '../../../utils/localstorage/localstorage';
 import { useForm } from '../../../utils/utils';
 
 const Add = ({ navigation }) => {
@@ -22,33 +22,37 @@ const Add = ({ navigation }) => {
     const [pressed, setPressed] = useState(false)
 
     const nullChecker = () => {
-        if(pressed === false){
-            setPressed({null: true})
+        if (pressed === false) {
+            setPressed({ null: true })
         }
     }
 
     const onContinue = () => {
         const newPostKey = Fire.database().ref().child('post').push().key
-        const data = {
-            name: form.name,
-            year: form.year.value,
-            location: form.location.value,
-            price: form.price,
-            ref_code: form.ref_code,
-            desc: form.desc,
-            kilometer: form.kilometer,
-            date: new Date().getDate() + '/' + new Date().getMonth() + 1 + '/' + new Date().getFullYear(),
-            id: newPostKey,
-            status: 'Pending'
-        }
-        console.log('cek: ', data)
-        Fire
-            .database()
-            .ref('product/' + newPostKey + '/')
-            .set(data)
-        storeData('product', data)
+        getData('user').then(res => {
+            const data = {
+                uid: res.uid,
+                name: form.name,
+                year: form.year.value,
+                location: form.location.value,
+                price: form.price,
+                ref_code: form.ref_code,
+                desc: form.desc,
+                kilometer: form.kilometer,
+                date: new Date().getDate() + '/' + new Date().getMonth() + 1 + '/' + new Date().getFullYear(),
+                id: newPostKey,
+                status: 'Pending'
+            }
+            console.log('cek: ', data)
+            Fire
+                .database()
+                .ref('product/' + res.uid + '/' + newPostKey + '/')
+                .set(data)
+            storeData('product', data)
+    
+            navigation.navigate('AddPics', data)
 
-        navigation.navigate('AddPics', data)
+        })
     }
     return (
         <View style={styles.container}>

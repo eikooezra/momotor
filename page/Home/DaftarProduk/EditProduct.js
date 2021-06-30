@@ -40,34 +40,36 @@ const EditProduct = ({ navigation, route }) => {
     const [pressed, setPressed] = useState(false)
 
     const nullChecker = () => {
-        if(pressed === false){
-            setPressed({null: true})
+        if (pressed === false) {
+            setPressed({ null: true })
         }
     }
 
     const onContinue = () => {
         const newPostKey = Fire.database().ref().child('post').push().key
-        const data = {
-            name: product.name,
-            year: product.year.value,
-            location: product.location.value,
-            price: product.price,
-            ref_code: product.ref_code,
-            desc: product.desc,
-            kilometer: product.kilometer,
-            date: new Date().getDate() + '/' + new Date().getMonth() + 1 + '/' + new Date().getFullYear(),
-            id: product.id,
-            status: 'Pending',
-            images: product.images
-        }
-        console.log('new data: ', data)
-        Fire
-            .database()
-            .ref('product/' + id + '/')
-            .update(data)
-        storeData('product', data)
+        getData('user').then(res => {
+            const data = {
+                name: product.name,
+                year: product.year.value,
+                location: product.location.value,
+                price: product.price,
+                ref_code: product.ref_code,
+                desc: product.desc,
+                kilometer: product.kilometer,
+                date: new Date().getDate() + '/' + new Date().getMonth() + 1 + '/' + new Date().getFullYear(),
+                id: product.id,
+                status: 'Pending',
+                images: product.images
+            }
+            console.log('new data: ', data)
+            Fire
+                .database()
+                .ref('product/' + res.uid + '/' + id + '/')
+                .update(data)
+            storeData('product', data)
 
-        navigation.navigate('EditPics', data)
+            navigation.navigate('EditPics', data)
+        })
     }
     return (
         <View style={styles.container}>

@@ -5,17 +5,18 @@ import {
 import { launchImageLibrary } from 'react-native-image-picker';
 import normalize from 'react-native-normalize';
 import { Fire } from '../../../config';
+import { getData } from '../../../utils/localstorage/localstorage';
 
 const AddPics = ({ navigation, route }) => {
     const {
-        name, 
-        year, 
-        location, 
-        price, 
-        ref_code, 
-        desc, 
-        kilometer, 
-        id 
+        name,
+        year,
+        location,
+        price,
+        ref_code,
+        desc,
+        kilometer,
+        id
     } = route.params
     const [photoForDB, setPhotoForDB] = useState('')
     const [photoForDB1, setPhotoForDB1] = useState('')
@@ -97,18 +98,20 @@ const AddPics = ({ navigation, route }) => {
     }
 
     const uploadAndContinue = () => {
-        Fire
-            .database()
-            .ref('product/' + id + '/images' + '/')
-            .update({
-                image: photoForDB,
-                image1: photoForDB1,
-                image2: photoForDB2,
-                image3: photoForDB3,
-                image4: photoForDB4,
-                image5: photoForDB5,
-            })
-        navigation.navigate('Verification')
+        getData('user').then(res => {
+            Fire
+                .database()
+                .ref('product/' + res.uid + '/' + id + '/images' + '/')
+                .update({
+                    image: photoForDB,
+                    image1: photoForDB1,
+                    image2: photoForDB2,
+                    image3: photoForDB3,
+                    image4: photoForDB4,
+                    image5: photoForDB5,
+                })
+            navigation.navigate('Verification')
+        })
     }
 
     return (
@@ -125,7 +128,7 @@ const AddPics = ({ navigation, route }) => {
 
                 <Text style={styles.txtAddPic}>
                     Tambah Foto
-                        </Text>
+                </Text>
             </View>
 
             <View style={styles.chosenPic}>
@@ -209,7 +212,7 @@ const AddPics = ({ navigation, route }) => {
                 >
                     <Text style={styles.txtNxt}>
                         SELANJUTNYA
-                        </Text>
+                    </Text>
                 </TouchableOpacity>
             </View>
         </View>

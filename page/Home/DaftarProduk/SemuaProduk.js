@@ -7,31 +7,36 @@ import {
 } from 'react-native'
 import { Fire } from '../../../config'
 import { ProductItem } from '../../../components/components';
+import { getData } from '../../../utils/localstorage/localstorage';
 // import Test from '../../../api/Test'
 
 const SemuaProduk = ({navigation}) => {
     const [product, setProduct] = useState([])
+    const [uid, setUid] = useState([''])
     useEffect(() => {
-        Fire.database()
-            .ref('product/')
-            .once('value')
-            .then(res => {
-                console.log('data: ', res.val())
-                if (res.val()) {
-                    // console.log('a', Object.values(res.val()))
-                    setProduct(Object.values(res.val()))
-                }
-            })
-            .catch(err => {
-                const errorMessage = error.message
-                showMessage({
-                    message: errorMessage,
-                    type: 'default',
-                    backgroundColor: '#E06379',
-                    color: '#FFFFFF'
+        getData('user').then(res => {
+            const data = res.uid
+            Fire.database()
+                .ref('product/' + data + '/')
+                .once('value')
+                .then(res => {
+                    console.log('data: ', res.val())
+                    if (res.val()) {
+                        // console.log('a', Object.values(res.val()))
+                        setProduct(Object.values(res.val()))
+                    }
                 })
-                console.log('error: ', error)
-            })
+                .catch(err => {
+                    const errorMessage = error.message
+                    showMessage({
+                        message: errorMessage,
+                        type: 'default',
+                        backgroundColor: '#E06379',
+                        color: '#FFFFFF'
+                    })
+                    console.log('error: ', error)
+                })
+        })
     }, [])
     // console.log(product)
     return (
@@ -43,11 +48,11 @@ const SemuaProduk = ({navigation}) => {
                             key={item.id}
                             date={item.date}
                             name={item.name}
-                            kilometer={item.kilometer + ' KM'}
+                            kilometer={item.kilometer.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1.") + ' KM'}
                             image={item.images.image}
                             location={item.location}
                             year={item.year}
-                            price={'Rp ' + item.price}
+                            price={'Rp ' + item.price.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1.")}
                             status={item.status}
                             onPress={() => navigation.navigate('DetailProduk', item)}
                         />

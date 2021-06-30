@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import{ Image, View, StyleSheet} from 'react-native'
+import { Image, View, StyleSheet } from 'react-native'
 import { TouchableOpacity } from 'react-native-gesture-handler'
 import { NavigationContainer } from '@react-navigation/native'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
@@ -41,6 +41,8 @@ import JualCepat from './page/Home/JualCepat/JualCepat' // 1st screen for jual c
 import SearchFst from './page/Home/JualCepat/SearchFst'
 import HistoryFst from './page/Home/JualCepat/HistoryFst'
 import Tawar from './page/Home/JualCepat/Tawar'
+import Lelang from './page/Home/JualCepat/Lelang'
+import AddFst from './page/Home/JualCepat/AddFst'
 
 import Calculator from './page/Home/Calculator'
 
@@ -67,32 +69,33 @@ import ChangePass from './page/Account/ChangePass'
 
 const HomeStack = createStackNavigator()
 
-function HomeStackScreen(){
-  return(
-    <HomeStack.Navigator screenOptions={{headerShown:false}}>
-      <HomeStack.Screen name='Home' component={Home}/>
+function HomeStackScreen() {
+  return (
+    <HomeStack.Navigator screenOptions={{ headerShown: false }}>
+      <HomeStack.Screen name='Home' component={Home} />
       <HomeStack.Screen name='DaftarProduk' component={DaftarProdukStackScreen} />
       <HomeStack.Screen name='DaftarPesanan' component={DaftarPesananStackScreen} />
-      <HomeStack.Screen name='JualCepat' component={JualCepat} />
+      <HomeStack.Screen name='JualCepat' component={jualCepatStackScreen} />
       <HomeStack.Screen name='Calculator' component={Calculator} />
     </HomeStack.Navigator>
   )
 }
 
-function LogoHome({color, focused, size}) {
-  if(focused){
+function LogoHome({ color, focused, size }) {
+  if (focused) {
     console.log('onclick')
   }
   return (
     <Image
-      style={{ 
-        width: 32, height: 32,}}
-      source={(focused) 
-        ? require('./assets/images/homeblu.png') 
+      style={{
+        width: 32, height: 32,
+      }}
+      source={(focused)
+        ? require('./assets/images/homeblu.png')
         : require('./assets/images/home.png')}
     />
-  ); 
-} 
+  );
+}
 
 function LogoAdd() {
   return (
@@ -106,86 +109,101 @@ function LogoAdd() {
 function LogoSearch() {
   return (
     <Image
-    style={stylesLogo.logoSearch}
-    source={require('./assets/images/search.png')}
+      style={stylesLogo.logoSearch}
+      source={require('./assets/images/search.png')}
     />
   )
 }
 
-function LogoBack(){
-  return(
+function LogoBack() {
+  return (
     <Image
-    style={stylesLogo.logoBack}
-    source={require('./assets/images/back.png')}
+      style={stylesLogo.logoBack}
+      source={require('./assets/images/back.png')}
+    />
+  )
+}
+
+function LogoHistory() {
+  return (
+    <Image
+      style={stylesLogo.logoAdd}
+      source={require('./assets/images/history.png')}
     />
   )
 }
 
 const stylesLogo = StyleSheet.create({
-  logoAdd:{
-    width: normalize(18), 
-    height: normalize(18), 
+  logoAdd: {
+    width: normalize(18),
+    height: normalize(18),
     marginRight: normalize(16)
   },
 
-  logoSearch:{
-      width: normalize(18), 
-      height: normalize(18), 
-      marginRight: normalize(16)
+  logoSearch: {
+    width: normalize(18),
+    height: normalize(18),
+    marginRight: normalize(16)
   },
 
   logoBack: {
-    width: normalize(32),  
-    height: normalize(16), 
+    width: normalize(32),
+    height: normalize(16),
     marginLeft: normalize(16)
+  },
+
+  LogoHistory: {
+    width: normalize(21),
+    height: normalize(18),
+    marginRight: normalize(16)
   }
 })
 
 const DaftarProdukStack = createStackNavigator()
 const DaftarProdukTab = createMaterialTopTabNavigator()
 
-function DaftarProdukStackScreen({navigation: {navigate}}){
-  return(
+function DaftarProdukStackScreen({ navigation: { navigate } }) {
+  return (
     <DaftarProdukStack.Navigator>
       <DaftarProdukStack.Screen
         name='Daftar Produk'
         component={DaftarProdukTabScreen}
         options={{
           title: 'Daftar Produk',
-          headerStyle:{
+          headerStyle: {
             height: 70,
             backgroundColor: '#0064D0',
           },
-            headerTintColor: '#FFFFFF',
-            headerTitleStyle: {
-              marginLeft: normalize(75),
-              fontSize: normalize(16),
-              fontFamily: 'Montserrat-Bold'
-            },
-            headerRight: () => (
-               <View style={{flexDirection: 'row'}}>
+          headerTintColor: '#FFFFFF',
+          headerTitleStyle: {
+            marginLeft: normalize(75),
+            fontSize: normalize(16),
+            fontFamily: 'Montserrat-Bold'
+          },
+          headerRight: () => (
+            <View style={{ flexDirection: 'row' }}>
 
               <TouchableOpacity
                 onPress={() => navigate('SearchPrd')}
               >
-                <LogoSearch/>
+                <LogoSearch />
               </TouchableOpacity>
 
               <TouchableOpacity
                 onPress={() => navigate('Add')}
               >
-                <LogoAdd/>
+                <LogoAdd />
               </TouchableOpacity>
 
-              </View>
-            ),
-            headerLeft: () => (
-              <TouchableOpacity
-                onPress={() => navigate('Home')}
-              >
-                <LogoBack/>
-              </TouchableOpacity>
-            )
+            </View>
+          ),
+          headerLeft: () => (
+            <TouchableOpacity
+              onPress={() => navigate('Home')}
+            >
+              <LogoBack />
+            </TouchableOpacity>
+          )
         }}
       />
     </DaftarProdukStack.Navigator>
@@ -193,8 +211,8 @@ function DaftarProdukStackScreen({navigation: {navigate}}){
 }
 
 
-function DaftarProdukTabScreen(){
-  return(
+function DaftarProdukTabScreen() {
+  return (
     <DaftarProdukTab.Navigator
       tabBarOptions={{
         labelStyle: {
@@ -253,47 +271,47 @@ function DaftarProdukTabScreen(){
 const DaftarPesananStack = createStackNavigator()
 const DaftarPesananTab = createMaterialTopTabNavigator()
 
-function DaftarPesananStackScreen({navigation: {navigate}}){
-  return(  
-  <DaftarPesananStack.Navigator>
-    <DaftarPesananStack.Screen
-       name='Daftar Pesanan'
-       component={DaftarPesananTabScreen}
-       options={{
-         title: 'Daftar Pesanan',
-         headerStyle:{
-           height: 70,
-           backgroundColor: '#0064D0',
-         },
-           headerTintColor: '#FFFFFF',
-           headerTitleStyle: {
-             marginLeft: normalize(70),
-             fontSize: normalize(16),
-             fontFamily: 'Montserrat-Bold'
-           },
-           headerRight: () => (
-             <TouchableOpacity
-               onPress={() => navigate('SearchOrd')}
-             >
-               <LogoSearch/>
-             </TouchableOpacity>
+function DaftarPesananStackScreen({ navigation: { navigate } }) {
+  return (
+    <DaftarPesananStack.Navigator>
+      <DaftarPesananStack.Screen
+        name='Daftar Pesanan'
+        component={DaftarPesananTabScreen}
+        options={{
+          title: 'Daftar Pesanan',
+          headerStyle: {
+            height: 70,
+            backgroundColor: '#0064D0',
+          },
+          headerTintColor: '#FFFFFF',
+          headerTitleStyle: {
+            marginLeft: normalize(70),
+            fontSize: normalize(16),
+            fontFamily: 'Montserrat-Bold'
+          },
+          headerRight: () => (
+            <TouchableOpacity
+              onPress={() => navigate('SearchOrd')}
+            >
+              <LogoSearch />
+            </TouchableOpacity>
 
-           ),
-           headerLeft: () => (
-             <TouchableOpacity
-               onPress={() => navigate('Home')}
-             >
-               <LogoBack/>
-             </TouchableOpacity>
-           )
-       }}
-    />
-  </DaftarPesananStack.Navigator>
+          ),
+          headerLeft: () => (
+            <TouchableOpacity
+              onPress={() => navigate('Home')}
+            >
+              <LogoBack />
+            </TouchableOpacity>
+          )
+        }}
+      />
+    </DaftarPesananStack.Navigator>
   )
 }
 
-function DaftarPesananTabScreen(){
-  return(
+function DaftarPesananTabScreen() {
+  return (
     <DaftarPesananTab.Navigator
       swipeEnabled={true}
       tabBarOptions={{
@@ -345,7 +363,7 @@ function DaftarPesananTabScreen(){
             fontFamily: 'Montserrat-Medium'
           }
         }}
-      />  
+      />
 
       <DaftarPesananTab.Screen
         name='Disetujui'
@@ -412,34 +430,34 @@ function DaftarPesananTabScreen(){
 const NotificationStack = createStackNavigator()
 const NotificationTab = createMaterialTopTabNavigator()
 
-function NotificationStackScreen(){
-  return(
+function NotificationStackScreen() {
+  return (
     <NotificationStack.Navigator>
-      <NotificationStack.Screen 
-      name='Pemberitahuan' 
-      component={NotificationTabScreen}
-      options={{
-        title: 'Pemberitahuan',
-        headerStyle:{
-        height: 70,
-        backgroundColor: '#0064D0',
-      },
-        headerTintColor: '#FFFFFF',
-        headerTitleStyle: {
-          width: 200,
-          height: 20,
-          marginLeft: 120,
-          fontSize: 16,
-          fontFamily: 'Montserrat-Bold'
-        }
-    }}
+      <NotificationStack.Screen
+        name='Pemberitahuan'
+        component={NotificationTabScreen}
+        options={{
+          title: 'Pemberitahuan',
+          headerStyle: {
+            height: 70,
+            backgroundColor: '#0064D0',
+          },
+          headerTintColor: '#FFFFFF',
+          headerTitleStyle: {
+            width: 200,
+            height: 20,
+            marginLeft: 120,
+            fontSize: 16,
+            fontFamily: 'Montserrat-Bold'
+          }
+        }}
       />
     </NotificationStack.Navigator>
   )
 }
 
-function NotificationTabScreen(){
-  return(
+function NotificationTabScreen() {
+  return (
     <NotificationTab.Navigator
       tabBarOptions={{
         labelStyle: {
@@ -447,59 +465,144 @@ function NotificationTabScreen(){
         }
       }}
     >
-      <NotificationTab.Screen 
-      name='Aktivitas' 
-      component={NotifActivity}
-      options={{
-        title: 'Aktivitas',
-      }}
+      <NotificationTab.Screen
+        name='Aktivitas'
+        component={NotifActivity}
+        options={{
+          title: 'Aktivitas',
+        }}
       />
-      <NotificationTab.Screen 
-      name='Pesanan Baru' 
-      component={NotifNewOrder}
-      options={{
-        title: 'Pesanan Baru',
-      }}
+      <NotificationTab.Screen
+        name='Pesanan Baru'
+        component={NotifNewOrder}
+        options={{
+          title: 'Pesanan Baru',
+        }}
       />
-      <NotificationTab.Screen 
-      name='Jual Cepat' 
-      component={NotifJualCepat}
-      options={{
-        title: 'Jual Cepat',
-      }}
+      <NotificationTab.Screen
+        name='Jual Cepat'
+        component={NotifJualCepat}
+        options={{
+          title: 'Jual Cepat',
+        }}
       />
     </NotificationTab.Navigator>
   )
 }
 
-function LogoNotification({focused}) {
+function LogoNotification({ focused }) {
   return (
     <Image
       style={{ width: 32, height: 32 }}
-      source={(focused) 
-        ? require('./assets/images/notifblu.png') 
+      source={(focused)
+        ? require('./assets/images/notifblu.png')
         : require('./assets/images/notif.png')}
     />
   );
 }
 
+const jualCepatStack = createStackNavigator()
+const jualCepatTab = createMaterialTopTabNavigator()
+
+function jualCepatStackScreen({ navigation: { navigate } }) {
+  return (
+    <jualCepatStack.Navigator>
+      <jualCepatStack.Screen
+        name='Jual Cepat'
+        component={jualCepatTabScreen}
+        options={{
+          title: 'Jual Cepat',
+          headerStyle: {
+            height: 70,
+            backgroundColor: '#0064D0',
+          },
+          headerTintColor: '#FFFFFF',
+          headerTitleStyle: {
+            // width: 200,
+            // height: 20,
+            marginLeft: 90,
+            fontSize: 16,
+            fontFamily: 'Montserrat-Bold'
+          },
+          headerRight: () => (
+            <View style={{ flexDirection: 'row' }}>
+
+              <TouchableOpacity
+                onPress={() => navigate('SearchFst')}
+              >
+                <LogoSearch />
+              </TouchableOpacity>
+
+              <TouchableOpacity
+                onPress={() => navigate('HistoryFst')}
+              >
+                <LogoHistory />
+              </TouchableOpacity>
+
+              <TouchableOpacity
+                onPress={() => navigate('AddFst')}
+              >
+                <LogoAdd />
+              </TouchableOpacity>
+
+            </View>
+          ),
+          headerLeft: () => (
+            <TouchableOpacity
+              onPress={() => navigate('Home')}
+            >
+              <LogoBack />
+            </TouchableOpacity>
+          )
+        }}
+      />
+    </jualCepatStack.Navigator>
+  )
+}
+
+function jualCepatTabScreen() {
+  return (
+    <jualCepatTab.Navigator
+      tabBarOptions={{
+        labelStyle: {
+          fontFamily: 'Montserrat-Medium'
+        }
+      }}
+    >
+      <jualCepatTab.Screen
+        name='Bid'
+        component={JualCepat}
+        options={{
+          title: 'Tawar',
+        }}
+      />
+      <jualCepatTab.Screen
+        name='Auction'
+        component={Lelang}
+        options={{
+          title: 'Lelang',
+        }}
+      />
+    </jualCepatTab.Navigator>
+  )
+}
 
 const AccountStack = createStackNavigator()
 
-function AccountStackScreen(){
-  return(
-    <AccountStack.Navigator screenOptions={{headerShown:false}}>
-      <AccountStack.Screen name='Account' component={Account}/>
+function AccountStackScreen() {
+  return (
+    <AccountStack.Navigator screenOptions={{ headerShown: false }}>
+      <AccountStack.Screen name='Account' component={Account} />
     </AccountStack.Navigator>
   )
 }
 
-function LogoAccount({focused}) {
+function LogoAccount({ focused }) {
   return (
     <Image
       style={{ width: 32, height: 32 }}
-      source={(focused) 
-        ? require('./assets/images/userblu.png') 
+      source={(focused)
+        ? require('./assets/images/userblu.png')
         : require('./assets/images/user.png')}
     />
   );
@@ -508,23 +611,23 @@ function LogoAccount({focused}) {
 const Tab = createBottomTabNavigator()
 
 // ToDo: Icon harus berubah warna, font juga harus sesuai mockup
-function TabScreen(){
- return(
-    <Tab.Navigator 
-    tabBarOptions={{
-      activeTintColor: '#0064D0',
-      inactiveTintColor: '#B7B7B7',
-      labelStyle: {
-        fontFamily: 'Montserrat-SemiBold'
-      }
-    }}>
+function TabScreen() {
+  return (
+    <Tab.Navigator
+      tabBarOptions={{
+        activeTintColor: '#0064D0',
+        inactiveTintColor: '#B7B7B7',
+        labelStyle: {
+          fontFamily: 'Montserrat-SemiBold'
+        }
+      }}>
 
-      <Tab.Screen 
-      name='Beranda' component={HomeStackScreen}
-      options={{
-        title: 'Beranda',
-        tabBarIcon: props => <LogoHome {...props}/>
-    }}/>
+      <Tab.Screen
+        name='Beranda' component={HomeStackScreen}
+        options={{
+          title: 'Beranda',
+          tabBarIcon: props => <LogoHome {...props} />
+        }} />
 
       {/* <Tab.Screen 
       name='Instant Order' component={InstantOrderStackScreen}
@@ -533,19 +636,19 @@ function TabScreen(){
         tabBarIcon: props => <LogoInstanOrder {...props}/>,
     }}/> */}
 
-      <Tab.Screen 
-      name='Pemberitahuan' component={NotificationStackScreen}
-      options={{
-        title: 'Pemberitahuan',
-        tabBarIcon: props => <LogoNotification {...props}/>,
-    }}/>
+      <Tab.Screen
+        name='Pemberitahuan' component={NotificationStackScreen}
+        options={{
+          title: 'Pemberitahuan',
+          tabBarIcon: props => <LogoNotification {...props} />,
+        }} />
 
-      <Tab.Screen 
-      name='Akun' component={AccountStackScreen}
-      options={{
-        title: 'Akun',
-        tabBarIcon: props => <LogoAccount {...props}/>,
-    }}/>
+      <Tab.Screen
+        name='Akun' component={AccountStackScreen}
+        options={{
+          title: 'Akun',
+          tabBarIcon: props => <LogoAccount {...props} />,
+        }} />
 
     </Tab.Navigator>
   )
@@ -557,37 +660,39 @@ class App extends Component {
   render() {
     return (
       <>
-      <NavigationContainer>
-        <Stack.Navigator initialRouteName='Home' screenOptions={{headerShown:false}}>
-          <Stack.Screen name='Login' component={Login}/>
-          <Stack.Screen name='Forgot' component={Forgot}/>
-          <Stack.Screen name='Account' component={Account}/>
-          <Stack.Screen name='Home' component={TabScreen}/>
-          <Stack.Screen name='SearchPrd' component={SearchPrd}/>
-          <Stack.Screen name='SearchOrd' component={SearchOrd}/>
-          <Stack.Screen name='DetailPesanan' component={DetailPesanan}/>
-          <Stack.Screen name='SearchFst' component={SearchFst}/>
-          <Stack.Screen name='HistoryFst' component={HistoryFst}/>
-          <Stack.Screen name='Tawar' component={Tawar}/>
-          <Stack.Screen name='Add' component={Add}/>
-          <Stack.Screen name='AddPics' component={AddPics}/>
-          <Stack.Screen name='Verification' component={Verification}/>
-          <Stack.Screen name='DetailProduk' component={DetailProduk}/>
-          <Stack.Screen name='EditProduct' component={EditProduct}/>
-          <Stack.Screen name='EditPics' component={EditPics}/>
-          <Stack.Screen name='EditProfile' component={EditProfile}/>
-          <Stack.Screen name='Settings' component={Settings}/>
-          <Stack.Screen name='ConfirmEmail' component={ConfirmEmail}/>
-          <Stack.Screen name='ChangePass' component={ChangePass}/>
-          <Stack.Screen name='About' component={About}/>
-          <Stack.Screen name='PrivacyPolicy' component={PrivacyPolicy}/>
-          <Stack.Screen name='Terms' component={Terms}/>
-          <Stack.Screen name='FAQ' component={FAQ}/>
-          <Stack.Screen name='Logout' component={Logout}/>
-          <Stack.Screen name='Register' component={Register}/>
-        </Stack.Navigator>
-      </NavigationContainer>
-      <FlashMessage position='top'/>
+        <NavigationContainer>
+          <Stack.Navigator initialRouteName='Login' screenOptions={{ headerShown: false }}>
+            <Stack.Screen name='Login' component={Login} />
+            <Stack.Screen name='Forgot' component={Forgot} />
+            <Stack.Screen name='Account' component={Account} />
+            <Stack.Screen name='Home' component={TabScreen} />
+            <Stack.Screen name='SearchPrd' component={SearchPrd} />
+            <Stack.Screen name='SearchOrd' component={SearchOrd} />
+            <Stack.Screen name='DetailPesanan' component={DetailPesanan} />
+            <Stack.Screen name='SearchFst' component={SearchFst} />
+            <Stack.Screen name='HistoryFst' component={HistoryFst} />
+            <Stack.Screen name='Tawar' component={Tawar} />
+            <Stack.Screen name='Lelang' component={Lelang} />
+            <Stack.Screen name='AddFst' component={AddFst} />
+            <Stack.Screen name='Add' component={Add} />
+            <Stack.Screen name='AddPics' component={AddPics} />
+            <Stack.Screen name='Verification' component={Verification} />
+            <Stack.Screen name='DetailProduk' component={DetailProduk} />
+            <Stack.Screen name='EditProduct' component={EditProduct} />
+            <Stack.Screen name='EditPics' component={EditPics} />
+            <Stack.Screen name='EditProfile' component={EditProfile} />
+            <Stack.Screen name='Settings' component={Settings} />
+            <Stack.Screen name='ConfirmEmail' component={ConfirmEmail} />
+            <Stack.Screen name='ChangePass' component={ChangePass} />
+            <Stack.Screen name='About' component={About} />
+            <Stack.Screen name='PrivacyPolicy' component={PrivacyPolicy} />
+            <Stack.Screen name='Terms' component={Terms} />
+            <Stack.Screen name='FAQ' component={FAQ} />
+            <Stack.Screen name='Logout' component={Logout} />
+            <Stack.Screen name='Register' component={Register} />
+          </Stack.Navigator>
+        </NavigationContainer>
+        <FlashMessage position='top' />
       </>
     )
   }

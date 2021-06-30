@@ -18,7 +18,7 @@ class Settings extends Component{
     }
     
   goToAccount = () => {
-    this.props.navigation.navigate('Account')
+    this.props.navigation.goBack()
   }
 
   goToChangePass = () => {

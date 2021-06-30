@@ -107,8 +107,8 @@ class Calculator extends Component {
                                     style={styles.txtHarga}
                                     keyboardType='number-pad'
                                     placeholder='Rp 15,000,000'
-                                    value={this.state.price}
-                                    onChangeText={price => this.isPriceFilled(price)}
+                                    value={this.state.price.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1.")}
+                                    onChangeText={price => this.isPriceFilled(price.toString().replace(/\./g, ""))}
                                 />
                             </View>
                         </View>
@@ -129,8 +129,8 @@ class Calculator extends Component {
                                     style={styles.txtUangMuka}
                                     keyboardType='number-pad'
                                     placeholder='Rp 1,500,000'
-                                    value={this.state.dp}
-                                    onChangeText={dp => this.isDpFilled(dp)}
+                                    value={this.state.dp.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1.")}
+                                    onChangeText={dp => this.isDpFilled(dp.toString().replace(/\./g, ""))}
                                 />
                             </View>
         
@@ -179,7 +179,7 @@ class Calculator extends Component {
                                 </Text>
 
                                 <Text style={styles.txtRight}>
-                                    Rp {this.state.total36}
+                                    Rp {this.state.total36.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1.")}
                                 </Text>
                             </View>
                         </View>
@@ -194,7 +194,7 @@ class Calculator extends Component {
                                 </Text>
 
                                 <Text style={styles.txtRight}>
-                                    Rp {this.state.total24}
+                                    Rp {this.state.total24.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1.")}
                                 </Text>
                             </View>
                         </View>
@@ -209,7 +209,7 @@ class Calculator extends Component {
                                 </Text>
 
                                 <Text style={styles.txtRight}>
-                                    Rp {this.state.total12}
+                                    Rp {this.state.total12.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1.")}
                                 </Text>
                             </View>
                         </View>

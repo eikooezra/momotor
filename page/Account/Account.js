@@ -20,8 +20,8 @@ const Account = ({ navigation, route }) => {
 
   useEffect(() => {
     getData('user').then(res => {
-      const data = res
-      // console.log('new profile: ', data)
+      // const data = res
+      // console.log('new profile: ', res.uid)
       setProfile(res)
 
     })

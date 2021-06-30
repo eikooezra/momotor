@@ -9,44 +9,9 @@ import {
 } from 'react-native'
 import normalize from 'react-native-normalize';
 
-const JualCepat = ({ navigation }) => {
+const Lelang = ({ navigation }) => {
     return (
         <View>
-            {/* <View style={styles.Header}>
-                <TouchableOpacity
-                        onPress={() => navigation.navigate('Home')}
-                    >
-                        <Image
-                            style={styles.btnBack}
-                            source={require('../../../assets/images/back.png')}
-                        />
-                </TouchableOpacity>
-
-                <Text style={styles.txtJual}>
-                    Jual Cepat
-                </Text>
-
-            <View style={styles.btnWrapper}>
-                <TouchableOpacity
-                    onPress={() => navigation.navigate('SearchFst')}
-                >
-                    <Image
-                        style={styles.btnSearch}
-                        source={require('../../../assets/images/search.png')}
-                    />
-                </TouchableOpacity>
-
-                <TouchableOpacity
-                    onPress={() => navigation.navigate('HistoryFst')}
-                >
-                    <Image
-                        style={styles.btnHistory}
-                        source={require('../../../assets/images/history.png')}
-                    />
-                </TouchableOpacity>
-            </View>
-        </View> */}
-
             <ScrollView>
                 <View style={styles.WhiteBox}>
                     <View style={styles.boxContainer1}>
@@ -129,10 +94,10 @@ const JualCepat = ({ navigation }) => {
                 </View>
             </ScrollView>
         </View>
-    )
-}
+    );
+};
 
-export default JualCepat
+export default Lelang;
 
 const styles = StyleSheet.create({
 
@@ -281,4 +246,4 @@ const styles = StyleSheet.create({
         color: '#E56464',
         fontFamily: 'Montserrat-Bold'
     }
-})
+});
