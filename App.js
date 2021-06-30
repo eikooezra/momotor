@@ -44,11 +44,11 @@ import Tawar from './page/Home/JualCepat/Tawar'
 
 import Calculator from './page/Home/Calculator'
 
-// import DataCustomer from './page/InstantOrder/DataCustomer' // 1st screen for instant order page
-// import DataPekerjaan from './page/InstantOrder/DataPekerjaan'
-// import DataMotor from './page/InstantOrder/DataMotor'
-// import DataKredit from './page/InstantOrder/DataKredit'
-// import UploadDocs from './page/InstantOrder/UploadDocs'
+import DataCustomer from './page/InstantOrder/DataCustomer' // 1st screen for instant order page
+import DataPekerjaan from './page/InstantOrder/DataPekerjaan'
+import DataMotor from './page/InstantOrder/DataMotor'
+import DataKredit from './page/InstantOrder/DataKredit'
+import UploadDocs from './page/InstantOrder/UploadDocs'
 
 import NotifActivity from './page/Notification/NotifActivity' // 1st screen for notif page
 import NotifNewOrder from './page/Notification/NotifNewOrder'
@@ -383,30 +383,30 @@ function DaftarPesananTabScreen(){
   )
 }
 
-// const InstantOrderStack = createStackNavigator()
+const InstantOrderStack = createStackNavigator()
 
-// function InstantOrderStackScreen(){
-//   return(
-//     <InstantOrderStack.Navigator screenOptions={{headerShown:false}}>
-//       <InstantOrderStack.Screen name='InstantOrder' component={DataCustomer}/>
-//       <InstantOrderStack.Screen name='DataPekerjaan' component={DataPekerjaan}/>
-//       <InstantOrderStack.Screen name='DataMotor' component={DataMotor}/>
-//       <InstantOrderStack.Screen name='DataKredit' component={DataKredit}/>
-//       <InstantOrderStack.Screen name='UploadDocs' component={UploadDocs}/>
-//     </InstantOrderStack.Navigator>
-//   )
-// }
+function InstantOrderStackScreen(){
+  return(
+    <InstantOrderStack.Navigator screenOptions={{headerShown:false}}>
+      <InstantOrderStack.Screen name='InstantOrder' component={DataCustomer}/>
+      <InstantOrderStack.Screen name='DataPekerjaan' component={DataPekerjaan}/>
+      <InstantOrderStack.Screen name='DataMotor' component={DataMotor}/>
+      <InstantOrderStack.Screen name='DataKredit' component={DataKredit}/>
+      <InstantOrderStack.Screen name='UploadDocs' component={UploadDocs}/>
+    </InstantOrderStack.Navigator>
+  )
+}
 
-// function LogoInstanOrder({focused}) {
-//   return (
-//     <Image
-//       style={{ width: 32, height: 32 }}
-//       source={(focused) 
-//         ? require('./assets/images/instantblu.png') 
-//         : require('./assets/images/instant.png')}
-//     />
-//   );
-// }
+function LogoInstanOrder({focused}) {
+  return (
+    <Image
+      style={{ width: 32, height: 32 }}
+      source={(focused) 
+        ? require('./assets/images/instantblu.png') 
+        : require('./assets/images/instant.png')}
+    />
+  );
+}
 
 
 const NotificationStack = createStackNavigator()
@@ -526,12 +526,12 @@ function TabScreen(){
         tabBarIcon: props => <LogoHome {...props}/>
     }}/>
 
-      {/* <Tab.Screen 
+      <Tab.Screen 
       name='Instant Order' component={InstantOrderStackScreen}
       options={{
         title: 'Instant Order',
         tabBarIcon: props => <LogoInstanOrder {...props}/>,
-    }}/> */}
+    }}/>
 
       <Tab.Screen 
       name='Pemberitahuan' component={NotificationStackScreen}
