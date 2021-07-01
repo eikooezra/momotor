@@ -37,12 +37,12 @@ import Dibatalkan from './page/Home/DaftarPesanan/Dibatalkan'
 import SearchOrd from './page/Home/DaftarPesanan/SearchOrd'
 import DetailPesanan from './page/Home/DaftarPesanan/DetailPesanan'
 
-import JualCepat from './page/Home/JualCepat/JualCepat' // 1st screen for jual cepat page
-import SearchFst from './page/Home/JualCepat/SearchFst'
-import HistoryFst from './page/Home/JualCepat/HistoryFst'
-import Tawar from './page/Home/JualCepat/Tawar'
-import Lelang from './page/Home/JualCepat/Lelang'
-import AddFst from './page/Home/JualCepat/AddFst'
+// import JualCepat from './page/Home/JualCepat/JualCepat' // 1st screen for jual cepat page
+// import SearchFst from './page/Home/JualCepat/SearchFst'
+// import HistoryFst from './page/Home/JualCepat/HistoryFst'
+// import Tawar from './page/Home/JualCepat/Tawar'
+// import Lelang from './page/Home/JualCepat/Lelang'
+// import AddFst from './page/Home/JualCepat/AddFst'
 
 import Calculator from './page/Home/Calculator'
 
@@ -75,7 +75,7 @@ function HomeStackScreen() {
       <HomeStack.Screen name='Home' component={Home} />
       <HomeStack.Screen name='DaftarProduk' component={DaftarProdukStackScreen} />
       <HomeStack.Screen name='DaftarPesanan' component={DaftarPesananStackScreen} />
-      <HomeStack.Screen name='JualCepat' component={jualCepatStackScreen} />
+      {/* <HomeStack.Screen name='JualCepat' component={jualCepatStackScreen} /> */}
       <HomeStack.Screen name='Calculator' component={Calculator} />
     </HomeStack.Navigator>
   )
@@ -501,91 +501,91 @@ function LogoNotification({ focused }) {
   );
 }
 
-const jualCepatStack = createStackNavigator()
-const jualCepatTab = createMaterialTopTabNavigator()
+// const jualCepatStack = createStackNavigator()
+// const jualCepatTab = createMaterialTopTabNavigator()
 
-function jualCepatStackScreen({ navigation: { navigate } }) {
-  return (
-    <jualCepatStack.Navigator>
-      <jualCepatStack.Screen
-        name='Jual Cepat'
-        component={jualCepatTabScreen}
-        options={{
-          title: 'Jual Cepat',
-          headerStyle: {
-            height: 70,
-            backgroundColor: '#0064D0',
-          },
-          headerTintColor: '#FFFFFF',
-          headerTitleStyle: {
-            // width: 200,
-            // height: 20,
-            marginLeft: 90,
-            fontSize: 16,
-            fontFamily: 'Montserrat-Bold'
-          },
-          headerRight: () => (
-            <View style={{ flexDirection: 'row' }}>
+// function jualCepatStackScreen({ navigation: { navigate } }) {
+//   return (
+//     <jualCepatStack.Navigator>
+//       <jualCepatStack.Screen
+//         name='Jual Cepat'
+//         component={jualCepatTabScreen}
+//         options={{
+//           title: 'Jual Cepat',
+//           headerStyle: {
+//             height: 70,
+//             backgroundColor: '#0064D0',
+//           },
+//           headerTintColor: '#FFFFFF',
+//           headerTitleStyle: {
+//             // width: 200,
+//             // height: 20,
+//             marginLeft: 90,
+//             fontSize: 16,
+//             fontFamily: 'Montserrat-Bold'
+//           },
+//           headerRight: () => (
+//             <View style={{ flexDirection: 'row' }}>
 
-              <TouchableOpacity
-                onPress={() => navigate('SearchFst')}
-              >
-                <LogoSearch />
-              </TouchableOpacity>
+//               <TouchableOpacity
+//                 onPress={() => navigate('SearchFst')}
+//               >
+//                 <LogoSearch />
+//               </TouchableOpacity>
 
-              <TouchableOpacity
-                onPress={() => navigate('HistoryFst')}
-              >
-                <LogoHistory />
-              </TouchableOpacity>
+//               <TouchableOpacity
+//                 onPress={() => navigate('HistoryFst')}
+//               >
+//                 <LogoHistory />
+//               </TouchableOpacity>
 
-              <TouchableOpacity
-                onPress={() => navigate('AddFst')}
-              >
-                <LogoAdd />
-              </TouchableOpacity>
+//               <TouchableOpacity
+//                 onPress={() => navigate('AddFst')}
+//               >
+//                 <LogoAdd />
+//               </TouchableOpacity>
 
-            </View>
-          ),
-          headerLeft: () => (
-            <TouchableOpacity
-              onPress={() => navigate('Home')}
-            >
-              <LogoBack />
-            </TouchableOpacity>
-          )
-        }}
-      />
-    </jualCepatStack.Navigator>
-  )
-}
+//             </View>
+//           ),
+//           headerLeft: () => (
+//             <TouchableOpacity
+//               onPress={() => navigate('Home')}
+//             >
+//               <LogoBack />
+//             </TouchableOpacity>
+//           )
+//         }}
+//       />
+//     </jualCepatStack.Navigator>
+//   )
+// }
 
-function jualCepatTabScreen() {
-  return (
-    <jualCepatTab.Navigator
-      tabBarOptions={{
-        labelStyle: {
-          fontFamily: 'Montserrat-Medium'
-        }
-      }}
-    >
-      <jualCepatTab.Screen
-        name='Bid'
-        component={JualCepat}
-        options={{
-          title: 'Tawar',
-        }}
-      />
-      <jualCepatTab.Screen
-        name='Auction'
-        component={Lelang}
-        options={{
-          title: 'Lelang',
-        }}
-      />
-    </jualCepatTab.Navigator>
-  )
-}
+// function jualCepatTabScreen() {
+//   return (
+//     <jualCepatTab.Navigator
+//       tabBarOptions={{
+//         labelStyle: {
+//           fontFamily: 'Montserrat-Medium'
+//         }
+//       }}
+//     >
+//       <jualCepatTab.Screen
+//         name='Bid'
+//         component={JualCepat}
+//         options={{
+//           title: 'Tawar',
+//         }}
+//       />
+//       <jualCepatTab.Screen
+//         name='Auction'
+//         component={Lelang}
+//         options={{
+//           title: 'Lelang',
+//         }}
+//       />
+//     </jualCepatTab.Navigator>
+//   )
+// }
 
 const AccountStack = createStackNavigator()
 
@@ -669,11 +669,11 @@ class App extends Component {
             <Stack.Screen name='SearchPrd' component={SearchPrd} />
             <Stack.Screen name='SearchOrd' component={SearchOrd} />
             <Stack.Screen name='DetailPesanan' component={DetailPesanan} />
-            <Stack.Screen name='SearchFst' component={SearchFst} />
+            {/* <Stack.Screen name='SearchFst' component={SearchFst} />
             <Stack.Screen name='HistoryFst' component={HistoryFst} />
             <Stack.Screen name='Tawar' component={Tawar} />
             <Stack.Screen name='Lelang' component={Lelang} />
-            <Stack.Screen name='AddFst' component={AddFst} />
+            <Stack.Screen name='AddFst' component={AddFst} /> */}
             <Stack.Screen name='Add' component={Add} />
             <Stack.Screen name='AddPics' component={AddPics} />
             <Stack.Screen name='Verification' component={Verification} />
