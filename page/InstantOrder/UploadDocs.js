@@ -7,22 +7,124 @@ import {
     Text,
     TouchableOpacity
 } from 'react-native'
+import {launchCamera, launchImageLibrary} from 'react-native-image-picker';
 import normalize from 'react-native-normalize'
 import { Header, Title } from '../../components/components'
+import RBSheet from 'react-native-raw-bottom-sheet'
 
-class DataKredit extends Component{
-    constructor(props){
-        super(props)
-        this.state={
-            
-        }
+
+const DataKredit = () => {
+    // const {
+    //     name,
+    //     year,
+    //     location,
+    //     price,
+    //     ref_code,
+    //     desc,
+    //     kilometer,
+    //     id
+    // } = route.params
+
+    const goBack = () => {
+        navigation.navigate('DataKredit')
     }
 
-    goBack = () => {
-        this.props.navigation.navigate('DataKredit')
-    }
+    // const [photoForDB, setPhotoForDB] = useState('')
+    // const [photoForDB1, setPhotoForDB1] = useState('')
+    // const [photoForDB2, setPhotoForDB2] = useState('')
+    // const [photoForDB3, setPhotoForDB3] = useState('')
+    // const [photoForDB4, setPhotoForDB4] = useState('')
+    // const [photoForDB5, setPhotoForDB5] = useState('')
+    // const [photo, setPhoto] = useState(require('../../../assets/images/camLogo.png'))
+    // const [photo1, setPhoto1] = useState(require('../../../assets/images/camLogo.png'))
+    // const [photo2, setPhoto2] = useState(require('../../../assets/images/camLogo.png'))
+    // const [photo3, setPhoto3] = useState(require('../../../assets/images/camLogo.png'))
+    // const [photo4, setPhoto4] = useState(require('../../../assets/images/camLogo.png'))
+    // const [photo5, setPhoto5] = useState(require('../../../assets/images/camLogo.png'))
 
-    render(){
+    // const getImage = () => {
+    //     launchImageLibrary(
+    //         { mediaType: 'photo', quality: 1, includeBase64: true },
+    //         (response) => {
+    //             console.log('response: ', response)
+    //             const source = { uri: response.uri }
+    //             setPhotoForDB(`data:${response.type};base64, ${response.base64}`)
+    //             setPhoto(source)
+    //         })
+    // }
+
+    // const getImage1 = () => {
+    //     launchImageLibrary(
+    //         { mediaType: 'photo', quality: 1, includeBase64: true },
+    //         (response) => {
+    //             console.log('response: ', response)
+    //             const source = { uri: response.uri }
+    //             setPhotoForDB1(`data:${response.type};base64, ${response.base64}`)
+    //             setPhoto1(source)
+    //         })
+    // }
+
+    // const getImage2 = () => {
+    //     launchImageLibrary(
+    //         { mediaType: 'photo', quality: 1, includeBase64: true },
+    //         (response) => {
+    //             console.log('response: ', response)
+    //             const source = { uri: response.uri }
+    //             setPhotoForDB2(`data:${response.type};base64, ${response.base64}`)
+    //             setPhoto2(source)
+    //         })
+    // }
+
+    // const getImage3 = () => {
+    //     launchImageLibrary(
+    //         { mediaType: 'photo', quality: 1, includeBase64: true },
+    //         (response) => {
+    //             console.log('response: ', response)
+    //             const source = { uri: response.uri }
+    //             setPhotoForDB3(`data:${response.type};base64, ${response.base64}`)
+    //             setPhoto3(source)
+    //         })
+    // }
+
+    // const getImage4 = () => {
+    //     launchImageLibrary(
+    //         { mediaType: 'photo', quality: 1, includeBase64: true },
+    //         (response) => {
+    //             console.log('response: ', response)
+    //             const source = { uri: response.uri }
+    //             setPhotoForDB4(`data:${response.type};base64, ${response.base64}`)
+    //             setPhoto4(source)
+    //         })
+    // }
+
+    // const getImage5 = () => {
+    //     launchImageLibrary(
+    //         { mediaType: 'photo', quality: 1, includeBase64: true },
+    //         (response) => {
+    //             console.log('response: ', response)
+    //             const source = { uri: response.uri }
+    //             setPhotoForDB5(`data:${response.type};base64, ${response.base64}`)
+    //             setPhoto5(source)
+    //         })
+    // }
+
+    // const uploadAndContinue = () => {
+    //     getData('user').then(res => {
+    //         Fire
+    //             .database()
+    //             .ref('product/' + res.uid + '/' + id + '/images' + '/')
+    //             .update({
+    //                 image: photoForDB,
+    //                 image1: photoForDB1,
+    //                 image2: photoForDB2,
+    //                 image3: photoForDB3,
+    //                 image4: photoForDB4,
+    //                 image5: photoForDB5,
+    //             })
+    //         navigation.navigate('Verification')
+    //     })
+    // }
+
         return(
             <View style={styles.container}>
                 <Header title="Instant Order" onPress={this.goBack} back/>
@@ -210,11 +312,24 @@ class DataKredit extends Component{
                      </TouchableOpacity>
                 </ScrollView>
 
-                
+                <RBSheet
+                ref={refRBSheet}
+                height={300}
+                openDuration={250}
+                closeOnDragDown={true}
+                customStyles={{
+                    container: {
+                        height: 250,
+                        borderTopStartRadius: 10,
+                        borderTopEndRadius: 10,
+                    }
+                }}
+                >
+                    <BottomSheet />
+                 </RBSheet>
             </View>
         )
     }
-}
 
 export default DataKredit
 

@@ -4,33 +4,11 @@ import {
     Text,
     Image,
     TouchableOpacity,
-    Animated,
     StyleSheet
 } from 'react-native'
-import ToggleSwitch from 'toggle-switch-react-native'
 import normalize from 'react-native-normalize';
 
 class BottomSheet extends Component{
-    constructor(props){
-        super(props)
-        this.state = {
-            isSwitchOn: false,
-        }
-    }
-
-    onToggle(isOn){
-        console.log("Changed to" + isOn)
-    }
-    
-    animatedValue = new Animated.Value(0)
-
-    componentDidMount() {
-        Animated.timing(this.animatedValue, {
-            toValue: 1,
-            useNativeDriver: true
-        }).start()
-    }
-
     render(){
         return(
             <View style={styles.container}>
@@ -53,55 +31,7 @@ class BottomSheet extends Component{
                                 Edit Produk
                             </Text>
                         </TouchableOpacity>
-
-                        <TouchableOpacity
-                        style={styles.btnView}
-                        >
-                            <Image
-                                style={styles.imgURL}
-                                source={require('../../assets/images/URL.png')}
-                            />
-
-                            <Text style={styles.txtURL}>
-                                URL Produk
-                            </Text>
-                        </TouchableOpacity>
-             
-                        <TouchableOpacity
-                        style={styles.btnView}
-                        >
-                            <Image
-                                style={styles.imgQR}
-                                source={require('../../assets/images/QR.png')}
-                            />
-
-                            <Text style={styles.txtQR}>
-                                QR Code
-                            </Text>
-                        </TouchableOpacity>
                 </View>
-
-                <Animated.View style={[styles.containerSwitch,
-                    {opacity: this.animatedValue}
-                ]}>
-                    <ToggleSwitch
-                        onColor='#0064D0'
-                        isOn={this.state.isSwitchOn}
-                        label='Tampilkan Produk'
-                        labelStyle={{ 
-                            width: normalize(129),
-                            height: normalize(18),
-                            marginLeft: normalize(26),
-                            marginRight: normalize(150),
-                            fontSize: normalize(14),
-                            fontFamily: 'Montserrat-Regular'
-                        }}
-                        onToggle={isSwitchOn => {
-                            this.setState({isSwitchOn})
-                            this.onToggle({isSwitchOn})
-                        }}
-                    />
-                </Animated.View>
             </View>
         )
     }
