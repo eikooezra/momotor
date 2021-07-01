@@ -9,6 +9,14 @@ import { getData, storeData } from '../../../utils/localstorage/localstorage';
 import { useForm } from '../../../utils/utils';
 
 const Add = ({ navigation }) => {
+    const [pressed, setPressed] = useState(false)
+
+    const nullChecker = () => {
+        if (pressed === false) {
+            setPressed({ null: true })
+        }
+    }
+    
     const [form, setForm] = useForm({
         name: '',
         year: '',
@@ -18,14 +26,6 @@ const Add = ({ navigation }) => {
         desc: '',
         kilometer: '',
     })
-
-    const [pressed, setPressed] = useState(false)
-
-    const nullChecker = () => {
-        if (pressed === false) {
-            setPressed({ null: true })
-        }
-    }
 
     const onContinue = () => {
         const newPostKey = Fire.database().ref().child('post').push().key
@@ -81,10 +81,6 @@ const Add = ({ navigation }) => {
                         onChangeText={value => setForm('name', value)}
                     />
                     <Gap height={34} />
-                    <View style={styles.content}>
-
-                    </View>
-
                     <DropDownPicker
                         items={[
                             { label: '2015', value: '2015' },
@@ -94,7 +90,7 @@ const Add = ({ navigation }) => {
                             { label: '2019', value: '2019' },
                             { label: '2020', value: '2020' },
                         ]}
-                        // defaultNull
+                        defaultNull = {nullChecker}
                         placeholder='Tahun Produksi'
                         containerStyle={{
                             // width: normalize(350),
@@ -127,7 +123,7 @@ const Add = ({ navigation }) => {
                             { label: 'Tangerang', value: 'tangerang' },
                             { label: 'Bekasi', value: 'bekasi' },
                         ]}
-                        // defaultNull
+                        defaultNull = {nullChecker}
                         placeholder='Lokasi'
                         containerStyle={{
                             // width: normalize(350),

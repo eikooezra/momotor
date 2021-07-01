@@ -9,92 +9,78 @@ import {
 } from 'react-native'
 import normalize from 'react-native-normalize'
 import { Button, Gap, Header, Input, Title } from '../../components/components'
+import { Fire } from '../../config'
+import { getData } from '../../utils/localstorage/localstorage'
+import { useForm } from '../../utils/utils'
 
-class DataPekerjaan extends Component {
-    constructor(props) {
-        super(props)
-        this.state = {
-            job: '',
-            isJobFilled: false,
-            errorJob: '',
-            salary: '',
-            isSalaryFilled: false,
-            errorSalary: '',
-            exp: '',
-            isExpFilled: false,
-            errorExp: '',
-        }
+const DataPekerjaan = ({ navigation, route }) => {
+    const {
+        custName,
+        gender,
+        nik,
+        phoneNo,
+        email,
+        birthPlace,
+        birthDate,
+        address,
+        rt,
+        rw,
+        location,
+        maidenName,
+        maidenLoc,
+        id
+    } = route.params
+    const [form, setForm] = useForm({
+        job: '',
+        salary: '',
+        workDuration: ''
+    })
+
+    const onContinue = () => {
+        getData('user').then(res => {
+            const data = {
+                job: form.job,
+                salary: form.salary,
+                workDuration: form.workDuration
+            }
+            Fire
+                .database()
+                .ref('order/' + res.uid + '/' + id + '/data_pekerjaan/')
+                .update(data)
+            navigation.navigate('DataMotor', data)
+        })
     }
 
-    goBack = () => {
-        this.props.navigation.navigate('InstantOrder')
-    }
-
-    goToDataMotor = () => {
-        this.props.navigation.navigate('DataMotor')
-    }
-
-    handleChangeJob = (job) => {
-        this.setState({ job })
-        let reg = /([^\s])/
-        if (reg.test(job) === true) {
-            this.setState({ isJobFilled: true, errorJob: '' })
-        } else {
-            this.setState({ errorJob: 'Tidak boleh kosong' })
-        }
-    }
-
-    handleChangeSalary = (salary) => {
-        this.setState({ salary })
-        let reg = /([^\s])/
-        if (reg.test(salary) === true) {
-            this.setState({ isSalaryFilled: true, errorSalary: '' })
-        } else {
-            this.setState({ errorSalary: 'Tidak boleh kosong' })
-        }
-    }
-
-    handleChangeExp = (exp) => {
-        this.setState({ exp })
-        let reg = /([^\s])/
-        if (reg.test(exp) === true) {
-            this.setState({ isExpFilled: true, errorExp: '' })
-        } else {
-            this.setState({ errorExp: 'Tidak boleh kosong' })
-        }
-    }
-
-    render() {
-        const {
-            job,
-            salary,
-            exp
-        } = this.state
-
-        let emptyReg = /([^\s])/
-        const enabled =
-            (emptyReg.test(job) === true) &&
-            (emptyReg.test(salary) === true) &&
-            (emptyReg.test(exp) === true)
-
-        return (
-            <View style={styles.container}>
-                <Header title="Instant Order" onPress={this.goBack} back/>
-                <Title text="Data Pekerjaan" />
-                <View style={styles.content}>
-                    <Gap height={8}/>
-                    <Input placeholder="Pekerjaan" />
-                    <Gap height={34} />
-                    <Input placeholder="Penghasilan per bulan" />
-                    <Gap height={34} />
-                    <Input placeholder="Lama Bekerja" />
-                </View>
-                <Button onPress={this.goToDataMotor} title="SELANJUTNYA" />
-                <Gap height={22}/>
+    return (
+        <View style={styles.container}>
+            <Header title="Instant Order" back />
+            <Title text="Data Pekerjaan" />
+            <View style={styles.content}>
+                <Gap height={8} />
+                <Input
+                    placeholder="Pekerjaan"
+                    value={form.job}
+                    onChangeText={value => setForm('job', value)}
+                />
+                <Gap height={34} />
+                <Input
+                    placeholder="Penghasilan per bulan"
+                    value={form.salary.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1.")}
+                    onChangeText={value => setForm('salary', value.toString().replace(/\./g, ""))}
+                />
+                <Gap height={34} />
+                <Input
+                    placeholder="Lama Bekerja"
+                    value={form.workDuration}
+                    onChangeText={value => setForm('workDuration', value)}
+                />
             </View>
-        )
-    }
+            <Button onPress={onContinue} title="SELANJUTNYA" />
+            <Gap height={22} />
+        </View>
+    )
 }
+
 
 export default DataPekerjaan
 

@@ -4,9 +4,68 @@ import DropDownPicker from 'react-native-dropdown-picker';
 import { ScrollView } from 'react-native-gesture-handler';
 import normalize from 'react-native-normalize'
 import { Button, DropDown, Gap, Header, Input, Title } from '../../components/components';
+import { Fire } from '../../config';
+import { getData, storeData } from '../../utils/localstorage/localstorage';
+import { useForm } from '../../utils/utils';
 
 const DataCustomer = ({ navigation }) => {
-    const [value, setValue] = useState(null);
+    const [pressed, setPressed] = useState(false)
+
+    const nullChecker = () => {
+        if (pressed === false) {
+            setPressed({ null: true })
+        }
+    }
+
+    const [form, setForm] = useForm({
+        custName: '',
+        gender: '',
+        nik: '',
+        phoneNo: '',
+        email: '',
+        birthPlace: '',
+        birthDate: '',
+        address: '',
+        rt: '',
+        rw: '',
+        location: '',
+        maidenName: '',
+        maidenLoc: '',
+
+    })
+    const onContinue = () => {
+        const newPostKey = Fire.database().ref().child('post').push().key
+        getData('user').then(res => {
+            const data = {
+                uid: res.uid,
+                custName: form.custName,
+                gender: form.gender.value,
+                nik: form.nik,
+                phoneNo: form.phoneNo,
+                email: form.email,
+                birthPlace: form.birthPlace,
+                birthDate: form.birthDate,
+                address: form.address,
+                rt: form.rt,
+                rw: form.rw,
+                location: form.location,
+                maidenName: form.maidenName,
+                maidenLoc: form.maidenLoc,
+                date: new Date().getDate() + '/' + new Date().getMonth() + 1 + '/' + new Date().getFullYear(),
+                id: newPostKey,
+                status: 'Proses Verifikasi'
+            }
+            console.log('cek: ', data)
+            Fire
+                .database()
+                .ref('order/' + res.uid + '/' + newPostKey + '/data_customer/')
+                .set(data)
+            storeData('order', data)
+
+            navigation.navigate('DataPekerjaan', data)
+
+        })
+    }
     return (
         <View style={styles.page}>
             <Header title="Instant Order" />
@@ -14,44 +73,19 @@ const DataCustomer = ({ navigation }) => {
             <Gap height={8} />
             <View style={styles.content}>
                 <ScrollView showsVerticalScrollIndicator={false}>
-                    <Input placeholder="Nama Lengkap (Sesuai KTP)" />
+                    <Input
+                        placeholder="Nama Lengkap (Sesuai KTP)"
+                        value={form.custName}
+                        onChangeText={value => setForm('custName', value)}
+                    />
                     <Gap height={34} />
-                    {/* <Input placeholder="Jenis Kelamin" /> */}
                     <View>
-                        {/* <ModalDropdown
-                            options={[
-                                'Pria',
-                                'Wanita'
-                                // { label: 'Pria', value: 'pria' },
-                                // { label: 'Wanita', value: 'Wanita' }
-                            ]}
-                            defaultValue='Jenis Kelamin'
-                            style={{
-                                paddingHorizontal: 16,
-                                paddingVertical: 15,
-                                borderWidth: 1,
-                                borderRadius: 4,
-                                borderColor: '#EBEBEB',
-                            }}
-                            dropDownStyle={{
-                                backgroundColor: '#FFFFFF',
-                                width: 300
-                            }}
-                            textStyle={{
-                                // paddingHorizontal: 16,
-                                // paddingRight: 290,
-                                fontSize: 15,
-                                color: '#7F7F7F',
-                                fontFamily: 'Montserrat-Medium',
-                            }}
-                            isFullWidth={true}
-                        /> */}
                         <DropDownPicker
                             items={[
-                                { label: 'Pria', value: 'pria' },
+                                { label: 'Pria', value: 'Pria' },
                                 { label: 'Wanita', value: 'Wanita' }
                             ]}
-                            defaultNull
+                            defaultNull = {nullChecker}
                             placeholder="Jenis Kelamin"
                             style={{
                                 // paddingHorizontal: 16,
@@ -60,36 +94,58 @@ const DataCustomer = ({ navigation }) => {
                                 borderRadius: 4,
                                 borderColor: '#EBEBEB',
                             }}
-                            // containerStyle={{
-                            //     // width: normalize(350),
-                            //     // height: normalize(46),
-                            //     // marginLeft: normalize(16),
-                            //     // marginBottom: normalize(6),
-                            // }}
                             dropDownStyle={{
                                 backgroundColor: '#FFFFFF'
                             }}
                             labelStyle={{
-                                // paddingHorizontal: 16,
-                                // paddingRight: 290,
-                                fontSize: 15,
+                                width: 120,
+                                marginRight: 200,
+                                fontSize: 14,
                                 color: '#7F7F7F',
-                                fontFamily: 'Montserrat-Medium',
+                                fontFamily: 'Montserrat-SemiBold',
                             }}
+                            value={form.gender}
+                            onChangeItem={value => setForm('gender', value)}
                         />
                     </View>
                     <Gap height={34} />
-                    <Input placeholder="NIK" type="numeric" />
+                    <Input
+                        placeholder="NIK"
+                        value={form.nik}
+                        onChangeText={value => setForm('nik', value)}
+                        type="numeric"
+                    />
                     <Gap height={34} />
-                    <Input placeholder="No. Handphone" type="numeric" />
+                    <Input
+                        placeholder="No. Handphone"
+                        value={form.phoneNo}
+                        onChangeText={value => setForm('phoneNo', value)}
+                        type="numeric"
+                    />
                     <Gap height={34} />
-                    <Input placeholder="Email" />
+                    <Input
+                        placeholder="Email"
+                        value={form.email}
+                        onChangeText={value => setForm('email', value)}
+                    />
                     <Gap height={34} />
-                    <Input placeholder="Tempat Lahir" />
+                    <Input
+                        placeholder="Tempat Lahir"
+                        value={form.birthPlace}
+                        onChangeText={value => setForm('birthPlace', value)}
+                    />
                     <Gap height={34} />
-                    <Input placeholder="Tanngal Lahir" />
+                    <Input
+                        placeholder="Tangal Lahir"
+                        value={form.birthDate}
+                        onChangeText={value => setForm('birthDate', value)}
+                    />
                     <Gap height={34} />
-                    <Input placeholder="Alamat Lengkap (Sesuai KTP)" />
+                    <Input
+                        placeholder="Alamat Lengkap (Sesuai KTP)"
+                        value={form.address}
+                        onChangeText={value => setForm('address', value)}
+                    />
                     <Gap height={34} />
                     <View style={styles.flexContainer}>
                         <View style={styles.txtInpRT}>
@@ -97,6 +153,8 @@ const DataCustomer = ({ navigation }) => {
                                 style={styles.txtRT}
                                 placeholder='RT'
                                 placeholderTextColor='#7F7F7F'
+                                value={form.rt}
+                                onChangeText={value => setForm('rt', value)}
                                 keyboardType={'numeric'}
                             />
                         </View>
@@ -104,6 +162,8 @@ const DataCustomer = ({ navigation }) => {
                         <View style={styles.txtInpRW}>
                             <TextInput
                                 style={styles.txtRW}
+                                value={form.rw}
+                                onChangeText={value => setForm('rw', value)}
                                 placeholder='RW'
                                 placeholderTextColor='#7F7F7F'
                                 keyboardType={'numeric'}
@@ -113,19 +173,28 @@ const DataCustomer = ({ navigation }) => {
                         <Input placeholder="RW"/> */}
                     </View>
                     <Gap height={34} />
-                    <Input placeholder="Kelurahan Domisili" />
+                    <Input
+                        placeholder="Kelurahan Domisili"
+                        value={form.location}
+                        onChangeText={value => setForm('location', value)}
+                    />
                     <Gap height={34} />
-                    <Input placeholder="Nama Ibu Kandung" />
+                    <Input
+                        placeholder="Nama Ibu Kandung"
+                        value={form.maidenName}
+                        onChangeText={value => setForm('maidenName', value)}
+                    />
                     <Gap height={34} />
-                    <Input placeholder="Kelurahan Domisili Ibu" />
+                    <Input
+                        placeholder="Kelurahan Domisili Ibu"
+                        value={form.maidenLoc}
+                        onChangeText={value => setForm('maidenLoc', value)}
+                    />
                     <Gap height={34} />
                     <Button
-                        onPress={() => navigation.navigate('DataPekerjaan')}
+                        onPress={onContinue}
                         title="SELANJUTNYA"
                     />
-                    {/* <TouchableOpacity onPress={() => navigation.navigate('DataPekerjaan')}>
-                        <Text style={styles.txtButton}>SELANJUTNYA</Text>
-                    </TouchableOpacity> */}
                     <Gap height={18} />
                 </ScrollView>
             </View>
@@ -179,7 +248,7 @@ const styles = StyleSheet.create({
     txtRT: {
         paddingHorizontal: 16,
         color: '#7F7F7F',
-        fontFamily: 'Montserrat-Medium'
+        fontFamily: 'Montserrat-SemiBold'
     },
 
     txtInpRW: {
@@ -196,6 +265,6 @@ const styles = StyleSheet.create({
         // marginLeft: normalize(8),
         paddingHorizontal: 16,
         color: '#7F7F7F',
-        fontFamily: 'Montserrat-Medium'
+        fontFamily: 'Montserrat-SemiBold'
     },
 });
