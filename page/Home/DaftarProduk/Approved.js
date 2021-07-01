@@ -27,14 +27,14 @@ const SemuaProduk = ({ navigation }) => {
                     }
                 })
                 .catch(err => {
-                    const errorMessage = error.message
+                    const errorMessage = err.message
                     showMessage({
                         message: errorMessage,
                         type: 'default',
                         backgroundColor: '#E06379',
                         color: '#FFFFFF'
                     })
-                    console.log('error: ', error)
+                    console.log('error: ', err)
                 })
         })
     }, [])
