@@ -35,7 +35,6 @@ class BottomSheet extends Component{
             </View>
         )
     }
-    
 }
 
 export default BottomSheet
