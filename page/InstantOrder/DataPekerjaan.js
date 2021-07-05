@@ -43,10 +43,10 @@ const DataPekerjaan = ({ navigation, route }) => {
                 salary: form.salary,
                 workDuration: form.workDuration
             }
-            Fire
-                .database()
-                .ref('order/' + res.uid + '/' + id + '/data_pekerjaan/')
-                .update(data)
+            // Fire
+            //     .database()
+            //     .ref('order/' + res.uid + '/' + id + '/data_pekerjaan/')
+            //     .update(data)
             navigation.navigate('DataMotor', data)
         })
     }

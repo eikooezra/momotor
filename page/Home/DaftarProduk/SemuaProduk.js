@@ -12,12 +12,11 @@ import { getData } from '../../../utils/localstorage/localstorage';
 
 const SemuaProduk = ({navigation}) => {
     const [product, setProduct] = useState([])
-    const [uid, setUid] = useState([''])
     useEffect(() => {
         getData('user').then(res => {
-            const data = res.uid
+            const uid = res.uid
             Fire.database()
-                .ref('product/' + data + '/')
+                .ref('product/' + uid + '/')
                 .once('value')
                 .then(res => {
                     console.log('data: ', res.val())

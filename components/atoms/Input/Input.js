@@ -3,7 +3,7 @@ import { StyleSheet, View, Text, TextInput } from 'react-native';
 import normalize from 'react-native-normalize'
 
 
-const Input = ({ value, onChangeText, placeholder, type }) => {
+const Input = ({ value, onChangeText, placeholder, type, onFocus, onBlur, disable }) => {
   return (
     <View style={styles.container}>
       <TextInput
@@ -13,6 +13,10 @@ const Input = ({ value, onChangeText, placeholder, type }) => {
         placeholder={placeholder}
         placeholderTextColor='#7F7F7F'
         keyboardType={type === 'numeric' ? 'numeric' : 'default'}
+        editable={!disable}
+        selectTextOnFocus={!disable}
+        onFocus={onFocus}
+        onBlur={onBlur}
       />
     </View>
   );

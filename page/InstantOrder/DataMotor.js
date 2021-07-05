@@ -1,148 +1,165 @@
-import React, { Component } from 'react'
+import React, { Component, useEffect, useState } from 'react'
 import {
     StyleSheet,
     Image,
     TextInput,
     View,
     Text,
-    TouchableOpacity
+    TouchableOpacity,
+    ScrollView
 } from 'react-native'
 import DropDownPicker from 'react-native-dropdown-picker'
 import normalize from 'react-native-normalize'
-import { TapGestureHandler } from 'react-native-gesture-handler'
+import { FlatList, TapGestureHandler } from 'react-native-gesture-handler'
 import { Button, Title, Input, Gap, Header } from '../../components/components'
+import { Fire } from '../../config'
+import { getData } from '../../utils/localstorage/localstorage'
+import { useForm } from '../../utils/utils'
 
-class DataMotor extends Component {
-    constructor(props) {
-        super(props)
-        this.state = {
-            model: '',
-            isModelFilled: false,
-            errorModel: '',
-            prodYear: '',
-            isProdFilled: false,
-            errorProd: '',
-            price: '',
-            isPriceFilled: false,
-            errorPrice: '',
-            isPressed: false,
-            null: true
-        }
-    }
-
-    goBack = () => {
-        this.props.navigation.navigate('DataPekerjaan')
-    }
-
-    goToDataKredit = () => {
-        this.props.navigation.navigate('DataKredit')
-    }
-
-    nullChecker = () => {
-        if (this.state.isPressed === false) {
-            this.setState({ null: true })
-        }
-    }
-
-    handleChangeModel = (model) => {
-        this.setState({ model })
-        let reg = /([^\s])/
-        if (reg.test(model) === true) {
-            this.setState({ isModelFilled: true, errorModel: '' })
-        } else {
-            this.setState({ errorModel: 'Tidak boleh kosong' })
-        }
-    }
-
-    handleChangeProd = (prodYear) => {
-        this.setState({ prodYear })
-        let reg = /([^\s])/
-        if (reg.test(prodYear) === true) {
-            this.setState({ isProdFilled: true, errorProd: '' })
-        } else {
-            this.setState({ errorProd: 'Tidak boleh kosong' })
-        }
-    }
-
-    handleChangePrice = (price) => {
-        this.setState({ price })
-        let reg = /([^\s])/
-        if (reg.test(price) === true) {
-            this.setState({ isPriceFilled: true, errorPrice: '' })
-        } else {
-            this.setState({ errorPrice: 'Tidak Boleh kosong' })
-        }
-    }
-
-    render() {
-        const {
-            model,
-            prodYear,
-            price
-        } = this.state
-
-        let reg = /([^\s])/
-        const enabled =
-            (reg.test(model) === true) &&
-            (reg.test(prodYear) === true) &&
-            (reg.test(price) === true)
-
+const DataMotor = ({ navigation, route }) => {
+    const {id} = route.params
+    const [masterProduct, setMasterProduct] = useState([])
+    const [product, setProduct] = useState([])
+    const [search, setSearch] = useState('')
+    const [selectedModel, setSelectedModel] = useState()
+    const [selectedPrice, setSelectedPrice] = useState()
+    const [selectedYear, setSelectedYear] = useState()
+    const [selectedId, setSelectedId] = useState()
+    const [selectedImages, setSelectedImages] = useState()
+    const [form, setForm] = useForm({
+        model: '',
+        year: '',
+        price: '',
+    })
+    const itemSeparatorView = () => {
         return (
-            <View style={styles.container}>
-                <Header title="Instant Order" onPress={this.goBack} back/>
-                <Title text="Data Motor" />
-
-                <View style={styles.content}>
-                    <Gap height={8}/>
-                    <Input placeholder="Model Motor" />
-                    <Gap height={34}/>
-                    <DropDownPicker
-                        items={[
-                            { label: '2015', value: '15' },
-                            { label: '2016', value: '16' },
-                            { label: '2017', value: '17' },
-                            { label: '2018', value: '18' },
-                            { label: '2019', value: '19' },
-                            { label: '2020', value: '20' }
-                        ]}
-                        defaultNull={this.nullChecker}
-                        placeholder='Tahun Produksi'
-                        style={{
-                            paddingVertical: 20
-                        }}
-                        containerStyle={{
-                            // width: normalize(350),
-                            // height: normalize(46),
-                            // marginLeft: normalize(16),
-                            // marginBottom: normalize(6),
-                        }}
-                        dropDownStyle={{
-                            backgroundColor: '#FFFFFF'
-                        }}
-                        labelStyle={{
-                            marginLeft: normalize(8),
-                            fontSize: normalize(14.5),
-                            color: '#7F7F7F',
-                            fontFamily: 'Montserrat-Medium'
-                        }}
-                        arrowStyle={{
-                            marginLeft: normalize(205)
-                        }}
-                        onChangeItem={
-                            item => this.setState({
-                                prodYear: item
-                            })
-                        }
-                        onChangeText={prodYear => this.handleChangeProdYear(prodYear)}
-                    />
-                    <Gap height={34}/>
-                    <Input placeholder="Harga" />
-                </View>
-                <Button onPress={this.goToDataKredit} title="SELANJUTNYA" />
-                <Gap height={22}/>
-            </View>
+            <View
+                style={{ height: 0.5, width: '100%', backgroundColor: 'black' }}
+            />
         )
     }
+
+    const itemView = ({ item }) => {
+        return (
+            <TouchableOpacity onPress={() => valueSelected(item)}>
+                <Text style={{ padding: 10 }}>
+                    {item.name.toUpperCase()}
+                </Text>
+            </TouchableOpacity>
+        )
+    }
+
+    const searchFilter = (text) => {
+        if (text) {
+            const newData = masterProduct.filter((item) => {
+                const itemData = item.name ? item.name.toUpperCase() : ''.toUpperCase()
+                const textData = text.toUpperCase()
+                return itemData.indexOf(textData) > -1
+            })
+            setProduct(newData)
+            setSearch(text)
+        }
+        else {
+            setProduct(masterProduct)
+            setSearch(text)
+        }
+    }
+
+    const valueSelected = (item) => {
+        setSelectedId(item.id)
+        setSelectedModel(item.name)
+        setSelectedPrice(item.price.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1."))
+        setSelectedYear(item.year)
+        setSelectedImages(item.images)
+    }
+
+    const onContinue = () => {
+        getData('user').then(res => {
+            const data = {
+                productId: selectedId,
+                product: selectedModel,
+                year: selectedYear,
+                price: selectedPrice,
+                images: selectedImages
+            }
+            console.log('data motor: ', data)
+            // Fire
+            //     .database()
+            //     .ref('order/' + res.uid + '/' + id + '/data_motor/')
+            //     .update(data)
+            navigation.navigate('DataKredit', data)
+        })
+    }
+
+    useEffect(() => {
+        getDataProduct()
+    }, [])
+
+    const getDataProduct = () => {
+        getData('user').then(res => {
+            const uid = res.uid
+            Fire.database()
+                .ref('product/' + uid + '/')
+                .once('value')
+                .then(res => {
+                    console.log('data: ', res.val())
+                    if (res.val()) {
+                        // console.log('a', Object.values(res.val()))
+                        setProduct(Object.values(res.val()))
+                        setMasterProduct(Object.values(res.val()))
+                    }
+                })
+                .catch(err => {
+                    const errorMessage = error.message
+                    showMessage({
+                        message: errorMessage,
+                        type: 'default',
+                        backgroundColor: '#E06379',
+                        color: '#FFFFFF'
+                    })
+                    console.log('error: ', error)
+                })
+        })
+    }
+    return (
+        <View style={styles.container}>
+            <Header title="Instant Order" back onPress={() => navigation.goBack()} />
+            <Title text="Data Motor" />
+            <ScrollView>
+                <View style={styles.content}>
+                    <Gap height={8} />
+                    <Input
+                        placeholder="Model Motor"
+                        value={selectedModel}
+                        onChangeText={(text) => setSelectedModel(text)}
+                    />
+                    <FlatList
+                        data={product}
+                        keyExtractor={(items, index) => items.id}
+                        ItemSeparatorComponent={itemSeparatorView}
+                        renderItem={itemView}
+                    />
+                    <Gap height={34} />
+                    <Input
+                        placeholder="Tahun"
+                        value={selectedYear}
+                        onChangeText={(text) => setSelectedYear(text)}
+                        disable
+                    />
+                    <Gap height={34} />
+                    <Input
+                        placeholder="Harga"
+                        value={selectedPrice}
+                        onChangeText={(text) => setSelectedPrice(text.toString().replace(/\./g, ""))}
+                        disable
+                    />
+                </View>
+                {/* <Gap height={280} /> */}
+            </ScrollView>
+            <Button onPress={onContinue} title="SELANJUTNYA" />
+            <Gap height={22} />
+        </View>
+    )
 }
 
 export default DataMotor
@@ -165,5 +182,6 @@ const styles = StyleSheet.create({
         flex: 1,
         padding: 16,
         paddingTop: 0,
+        // backgroundColor: 'yellow'
     }
 })

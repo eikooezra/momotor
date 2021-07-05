@@ -56,11 +56,11 @@ const DataCustomer = ({ navigation }) => {
                 status: 'Proses Verifikasi'
             }
             console.log('cek: ', data)
-            Fire
-                .database()
-                .ref('order/' + res.uid + '/' + newPostKey + '/data_customer/')
-                .set(data)
-            storeData('order', data)
+            // Fire
+            //     .database()
+            //     .ref('order/' + res.uid + '/' + newPostKey + '/data_customer/')
+            //     .set(data)
+            // storeData('order', data)
 
             navigation.navigate('DataPekerjaan', data)
 
