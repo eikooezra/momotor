@@ -2,7 +2,9 @@ import React, { useState } from 'react';
 import {
     Image, StyleSheet, Text, TouchableOpacity, View
 } from 'react-native';
-import { launchImageLibrary } from 'react-native-image-picker';
+import { launchCamera, launchImageLibrary } from 'react-native-image-picker';
+import Animated from 'react-native-reanimated'
+import BottomSheet from 'reanimated-bottom-sheet'
 import normalize from 'react-native-normalize';
 import { Fire } from '../../../config';
 import { getData } from '../../../utils/localstorage/localstorage';
@@ -42,6 +44,17 @@ const AddPics = ({ navigation, route }) => {
             })
     }
 
+    const openCam = () => {
+        launchCamera(
+            { mediaType: 'photo', quality: 1, includeBase64: true },
+            (response) => {
+                console.log('response: ', response)
+                const source = { uri: response.uri }
+                setPhotoForDB(`data:${response.type};base64, ${response.base64}`)
+                setPhoto(source)
+            })
+    }
+
     const getImage1 = () => {
         launchImageLibrary(
             { mediaType: 'photo', quality: 1, includeBase64: true },
@@ -50,6 +63,17 @@ const AddPics = ({ navigation, route }) => {
                 const source = { uri: response.uri }
                 setPhotoForDB1(`data:${response.type};base64, ${response.base64}`)
                 setPhoto1(source)
+            })
+    }
+
+    const openCam1 = () => {
+        launchCamera(
+            { mediaType: 'photo', quality: 1, includeBase64: true },
+            (response) => {
+                console.log('response: ', response)
+                const source = { uri: response.uri }
+                setPhotoForDB(`data:${response.type};base64, ${response.base64}`)
+                setPhoto(source)
             })
     }
 
@@ -64,6 +88,17 @@ const AddPics = ({ navigation, route }) => {
             })
     }
 
+    const openCam2 = () => {
+        launchCamera(
+            { mediaType: 'photo', quality: 1, includeBase64: true },
+            (response) => {
+                console.log('response: ', response)
+                const source = { uri: response.uri }
+                setPhotoForDB(`data:${response.type};base64, ${response.base64}`)
+                setPhoto(source)
+            })
+    }
+
     const getImage3 = () => {
         launchImageLibrary(
             { mediaType: 'photo', quality: 1, includeBase64: true },
@@ -72,6 +107,17 @@ const AddPics = ({ navigation, route }) => {
                 const source = { uri: response.uri }
                 setPhotoForDB3(`data:${response.type};base64, ${response.base64}`)
                 setPhoto3(source)
+            })
+    }
+
+    const openCam3 = () => {
+        launchCamera(
+            { mediaType: 'photo', quality: 1, includeBase64: true },
+            (response) => {
+                console.log('response: ', response)
+                const source = { uri: response.uri }
+                setPhotoForDB(`data:${response.type};base64, ${response.base64}`)
+                setPhoto(source)
             })
     }
 
@@ -86,6 +132,17 @@ const AddPics = ({ navigation, route }) => {
             })
     }
 
+    const openCam4 = () => {
+        launchCamera(
+            { mediaType: 'photo', quality: 1, includeBase64: true },
+            (response) => {
+                console.log('response: ', response)
+                const source = { uri: response.uri }
+                setPhotoForDB(`data:${response.type};base64, ${response.base64}`)
+                setPhoto(source)
+            })
+    }
+
     const getImage5 = () => {
         launchImageLibrary(
             { mediaType: 'photo', quality: 1, includeBase64: true },
@@ -94,6 +151,17 @@ const AddPics = ({ navigation, route }) => {
                 const source = { uri: response.uri }
                 setPhotoForDB5(`data:${response.type};base64, ${response.base64}`)
                 setPhoto5(source)
+            })
+    }
+
+    const openCam5 = () => {
+        launchCamera(
+            { mediaType: 'photo', quality: 1, includeBase64: true },
+            (response) => {
+                console.log('response: ', response)
+                const source = { uri: response.uri }
+                setPhotoForDB(`data:${response.type};base64, ${response.base64}`)
+                setPhoto(source)
             })
     }
 
@@ -114,6 +182,56 @@ const AddPics = ({ navigation, route }) => {
         })
     }
 
+    // bottom sheet
+    const renderScreen = () => {
+        return(
+            <View style={styles.panel}>
+                <View>
+                    <TouchableOpacity 
+                        style={{
+                            marginTop: 20,
+                            marginLeft: 25,
+                            flexDirection: 'row',
+                            }}
+                        onPress={openCam}
+                        >
+                        <Image
+                            style={styles.imgCam}
+                            source={require('../../../assets/images/camblk.png')}
+                        />
+
+                        <Text style={styles.txtBS}>
+                            Camera
+                        </Text>
+                    </TouchableOpacity>
+                </View>
+
+                <View>
+                    <TouchableOpacity
+                        style={{
+                            marginTop: 20,
+                            marginLeft: 25,
+                            flexDirection: 'row',
+                            }}
+                        onPress={getImage}
+                        >
+                        <Image
+                            style={styles.img3dots}
+                            source={require('../../../assets/images/3dots2.png')}
+                        />
+
+                        <Text style={styles.txtBS}>
+                            Browse
+                        </Text>
+                    </TouchableOpacity>
+                </View>
+            </View>
+        )
+    }
+    
+    const sheetRef = React.createRef()
+    const fall = new Animated.Value(1)
+    
     return (
         <View style={styles.container}>
             <View style={styles.Header}>
@@ -145,7 +263,7 @@ const AddPics = ({ navigation, route }) => {
                 </TouchableOpacity>
 
                 <TouchableOpacity
-                    onPress={getImage1}
+                    onPress={() => sheetRef.current.snapTo(0)}
                     style={styles.bluRectangle}
                 >
                     <Image source={photo1}
@@ -157,7 +275,7 @@ const AddPics = ({ navigation, route }) => {
                 </TouchableOpacity>
 
                 <TouchableOpacity
-                    onPress={getImage2}
+                    onPress={() => sheetRef.current.snapTo(0)}
                     style={styles.bluRectangle}
                 >
                     <Image source={photo2}
@@ -169,7 +287,7 @@ const AddPics = ({ navigation, route }) => {
                 </TouchableOpacity>
 
                 <TouchableOpacity
-                    onPress={getImage3}
+                    onPress={() => sheetRef.current.snapTo(0)}
                     style={styles.bluRectangle}
                 >
                     <Image source={photo3}
@@ -181,7 +299,7 @@ const AddPics = ({ navigation, route }) => {
                 </TouchableOpacity>
 
                 <TouchableOpacity
-                    onPress={getImage4}
+                    onPress={() => sheetRef.current.snapTo(0)}
                     style={styles.bluRectangle}
                 >
                     <Image source={photo4}
@@ -193,7 +311,7 @@ const AddPics = ({ navigation, route }) => {
                 </TouchableOpacity>
 
                 <TouchableOpacity
-                    onPress={getImage5}
+                    onPress={() => sheetRef.current.snapTo(0)}
                     style={styles.bluRectangle}
                 >
                     <Image source={photo5}
@@ -215,6 +333,15 @@ const AddPics = ({ navigation, route }) => {
                     </Text>
                 </TouchableOpacity>
             </View>
+
+            <BottomSheet
+                ref={sheetRef}
+                snapPoints={[90, 0]}
+                initialSnap={1}
+                callbackNode={fall}
+                renderContent={renderScreen}
+                enabledGestureInteraction={true}
+            />
         </View>
     )
 }
@@ -310,4 +437,54 @@ const styles = StyleSheet.create({
         fontFamily: 'Montserrat-SemiBold',
         color: '#FFFFFF',
     },
+
+    //for bottom sheet screen
+    bsHeader: {
+        backgroundColor: '#FFFFFF',
+        shadowColor: '#333333',
+        shadowOffset: {width: -1, height: -3},
+        shadowRadius: 2,
+        shadowOpacity: 0.4,
+        paddingTop: 10,
+        borderTopLeftRadius: 20,
+        borderTopRightRadius: 20,
+    },
+
+    panel: {
+        height: normalize(85),
+        padding: 10,
+        backgroundColor: '#FFFFFF',
+        paddingTop: 1,
+      },
+
+    panelHeader: {
+        alignItems: 'center',
+    },
+
+    panelHandle: {
+        width: 40,
+        height: 8,
+        borderRadius: 4,
+        backgroundColor: '#00000040',
+    },
+
+    section: {
+        flexDirection: 'row'
+    },
+
+    imgCam: {
+        width: normalize(21),
+        height: normalize(19)
+    },
+
+    img3dots: {
+        width: normalize(22),
+        height: normalize(22)
+    },
+
+    txtBS: {
+        marginLeft: normalize(16),
+        fontSize: normalize(14),
+        fontFamily: 'Montserrat-Medium'
+    }
 })

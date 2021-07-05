@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { useState } from 'react'
 import {
     StyleSheet,
     ScrollView,
@@ -8,35 +8,38 @@ import {
     TouchableOpacity
 } from 'react-native'
 import { launchCamera, launchImageLibrary } from 'react-native-image-picker';
+import Animated from 'react-native-reanimated'
+import BottomSheet from 'reanimated-bottom-sheet'
 import normalize from 'react-native-normalize'
+// import { Fire } from '../../../config';
+// import { getData } from '../../../utils/localstorage/localstorage';
 import { Header, Title } from '../../components/components'
-import RBSheet from 'react-native-raw-bottom-sheet'
 
 
-const DataKredit = () => {
-    const {
-        name,
-        year,
-        location,
-        price,
-        ref_code,
-        desc,
-        kilometer,
-        id
-    } = route.params
+const UploadDocs = ({ navigation, route }) => {
+    // const {
+    //     name,
+    //     year,
+    //     location,
+    //     price,
+    //     ref_code,
+    //     desc,
+    //     kilometer,
+    //     id
+    // } = route.params
 
     const goBack = () => {
         navigation.navigate('DataKredit')
     }
 
-    const [photoForDB, setPhotoForDB] = useState('')
-    const [photoForDB1, setPhotoForDB1] = useState('')
-    const [photoForDB2, setPhotoForDB2] = useState('')
-    const [photoForDB3, setPhotoForDB3] = useState('')
-    const [photoForDB4, setPhotoForDB4] = useState('')
-    const [photoForDB5, setPhotoForDB5] = useState('')
-    const [photoForDB6, setPhotoForDB6] = useState('')
-    const [photoForDB7, setPhotoForDB7] = useState('')
+    // const [photoForDB, setPhotoForDB] = useState('')
+    // const [photoForDB1, setPhotoForDB1] = useState('')
+    // const [photoForDB2, setPhotoForDB2] = useState('')
+    // const [photoForDB3, setPhotoForDB3] = useState('')
+    // const [photoForDB4, setPhotoForDB4] = useState('')
+    // const [photoForDB5, setPhotoForDB5] = useState('')
+    // const [photoForDB6, setPhotoForDB6] = useState('')
+    // const [photoForDB7, setPhotoForDB7] = useState('')
     const [photo, setPhoto] = useState('')
     const [photo1, setPhoto1] = useState('')
     const [photo2, setPhoto2] = useState('')
@@ -52,16 +55,18 @@ const DataKredit = () => {
             (response) => {
                 console.log('response: ', response)
                 const source = { uri: response.uri }
-                setPhotoForDB(`data:${response.type};base64, ${response.base64}`)
+                // setPhotoForDB(`data:${response.type};base64, ${response.base64}`)
                 setPhoto(source)
             })
+    }
 
+    const openCam = () => {
         launchCamera(
             { mediaType: 'photo', quality: 1, includeBase64: true },
             (response) => {
                 console.log('response: ', response)
                 const source = { uri: response.uri }
-                setPhotoForDB(`data:${response.type};base64, ${response.base64}`)
+                // setPhotoForDB(`data:${response.type};base64, ${response.base64}`)
                 setPhoto(source)
             })
     }
@@ -72,8 +77,19 @@ const DataKredit = () => {
             (response) => {
                 console.log('response: ', response)
                 const source = { uri: response.uri }
-                setPhotoForDB1(`data:${response.type};base64, ${response.base64}`)
+                // setPhotoForDB1(`data:${response.type};base64, ${response.base64}`)
                 setPhoto1(source)
+            })
+    }
+
+    const openCam1 = () => {
+        launchCamera(
+            { mediaType: 'photo', quality: 1, includeBase64: true },
+            (response) => {
+                console.log('response: ', response)
+                const source = { uri: response.uri }
+                // setPhotoForDB(`data:${response.type};base64, ${response.base64}`)
+                setPhoto(source)
             })
     }
 
@@ -83,8 +99,19 @@ const DataKredit = () => {
             (response) => {
                 console.log('response: ', response)
                 const source = { uri: response.uri }
-                setPhotoForDB2(`data:${response.type};base64, ${response.base64}`)
+                // setPhotoForDB2(`data:${response.type};base64, ${response.base64}`)
                 setPhoto2(source)
+            })
+    }
+
+    const openCam2 = () => {
+        launchCamera(
+            { mediaType: 'photo', quality: 1, includeBase64: true },
+            (response) => {
+                console.log('response: ', response)
+                const source = { uri: response.uri }
+                // setPhotoForDB(`data:${response.type};base64, ${response.base64}`)
+                setPhoto(source)
             })
     }
 
@@ -94,8 +121,19 @@ const DataKredit = () => {
             (response) => {
                 console.log('response: ', response)
                 const source = { uri: response.uri }
-                setPhotoForDB3(`data:${response.type};base64, ${response.base64}`)
+                // setPhotoForDB3(`data:${response.type};base64, ${response.base64}`)
                 setPhoto3(source)
+            })
+    }
+
+    const openCam3 = () => {
+        launchCamera(
+            { mediaType: 'photo', quality: 1, includeBase64: true },
+            (response) => {
+                console.log('response: ', response)
+                const source = { uri: response.uri }
+                // setPhotoForDB(`data:${response.type};base64, ${response.base64}`)
+                setPhoto(source)
             })
     }
 
@@ -105,8 +143,19 @@ const DataKredit = () => {
             (response) => {
                 console.log('response: ', response)
                 const source = { uri: response.uri }
-                setPhotoForDB4(`data:${response.type};base64, ${response.base64}`)
+                // setPhotoForDB4(`data:${response.type};base64, ${response.base64}`)
                 setPhoto4(source)
+            })
+    }
+
+    const openCam4 = () => {
+        launchCamera(
+            { mediaType: 'photo', quality: 1, includeBase64: true },
+            (response) => {
+                console.log('response: ', response)
+                const source = { uri: response.uri }
+                // setPhotoForDB(`data:${response.type};base64, ${response.base64}`)
+                setPhoto(source)
             })
     }
 
@@ -116,8 +165,19 @@ const DataKredit = () => {
             (response) => {
                 console.log('response: ', response)
                 const source = { uri: response.uri }
-                setPhotoForDB5(`data:${response.type};base64, ${response.base64}`)
+                // setPhotoForDB5(`data:${response.type};base64, ${response.base64}`)
                 setPhoto5(source)
+            })
+    }
+
+    const openCam5 = () => {
+        launchCamera(
+            { mediaType: 'photo', quality: 1, includeBase64: true },
+            (response) => {
+                console.log('response: ', response)
+                const source = { uri: response.uri }
+                // setPhotoForDB(`data:${response.type};base64, ${response.base64}`)
+                setPhoto(source)
             })
     }
 
@@ -127,8 +187,19 @@ const DataKredit = () => {
             (response) => {
                 console.log('response: ', response)
                 const source = { uri: response.uri }
-                setPhotoForDB6(`data:${response.type};base64, ${response.base64}`)
+                // setPhotoForDB6(`data:${response.type};base64, ${response.base64}`)
                 setPhoto5(source)
+            })
+    }
+
+    const openCam6 = () => {
+        launchCamera(
+            { mediaType: 'photo', quality: 1, includeBase64: true },
+            (response) => {
+                console.log('response: ', response)
+                const source = { uri: response.uri }
+                // setPhotoForDB(`data:${response.type};base64, ${response.base64}`)
+                setPhoto(source)
             })
     }
 
@@ -138,8 +209,19 @@ const DataKredit = () => {
             (response) => {
                 console.log('response: ', response)
                 const source = { uri: response.uri }
-                setPhotoForDB7(`data:${response.type};base64, ${response.base64}`)
+                // setPhotoForDB7(`data:${response.type};base64, ${response.base64}`)
                 setPhoto5(source)
+            })
+    }
+
+    const openCam7 = () => {
+        launchCamera(
+            { mediaType: 'photo', quality: 1, includeBase64: true },
+            (response) => {
+                console.log('response: ', response)
+                const source = { uri: response.uri }
+                // setPhotoForDB(`data:${response.type};base64, ${response.base64}`)
+                setPhoto(source)
             })
     }
 
@@ -163,17 +245,21 @@ const DataKredit = () => {
     }
 
     // bottom sheet
-    renderScreen = () => {
+    const renderScreen = () => {
         return(
             <View style={styles.panel}>
-                <View style={styles.section}>
+                <View>
                     <TouchableOpacity 
-                        style={{marginLeft: 25}}
-                        onPress={getImage1}
+                        style={{
+                            marginTop: 20,
+                            marginLeft: 25,
+                            flexDirection: 'row',
+                            }}
+                        onPress={openCam}
                         >
                         <Image
                             style={styles.imgCam}
-                            source={require()}
+                            source={require('../../assets/images/camblk.png')}
                         />
 
                         <Text style={styles.txtBS}>
@@ -182,14 +268,18 @@ const DataKredit = () => {
                     </TouchableOpacity>
                 </View>
 
-                <View style={styles.section}>
+                <View>
                     <TouchableOpacity
-                        style={{marginLeft: 25}}
-                        onPress={getImage1}
+                        style={{
+                            marginTop: 20,
+                            marginLeft: 25,
+                            flexDirection: 'row',
+                            }}
+                        onPress={getImage}
                         >
                         <Image
                             style={styles.img3dots}
-                            source={require()}
+                            source={require('../../assets/images/3dots2.png')}
                         />
 
                         <Text style={styles.txtBS}>
@@ -200,23 +290,13 @@ const DataKredit = () => {
             </View>
         )
     }
-
-    renderHeader = () => {
-        return(
-            <View style={styles.bsHeader}>
-                <View style={styles.panelHeader}>
-        <           View style={styles.panelHandle} />
-                </View>
-            </View>
-        )
-    }
     
-    sheetRef = React.createRef()
-    fall = new Animated.Value(1)
+    const sheetRef = React.createRef()
+    const fall = new Animated.Value(1)
 
     return (
         <View style={styles.container}>
-            <Header title="Instant Order" onPress={this.goBack} back />
+            <Header title="Instant Order" onPress={goBack} back />
             <Title text="Upload" />
             <ScrollView>
                 <View style={styles.DisclaimerContainer}>
@@ -241,7 +321,10 @@ const DataKredit = () => {
                         </Text>
                     </View>
 
-                    <TouchableOpacity style={styles.btnUpload}>
+                    <TouchableOpacity 
+                        style={styles.btnUpload}
+                        onPress={() => sheetRef.current.snapTo(0)}
+                        >
                         <Image
                             style={styles.imgUpload}
                             source={require('../../assets/images/upload.png')}
@@ -260,7 +343,10 @@ const DataKredit = () => {
                         </Text>
                     </View>
 
-                    <TouchableOpacity style={styles.btnUpload}>
+                    <TouchableOpacity 
+                        style={styles.btnUpload}
+                        onPress={() => sheetRef.current.snapTo(0)}
+                    >
                         <Image
                             style={styles.imgUpload}
                             source={require('../../assets/images/upload.png')}
@@ -283,7 +369,10 @@ const DataKredit = () => {
                         </Text>
                     </View>
 
-                    <TouchableOpacity style={styles.btnUpload}>
+                    <TouchableOpacity 
+                        style={styles.btnUpload}
+                        onPress={() => sheetRef.current.snapTo(0)}
+                    >
                         <Image
                             style={styles.imgUpload}
                             source={require('../../assets/images/upload.png')}
@@ -302,7 +391,10 @@ const DataKredit = () => {
                         </Text>
                     </View>
 
-                    <TouchableOpacity style={styles.btnUpload}>
+                    <TouchableOpacity 
+                        style={styles.btnUpload}
+                        onPress={() => sheetRef.current.snapTo(0)}
+                    >
                         <Image
                             style={styles.imgUpload}
                             source={require('../../assets/images/upload.png')}
@@ -321,7 +413,10 @@ const DataKredit = () => {
                         </Text>
                     </View>
 
-                    <TouchableOpacity style={styles.btnUpload}>
+                    <TouchableOpacity 
+                        style={styles.btnUpload}
+                        onPress={() => sheetRef.current.snapTo(0)}
+                    >
                         <Image
                             style={styles.imgUpload}
                             source={require('../../assets/images/upload.png')}
@@ -344,7 +439,10 @@ const DataKredit = () => {
                         </Text>
                     </View>
 
-                    <TouchableOpacity style={styles.btnUpload}>
+                    <TouchableOpacity 
+                        style={styles.btnUpload}
+                        onPress={() => sheetRef.current.snapTo(0)}
+                    >
                         <Image
                             style={styles.imgUpload}
                             source={require('../../assets/images/upload.png')}
@@ -363,8 +461,9 @@ const DataKredit = () => {
                         </Text>
                     </View>
 
-                    <TouchableOpacity style={styles.btnUpload}
-                        onPress={() => refRBSheet.current.open()}
+                    <TouchableOpacity 
+                        style={styles.btnUpload}
+                        onPress={() => sheetRef.current.snapTo(0)}
                     >
                         <Image
                             style={styles.imgUpload}
@@ -384,7 +483,10 @@ const DataKredit = () => {
                         </Text>
                     </View>
 
-                    <TouchableOpacity style={styles.btnUpload}>
+                    <TouchableOpacity 
+                        style={styles.btnUpload}
+                        onPress={() => sheetRef.current.snapTo(0)}
+                    >
                         <Image
                             style={styles.imgUpload}
                             source={require('../../assets/images/upload.png')}
@@ -394,7 +496,7 @@ const DataKredit = () => {
 
                 <TouchableOpacity
                     style={styles.btnSubmit}
-                // onPress={this.goToUploadDocs}
+                // onPress={onContinue}
                 // disabled={!enabled}
                 >
                     <Text style={styles.txtSubmit}>
@@ -404,19 +506,18 @@ const DataKredit = () => {
             </ScrollView>
 
             <BottomSheet
-                ref={this.sheetRef}
-                snapPoints={[330, 0]}
+                ref={sheetRef}
+                snapPoints={[90, 0]}
                 initialSnap={1}
-                callbackNode={this.fall}
-                renderHeader={this.renderHeader}
-                renderContent={this.renderScreen}
+                callbackNode={fall}
+                renderContent={renderScreen}
                 enabledGestureInteraction={true}
             />
         </View>
     )
 }
 
-export default DataKredit
+export default UploadDocs
 
 const styles = StyleSheet.create({
     container: {
@@ -638,16 +739,16 @@ const styles = StyleSheet.create({
         shadowOffset: {width: -1, height: -3},
         shadowRadius: 2,
         shadowOpacity: 0.4,
-        // elevation: 5,
-        paddingTop: 20,
+        paddingTop: 10,
         borderTopLeftRadius: 20,
         borderTopRightRadius: 20,
     },
 
     panel: {
+        height: normalize(85),
         padding: 10,
         backgroundColor: '#FFFFFF',
-        paddingTop: 20,
+        paddingTop: 1,
       },
 
     panelHeader: {
@@ -659,11 +760,9 @@ const styles = StyleSheet.create({
         height: 8,
         borderRadius: 4,
         backgroundColor: '#00000040',
-        marginBottom: 10,
     },
 
     section: {
-        marginTop: normalize(19),
         flexDirection: 'row'
     },
 
