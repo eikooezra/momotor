@@ -306,7 +306,7 @@ const UploadDocs = ({ navigation, route }) => {
                     />
 
                     <Text style={styles.txtDisclaimer}>
-                        Format Dokumen: JPG, PNG, PDF
+                        Format Dokumen: JPG, PNG
                     </Text>
                 </View>
 
