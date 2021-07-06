@@ -243,7 +243,7 @@ const AddPics = ({ navigation, route }) => {
                         >
                         <Image
                             style={styles.imgCam}
-                            source={require('../../assets/images/camblk.png')}
+                            source={require('../../../assets/images/3dots2.png')}
                         />
 
                         <Text style={styles.txtBS}>
@@ -263,7 +263,7 @@ const AddPics = ({ navigation, route }) => {
                         >
                         <Image
                             style={styles.img3dots}
-                            source={require('../../assets/images/3dots2.png')}
+                            source={require('../../../assets/images/3dots2.png')}
                         />
 
                         <Text style={styles.txtBS}>
@@ -289,7 +289,7 @@ const AddPics = ({ navigation, route }) => {
                         >
                         <Image
                             style={styles.imgCam}
-                            source={require('../../assets/images/camblk.png')}
+                            source={require('../../../assets/images/3dots2.png')}
                         />
 
                         <Text style={styles.txtBS}>
@@ -309,7 +309,7 @@ const AddPics = ({ navigation, route }) => {
                         >
                         <Image
                             style={styles.img3dots}
-                            source={require('../../assets/images/3dots2.png')}
+                            source={require('../../../assets/images/3dots2.png')}
                         />
 
                         <Text style={styles.txtBS}>
@@ -335,7 +335,7 @@ const AddPics = ({ navigation, route }) => {
                         >
                         <Image
                             style={styles.imgCam}
-                            source={require('../../assets/images/camblk.png')}
+                            source={require('../../../assets/images/3dots2.png')}
                         />
 
                         <Text style={styles.txtBS}>
@@ -355,7 +355,7 @@ const AddPics = ({ navigation, route }) => {
                         >
                         <Image
                             style={styles.img3dots}
-                            source={require('../../assets/images/3dots2.png')}
+                            source={require('../../../assets/images/3dots2.png')}
                         />
 
                         <Text style={styles.txtBS}>
@@ -381,7 +381,7 @@ const AddPics = ({ navigation, route }) => {
                         >
                         <Image
                             style={styles.imgCam}
-                            source={require('../../assets/images/camblk.png')}
+                            source={require('../../../assets/images/3dots2.png')}
                         />
 
                         <Text style={styles.txtBS}>
@@ -401,7 +401,7 @@ const AddPics = ({ navigation, route }) => {
                         >
                         <Image
                             style={styles.img3dots}
-                            source={require('../../assets/images/3dots2.png')}
+                            source={require('../../../assets/images/3dots2.png')}
                         />
 
                         <Text style={styles.txtBS}>
@@ -427,7 +427,7 @@ const AddPics = ({ navigation, route }) => {
                         >
                         <Image
                             style={styles.imgCam}
-                            source={require('../../assets/images/camblk.png')}
+                            source={require('../../../assets/images/3dots2.png')}
                         />
 
                         <Text style={styles.txtBS}>
@@ -447,99 +447,7 @@ const AddPics = ({ navigation, route }) => {
                         >
                         <Image
                             style={styles.img3dots}
-                            source={require('../../assets/images/3dots2.png')}
-                        />
-
-                        <Text style={styles.txtBS}>
-                            Browse
-                        </Text>
-                    </TouchableOpacity>
-                </View>
-            </View>
-        )
-    }
-
-    const renderScreen6 = () => {
-        return(
-            <View style={styles.panel}>
-                <View>
-                    <TouchableOpacity 
-                        style={{
-                            marginTop: 20,
-                            marginLeft: 25,
-                            flexDirection: 'row',
-                            }}
-                        onPress={openCam6}
-                        >
-                        <Image
-                            style={styles.imgCam}
-                            source={require('../../assets/images/camblk.png')}
-                        />
-
-                        <Text style={styles.txtBS}>
-                            Camera
-                        </Text>
-                    </TouchableOpacity>
-                </View>
-
-                <View>
-                    <TouchableOpacity
-                        style={{
-                            marginTop: 20,
-                            marginLeft: 25,
-                            flexDirection: 'row',
-                            }}
-                        onPress={getImage6}
-                        >
-                        <Image
-                            style={styles.img3dots}
-                            source={require('../../assets/images/3dots2.png')}
-                        />
-
-                        <Text style={styles.txtBS}>
-                            Browse
-                        </Text>
-                    </TouchableOpacity>
-                </View>
-            </View>
-        )
-    }
-
-    const renderScreen7 = () => {
-        return(
-            <View style={styles.panel}>
-                <View>
-                    <TouchableOpacity 
-                        style={{
-                            marginTop: 20,
-                            marginLeft: 25,
-                            flexDirection: 'row',
-                            }}
-                        onPress={openCam7}
-                        >
-                        <Image
-                            style={styles.imgCam}
-                            source={require('../../assets/images/camblk.png')}
-                        />
-
-                        <Text style={styles.txtBS}>
-                            Camera
-                        </Text>
-                    </TouchableOpacity>
-                </View>
-
-                <View>
-                    <TouchableOpacity
-                        style={{
-                            marginTop: 20,
-                            marginLeft: 25,
-                            flexDirection: 'row',
-                            }}
-                        onPress={getImage7}
-                        >
-                        <Image
-                            style={styles.img3dots}
-                            source={require('../../assets/images/3dots2.png')}
+                            source={require('../../../assets/images/3dots2.png')}
                         />
 
                         <Text style={styles.txtBS}>
