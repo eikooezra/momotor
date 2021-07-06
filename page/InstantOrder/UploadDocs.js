@@ -89,7 +89,7 @@ const UploadDocs = ({ navigation, route }) => {
                 console.log('response: ', response)
                 const source = { uri: response.uri }
                 // setPhotoForDB(`data:${response.type};base64, ${response.base64}`)
-                setPhoto(source)
+                setPhoto1(source)
             })
     }
 
@@ -111,7 +111,7 @@ const UploadDocs = ({ navigation, route }) => {
                 console.log('response: ', response)
                 const source = { uri: response.uri }
                 // setPhotoForDB(`data:${response.type};base64, ${response.base64}`)
-                setPhoto(source)
+                setPhoto2(source)
             })
     }
 
@@ -133,7 +133,7 @@ const UploadDocs = ({ navigation, route }) => {
                 console.log('response: ', response)
                 const source = { uri: response.uri }
                 // setPhotoForDB(`data:${response.type};base64, ${response.base64}`)
-                setPhoto(source)
+                setPhoto3(source)
             })
     }
 
@@ -155,7 +155,7 @@ const UploadDocs = ({ navigation, route }) => {
                 console.log('response: ', response)
                 const source = { uri: response.uri }
                 // setPhotoForDB(`data:${response.type};base64, ${response.base64}`)
-                setPhoto(source)
+                setPhoto4(source)
             })
     }
 
@@ -177,7 +177,7 @@ const UploadDocs = ({ navigation, route }) => {
                 console.log('response: ', response)
                 const source = { uri: response.uri }
                 // setPhotoForDB(`data:${response.type};base64, ${response.base64}`)
-                setPhoto(source)
+                setPhoto5(source)
             })
     }
 
@@ -188,7 +188,7 @@ const UploadDocs = ({ navigation, route }) => {
                 console.log('response: ', response)
                 const source = { uri: response.uri }
                 // setPhotoForDB6(`data:${response.type};base64, ${response.base64}`)
-                setPhoto5(source)
+                setPhoto6(source)
             })
     }
 
@@ -199,7 +199,7 @@ const UploadDocs = ({ navigation, route }) => {
                 console.log('response: ', response)
                 const source = { uri: response.uri }
                 // setPhotoForDB(`data:${response.type};base64, ${response.base64}`)
-                setPhoto(source)
+                setPhoto6(source)
             })
     }
 
@@ -210,7 +210,7 @@ const UploadDocs = ({ navigation, route }) => {
                 console.log('response: ', response)
                 const source = { uri: response.uri }
                 // setPhotoForDB7(`data:${response.type};base64, ${response.base64}`)
-                setPhoto5(source)
+                setPhoto7(source)
             })
     }
 
@@ -221,7 +221,7 @@ const UploadDocs = ({ navigation, route }) => {
                 console.log('response: ', response)
                 const source = { uri: response.uri }
                 // setPhotoForDB(`data:${response.type};base64, ${response.base64}`)
-                setPhoto(source)
+                setPhoto7(source)
             })
     }
 
