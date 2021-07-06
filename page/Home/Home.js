@@ -7,31 +7,11 @@ import {
   Image,
   ScrollView,
   StatusBar,
+  ImageBackground
 } from 'react-native'
 import normalize from 'react-native-normalize';
 
 const Home = ({navigation}) => {
-    
-    const [showJual, setShowJual] = useState(true)
-    const [showPesanan, setShowPesanan] = useState(true)
-
-    //Homepage tab
-    const toggleShowJual = () => {
-      if(showJual === false) {
-        setShowJual({showJual: showPesanan, showPesanan: !showJual})
-      }else{
-        setShowPesanan({showPesanan: !showJual, showJual: showJual})
-      }
-    }
-
-    const toggleShowPesanan = () => {
-      if(showPesanan === false) {
-        setShowPesanan({showPesanan: showJual, showPesanan: !showPesanan})
-      }else{
-        setShowJual({showJual: !showPesanan, showJual: showPesanan})
-      }
-    }
-
     return(
     <View style={styles.container}>
       <StatusBar backgroundColor='#0064D0'/>
@@ -69,19 +49,6 @@ const Home = ({navigation}) => {
               </TouchableOpacity>
 
               <TouchableOpacity
-                onPress={() => navigation.navigate('JualCepat')}
-              >
-                  <Image
-                    style={styles.btnJualCpt}
-                    source={require('../../assets/images/motor.png')}
-                  />
-                  <Text style={styles.txtJualCpt}>
-                    Jual
-                    Cepat
-                  </Text>
-              </TouchableOpacity>
-
-              <TouchableOpacity
                 onPress={() => navigation.navigate('Calculator')}
               >
                   <Image
@@ -96,122 +63,59 @@ const Home = ({navigation}) => {
             </View>
          </View>
 
-            <View style={styles.dblTxtContainer}>
-              <TouchableOpacity
-                onPress={toggleShowPesanan}
-              >
-                <Text style={[styles.txtPesanan, {
-                    color: (showPesanan === true) ? '#000000' : '#7F7F7F'
-                }
-                ]}>
+            <View style={styles.txtPesananTerbaru}>
+                <Text style={styles.txtPesanan}>
                     Pesanan Terbaru
                 </Text>
-              </TouchableOpacity>
-
-              <TouchableOpacity
-                onPress={toggleShowJual}
-              >
-                <Text style={[styles.txtJual, {
-                    color: (showPesanan === true) ? '#7F7F7F' : '#000000'
-                }
-                ]}>
-                    Jual Cepat
-                </Text>
-              </TouchableOpacity>
             </View>
+            
+            <ScrollView style={styles.scrollContainer}>
+                  <TouchableOpacity style={styles.btnImg}>
+                    <ImageBackground
+                      style={styles.imgContainer}
+                      imageStyle={{borderRadius: 18}}
+                      source={require('../../assets/images/vario.png')}
+                    >
+                      <View style={styles.itemCon}>
+                        <View style={styles.detailsCon}>
+                          <Text style={styles.txtName}>
+                            Sumanto Wijaya
+                          </Text>
 
-            <View>
-                {showPesanan && <ShowPesanan/> || showJual && <ShowJual/>}
-            </View>
+                          <Text style={styles.txtModel}>
+                            Honda Vario 125 EPS ISS
+                          </Text>
+
+                          <View style={styles.flex}>
+                            <Text style={styles.txtDate}>
+                              12/10/2019
+                            </Text>
+
+                            <View style={styles.pill}>
+                              <Text style={styles.txtStatus}>
+                                Proses Survey
+                              </Text>
+                            </View>
+                          </View>
+                        </View>
+                      </View>
+                    </ImageBackground>
+                  </TouchableOpacity>
+
+                <View style={styles.txtLihatContainer}>
+                  <TouchableOpacity
+                  >
+                    <Text style={styles.txtLihat}>
+                      Lihat Semua
+                    </Text>
+                  </TouchableOpacity>
+                </View>
+              </ScrollView>
         </View>
         )
 }
 
 export default Home
-
-export const ShowJual = () => {
-    return (
-      <ScrollView style={styles.scrollContainer}>
-                  <TouchableOpacity style={styles.btnImg}>
-                    <Image
-                      style={styles.imgContainer}
-                      source={require('../../assets/images/caferacer.png')}
-                    >
-
-                    </Image>
-                  </TouchableOpacity>
-                  
-                  <TouchableOpacity style={styles.btnImg}>
-                    <Image
-                      style={styles.imgContainer}
-                      source={require('../../assets/images/caferacer.png')}
-                    >
-
-                    </Image>
-                  </TouchableOpacity>
-
-                  <TouchableOpacity style={styles.btnImg}>
-                    <Image
-                      style={styles.imgContainer}
-                      source={require('../../assets/images/caferacer.png')}
-                    >
-
-                    </Image>
-                  </TouchableOpacity>
-
-                  <View style={styles.txtLihatContainer}>
-                    <TouchableOpacity
-                    >
-                      <Text style={styles.txtLihat}>
-                        Lihat Semua
-                      </Text>
-                    </TouchableOpacity>
-                  </View>
-                </ScrollView>
-    );
-  }
-
-export const ShowPesanan = () => {
-    return (
-      <ScrollView style={styles.scrollContainer}>
-                  <TouchableOpacity style={styles.btnImg}>
-                    <Image
-                      style={styles.imgContainer}
-                      source={require('../../assets/images/vario.png')}
-                    >
-
-                    </Image>
-                  </TouchableOpacity>
-                  
-                  <TouchableOpacity style={styles.btnImg}>
-                    <Image
-                      style={styles.imgContainer}
-                      source={require('../../assets/images/vario.png')}
-                    >
-
-                    </Image>
-                  </TouchableOpacity>
-
-                  <TouchableOpacity style={styles.btnImg}>
-                    <Image
-                      style={styles.imgContainer}
-                      source={require('../../assets/images/vario.png')}
-                    >
-
-                    </Image>
-                  </TouchableOpacity>
-
-                  <View style={styles.txtLihatContainer}>
-                    <TouchableOpacity
-                    >
-                      <Text style={styles.txtLihat}>
-                        Lihat Semua
-                      </Text>
-                    </TouchableOpacity>
-                  </View>
-                </ScrollView>
-    );
-  }
 
 const styles = StyleSheet.create({
     container: {
@@ -254,13 +158,13 @@ const styles = StyleSheet.create({
         height: normalize(54),
         marginTop: normalize(20),
         marginBottom: normalize(10),
-        marginLeft: normalize(20)
+        marginLeft: normalize(50)
     },
     
     txtList: {
         width: normalize(60),
         fontSize: normalize(13),
-        marginLeft: normalize(15),
+        marginLeft: normalize(45),
         fontFamily: 'Montserrat-SemiBold',
         textAlign: 'center',
         color: '#000000',
@@ -271,13 +175,13 @@ const styles = StyleSheet.create({
         height: normalize(54),
         marginTop: normalize(20),
         marginBottom: normalize(10),
-        marginLeft: normalize(16)
+        marginLeft: normalize(19)
     },
 
     txtClist: {
         width: normalize(60),
         fontSize: normalize(13),
-        marginLeft: normalize(12),
+        marginLeft: normalize(15),
         fontFamily: 'Montserrat-SemiBold',
         textAlign: 'center',
         color: '#000000',
@@ -305,21 +209,23 @@ const styles = StyleSheet.create({
         height: normalize(54),
         marginTop: normalize(20),
         marginBottom: normalize(10),
-        marginLeft: normalize(13)
+        marginLeft: normalize(13),
+        marginRight: normalize(40)
     },
 
     txtCalc: {
         width: normalize(75),
         fontSize: normalize(13),
-        marginRight: normalize(10),
+        marginRight: normalize(45),
         fontFamily: 'Montserrat-SemiBold',
         textAlign: 'center',
         color: '#000000',
     },
 
-    dblTxtContainer: {
+    txtPesananTerbaru: {
         marginBottom: normalize(20),
-        flexDirection: 'row'
+        justifyContent: 'center',
+        alignItems: 'center'
     },
 
     txtPesanan: {
@@ -342,10 +248,6 @@ const styles = StyleSheet.create({
         height: normalize(400)
     },
 
-    btnImg: {
-        
-    },
-
     imgContainer: {
         width: normalize(348),
         height: normalize(246),
@@ -364,5 +266,64 @@ const styles = StyleSheet.create({
       fontSize: normalize(14),
       fontFamily: 'Montserrat-SemiBold',
       color: '#0064D0'
+    },
+
+    //inside image background
+    itemCon: {
+      width: normalize(348),
+      height: normalize(108),
+      marginTop: normalize(140),
+      borderTopRightRadius: 70,
+      borderTopLeftRadius: 120,
+      borderBottomRightRadius: 18,
+      borderBottomLeftRadius: 18,
+      backgroundColor: '#0064D0'
+    },
+
+    detailsCon: {
+      marginTop: normalize(25),
+      marginLeft: normalize(16)
+    },
+
+    txtName: {
+      marginBottom: normalize(2),
+      fontSize: normalize(18),
+      fontFamily: 'Montserrat-SemiBold',
+      color: '#FFFFFF'
+    },
+
+    txtModel: {
+      marginBottom: normalize(6),
+      fontSize: normalize(20),
+      fontFamily: 'Montserrat-Bold',
+      color: '#FFFFFF'
+    },
+
+    flex: {
+      flexDirection: 'row',
+      justifyContent: 'space-between'
+    },
+
+    txtDate: {
+      marginTop: normalize(4),
+      fontSize: normalize(12),
+      fontFamily: 'Montserrat-SemiBold',
+      color: '#FFFFFF'
+    },
+
+    pill: {
+      width: normalize(100),
+      height: normalize(25),
+      marginRight: normalize(16),
+      borderRadius: 10,
+      backgroundColor: '#D3942F'
+    },
+
+    txtStatus: {
+      alignSelf: 'center',
+      paddingVertical: 4,
+      fontSize: normalize(12),
+      fontFamily: 'Montserrat-Bold',
+      color: '#FFFFFF'
     }
 })
