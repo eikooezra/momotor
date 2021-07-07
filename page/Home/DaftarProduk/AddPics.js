@@ -72,8 +72,8 @@ const AddPics = ({ navigation, route }) => {
             (response) => {
                 console.log('response: ', response)
                 const source = { uri: response.uri }
-                setPhotoForDB(`data:${response.type};base64, ${response.base64}`)
-                setPhoto(source)
+                setPhotoForDB1(`data:${response.type};base64, ${response.base64}`)
+                setPhoto1(source)
             })
     }
 
@@ -94,8 +94,8 @@ const AddPics = ({ navigation, route }) => {
             (response) => {
                 console.log('response: ', response)
                 const source = { uri: response.uri }
-                setPhotoForDB(`data:${response.type};base64, ${response.base64}`)
-                setPhoto(source)
+                setPhotoForDB2(`data:${response.type};base64, ${response.base64}`)
+                setPhoto2(source)
             })
     }
 
@@ -116,8 +116,8 @@ const AddPics = ({ navigation, route }) => {
             (response) => {
                 console.log('response: ', response)
                 const source = { uri: response.uri }
-                setPhotoForDB(`data:${response.type};base64, ${response.base64}`)
-                setPhoto(source)
+                setPhotoForDB3(`data:${response.type};base64, ${response.base64}`)
+                setPhoto3(source)
             })
     }
 
@@ -138,8 +138,8 @@ const AddPics = ({ navigation, route }) => {
             (response) => {
                 console.log('response: ', response)
                 const source = { uri: response.uri }
-                setPhotoForDB(`data:${response.type};base64, ${response.base64}`)
-                setPhoto(source)
+                setPhotoForDB4(`data:${response.type};base64, ${response.base64}`)
+                setPhoto4(source)
             })
     }
 
@@ -160,8 +160,8 @@ const AddPics = ({ navigation, route }) => {
             (response) => {
                 console.log('response: ', response)
                 const source = { uri: response.uri }
-                setPhotoForDB(`data:${response.type};base64, ${response.base64}`)
-                setPhoto(source)
+                setPhotoForDB5(`data:${response.type};base64, ${response.base64}`)
+                setPhoto5(source)
             })
     }
 
