@@ -243,7 +243,7 @@ const AddPics = ({ navigation, route }) => {
                         >
                         <Image
                             style={styles.imgCam}
-                            source={require('../../../assets/images/3dots2.png')}
+                            source={require('../../../assets/images/camblk.png')}
                         />
 
                         <Text style={styles.txtBS}>
@@ -289,7 +289,7 @@ const AddPics = ({ navigation, route }) => {
                         >
                         <Image
                             style={styles.imgCam}
-                            source={require('../../../assets/images/3dots2.png')}
+                            source={require('../../../assets/images/camblk.png')}
                         />
 
                         <Text style={styles.txtBS}>
@@ -335,7 +335,7 @@ const AddPics = ({ navigation, route }) => {
                         >
                         <Image
                             style={styles.imgCam}
-                            source={require('../../../assets/images/3dots2.png')}
+                            source={require('../../../assets/images/camblk.png')}
                         />
 
                         <Text style={styles.txtBS}>
@@ -381,7 +381,7 @@ const AddPics = ({ navigation, route }) => {
                         >
                         <Image
                             style={styles.imgCam}
-                            source={require('../../../assets/images/3dots2.png')}
+                            source={require('../../../assets/images/camblk.png')}
                         />
 
                         <Text style={styles.txtBS}>
@@ -427,7 +427,7 @@ const AddPics = ({ navigation, route }) => {
                         >
                         <Image
                             style={styles.imgCam}
-                            source={require('../../../assets/images/3dots2.png')}
+                            source={require('../../../assets/images/camblk.png')}
                         />
 
                         <Text style={styles.txtBS}>
@@ -486,7 +486,7 @@ const AddPics = ({ navigation, route }) => {
 
             <View style={styles.chosenPic}>
                 <TouchableOpacity
-                    onPress={getImage}
+                    onPress={() => sheetRef.current.snapTo(0)}
                     style={styles.bluRectangle}
                 >
                     <Image source={photo}
@@ -498,7 +498,7 @@ const AddPics = ({ navigation, route }) => {
                 </TouchableOpacity>
 
                 <TouchableOpacity
-                    onPress={() => sheetRef.current.snapTo(0)}
+                    onPress={() => sheetRef1.current.snapTo(0)}
                     style={styles.bluRectangle}
                 >
                     <Image source={photo1}

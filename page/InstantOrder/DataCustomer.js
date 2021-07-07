@@ -52,7 +52,7 @@ const DataCustomer = ({ navigation }) => {
                 maidenName: form.maidenName,
                 maidenLoc: form.maidenLoc,
                 date: new Date().getDate() + '/' + new Date().getMonth() + 1 + '/' + new Date().getFullYear(),
-                id: newPostKey,
+                orderId: newPostKey,
                 status: 'Proses Verifikasi'
             }
             console.log('cek: ', data)

@@ -15,20 +15,7 @@ import { useForm } from '../../utils/utils'
 
 const DataPekerjaan = ({ navigation, route }) => {
     const {
-        custName,
-        gender,
-        nik,
-        phoneNo,
-        email,
-        birthPlace,
-        birthDate,
-        address,
-        rt,
-        rw,
-        location,
-        maidenName,
-        maidenLoc,
-        id
+        orderId
     } = route.params
     const [form, setForm] = useForm({
         job: '',
@@ -39,13 +26,14 @@ const DataPekerjaan = ({ navigation, route }) => {
     const onContinue = () => {
         getData('user').then(res => {
             const data = {
+                orderId: orderId,
                 job: form.job,
                 salary: form.salary,
                 workDuration: form.workDuration
             }
             // Fire
             //     .database()
-            //     .ref('order/' + res.uid + '/' + id + '/data_pekerjaan/')
+            //     .ref('order/' + res.uid + '/' + orderId + '/data_pekerjaan/')
             //     .update(data)
             navigation.navigate('DataMotor', data)
         })
@@ -64,7 +52,7 @@ const DataPekerjaan = ({ navigation, route }) => {
                 />
                 <Gap height={34} />
                 <Input
-                    placeholder="Penghasilan per bulan"
+                    placeholder="Penghasilan per Bulan"
                     value={form.salary.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1.")}
                     onChangeText={value => setForm('salary', value.toString().replace(/\./g, ""))}
                 />

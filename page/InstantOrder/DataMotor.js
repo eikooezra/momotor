@@ -17,7 +17,9 @@ import { getData } from '../../utils/localstorage/localstorage'
 import { useForm } from '../../utils/utils'
 
 const DataMotor = ({ navigation, route }) => {
-    const {id} = route.params
+    const {
+        orderId
+    } = route.params
     const [masterProduct, setMasterProduct] = useState([])
     const [product, setProduct] = useState([])
     const [search, setSearch] = useState('')
@@ -68,7 +70,7 @@ const DataMotor = ({ navigation, route }) => {
     const valueSelected = (item) => {
         setSelectedId(item.id)
         setSelectedModel(item.name)
-        setSelectedPrice(item.price.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1."))
+        setSelectedPrice(item.price)
         setSelectedYear(item.year)
         setSelectedImages(item.images)
     }
@@ -76,6 +78,7 @@ const DataMotor = ({ navigation, route }) => {
     const onContinue = () => {
         getData('user').then(res => {
             const data = {
+                orderId: orderId,
                 productId: selectedId,
                 product: selectedModel,
                 year: selectedYear,
@@ -85,7 +88,7 @@ const DataMotor = ({ navigation, route }) => {
             console.log('data motor: ', data)
             // Fire
             //     .database()
-            //     .ref('order/' + res.uid + '/' + id + '/data_motor/')
+            //     .ref('order/' + res.uid + '/' + orderId + '/data_motor/')
             //     .update(data)
             navigation.navigate('DataKredit', data)
         })
@@ -150,7 +153,7 @@ const DataMotor = ({ navigation, route }) => {
                     <Input
                         placeholder="Harga"
                         value={selectedPrice}
-                        onChangeText={(text) => setSelectedPrice(text.toString().replace(/\./g, ""))}
+                        onChangeText={(text) => setSelectedPrice(text)}
                         disable
                     />
                 </View>

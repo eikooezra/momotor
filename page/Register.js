@@ -16,8 +16,7 @@ const Register = ({ navigation }) => {
         password: ''
     })
 
-    const onContinue = () => {
-        console.log('form: ', form)
+    const register = () => {
         Fire.auth()
             .createUserWithEmailAndPassword(form.email, form.password)
             .then((success) => {
@@ -36,7 +35,7 @@ const Register = ({ navigation }) => {
 
                 storeData('user', data);
 
-                navigation.navigate('Home', data)
+                navigation.navigate('Login', data)
                 console.log('register success: ', success)
             })
             .catch((err) => {
@@ -49,6 +48,11 @@ const Register = ({ navigation }) => {
                 })
                 console.log('error: ', error)
             })
+    }
+
+    const onContinue = () => {
+        console.log('form: ', form)
+        register()
     }
     return (
         <View style={styles.container}>
