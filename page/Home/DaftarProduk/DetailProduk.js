@@ -45,7 +45,7 @@ const DetailProduk = ({ navigation, route }) => {
         return (
           <ProductComponent
             id={item.id}
-            status={'Pending'}
+            status={item.status}
             name={item.name}
             price={item.price.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1.")}
             images={[

@@ -10,7 +10,7 @@ import {
 import normalize from 'react-native-normalize'
 import { Button, Gap, Header, Input, Title } from '../../components/components'
 import { Fire } from '../../config'
-import { getData } from '../../utils/localstorage/localstorage'
+import { getData, storeData } from '../../utils/localstorage/localstorage'
 import { useForm } from '../../utils/utils'
 
 const DataPekerjaan = ({ navigation, route }) => {
@@ -24,19 +24,13 @@ const DataPekerjaan = ({ navigation, route }) => {
     })
 
     const onContinue = () => {
-        getData('user').then(res => {
             const data = {
-                orderId: orderId,
                 job: form.job,
                 salary: form.salary,
                 workDuration: form.workDuration
             }
-            // Fire
-            //     .database()
-            //     .ref('order/' + res.uid + '/' + orderId + '/data_pekerjaan/')
-            //     .update(data)
+            storeData('dataPekerjaan', data)
             navigation.navigate('DataMotor', data)
-        })
     }
 
     return (

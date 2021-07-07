@@ -8,7 +8,6 @@ import {
 import { Fire } from '../../../config'
 import { ProductItem } from '../../../components/components';
 import { getData } from '../../../utils/localstorage/localstorage';
-// import Test from '../../../api/Test'
 
 const SemuaProduk = ({navigation}) => {
     const [product, setProduct] = useState([])
@@ -21,7 +20,6 @@ const SemuaProduk = ({navigation}) => {
                 .then(res => {
                     console.log('data: ', res.val())
                     if (res.val()) {
-                        // console.log('a', Object.values(res.val()))
                         setProduct(Object.values(res.val()))
                     }
                 })

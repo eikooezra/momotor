@@ -13,7 +13,7 @@ import normalize from 'react-native-normalize'
 import { FlatList, TapGestureHandler } from 'react-native-gesture-handler'
 import { Button, Title, Input, Gap, Header } from '../../components/components'
 import { Fire } from '../../config'
-import { getData } from '../../utils/localstorage/localstorage'
+import { getData, storeData } from '../../utils/localstorage/localstorage'
 import { useForm } from '../../utils/utils'
 
 const DataMotor = ({ navigation, route }) => {
@@ -76,22 +76,17 @@ const DataMotor = ({ navigation, route }) => {
     }
 
     const onContinue = () => {
-        getData('user').then(res => {
-            const data = {
-                orderId: orderId,
-                productId: selectedId,
-                product: selectedModel,
-                year: selectedYear,
-                price: selectedPrice,
-                images: selectedImages
-            }
-            console.log('data motor: ', data)
-            // Fire
-            //     .database()
-            //     .ref('order/' + res.uid + '/' + orderId + '/data_motor/')
-            //     .update(data)
-            navigation.navigate('DataKredit', data)
-        })
+        const data = {
+            orderId: orderId,
+            productId: selectedId,
+            product: selectedModel,
+            year: selectedYear,
+            price: selectedPrice,
+            images: selectedImages
+        }
+        console.log('data motor: ', data)
+        storeData('dataMotor', data)
+        navigation.navigate('DataKredit', data)
     }
 
     useEffect(() => {

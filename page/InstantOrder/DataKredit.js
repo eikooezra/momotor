@@ -12,7 +12,7 @@ import DropDownPicker from 'react-native-dropdown-picker'
 import normalize from 'react-native-normalize'
 import { Button, Gap, Header, Input, Title } from '../../components/components'
 import { Fire } from '../../config'
-import { getData } from '../../utils/localstorage/localstorage'
+import { getData, storeData } from '../../utils/localstorage/localstorage'
 import { useForm } from '../../utils/utils'
 
 const DataKredit = ({ navigation, route }) => {
@@ -65,20 +65,15 @@ const DataKredit = ({ navigation, route }) => {
 
     const onContinue = () => {
         calculate()
-        getData('user').then(res => {
-            const data = {
-                orderId: orderId,
-                dp: form.dp,
-                tenor: form.tenor.value,
-                cicilan: cicilan.toString(),
-            }
-            console.log('data kredit: ', data)
-            // Fire
-            //     .database()
-            //     .ref('order/' + res.uid + '/' + orderId + '/data_kredit/')
-            //     .update(data)
-            // navigation.navigate('UploadDocs', data)
-        })
+        const data = {
+            orderId: orderId,
+            dp: form.dp,
+            tenor: form.tenor.value,
+            cicilan: cicilan.toString(),
+        }
+        console.log('data kredit: ', data)
+        storeData('dataKredit', data)
+        navigation.navigate('UploadDocs', data)
     }
 
     return (
