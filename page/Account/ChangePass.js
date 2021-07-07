@@ -1,4 +1,4 @@
-import React, {Component, useRef, useEffect} from 'react'
+import React, {useState, useRef, useEffect} from 'react'
 import {
     Image,
     View,
@@ -8,78 +8,24 @@ import {
     TouchableOpacity
 } from 'react-native'
 import normalize from 'react-native-normalize'
+import { useForm } from '../../utils/utils'
 
-class ChangePass extends Component{
-    constructor(props) {
-        super(props)
-        this.state = {
-            isNewPassValid: false,
-            isConPassValid: false, // con as confirm
-            newPass: '',
-            conPass: '',
-            showPass: true,
-            press: false,
-            status: ''
-        }
+const ChangePass = ({navigation}) => {
+    const [showPass, setShowPass] = useState(true)
+    const [form, setForm] = useForm({
+        newPass: '',
+        conPass: ''
+    })
+
+    const goBack = () => {
+        navigation.navigate('ConfirmEmail')
     }
-
-    goBack = () => {
-        this.props.navigation.navigate('ConfirmEmail')
-    }
-
-    showPass = () => {
-        if (this.state.press === false) {
-            this.setState({showPass: false, press: true})
-        } else {
-            this.setState({showPass: true, press: false})
-        }
-    }
-
-    handleChangeNewPass = (newPass) => {
-        let reg = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{6,}$/
-        this.setState({newPass})
-        if (reg.test(newPass) === true) {
-            this.setState({isNewPassValid: true})
-        } else {
-            this.setState({isNewPassValid: false})
-        }
-    }
-
-    handleChangeConPass = (conPass) => {
-        let reg = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{6,}$/
-        this.setState({conPass})
-        if (reg.test(conPass) === true) {
-            this.setState({isConPassValid: true})
-        } else {
-            this.setState({isConPassValid: false})
-        }
-    }
-
-    handleSubmit = () => {
-        if(this.state.newPass !== this.state.conPass){
-            alert('Kata sandi tidak sesuai')
-        } else {
-            this.props.navigation.navigate('Account')
-            alert('Kata sandi berhasil diubah')
-        }
-    }
-
-    render(){
-       let reg = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{6,}$/
-       const {
-           newPass,
-           conPass
-       } = this.state
-
-       const enabled = 
-       (reg.test(newPass) === true) && 
-       (reg.test(conPass) === true)
 
         return(
             <View style={styles.container}>
              <View style={styles.Header}>
               <TouchableOpacity
-                onPress={this.goBack}
+                onPress={goBack}
               >
                 <Image 
                  style={styles.btnBack}
@@ -98,15 +44,10 @@ class ChangePass extends Component{
              </View>
              
              <Text style={styles.txtSanLam}>
-                Kata Sandi Lama
+                Kata Sandi Baru
              </Text>
 
-             <View style={[styles.inputContainer1, {
-                    borderColor: (this.state.isNewPassValid === true) 
-                    ? '#0064D0' 
-                    : '#E9EAEA'
-                }         
-              ]}>
+             <View style={styles.inputContainer1}>
                 <Image style={styles.lockLogo}
                     source={require('../../assets/images/lockGre.png')}
                 />
@@ -114,30 +55,28 @@ class ChangePass extends Component{
                     placeholder='Masukkan kata sandi baru'
                     returnKeyType='next'
                     placeholderTextColor='#7F7F7F'
-                    secureTextEntry={this.state.showPass}
-                    value={this.state.newPass}
-                    onChangeText={newPass => this.handleChangeNewPass(newPass)}
-                    onSubmitEditing={() => this.secondTextInput.focus()}
+                    secureTextEntry={showPass}
+                    value={form.newPass}
+                    onChangeText={value => setForm('newPass', value)}
+                    onSubmitEditing={() => secondTextInput.focus()}
                 />
 
                 <TouchableOpacity style={styles.btnEye}
-                    onPress={this.showPass.bind(this)}>
+                    onPress={() => setShowPass((prev) => !prev)}>
                         <Image style={styles.eyeLogo}
-                            source={require('../../assets/images/eyeGre.png')}
+                            source={(showPass) 
+                                ? require('../../assets/images/eyeGre.png')
+                                : require('../../assets/images/eyeGreS.png')
+                            }
                         />
                 </TouchableOpacity>
              </View>
 
              <Text style={styles.txtSanBar}>
-                Kata Sandi Baru
+                Konfirmasi Kata Sandi Baru
              </Text>
 
-             <View style={[styles.inputContainer2, {
-                    borderColor: (this.state.isConPassValid === true) 
-                    ? '#0064D0' 
-                    : '#E9EAEA'
-                }       
-             ]}>
+             <View style={styles.inputContainer2}>
                 <Image style={styles.lockLogo}
                     source={require('../../assets/images/lockGre.png')}
                 />
@@ -145,39 +84,24 @@ class ChangePass extends Component{
                     placeholder='Konfirmasi kata sandi baru'
                     placeholderTextColor='#7F7F7F'
                     secureTextEntry={true}
-                    value={this.state.conPass}
-                    onChangeText={conPass => this.handleChangeConPass(conPass)}
-                    ref={(input) => {this.secondTextInput = input}}
+                    value={form.conPass}
+                    onChangeText={value => setForm('conPass', value)}
+                    ref={(input) => { secondTextInput = input }}
                 />
              </View>
             
-             <TouchableOpacity style={[styles.btnReset, {
-                        backgroundColor: (
-                            this.state.isNewPassValid &&
-                            this.state.isConPassValid === true) 
-                        ? '#0064D0' 
-                        : '#E0E0E0'
-                        }
-                    ]}
-                    onPress={this.handleSubmit}
-                    disabled={!enabled}
+             <TouchableOpacity style={styles.btnReset}
+                    // onPress={}
+                    // disabled={!enabled}
                     >
                         
-                    <Text style={[styles.txtReset, {
-                        color: (
-                            this.state.isNewPassValid &&
-                            this.state.isConPassValid === true) 
-                        ? '#FFFFFF' 
-                        : '#A7A7A7'
-                        }
-                    ]}>
+                    <Text style={styles.txtReset}>
                         Reset Kata Sandi
                     </Text>
              </TouchableOpacity>
 
             </View>
         )
-    }
 }
 
 export default ChangePass
