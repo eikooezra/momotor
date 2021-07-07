@@ -18,7 +18,7 @@ import { Button2 } from '../components/components';
 import { storeData } from '../utils/localstorage/localstorage';
 
 const Login = ({ navigation }) => {
-
+    const [showPass, setShowPass] = useState(true)
     const [form, setForm] = useForm({
         email: '',
         password: ''
@@ -53,18 +53,6 @@ const Login = ({ navigation }) => {
             })
         
     }
-
-
-    const [press, setPress] = useState(false)
-    const [showPass, setShowPass] = useState(true)
-
-    // showPass = () => {
-    //     if (press === false) {
-    //         setPress({ showPass: false, press: true })
-    //     } else {
-    //         setShowPass({ showPass: true, press: false })
-    //     }
-    // }
 
     return (
         <KeyboardAvoidingView style={styles.container} behavior="position">
@@ -108,15 +96,18 @@ const Login = ({ navigation }) => {
                         <TextInput style={styles.txtInput}
                             placeholder='Kata Sandi'
                             placeholderTextColor='#7F7F7F'
-                            // secureTextEntry={showPass}
+                            secureTextEntry={showPass}
                             value={form.password}
                             onChangeText={value => setForm('password', value)}
                             ref={(input) => { secondTextInput = input }}
                         />
                         <TouchableOpacity style={styles.btnEye}
-                            onPress={showPass}>
+                            onPress={() => setShowPass((prev) => !prev)}>
                             <Image style={styles.eyeLogo}
-                                source={require('../assets/images/eye.png')}
+                                source={(showPass)
+                                    ? require('../assets/images/eyeS.png')
+                                    : require('../assets/images/eye.png')
+                                }
                             />
                         </TouchableOpacity>
                     </View>
