@@ -166,35 +166,46 @@ const AddPics = ({ navigation, route }) => {
     }
 
     const uploadAndContinue = () => {
+        const newPostKey = Fire.database().ref().child('post').push().key
         getData('user').then(res => {
-            Fire
-                .database()
-                .ref('product/' + res.uid + '/' + id + '/images' + '/')
-                .update({
-                    image: photoForDB,
-                    image1: photoForDB1,
-                    image2: photoForDB2,
-                    image3: photoForDB3,
-                    image4: photoForDB4,
-                    image5: photoForDB5,
-                })
+            const uid = res.uid
+            const id = newPostKey
+            const image = {
+                image: photoForDB,
+                image1: photoForDB1,
+                image2: photoForDB2,
+                image3: photoForDB3,
+                image4: photoForDB4,
+                image5: photoForDB5,
+            }
+            console.log('data image: ', image)
+            getData('product').then(res => {
+                Fire
+                    .database()
+                    .ref('product/' + uid + '/' + id + '/')
+                    .set(res)
+                Fire
+                    .database()
+                    .ref('product/' + uid + '/' + id + '/images' + '/')
+                    .update(image)
+            })
             navigation.navigate('Verification')
         })
     }
-    
+
     // bottom sheet
     const renderScreen = () => {
-        return(
+        return (
             <View style={styles.panel}>
                 <View>
-                    <TouchableOpacity 
+                    <TouchableOpacity
                         style={{
                             marginTop: 20,
                             marginLeft: 25,
                             flexDirection: 'row',
-                            }}
+                        }}
                         onPress={openCam}
-                        >
+                    >
                         <Image
                             style={styles.imgCam}
                             source={require('../../../assets/images/camblk.png')}
@@ -212,9 +223,9 @@ const AddPics = ({ navigation, route }) => {
                             marginTop: 20,
                             marginLeft: 25,
                             flexDirection: 'row',
-                            }}
+                        }}
                         onPress={getImage}
-                        >
+                    >
                         <Image
                             style={styles.img3dots}
                             source={require('../../../assets/images/3dots2.png')}
@@ -228,22 +239,22 @@ const AddPics = ({ navigation, route }) => {
             </View>
         )
     }
-    
+
     const renderScreen1 = () => {
-        return(
+        return (
             <View style={styles.panel}>
                 <View>
-                    <TouchableOpacity 
+                    <TouchableOpacity
                         style={{
                             marginTop: 20,
                             marginLeft: 25,
                             flexDirection: 'row',
-                            }}
+                        }}
                         onPress={openCam1}
-                        >
+                    >
                         <Image
                             style={styles.imgCam}
-                            source={require('../../../assets/images/3dots2.png')}
+                            source={require('../../../assets/images/camblk.png')}
                         />
 
                         <Text style={styles.txtBS}>
@@ -258,9 +269,9 @@ const AddPics = ({ navigation, route }) => {
                             marginTop: 20,
                             marginLeft: 25,
                             flexDirection: 'row',
-                            }}
+                        }}
                         onPress={getImage1}
-                        >
+                    >
                         <Image
                             style={styles.img3dots}
                             source={require('../../../assets/images/3dots2.png')}
@@ -276,20 +287,20 @@ const AddPics = ({ navigation, route }) => {
     }
 
     const renderScreen2 = () => {
-        return(
+        return (
             <View style={styles.panel}>
                 <View>
-                    <TouchableOpacity 
+                    <TouchableOpacity
                         style={{
                             marginTop: 20,
                             marginLeft: 25,
                             flexDirection: 'row',
-                            }}
+                        }}
                         onPress={openCam2}
-                        >
+                    >
                         <Image
                             style={styles.imgCam}
-                            source={require('../../../assets/images/3dots2.png')}
+                            source={require('../../../assets/images/camblk.png')}
                         />
 
                         <Text style={styles.txtBS}>
@@ -304,9 +315,9 @@ const AddPics = ({ navigation, route }) => {
                             marginTop: 20,
                             marginLeft: 25,
                             flexDirection: 'row',
-                            }}
+                        }}
                         onPress={getImage2}
-                        >
+                    >
                         <Image
                             style={styles.img3dots}
                             source={require('../../../assets/images/3dots2.png')}
@@ -322,20 +333,20 @@ const AddPics = ({ navigation, route }) => {
     }
 
     const renderScreen3 = () => {
-        return(
+        return (
             <View style={styles.panel}>
                 <View>
-                    <TouchableOpacity 
+                    <TouchableOpacity
                         style={{
                             marginTop: 20,
                             marginLeft: 25,
                             flexDirection: 'row',
-                            }}
+                        }}
                         onPress={openCam3}
-                        >
+                    >
                         <Image
                             style={styles.imgCam}
-                            source={require('../../../assets/images/3dots2.png')}
+                            source={require('../../../assets/images/camblk.png')}
                         />
 
                         <Text style={styles.txtBS}>
@@ -350,9 +361,9 @@ const AddPics = ({ navigation, route }) => {
                             marginTop: 20,
                             marginLeft: 25,
                             flexDirection: 'row',
-                            }}
+                        }}
                         onPress={getImage3}
-                        >
+                    >
                         <Image
                             style={styles.img3dots}
                             source={require('../../../assets/images/3dots2.png')}
@@ -368,20 +379,20 @@ const AddPics = ({ navigation, route }) => {
     }
 
     const renderScreen4 = () => {
-        return(
+        return (
             <View style={styles.panel}>
                 <View>
-                    <TouchableOpacity 
+                    <TouchableOpacity
                         style={{
                             marginTop: 20,
                             marginLeft: 25,
                             flexDirection: 'row',
-                            }}
+                        }}
                         onPress={openCam4}
-                        >
+                    >
                         <Image
                             style={styles.imgCam}
-                            source={require('../../../assets/images/3dots2.png')}
+                            source={require('../../../assets/images/camblk.png')}
                         />
 
                         <Text style={styles.txtBS}>
@@ -396,9 +407,9 @@ const AddPics = ({ navigation, route }) => {
                             marginTop: 20,
                             marginLeft: 25,
                             flexDirection: 'row',
-                            }}
+                        }}
                         onPress={getImage4}
-                        >
+                    >
                         <Image
                             style={styles.img3dots}
                             source={require('../../../assets/images/3dots2.png')}
@@ -414,20 +425,20 @@ const AddPics = ({ navigation, route }) => {
     }
 
     const renderScreen5 = () => {
-        return(
+        return (
             <View style={styles.panel}>
                 <View>
-                    <TouchableOpacity 
+                    <TouchableOpacity
                         style={{
                             marginTop: 20,
                             marginLeft: 25,
                             flexDirection: 'row',
-                            }}
+                        }}
                         onPress={openCam5}
-                        >
+                    >
                         <Image
                             style={styles.imgCam}
-                            source={require('../../../assets/images/3dots2.png')}
+                            source={require('../../../assets/images/camblk.png')}
                         />
 
                         <Text style={styles.txtBS}>
@@ -442,9 +453,9 @@ const AddPics = ({ navigation, route }) => {
                             marginTop: 20,
                             marginLeft: 25,
                             flexDirection: 'row',
-                            }}
+                        }}
                         onPress={getImage5}
-                        >
+                    >
                         <Image
                             style={styles.img3dots}
                             source={require('../../../assets/images/3dots2.png')}
@@ -458,7 +469,7 @@ const AddPics = ({ navigation, route }) => {
             </View>
         )
     }
-    
+
     const sheetRef = React.createRef()
     const sheetRef1 = React.createRef()
     const sheetRef2 = React.createRef()
@@ -466,7 +477,7 @@ const AddPics = ({ navigation, route }) => {
     const sheetRef4 = React.createRef()
     const sheetRef5 = React.createRef()
     const fall = new Animated.Value(1)
-    
+
     return (
         <View style={styles.container}>
             <View style={styles.Header}>
@@ -486,7 +497,7 @@ const AddPics = ({ navigation, route }) => {
 
             <View style={styles.chosenPic}>
                 <TouchableOpacity
-                    onPress={getImage}
+                    onPress={() => sheetRef.current.snapTo(0)}
                     style={styles.bluRectangle}
                 >
                     <Image source={photo}
@@ -498,7 +509,7 @@ const AddPics = ({ navigation, route }) => {
                 </TouchableOpacity>
 
                 <TouchableOpacity
-                    onPress={() => sheetRef.current.snapTo(0)}
+                    onPress={() => sheetRef1.current.snapTo(0)}
                     style={styles.bluRectangle}
                 >
                     <Image source={photo1}

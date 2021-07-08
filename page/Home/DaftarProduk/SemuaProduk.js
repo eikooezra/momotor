@@ -8,9 +8,8 @@ import {
 import { Fire } from '../../../config'
 import { ProductItem } from '../../../components/components';
 import { getData } from '../../../utils/localstorage/localstorage';
-// import Test from '../../../api/Test'
 
-const SemuaProduk = ({navigation}) => {
+const SemuaProduk = ({ navigation }) => {
     const [product, setProduct] = useState([])
     useEffect(() => {
         getData('user').then(res => {
@@ -21,7 +20,6 @@ const SemuaProduk = ({navigation}) => {
                 .then(res => {
                     console.log('data: ', res.val())
                     if (res.val()) {
-                        // console.log('a', Object.values(res.val()))
                         setProduct(Object.values(res.val()))
                     }
                 })
@@ -37,11 +35,30 @@ const SemuaProduk = ({navigation}) => {
                 })
         })
     }, [])
+    // const deleteData = () => {
+    //     getData('user').then(res => {
+    //         const uid = res.uid
+    //         Fire
+    //             .database()
+    //             .ref('product/' + uid + '/')
+    //             .remove(item.id)
+    //     })
+    // }
     // console.log(product)
     return (
         <View style={styles.container}>
             <ScrollView>
                 {product.map(item => {
+                    const deleteData = () => {
+                        getData('user').then(res => {
+                            const uid = res.uid
+                            Fire
+                                .database()
+                                .ref('product/' + uid + '/' + item.id)
+                                .remove()
+                                
+                        })
+                    }
                     return (
                         <ProductItem
                             key={item.id}
@@ -54,6 +71,8 @@ const SemuaProduk = ({navigation}) => {
                             price={'Rp ' + item.price.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1.")}
                             status={item.status}
                             onPress={() => navigation.navigate('DetailProduk', item)}
+                            onPressEdit={() => navigation.navigate('EditProduct', item)}
+                            onPressDelete={deleteData}
                         />
                     )
                 })}

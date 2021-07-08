@@ -30,10 +30,10 @@ import EditPics from './page/Home/DaftarProduk/EditPics'
 import SemuaPesanan from './page/Home/DaftarPesanan/SemuaPesanan' // 1st screen for daftar pesanan page
 import Verifikasi from './page/Home/DaftarPesanan/Verifikasi'
 import Survey from './page/Home/DaftarPesanan/Survey'
-import AnalisaKredit from './page/Home/DaftarPesanan/AnalisaKredit'
+// import AnalisaKredit from './page/Home/DaftarPesanan/AnalisaKredit'
 import Disetujui from './page/Home/DaftarPesanan/Disetujui'
 import Ditolak from './page/Home/DaftarPesanan/Ditolak'
-import Dibatalkan from './page/Home/DaftarPesanan/Dibatalkan'
+// import Dibatalkan from './page/Home/DaftarPesanan/Dibatalkan'
 import SearchOrd from './page/Home/DaftarPesanan/SearchOrd'
 import DetailPesanan from './page/Home/DaftarPesanan/DetailPesanan'
 
@@ -54,7 +54,7 @@ import UploadDocs from './page/InstantOrder/UploadDocs'
 
 import NotifActivity from './page/Notification/NotifActivity' // 1st screen for notif page
 import NotifNewOrder from './page/Notification/NotifNewOrder'
-import NotifJualCepat from './page/Notification/NotifJualCepat'
+// import NotifJualCepat from './page/Notification/NotifJualCepat'
 
 import Account from './page/Account/Account' // 1st screen for account page
 import Settings from './page/Account/Settings'
@@ -355,17 +355,6 @@ function DaftarPesananTabScreen() {
       />
 
       <DaftarPesananTab.Screen
-        name='AnalisaKredit'
-        component={AnalisaKredit}
-        options={{
-          title: 'Analisa Kredit',
-          labelStyle: {
-            fontFamily: 'Montserrat-Medium'
-          }
-        }}
-      />
-
-      <DaftarPesananTab.Screen
         name='Disetujui'
         component={Disetujui}
         options={{
@@ -381,17 +370,6 @@ function DaftarPesananTabScreen() {
         component={Ditolak}
         options={{
           title: 'Ditolak',
-          labelStyle: {
-            fontFamily: 'Montserrat-Medium'
-          }
-        }}
-      />
-
-      <DaftarPesananTab.Screen
-        name='Dibatalkan'
-        component={Dibatalkan}
-        options={{
-          title: 'Dibatalkan',
           labelStyle: {
             fontFamily: 'Montserrat-Medium'
           }
@@ -479,13 +457,13 @@ function NotificationTabScreen() {
           title: 'Pesanan Baru',
         }}
       />
-      <NotificationTab.Screen
+      {/* <NotificationTab.Screen
         name='Jual Cepat'
         component={NotifJualCepat}
         options={{
           title: 'Jual Cepat',
         }}
-      />
+      /> */}
     </NotificationTab.Navigator>
   )
 }

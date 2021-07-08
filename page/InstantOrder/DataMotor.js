@@ -13,11 +13,13 @@ import normalize from 'react-native-normalize'
 import { FlatList, TapGestureHandler } from 'react-native-gesture-handler'
 import { Button, Title, Input, Gap, Header } from '../../components/components'
 import { Fire } from '../../config'
-import { getData } from '../../utils/localstorage/localstorage'
+import { getData, storeData } from '../../utils/localstorage/localstorage'
 import { useForm } from '../../utils/utils'
 
 const DataMotor = ({ navigation, route }) => {
-    const {id} = route.params
+    const {
+        orderId
+    } = route.params
     const [masterProduct, setMasterProduct] = useState([])
     const [product, setProduct] = useState([])
     const [search, setSearch] = useState('')
@@ -68,27 +70,23 @@ const DataMotor = ({ navigation, route }) => {
     const valueSelected = (item) => {
         setSelectedId(item.id)
         setSelectedModel(item.name)
-        setSelectedPrice(item.price.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1."))
+        setSelectedPrice(item.price)
         setSelectedYear(item.year)
         setSelectedImages(item.images)
     }
 
     const onContinue = () => {
-        getData('user').then(res => {
-            const data = {
-                productId: selectedId,
-                product: selectedModel,
-                year: selectedYear,
-                price: selectedPrice,
-                images: selectedImages
-            }
-            console.log('data motor: ', data)
-            // Fire
-            //     .database()
-            //     .ref('order/' + res.uid + '/' + id + '/data_motor/')
-            //     .update(data)
-            navigation.navigate('DataKredit', data)
-        })
+        const data = {
+            orderId: orderId,
+            productId: selectedId,
+            product: selectedModel,
+            year: selectedYear,
+            price: selectedPrice,
+            images: selectedImages
+        }
+        console.log('data motor: ', data)
+        storeData('dataMotor', data)
+        navigation.navigate('DataKredit', data)
     }
 
     useEffect(() => {
@@ -150,7 +148,7 @@ const DataMotor = ({ navigation, route }) => {
                     <Input
                         placeholder="Harga"
                         value={selectedPrice}
-                        onChangeText={(text) => setSelectedPrice(text.toString().replace(/\./g, ""))}
+                        onChangeText={(text) => setSelectedPrice(text)}
                         disable
                     />
                 </View>

@@ -10,25 +10,12 @@ import {
 import normalize from 'react-native-normalize'
 import { Button, Gap, Header, Input, Title } from '../../components/components'
 import { Fire } from '../../config'
-import { getData } from '../../utils/localstorage/localstorage'
+import { getData, storeData } from '../../utils/localstorage/localstorage'
 import { useForm } from '../../utils/utils'
 
 const DataPekerjaan = ({ navigation, route }) => {
     const {
-        custName,
-        gender,
-        nik,
-        phoneNo,
-        email,
-        birthPlace,
-        birthDate,
-        address,
-        rt,
-        rw,
-        location,
-        maidenName,
-        maidenLoc,
-        id
+        orderId
     } = route.params
     const [form, setForm] = useForm({
         job: '',
@@ -37,18 +24,13 @@ const DataPekerjaan = ({ navigation, route }) => {
     })
 
     const onContinue = () => {
-        getData('user').then(res => {
             const data = {
                 job: form.job,
                 salary: form.salary,
                 workDuration: form.workDuration
             }
-            // Fire
-            //     .database()
-            //     .ref('order/' + res.uid + '/' + id + '/data_pekerjaan/')
-            //     .update(data)
+            storeData('dataPekerjaan', data)
             navigation.navigate('DataMotor', data)
-        })
     }
 
     return (
@@ -64,7 +46,7 @@ const DataPekerjaan = ({ navigation, route }) => {
                 />
                 <Gap height={34} />
                 <Input
-                    placeholder="Penghasilan per bulan"
+                    placeholder="Penghasilan per Bulan"
                     value={form.salary.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1.")}
                     onChangeText={value => setForm('salary', value.toString().replace(/\./g, ""))}
                 />

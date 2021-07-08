@@ -8,39 +8,38 @@ import {
 } from 'react-native'
 import normalize from 'react-native-normalize';
 
-class BottomSheet extends Component{
-    render(){
-        return(
-            <View style={styles.container}>
-                <View style={styles.containerText}>
-                    <Text style={styles.txtTindakan}>
-                        Tindakan
-                    </Text>
-                </View>
-
-                <View style={styles.containerTindakan}>
-                        <TouchableOpacity
-                            style={styles.btnView}
-                        >
-                            <Image
-                                style={styles.imgEdit}
-                                source={require('../../assets/images/edit.png')}
-                            />
-
-                            <Text style={styles.txtEdit}>
-                                Edit Produk
-                            </Text>
-                        </TouchableOpacity>
-                </View>
+const BottomSheet = ({onPress}) => {
+    return (
+        <View style={styles.container}>
+            <View style={styles.containerText}>
+                <Text style={styles.txtTindakan}>
+                    Tindakan
+                </Text>
             </View>
-        )
-    }
+
+            <View style={styles.containerTindakan}>
+                <TouchableOpacity
+                    style={styles.btnView}
+                    onPress={onPress}
+                >
+                    <Image
+                        style={styles.imgEdit}
+                        source={require('../../assets/images/edit.png')}
+                    />
+
+                    <Text style={styles.txtEdit}>
+                        Edit Produk
+                    </Text>
+                </TouchableOpacity>
+            </View>
+        </View>
+    )
 }
 
 export default BottomSheet
 
 const styles = StyleSheet.create({
-    
+
     container: {
         flex: 1
     },

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useMemo, useState } from 'react'
 import {
     StyleSheet,
     ScrollView,
@@ -11,35 +11,28 @@ import { launchCamera, launchImageLibrary } from 'react-native-image-picker';
 import Animated from 'react-native-reanimated'
 import BottomSheet from 'reanimated-bottom-sheet'
 import normalize from 'react-native-normalize'
-// import { Fire } from '../../../config';
-// import { getData } from '../../../utils/localstorage/localstorage';
 import { Header, Title } from '../../components/components'
+import { getData } from '../../utils/localstorage/localstorage';
+import { Fire } from '../../config';
 
 
 const UploadDocs = ({ navigation, route }) => {
-    // const {
-    //     name,
-    //     year,
-    //     location,
-    //     price,
-    //     ref_code,
-    //     desc,
-    //     kilometer,
-    //     id
-    // } = route.params
+    const {
+        orderId
+    } = route.params
 
     const goBack = () => {
         navigation.navigate('DataKredit')
     }
 
-    // const [photoForDB, setPhotoForDB] = useState('')
-    // const [photoForDB1, setPhotoForDB1] = useState('')
-    // const [photoForDB2, setPhotoForDB2] = useState('')
-    // const [photoForDB3, setPhotoForDB3] = useState('')
-    // const [photoForDB4, setPhotoForDB4] = useState('')
-    // const [photoForDB5, setPhotoForDB5] = useState('')
-    // const [photoForDB6, setPhotoForDB6] = useState('')
-    // const [photoForDB7, setPhotoForDB7] = useState('')
+    const [photoForDB, setPhotoForDB] = useState('')
+    const [photoForDB1, setPhotoForDB1] = useState('')
+    const [photoForDB2, setPhotoForDB2] = useState('')
+    const [photoForDB3, setPhotoForDB3] = useState('')
+    const [photoForDB4, setPhotoForDB4] = useState('')
+    const [photoForDB5, setPhotoForDB5] = useState('')
+    const [photoForDB6, setPhotoForDB6] = useState('')
+    const [photoForDB7, setPhotoForDB7] = useState('')
     const [photo, setPhoto] = useState('')
     const [photo1, setPhoto1] = useState('')
     const [photo2, setPhoto2] = useState('')
@@ -55,7 +48,7 @@ const UploadDocs = ({ navigation, route }) => {
             (response) => {
                 console.log('response: ', response)
                 const source = { uri: response.uri }
-                // setPhotoForDB(`data:${response.type};base64, ${response.base64}`)
+                setPhotoForDB(`data:${response.type};base64, ${response.base64}`)
                 setPhoto(source)
             })
     }
@@ -66,7 +59,7 @@ const UploadDocs = ({ navigation, route }) => {
             (response) => {
                 console.log('response: ', response)
                 const source = { uri: response.uri }
-                // setPhotoForDB(`data:${response.type};base64, ${response.base64}`)
+                setPhotoForDB(`data:${response.type};base64, ${response.base64}`)
                 setPhoto(source)
             })
     }
@@ -77,7 +70,7 @@ const UploadDocs = ({ navigation, route }) => {
             (response) => {
                 console.log('response: ', response)
                 const source = { uri: response.uri }
-                // setPhotoForDB1(`data:${response.type};base64, ${response.base64}`)
+                setPhotoForDB1(`data:${response.type};base64, ${response.base64}`)
                 setPhoto1(source)
             })
     }
@@ -88,7 +81,7 @@ const UploadDocs = ({ navigation, route }) => {
             (response) => {
                 console.log('response: ', response)
                 const source = { uri: response.uri }
-                // setPhotoForDB(`data:${response.type};base64, ${response.base64}`)
+                setPhotoForDB(`data:${response.type};base64, ${response.base64}`)
                 setPhoto1(source)
             })
     }
@@ -99,7 +92,7 @@ const UploadDocs = ({ navigation, route }) => {
             (response) => {
                 console.log('response: ', response)
                 const source = { uri: response.uri }
-                // setPhotoForDB2(`data:${response.type};base64, ${response.base64}`)
+                setPhotoForDB2(`data:${response.type};base64, ${response.base64}`)
                 setPhoto2(source)
             })
     }
@@ -110,7 +103,7 @@ const UploadDocs = ({ navigation, route }) => {
             (response) => {
                 console.log('response: ', response)
                 const source = { uri: response.uri }
-                // setPhotoForDB(`data:${response.type};base64, ${response.base64}`)
+                setPhotoForDB(`data:${response.type};base64, ${response.base64}`)
                 setPhoto2(source)
             })
     }
@@ -121,7 +114,7 @@ const UploadDocs = ({ navigation, route }) => {
             (response) => {
                 console.log('response: ', response)
                 const source = { uri: response.uri }
-                // setPhotoForDB3(`data:${response.type};base64, ${response.base64}`)
+                setPhotoForDB3(`data:${response.type};base64, ${response.base64}`)
                 setPhoto3(source)
             })
     }
@@ -132,7 +125,7 @@ const UploadDocs = ({ navigation, route }) => {
             (response) => {
                 console.log('response: ', response)
                 const source = { uri: response.uri }
-                // setPhotoForDB(`data:${response.type};base64, ${response.base64}`)
+                setPhotoForDB(`data:${response.type};base64, ${response.base64}`)
                 setPhoto3(source)
             })
     }
@@ -143,7 +136,7 @@ const UploadDocs = ({ navigation, route }) => {
             (response) => {
                 console.log('response: ', response)
                 const source = { uri: response.uri }
-                // setPhotoForDB4(`data:${response.type};base64, ${response.base64}`)
+                setPhotoForDB4(`data:${response.type};base64, ${response.base64}`)
                 setPhoto4(source)
             })
     }
@@ -154,7 +147,7 @@ const UploadDocs = ({ navigation, route }) => {
             (response) => {
                 console.log('response: ', response)
                 const source = { uri: response.uri }
-                // setPhotoForDB(`data:${response.type};base64, ${response.base64}`)
+                setPhotoForDB(`data:${response.type};base64, ${response.base64}`)
                 setPhoto4(source)
             })
     }
@@ -165,7 +158,7 @@ const UploadDocs = ({ navigation, route }) => {
             (response) => {
                 console.log('response: ', response)
                 const source = { uri: response.uri }
-                // setPhotoForDB5(`data:${response.type};base64, ${response.base64}`)
+                setPhotoForDB5(`data:${response.type};base64, ${response.base64}`)
                 setPhoto5(source)
             })
     }
@@ -176,7 +169,7 @@ const UploadDocs = ({ navigation, route }) => {
             (response) => {
                 console.log('response: ', response)
                 const source = { uri: response.uri }
-                // setPhotoForDB(`data:${response.type};base64, ${response.base64}`)
+                setPhotoForDB(`data:${response.type};base64, ${response.base64}`)
                 setPhoto5(source)
             })
     }
@@ -187,7 +180,7 @@ const UploadDocs = ({ navigation, route }) => {
             (response) => {
                 console.log('response: ', response)
                 const source = { uri: response.uri }
-                // setPhotoForDB6(`data:${response.type};base64, ${response.base64}`)
+                setPhotoForDB6(`data:${response.type};base64, ${response.base64}`)
                 setPhoto6(source)
             })
     }
@@ -198,7 +191,7 @@ const UploadDocs = ({ navigation, route }) => {
             (response) => {
                 console.log('response: ', response)
                 const source = { uri: response.uri }
-                // setPhotoForDB(`data:${response.type};base64, ${response.base64}`)
+                setPhotoForDB(`data:${response.type};base64, ${response.base64}`)
                 setPhoto6(source)
             })
     }
@@ -209,7 +202,7 @@ const UploadDocs = ({ navigation, route }) => {
             (response) => {
                 console.log('response: ', response)
                 const source = { uri: response.uri }
-                // setPhotoForDB7(`data:${response.type};base64, ${response.base64}`)
+                setPhotoForDB7(`data:${response.type};base64, ${response.base64}`)
                 setPhoto7(source)
             })
     }
@@ -220,43 +213,92 @@ const UploadDocs = ({ navigation, route }) => {
             (response) => {
                 console.log('response: ', response)
                 const source = { uri: response.uri }
-                // setPhotoForDB(`data:${response.type};base64, ${response.base64}`)
+                setPhotoForDB(`data:${response.type};base64, ${response.base64}`)
                 setPhoto7(source)
             })
     }
 
-    const uploadAndContinue = () => {
+    const uploadData = () => {
+        const newPostKey = Fire.database().ref().child('post').push().key
         getData('user').then(res => {
+            const uid = res.uid
+            const data = {
+                uid: uid,
+                id: newPostKey,
+                date: new Date().getDate() + '/' + new Date().getMonth() + 1 + '/' + new Date().getFullYear(),
+                status: 'Proses Verifikasi'
+            }
+            const dataDokumen = {
+                ktpImage: photoForDB,
+                kkImage: photoForDB1,
+                pbbImage: photoForDB2,
+                rumahImage: photoForDB3,
+                listrikImage: photoForDB4,
+                gajiImage: photoForDB5,
+                koranImage: photoForDB6,
+                notaImage: photoForDB7,
+            }
+            console.log('data global: ', data)
+
             Fire
                 .database()
-                .ref('product/' + res.uid + '/' + id + '/images' + '/')
-                .update({
-                    image: photoForDB,
-                    image1: photoForDB1,
-                    image2: photoForDB2,
-                    image3: photoForDB3,
-                    image4: photoForDB4,
-                    image5: photoForDB5,
-                    image6: photoForDB6,
-                    image7: photoForDB7,
-                })
-            navigation.navigate('Verification')
+                .ref('order/' + uid + '/' + data.id + '/')
+                .set(data)
+
+            getData('dataCustomer').then(res => {
+                console.log('data cust: ', res)
+                Fire
+                    .database()
+                    .ref('order/' + uid + '/' + data.id + '/data_customer/')
+                    .update(res)
+            })
+            getData('dataPekerjaan').then(res => {
+                console.log('data job: ', res)
+                Fire
+                    .database()
+                    .ref('order/' + uid + '/' + data.id + '/data_pekerjaan/')
+                    .update(res)
+            })
+            getData('dataMotor').then(res => {
+                console.log('data motor: ', res)
+                Fire
+                    .database()
+                    .ref('order/' + uid + '/' + data.id + '/data_motor/')
+                    .update(res)
+            })
+            getData('dataKredit').then(res => {
+                console.log('data kredit: ', res)
+                Fire
+                    .database()
+                    .ref('order/' + uid + '/' + data.id + '/data_kredit/')
+                    .update(res)
+            })
+            Fire
+                .database()
+                .ref('order/' + uid + '/' + data.id + '/dokumen/')
+                .update(dataDokumen)
+            console.log('dokumen: ', dataDokumen)
         })
+    }
+
+    const uploadAndContinue = () => {
+        uploadData()
+        navigation.navigate('Home')
     }
 
     // bottom sheet
     const renderScreen = () => {
-        return(
+        return (
             <View style={styles.panel}>
                 <View>
-                    <TouchableOpacity 
+                    <TouchableOpacity
                         style={{
                             marginTop: 20,
                             marginLeft: 25,
                             flexDirection: 'row',
-                            }}
+                        }}
                         onPress={openCam}
-                        >
+                    >
                         <Image
                             style={styles.imgCam}
                             source={require('../../assets/images/camblk.png')}
@@ -274,9 +316,9 @@ const UploadDocs = ({ navigation, route }) => {
                             marginTop: 20,
                             marginLeft: 25,
                             flexDirection: 'row',
-                            }}
+                        }}
                         onPress={getImage}
-                        >
+                    >
                         <Image
                             style={styles.img3dots}
                             source={require('../../assets/images/3dots2.png')}
@@ -292,17 +334,17 @@ const UploadDocs = ({ navigation, route }) => {
     }
 
     const renderScreen1 = () => {
-        return(
+        return (
             <View style={styles.panel}>
                 <View>
-                    <TouchableOpacity 
+                    <TouchableOpacity
                         style={{
                             marginTop: 20,
                             marginLeft: 25,
                             flexDirection: 'row',
-                            }}
+                        }}
                         onPress={openCam1}
-                        >
+                    >
                         <Image
                             style={styles.imgCam}
                             source={require('../../assets/images/camblk.png')}
@@ -320,9 +362,9 @@ const UploadDocs = ({ navigation, route }) => {
                             marginTop: 20,
                             marginLeft: 25,
                             flexDirection: 'row',
-                            }}
+                        }}
                         onPress={getImage1}
-                        >
+                    >
                         <Image
                             style={styles.img3dots}
                             source={require('../../assets/images/3dots2.png')}
@@ -338,17 +380,17 @@ const UploadDocs = ({ navigation, route }) => {
     }
 
     const renderScreen2 = () => {
-        return(
+        return (
             <View style={styles.panel}>
                 <View>
-                    <TouchableOpacity 
+                    <TouchableOpacity
                         style={{
                             marginTop: 20,
                             marginLeft: 25,
                             flexDirection: 'row',
-                            }}
+                        }}
                         onPress={openCam2}
-                        >
+                    >
                         <Image
                             style={styles.imgCam}
                             source={require('../../assets/images/camblk.png')}
@@ -366,9 +408,9 @@ const UploadDocs = ({ navigation, route }) => {
                             marginTop: 20,
                             marginLeft: 25,
                             flexDirection: 'row',
-                            }}
+                        }}
                         onPress={getImage2}
-                        >
+                    >
                         <Image
                             style={styles.img3dots}
                             source={require('../../assets/images/3dots2.png')}
@@ -384,17 +426,17 @@ const UploadDocs = ({ navigation, route }) => {
     }
 
     const renderScreen3 = () => {
-        return(
+        return (
             <View style={styles.panel}>
                 <View>
-                    <TouchableOpacity 
+                    <TouchableOpacity
                         style={{
                             marginTop: 20,
                             marginLeft: 25,
                             flexDirection: 'row',
-                            }}
+                        }}
                         onPress={openCam3}
-                        >
+                    >
                         <Image
                             style={styles.imgCam}
                             source={require('../../assets/images/camblk.png')}
@@ -412,9 +454,9 @@ const UploadDocs = ({ navigation, route }) => {
                             marginTop: 20,
                             marginLeft: 25,
                             flexDirection: 'row',
-                            }}
+                        }}
                         onPress={getImage3}
-                        >
+                    >
                         <Image
                             style={styles.img3dots}
                             source={require('../../assets/images/3dots2.png')}
@@ -430,17 +472,17 @@ const UploadDocs = ({ navigation, route }) => {
     }
 
     const renderScreen4 = () => {
-        return(
+        return (
             <View style={styles.panel}>
                 <View>
-                    <TouchableOpacity 
+                    <TouchableOpacity
                         style={{
                             marginTop: 20,
                             marginLeft: 25,
                             flexDirection: 'row',
-                            }}
+                        }}
                         onPress={openCam4}
-                        >
+                    >
                         <Image
                             style={styles.imgCam}
                             source={require('../../assets/images/camblk.png')}
@@ -458,9 +500,9 @@ const UploadDocs = ({ navigation, route }) => {
                             marginTop: 20,
                             marginLeft: 25,
                             flexDirection: 'row',
-                            }}
+                        }}
                         onPress={getImage4}
-                        >
+                    >
                         <Image
                             style={styles.img3dots}
                             source={require('../../assets/images/3dots2.png')}
@@ -476,17 +518,17 @@ const UploadDocs = ({ navigation, route }) => {
     }
 
     const renderScreen5 = () => {
-        return(
+        return (
             <View style={styles.panel}>
                 <View>
-                    <TouchableOpacity 
+                    <TouchableOpacity
                         style={{
                             marginTop: 20,
                             marginLeft: 25,
                             flexDirection: 'row',
-                            }}
+                        }}
                         onPress={openCam5}
-                        >
+                    >
                         <Image
                             style={styles.imgCam}
                             source={require('../../assets/images/camblk.png')}
@@ -504,9 +546,9 @@ const UploadDocs = ({ navigation, route }) => {
                             marginTop: 20,
                             marginLeft: 25,
                             flexDirection: 'row',
-                            }}
+                        }}
                         onPress={getImage5}
-                        >
+                    >
                         <Image
                             style={styles.img3dots}
                             source={require('../../assets/images/3dots2.png')}
@@ -522,17 +564,17 @@ const UploadDocs = ({ navigation, route }) => {
     }
 
     const renderScreen6 = () => {
-        return(
+        return (
             <View style={styles.panel}>
                 <View>
-                    <TouchableOpacity 
+                    <TouchableOpacity
                         style={{
                             marginTop: 20,
                             marginLeft: 25,
                             flexDirection: 'row',
-                            }}
+                        }}
                         onPress={openCam6}
-                        >
+                    >
                         <Image
                             style={styles.imgCam}
                             source={require('../../assets/images/camblk.png')}
@@ -550,9 +592,9 @@ const UploadDocs = ({ navigation, route }) => {
                             marginTop: 20,
                             marginLeft: 25,
                             flexDirection: 'row',
-                            }}
+                        }}
                         onPress={getImage6}
-                        >
+                    >
                         <Image
                             style={styles.img3dots}
                             source={require('../../assets/images/3dots2.png')}
@@ -568,17 +610,17 @@ const UploadDocs = ({ navigation, route }) => {
     }
 
     const renderScreen7 = () => {
-        return(
+        return (
             <View style={styles.panel}>
                 <View>
-                    <TouchableOpacity 
+                    <TouchableOpacity
                         style={{
                             marginTop: 20,
                             marginLeft: 25,
                             flexDirection: 'row',
-                            }}
+                        }}
                         onPress={openCam7}
-                        >
+                    >
                         <Image
                             style={styles.imgCam}
                             source={require('../../assets/images/camblk.png')}
@@ -596,9 +638,9 @@ const UploadDocs = ({ navigation, route }) => {
                             marginTop: 20,
                             marginLeft: 25,
                             flexDirection: 'row',
-                            }}
+                        }}
                         onPress={getImage7}
-                        >
+                    >
                         <Image
                             style={styles.img3dots}
                             source={require('../../assets/images/3dots2.png')}
@@ -612,7 +654,7 @@ const UploadDocs = ({ navigation, route }) => {
             </View>
         )
     }
-    
+
     const sheetRef = React.createRef()
     const sheetRef1 = React.createRef()
     const sheetRef2 = React.createRef()
@@ -650,13 +692,15 @@ const UploadDocs = ({ navigation, route }) => {
                         </Text>
                     </View>
 
-                    <TouchableOpacity 
+                    <TouchableOpacity
                         style={styles.btnUpload}
-                        onPress={() => sheetRef.current.snapTo(0)}
-                        >
+                        onPress={() => sheetRef.current.snapTo(-1)}
+                    >
                         <Image
-                            style={styles.imgUpload}
-                            source={require('../../assets/images/upload.png')}
+                            source={(photo)
+                                ? require('../../assets/images/check.png')
+                                : require('../../assets/images/upload.png')
+                            }
                         />
                     </TouchableOpacity>
                 </View>
@@ -672,13 +716,15 @@ const UploadDocs = ({ navigation, route }) => {
                         </Text>
                     </View>
 
-                    <TouchableOpacity 
+                    <TouchableOpacity
                         style={styles.btnUpload}
                         onPress={() => sheetRef1.current.snapTo(0)}
                     >
                         <Image
-                            style={styles.imgUpload}
-                            source={require('../../assets/images/upload.png')}
+                            source={(photo1)
+                                ? require('../../assets/images/check.png')
+                                : require('../../assets/images/upload.png')
+                            }
                         />
                     </TouchableOpacity>
                 </View>
@@ -698,13 +744,15 @@ const UploadDocs = ({ navigation, route }) => {
                         </Text>
                     </View>
 
-                    <TouchableOpacity 
+                    <TouchableOpacity
                         style={styles.btnUpload}
                         onPress={() => sheetRef2.current.snapTo(0)}
                     >
                         <Image
-                            style={styles.imgUpload}
-                            source={require('../../assets/images/upload.png')}
+                            source={(photo2)
+                                ? require('../../assets/images/check.png')
+                                : require('../../assets/images/upload.png')
+                            }
                         />
                     </TouchableOpacity>
                 </View>
@@ -720,13 +768,15 @@ const UploadDocs = ({ navigation, route }) => {
                         </Text>
                     </View>
 
-                    <TouchableOpacity 
+                    <TouchableOpacity
                         style={styles.btnUpload}
                         onPress={() => sheetRef3.current.snapTo(0)}
                     >
                         <Image
-                            style={styles.imgUpload}
-                            source={require('../../assets/images/upload.png')}
+                            source={(photo3)
+                                ? require('../../assets/images/check.png')
+                                : require('../../assets/images/upload.png')
+                            }
                         />
                     </TouchableOpacity>
                 </View>
@@ -742,13 +792,16 @@ const UploadDocs = ({ navigation, route }) => {
                         </Text>
                     </View>
 
-                    <TouchableOpacity 
+                    <TouchableOpacity
                         style={styles.btnUpload}
                         onPress={() => sheetRef4.current.snapTo(0)}
                     >
                         <Image
                             style={styles.imgUpload}
-                            source={require('../../assets/images/upload.png')}
+                            source={(photo4)
+                                ? require('../../assets/images/check.png')
+                                : require('../../assets/images/upload.png')
+                            }
                         />
                     </TouchableOpacity>
                 </View>
@@ -768,13 +821,16 @@ const UploadDocs = ({ navigation, route }) => {
                         </Text>
                     </View>
 
-                    <TouchableOpacity 
+                    <TouchableOpacity
                         style={styles.btnUpload}
                         onPress={() => sheetRef5.current.snapTo(0)}
                     >
                         <Image
                             style={styles.imgUpload}
-                            source={require('../../assets/images/upload.png')}
+                            source={(photo5)
+                                ? require('../../assets/images/check.png')
+                                : require('../../assets/images/upload.png')
+                            }
                         />
                     </TouchableOpacity>
                 </View>
@@ -790,13 +846,16 @@ const UploadDocs = ({ navigation, route }) => {
                         </Text>
                     </View>
 
-                    <TouchableOpacity 
+                    <TouchableOpacity
                         style={styles.btnUpload}
                         onPress={() => sheetRef6.current.snapTo(0)}
                     >
                         <Image
                             style={styles.imgUpload}
-                            source={require('../../assets/images/upload.png')}
+                            source={(photo6)
+                                ? require('../../assets/images/check.png')
+                                : require('../../assets/images/upload.png')
+                            }
                         />
                     </TouchableOpacity>
                 </View>
@@ -812,20 +871,23 @@ const UploadDocs = ({ navigation, route }) => {
                         </Text>
                     </View>
 
-                    <TouchableOpacity 
+                    <TouchableOpacity
                         style={styles.btnUpload}
                         onPress={() => sheetRef7.current.snapTo(0)}
                     >
                         <Image
                             style={styles.imgUpload}
-                            source={require('../../assets/images/upload.png')}
+                            source={(photo7)
+                                ? require('../../assets/images/check.png')
+                                : require('../../assets/images/upload.png')
+                            }
                         />
                     </TouchableOpacity>
                 </View>
 
                 <TouchableOpacity
                     style={styles.btnSubmit}
-                // onPress={onContinue}
+                    onPress={uploadAndContinue}
                 // disabled={!enabled}
                 >
                     <Text style={styles.txtSubmit}>
@@ -841,6 +903,9 @@ const UploadDocs = ({ navigation, route }) => {
                 callbackNode={fall}
                 renderContent={renderScreen}
                 enabledGestureInteraction={true}
+            // enabledBottomInitialAnimation={true}
+            // enabledContentTapInteraction={false}
+            // enabledManualSnapping={false}
             />
 
             <BottomSheet
@@ -957,10 +1022,10 @@ const styles = StyleSheet.create({
         marginLeft: normalize(60)
     },
 
-    imgUpload: {
-        width: normalize(14),
-        height: normalize(18)
-    },
+    // imgUpload: {
+    //     width: normalize(14),
+    //     height: normalize(18)
+    // },
 
     txtKTP: {
         width: normalize(250),
@@ -1124,7 +1189,7 @@ const styles = StyleSheet.create({
         fontFamily: 'Montserrat-SemiBold',
     },
 
-     //for bottom sheet screen
+    //for bottom sheet screen
     panel: {
         height: normalize(85),
         padding: normalize(10),

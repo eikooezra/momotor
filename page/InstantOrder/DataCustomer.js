@@ -34,37 +34,25 @@ const DataCustomer = ({ navigation }) => {
 
     })
     const onContinue = () => {
-        const newPostKey = Fire.database().ref().child('post').push().key
-        getData('user').then(res => {
-            const data = {
-                uid: res.uid,
-                custName: form.custName,
-                gender: form.gender.value,
-                nik: form.nik,
-                phoneNo: form.phoneNo,
-                email: form.email,
-                birthPlace: form.birthPlace,
-                birthDate: form.birthDate,
-                address: form.address,
-                rt: form.rt,
-                rw: form.rw,
-                location: form.location,
-                maidenName: form.maidenName,
-                maidenLoc: form.maidenLoc,
-                date: new Date().getDate() + '/' + new Date().getMonth() + 1 + '/' + new Date().getFullYear(),
-                id: newPostKey,
-                status: 'Proses Verifikasi'
-            }
-            console.log('cek: ', data)
-            // Fire
-            //     .database()
-            //     .ref('order/' + res.uid + '/' + newPostKey + '/data_customer/')
-            //     .set(data)
-            // storeData('order', data)
+        const data = {
+            custName: form.custName,
+            gender: form.gender.value,
+            nik: form.nik,
+            phoneNo: form.phoneNo,
+            email: form.email,
+            birthPlace: form.birthPlace,
+            birthDate: form.birthDate,
+            address: form.address,
+            rt: form.rt,
+            rw: form.rw,
+            location: form.location,
+            maidenName: form.maidenName,
+            maidenLoc: form.maidenLoc
+        }
+        console.log('cek: ', data)
+        storeData('dataCustomer', data)
 
-            navigation.navigate('DataPekerjaan', data)
-
-        })
+        navigation.navigate('DataPekerjaan', data)
     }
     return (
         <View style={styles.page}>
@@ -85,7 +73,7 @@ const DataCustomer = ({ navigation }) => {
                                 { label: 'Pria', value: 'Pria' },
                                 { label: 'Wanita', value: 'Wanita' }
                             ]}
-                            defaultNull = {nullChecker}
+                            defaultNull={nullChecker}
                             placeholder="Jenis Kelamin"
                             style={{
                                 // paddingHorizontal: 16,

@@ -20,7 +20,9 @@ const ProductItem = ({
     year,
     price,
     onPress,
-    status
+    status,
+    onPressEdit,
+    onPressDelete
 }) => {
     const refRBSheet = useRef()
     return (
@@ -38,7 +40,7 @@ const ProductItem = ({
                     }
                 }}
             >
-                <BottomSheet />
+                <BottomSheet onPress={onPressEdit}/>
             </RBSheet>
 
             <TouchableOpacity onPress={onPress}>
@@ -108,6 +110,9 @@ const ProductItem = ({
                                 source={require('../../../assets/images/3dots.png')}
                             />
 
+                        </TouchableOpacity>
+                        <TouchableOpacity onPress={onPressDelete}>
+                            <Text>Delete</Text>
                         </TouchableOpacity>
                     </View>
 

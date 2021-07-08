@@ -10,7 +10,6 @@ import { useForm } from '../../../utils/utils';
 
 const EditProduct = ({ navigation, route }) => {
     const { id, name, year, location, price, ref_code, kilometer, desc, images } = route.params
-    console.log('id: ', id)
     const [product, setProduct] = useState({
         id,
         name,
@@ -96,7 +95,7 @@ const EditProduct = ({ navigation, route }) => {
                             { label: '2019', value: '2019' },
                             { label: '2020', value: '2020' },
                         ]}
-                        // defaultNull
+                        defaultNull={nullChecker}
                         placeholder='Tahun Produksi'
                         containerStyle={{
                             // width: normalize(350),
@@ -129,7 +128,7 @@ const EditProduct = ({ navigation, route }) => {
                             { label: 'Tangerang', value: 'tangerang' },
                             { label: 'Bekasi', value: 'bekasi' },
                         ]}
-                        // defaultNull
+                        defaultNull={nullChecker}
                         placeholder='Lokasi'
                         containerStyle={{
                             // width: normalize(350),
@@ -152,15 +151,15 @@ const EditProduct = ({ navigation, route }) => {
                     <Gap height={34} />
                     <Input
                         placeholder='Harga'
-                        value={product.price}
-                        onChangeText={(value) => changeText('price', value)}
+                        value={product.price.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1.")}
+                        onChangeText={(value) => changeText('price', value.toString().replace(/\./g, ""))}
                         type='numeric'
                     />
                     <Gap height={34} />
                     <Input
                         placeholder='Kilometer'
-                        value={product.kilometer}
-                        onChangeText={(value) => changeText('kilometer', value)}
+                        value={product.kilometer.replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1.")}
+                        onChangeText={(value) => changeText('kilometer', value.toString().replace(/\./g, ""))}
                         type='numeric'
                     />
                     <Gap height={34} />

@@ -12,6 +12,7 @@ const DetailProduk = ({ navigation, route }) => {
   }, [])
 
   const getDetailById = (id) => {
+    console.log('all data :',detail)
     getData('user').then(res => {
       Fire.database()
         .ref('product/' + res.uid + '/')
@@ -19,9 +20,9 @@ const DetailProduk = ({ navigation, route }) => {
         .equalTo(id)
         .once('value')
         .then(res => {
-          console.log('data: ', res.val())
+          console.log('a: ', res.val())
           if (res.val()) {
-            console.log('a', Object.values(res.val()))
+            console.log('b', Object.values(res.val()))
             setProductDetail(Object.values(res.val()))
           }
         })
@@ -41,11 +42,11 @@ const DetailProduk = ({ navigation, route }) => {
   return (
     <View>
       {productDetail.map(item => {
-        console.log('data', item)
+        console.log('c', item)
         return (
           <ProductComponent
             id={item.id}
-            status={'Pending'}
+            status={item.status}
             name={item.name}
             price={item.price.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1.")}
             images={[
