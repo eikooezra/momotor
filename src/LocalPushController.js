@@ -1,11 +1,7 @@
 import PushNotification from 'react-native-push-notification'
 import React, {useState} from 'react'
 
-const {
-    name,
-    ID,
-    productName
-} = useState
+
 
 // activity
 const showAdRejected = () => {
@@ -57,31 +53,6 @@ const showOrderPostponed = () => {
     })
 }
 
-// Jual Cepat
-const showBidWon = () => {
-    PushNotification.localNotification({
-        channelId: "dealer-id",
-        title: `Selamat! Anda menang produk "'${productName}'"`,
-        message: 'Kami akan menghubungi anda untuk melanjutkan proses transaksi',
-    })
-}
-
-const showIncreaseBid = () => {
-    PushNotification.localNotification({
-        channelId: "dealer-id",
-        title: `Ayo! Naikkan tawaranmu pada produk "'${productName}'"`,
-        message: 'Silakan cek menu Jual Cepat',
-    })
-}
-
-const showBidEnds = () => {
-    PushNotification.localNotification({
-        channelId: "dealer-id",
-        title: `Ups! Produk "'${productName}'" telah berakhir`,
-        message: 'Silakan cek menu Jual Cepat',
-    })
-}
-
 // const handleScheduleNotification = (title, message) => {
 //     PushNotification.localNotificationSchedule({
 //         title: title,
@@ -101,9 +72,6 @@ export {
     showOrderApproved,
     showOrderDenied,
     showOrderPostponed,
-    showBidWon,
-    showIncreaseBid,
-    showBidEnds,
     // handleScheduleNotification, 
     // handleCancel,
 }
