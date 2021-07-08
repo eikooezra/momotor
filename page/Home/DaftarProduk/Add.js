@@ -44,10 +44,10 @@ const Add = ({ navigation }) => {
                 status: 'Pending'
             }
             console.log('cek: ', data)
-            Fire
-                .database()
-                .ref('product/' + res.uid + '/' + newPostKey + '/')
-                .set(data)
+            // Fire
+            //     .database()
+            //     .ref('product/' + res.uid + '/' + newPostKey + '/')
+            //     .set(data)
             storeData('product', data)
     
             navigation.navigate('AddPics', data)

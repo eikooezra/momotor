@@ -14,16 +14,15 @@ const DetailPesanan = ({ navigation, route }) => {
     const getDetailById = (id) => {
         console.log('all data :',detail)
         getData('user').then(res => {
-            const uid = res.id
             Fire.database()
-                .ref('order/' + uid + '/')
+                .ref('order/' + res.uid + '/')
                 .orderByChild('id')
                 .equalTo(id)
                 .once('value')
                 .then(res => {
-                    console.log('data: ', res.val())
+                    console.log('a: ', res.val())
                     if (res.val()) {
-                        console.log('a', Object.values(res.val()))
+                        console.log('b', Object.values(res.val()))
                         setOrderDetail(Object.values(res.val()))
                     }
                 })
@@ -43,13 +42,13 @@ const DetailPesanan = ({ navigation, route }) => {
     return (
         <View>
             {orderDetail.map(item => {
-                console.log('data', item)
+                console.log('c', item)
                 return (
                     <OrderComponent
                         id={item.id}
                         status={item.status}
                         product={item.data_motor.product}
-                        price={item.data_motor.price}
+                        price={item.data_motor.price.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1.")}
                         images={[
                             item.data_motor.images.image,
                             item.data_motor.images.image1,
@@ -58,8 +57,8 @@ const DetailPesanan = ({ navigation, route }) => {
                             item.data_motor.images.image4,
                             item.data_motor.images.image5
                         ]}
-                        dp={item.data_kredit.dp}
-                        cicilan={item.data_kredit.cicilan}
+                        dp={item.data_kredit.dp.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1.")}
+                        cicilan={item.data_kredit.cicilan.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1.")}
                         name={item.data_customer.custName}
                         kode={'123456'}
                         ref_code={'KJJVPOS'}
