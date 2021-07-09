@@ -8,7 +8,7 @@ import {
 } from 'react-native'
 import normalize from 'react-native-normalize';
 
-const BottomSheet = ({onPress}) => {
+const BottomSheet = ({onPressEdit, onPressDelete}) => {
     return (
         <View style={styles.container}>
             <View style={styles.containerText}>
@@ -20,7 +20,7 @@ const BottomSheet = ({onPress}) => {
             <View style={styles.containerTindakan}>
                 <TouchableOpacity
                     style={styles.btnView}
-                    onPress={onPress}
+                    onPress={onPressEdit}
                 >
                     <Image
                         style={styles.imgEdit}
@@ -29,6 +29,19 @@ const BottomSheet = ({onPress}) => {
 
                     <Text style={styles.txtEdit}>
                         Edit Produk
+                    </Text>
+                </TouchableOpacity>
+                <TouchableOpacity
+                    style={styles.btnView}
+                    onPress={onPressDelete}
+                >
+                    <Image
+                        style={styles.imgEdit}
+                        source={require('../../assets/images/edit.png')}
+                    />
+
+                    <Text style={styles.txtEdit}>
+                        Delete Produk
                     </Text>
                 </TouchableOpacity>
             </View>

@@ -44,21 +44,21 @@ const SemuaProduk = ({ navigation }) => {
     //             .remove(item.id)
     //     })
     // }
+    const deleteData = (productId) => {
+        getData('user').then(res => {
+            const uid = res.uid
+            Fire
+                .database()
+                .ref('product/' + uid + '/' + productId)
+                .remove()
+                
+        })
+    }
     // console.log(product)
     return (
         <View style={styles.container}>
             <ScrollView>
                 {product.map(item => {
-                    const deleteData = () => {
-                        getData('user').then(res => {
-                            const uid = res.uid
-                            Fire
-                                .database()
-                                .ref('product/' + uid + '/' + item.id)
-                                .remove()
-                                
-                        })
-                    }
                     return (
                         <ProductItem
                             key={item.id}
@@ -72,7 +72,7 @@ const SemuaProduk = ({ navigation }) => {
                             status={item.status}
                             onPress={() => navigation.navigate('DetailProduk', item)}
                             onPressEdit={() => navigation.navigate('EditProduct', item)}
-                            onPressDelete={deleteData}
+                            onPressDelete={() => deleteData(item.id)}
                         />
                     )
                 })}

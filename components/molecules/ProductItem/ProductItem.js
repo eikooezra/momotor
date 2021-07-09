@@ -9,6 +9,7 @@ import {
     Image,
     TouchableOpacity,
     ImageBackground,
+    Alert,
 } from 'react-native';
 
 const ProductItem = ({
@@ -40,7 +41,18 @@ const ProductItem = ({
                     }
                 }}
             >
-                <BottomSheet onPress={onPressEdit}/>
+                <BottomSheet
+                    onPressEdit={onPressEdit}
+                    onPressDelete={() => Alert.alert(
+                        'Hapus Produk',
+                        'Apakah anda yakin ingin menghapus produk ini?',
+                        [
+                            { text: 'Tidak'},
+                            { text: 'Ya', onPress: onPressDelete },
+                        ],
+                        { cancelable: false }
+                    )}
+                />
             </RBSheet>
 
             <TouchableOpacity onPress={onPress}>
@@ -111,9 +123,9 @@ const ProductItem = ({
                             />
 
                         </TouchableOpacity>
-                        <TouchableOpacity onPress={onPressDelete}>
+                        {/* <TouchableOpacity onPress={onPressDelete}>
                             <Text>Delete</Text>
-                        </TouchableOpacity>
+                        </TouchableOpacity> */}
                     </View>
 
                     <View style={styles.status}>

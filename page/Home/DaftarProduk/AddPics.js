@@ -169,7 +169,7 @@ const AddPics = ({ navigation, route }) => {
         const newPostKey = Fire.database().ref().child('post').push().key
         getData('user').then(res => {
             const uid = res.uid
-            const id = newPostKey
+            // const id = newPostKey
             const image = {
                 image: photoForDB,
                 image1: photoForDB1,
