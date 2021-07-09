@@ -14,6 +14,7 @@ import normalize from 'react-native-normalize'
 import { Header, Title } from '../../components/components'
 import { getData } from '../../utils/localstorage/localstorage';
 import { Fire } from '../../config';
+import { showOrderSucceed } from '../../src/LocalPushController'
 
 
 const UploadDocs = ({ navigation, route }) => {
@@ -283,6 +284,7 @@ const UploadDocs = ({ navigation, route }) => {
 
     const uploadAndContinue = () => {
         uploadData()
+        showOrderSucceed()
         navigation.navigate('Home')
     }
 
