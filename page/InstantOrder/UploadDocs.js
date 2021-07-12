@@ -283,9 +283,12 @@ const UploadDocs = ({ navigation, route }) => {
     }
 
     const uploadAndContinue = () => {
-        uploadData()
-        showOrderSucceed()
-        navigation.navigate('DaftarPesanan')
+        getData('dataCustomer').then(res => {
+            // uploadData()
+            showOrderSucceed({custName: res.custName})
+            // console.log('name', res.custName)
+        })
+        // navigation.navigate('DaftarPesanan')
     }
 
     // bottom sheet

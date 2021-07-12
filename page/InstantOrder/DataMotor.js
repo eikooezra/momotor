@@ -33,62 +33,6 @@ const DataMotor = ({ navigation, route }) => {
         year: '',
         price: '',
     })
-    const itemSeparatorView = () => {
-        return (
-            <View
-                style={{ height: 0.5, width: '100%', backgroundColor: 'black' }}
-            />
-        )
-    }
-
-    const itemView = ({ item }) => {
-        return (
-            <TouchableOpacity onPress={() => valueSelected(item)}>
-                <Text style={{ padding: 10 }}>
-                    {item.name.toUpperCase()}
-                </Text>
-            </TouchableOpacity>
-        )
-    }
-
-    const searchFilter = (text) => {
-        if (text) {
-            const newData = masterProduct.filter((item) => {
-                const itemData = item.name ? item.name.toUpperCase() : ''.toUpperCase()
-                const textData = text.toUpperCase()
-                return itemData.indexOf(textData) > -1
-            })
-            setProduct(newData)
-            setSearch(text)
-        }
-        else {
-            setProduct(masterProduct)
-            setSearch(text)
-        }
-    }
-
-    const valueSelected = (item) => {
-        setSelectedId(item.id)
-        setSelectedModel(item.name)
-        setSelectedPrice(item.price)
-        setSelectedYear(item.year)
-        setSelectedImages(item.images)
-    }
-
-    const onContinue = () => {
-        const data = {
-            orderId: orderId,
-            productId: selectedId,
-            product: selectedModel,
-            year: selectedYear,
-            price: selectedPrice,
-            images: selectedImages
-        }
-        console.log('data motor: ', data)
-        storeData('dataMotor', data)
-        navigation.navigate('DataKredit', data)
-    }
-
     useEffect(() => {
         getDataProduct()
     }, [])
@@ -119,6 +63,60 @@ const DataMotor = ({ navigation, route }) => {
                 })
         })
     }
+    const itemView = ({ item }) => {
+        return (
+            <TouchableOpacity onPress={() => valueSelected(item)}>
+                <Text style={{ padding: 10 }}>
+                    {item.name.toUpperCase()}
+                </Text>
+            </TouchableOpacity>
+        )
+    }
+    const itemSeparatorView = () => {
+        return (
+            <View
+                style={{ height: 0.5, width: '100%', backgroundColor: 'black' }}
+            />
+        )
+    }
+    const valueSelected = (item) => {
+        setSelectedId(item.id)
+        setSelectedModel(item.name)
+        setSelectedPrice(item.price)
+        setSelectedYear(item.year)
+        setSelectedImages(item.images)
+    }
+    
+    const searchFilter = (text) => {
+        if (text) {
+            const newData = masterProduct.filter((item) => {
+                const itemData = item.name ? item.name.toUpperCase() : ''.toUpperCase()
+                const textData = text.toUpperCase()
+                return itemData.indexOf(textData) > -1
+            })
+            setProduct(newData)
+            setSearch(text)
+        }
+        else {
+            setProduct(masterProduct)
+            setSearch(text)
+        }
+    }
+
+    const onContinue = () => {
+        const data = {
+            orderId: orderId,
+            productId: selectedId,
+            product: selectedModel,
+            year: selectedYear,
+            price: selectedPrice,
+            images: selectedImages
+        }
+        console.log('data motor: ', data)
+        storeData('dataMotor', data)
+        navigation.navigate('DataKredit', data)
+    }
+    
     return (
         <View style={styles.container}>
             <Header title="Instant Order" back onPress={() => navigation.goBack()} />

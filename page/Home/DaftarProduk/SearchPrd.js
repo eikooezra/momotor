@@ -1,77 +1,125 @@
-import React, {Component} from 'react'
+import React, { Component, useEffect, useState } from 'react'
 import {
     StyleSheet,
     Image,
     View,
     Text,
     TouchableOpacity,
-    StatusBar
+    StatusBar,
+    ScrollView,
+    FlatList
 } from 'react-native'
-import SearchInput from 'react-native-search-filter'
 import normalize from 'react-native-normalize';
+import { Fire } from '../../../config';
+import { getData } from '../../../utils/localstorage/localstorage';
+import { showMessage } from 'react-native-flash-message';
+import { Gap, ProductItem } from '../../../components/components';
+import { TextInput } from 'react-native-gesture-handler';
 
-class Search extends Component {
+const Search = ({ navigation }) => {
+    const [masterProduct, setMasterProduct] = useState([])
+    const [product, setProduct] = useState([])
+    const [search, setSearch] = useState('')
+    useEffect(() => {
+        getData('user').then(res => {
+            const uid = res.uid
+            Fire.database()
+                .ref('product/' + uid + '/')
+                .once('value')
+                .then(res => {
+                    console.log('data: ', res.val())
+                    if (res.val()) {
+                        setProduct(Object.values(res.val()))
+                        setMasterProduct(Object.values(res.val()))
+                    }
+                })
+                .catch(err => {
+                    const errorMessage = error.message
+                    showMessage({
+                        message: errorMessage,
+                        type: 'default',
+                        backgroundColor: '#E06379',
+                        color: '#FFFFFF'
+                    })
+                    console.log('error: ', error)
+                })
+        })
+    }, [])
 
-    constructor(props){
-        super(props)
-        this.state = {
-            searchFocused: false
+    const itemView = ({ item }) => {
+        return (
+            <ProductItem
+                key={item.id}
+                date={item.date}
+                name={item.name}
+                kilometer={item.kilometer.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1.") + ' KM'}
+                image={item.images.image}
+                location={item.location}
+                year={item.year}
+                price={'Rp ' + item.price.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1.")}
+                status={item.status}
+                onPress={() => navigation.navigate('DetailProduk', item)}
+                onPressEdit={() => navigation.navigate('EditProduct', item)}
+                onPressDelete={() => deleteData(item.id)}
+            />
+        )
+    }
+
+    const searchFilter = (text) => {
+        if (text) {
+            const newData = masterProduct.filter((item) => {
+                const itemData = item.name ? item.name.toUpperCase() : ''.toUpperCase()
+                const textData = text.toUpperCase()
+                return itemData.indexOf(textData) > -1
+            })
+            setProduct(newData)
+            setSearch(text)
+        }
+        else {
+            setProduct(masterProduct)
+            setSearch(text)
         }
     }
 
-    goToDaftarProduk = () => {
-        this.props.navigation.navigate('DaftarProduk')
-    }
-
-    // componentDidMount() {
-    //     this.keyboardDidShow = Keyboard.addListener('keyboardDidShow', this.keyboardDidShow)
-    //     this.keyboardWillShow = Keyboard.addListener('keyboardWillShow', this.keyboardWillShow)
-    //     this.keyboardWillHide = Keyboard.addListener('keyboardWillHide', this.keyboardWillHide)
-    //  }
-    
-    // keyboardDidShow = () => {
-    //     this.setState({searchFocused: true})
-    // }
-    
-    // keyboardWillShow = () => {
-    //     this.setState({searchFocused: true})
-    // }
-    
-    // keyboardWillHide = () => {
-    //     this.setState({searchFocused: false})
-    //}
-
-render() {
     return (
         <View style={styles.container}>
-          <StatusBar backgroundColor='#FFFFFF'/>
+            <StatusBar backgroundColor='#FFFFFF' />
             <View style={styles.searchContainer}>
                 <View style={styles.searchBar}>
-                <Image
-                    style={styles.imgBlkSearch}
-                    source={require('../../../assets/images/blacksearch.png')}
-                />
+                    <Image
+                        style={styles.imgBlkSearch}
+                        source={require('../../../assets/images/blacksearch.png')}
+                    />
 
-                <SearchInput
-                    style={styles.txtInput}
-                    placeholder={'Cari Motor . . .'}
-                    placeholderTextColor='#7F7F7F'
-                />
+                    <TextInput
+                        style={styles.txtInput}
+                        placeholder={'Cari Motor . . .'}
+                        placeholderTextColor='#7F7F7F'
+                        value={search}
+                        onChangeText={(text) => searchFilter(text)}
+                    />
                 </View>
                 
                 <TouchableOpacity
-                    onPress={this.goToDaftarProduk}
+                    onPress={() => navigation.goBack()}
                 >
                     <Text style={styles.txtBatal}>
                         Batal
                     </Text>
                 </TouchableOpacity>
             </View>
-
+            <Gap height={16}/>
+            <ScrollView>
+                <FlatList
+                    data={product}
+                    keyExtractor={(items, index) => items.id}
+                    renderItem={itemView}
+                />
+            </ScrollView>
 
         </View>
     )
-}}
+}
 
 export default Search
 
