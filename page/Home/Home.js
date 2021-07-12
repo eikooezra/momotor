@@ -85,13 +85,13 @@ const Home = ({ navigation }) => {
         </View>
       </View>
 
-      <View style={styles.txtPesananTerbaru}>
-        <Text style={styles.txtPesanan}>
-          Pesanan Terbaru
-        </Text>
-      </View>
 
       <ScrollView style={styles.scrollContainer}>
+        <View style={styles.txtPesananTerbaru}>
+          <Text style={styles.txtPesanan}>
+            Pesanan Terbaru
+          </Text>
+        </View>
         {newOrder.map(item => {
           return (
             <NewestOrderComponent
@@ -102,10 +102,17 @@ const Home = ({ navigation }) => {
               date={item.date}
               status={item.status}
               onPressProduct={() => navigation.navigate('DetailPesanan', item)}
-              onPressAll={() => navigation.navigate('DaftarPesanan')}
+            // onPressAll={() => navigation.navigate('DaftarPesanan')}
             />
           )
         })}
+        <View style={styles.txtLihatContainer}>
+          <TouchableOpacity onPress={() => navigation.navigate('DaftarPesanan')}>
+            <Text style={styles.txtLihat}>
+              Lihat Semua
+            </Text>
+          </TouchableOpacity>
+        </View>
       </ScrollView>
     </View>
   )

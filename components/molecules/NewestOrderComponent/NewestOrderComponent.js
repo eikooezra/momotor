@@ -45,14 +45,6 @@ const NewestOrderComponent = ({ image, name, product, date, status, onPressProdu
                     </View>
                 </ImageBackground>
             </TouchableOpacity>
-
-            <View style={styles.txtLihatContainer}>
-                <TouchableOpacity onPress={onPressAll}>
-                    <Text style={styles.txtLihat}>
-                        Lihat Semua
-                    </Text>
-                </TouchableOpacity>
-            </View>
         </View>
     );
 };
@@ -67,17 +59,6 @@ const styles = StyleSheet.create({
         marginLeft: 16,
         marginRight: 16,
         marginBottom: 16,
-    },
-
-    txtLihatContainer: {
-        marginLeft: normalize(155),
-        marginBottom: normalize(40),
-    },
-
-    txtLihat: {
-        fontSize: normalize(14),
-        fontFamily: 'Montserrat-SemiBold',
-        color: '#0064D0'
     },
 
     //inside image background

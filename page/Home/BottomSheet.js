@@ -36,12 +36,12 @@ const BottomSheet = ({onPressEdit, onPressDelete}) => {
                     onPress={onPressDelete}
                 >
                     <Image
-                        style={styles.imgEdit}
-                        source={require('../../assets/images/edit.png')}
+                        style={styles.imgDelete}
+                        source={require('../../assets/images/trash.png')}
                     />
 
                     <Text style={styles.txtEdit}>
-                        Delete Produk
+                        Hapus Produk
                     </Text>
                 </TouchableOpacity>
             </View>
@@ -92,9 +92,14 @@ const styles = StyleSheet.create({
         marginLeft: normalize(5)
     },
 
+    imgDelete: {
+        width: normalize(20),
+        height: normalize(20),
+        marginBottom: normalize(18),
+        marginLeft: normalize(8)
+    },
+
     txtEdit: {
-        width: normalize(85),
-        height: normalize(18),
         marginTop: normalize(1),
         marginBottom: normalize(18),
         marginLeft: normalize(18),

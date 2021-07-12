@@ -136,7 +136,7 @@ const Account = ({ navigation, route }) => {
         </TouchableOpacity>
 
         <TouchableOpacity
-          onPress={() => navigation.navigate('Logout')}
+          onPress={() => navigation.navigate('Login')}
         >
           <Text style={styles.txtKeluar}>
             Keluar

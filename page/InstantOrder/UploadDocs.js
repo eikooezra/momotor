@@ -285,7 +285,7 @@ const UploadDocs = ({ navigation, route }) => {
     const uploadAndContinue = () => {
         uploadData()
         showOrderSucceed()
-        navigation.navigate('Home')
+        navigation.navigate('DaftarPesanan')
     }
 
     // bottom sheet
