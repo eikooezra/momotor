@@ -19,7 +19,7 @@ PushNotification.configure({
       badge: true,
       sound: true,
     },
-    senderID: '87556405818',
+    senderID: '53683180999',
     popInitialNotification: true,
   });
 

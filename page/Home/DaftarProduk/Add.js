@@ -16,7 +16,7 @@ const Add = ({ navigation }) => {
             setPressed({ null: true })
         }
     }
-    
+
     const [form, setForm] = useForm({
         name: '',
         year: '',
@@ -27,8 +27,16 @@ const Add = ({ navigation }) => {
         kilometer: '',
     })
 
+    const number1 = Math.floor(Math.random() * 9)
+    const number2 = Math.floor(Math.random() * 9)
+    const number3 = Math.floor(Math.random() * 9)
+    const number4 = Math.floor(Math.random() * 9)
+    const number5 = Math.floor(Math.random() * 9)
+    const random = Math.floor(Math.random() * 9 + Math.random() * 9 + Math.random() * 9 + Math.random() * 9 + Math.random() * 9)
+
     const onContinue = () => {
         const newPostKey = Fire.database().ref().child('post').push().key
+        const id = 'UMCY' + random.toString()
         getData('user').then(res => {
             const data = {
                 uid: res.uid,
@@ -44,13 +52,14 @@ const Add = ({ navigation }) => {
                 status: 'Pending'
             }
             console.log('cek: ', data)
+            console.log('new id: ', id)
             // Fire
             //     .database()
             //     .ref('product/' + res.uid + '/' + newPostKey + '/')
             //     .set(data)
-            storeData('product', data)
-    
-            navigation.navigate('AddPics', data)
+            // storeData('product', data)
+
+            // navigation.navigate('AddPics', data)
 
         })
     }
@@ -90,7 +99,7 @@ const Add = ({ navigation }) => {
                             { label: '2019', value: '2019' },
                             { label: '2020', value: '2020' },
                         ]}
-                        defaultNull = {nullChecker}
+                        defaultNull={nullChecker}
                         placeholder='Tahun Produksi'
                         containerStyle={{
                             // width: normalize(350),
@@ -123,7 +132,7 @@ const Add = ({ navigation }) => {
                             { label: 'Tangerang', value: 'tangerang' },
                             { label: 'Bekasi', value: 'bekasi' },
                         ]}
-                        defaultNull = {nullChecker}
+                        defaultNull={nullChecker}
                         placeholder='Lokasi'
                         containerStyle={{
                             // width: normalize(350),
