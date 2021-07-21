@@ -1,14 +1,20 @@
-import React, { Component } from 'react'
+import React, { Component, useState } from 'react'
 import {
     View,
     Text,
     Image,
     TouchableOpacity,
-    StyleSheet
+    StyleSheet,
+    Switch
 } from 'react-native'
 import normalize from 'react-native-normalize';
 
 const BottomSheet = ({onPressEdit, onPressDelete}) => {
+
+    const [toggled, setToggle] = useState(false)
+
+    
+
     return (
         <View style={styles.container}>
             <View style={styles.containerText}>
@@ -44,6 +50,18 @@ const BottomSheet = ({onPressEdit, onPressDelete}) => {
                         Hapus Produk
                     </Text>
                 </TouchableOpacity>
+            </View>
+
+            <View style={styles.containerSwitch}>
+                <Text style={styles.txtTampilkan}>
+                    Tampilkan Produk
+                </Text>
+                <Switch
+                    value={toggled}
+                    onValueChange={(value) => setToggle(value)}
+                    trackColor={{true: '#0064D0', false: 'grey'}}
+                    thumbColor={'white'}
+                />
             </View>
         </View>
     )
@@ -144,7 +162,9 @@ const styles = StyleSheet.create({
     txtTampilkan: {
         width: normalize(129),
         height: normalize(18),
+        marginTop: normalize(6),
         marginLeft: normalize(26),
+        marginRight: normalize(150),
         fontSize: normalize(14),
         fontFamily: 'Montserrat-Regular'
     },
