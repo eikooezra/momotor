@@ -6,7 +6,6 @@ import {
   Text,
   Image,
 } from 'react-native'
-import ToggleSwitch from 'toggle-switch-react-native'
 import normalize from 'react-native-normalize'
 
 class Settings extends Component{
@@ -23,10 +22,6 @@ class Settings extends Component{
 
   goToChangePass = () => {
     this.props.navigation.navigate('ConfirmEmail')
-  }
-
-  onToggle(isOn){
-    console.log("Changed to" + isOn)
   }
 
 render(){
@@ -54,27 +49,6 @@ render(){
                     Kata Sandi
                 </Text>
             </TouchableOpacity>
-
-          <View style={styles.notif}>
-                <ToggleSwitch
-                    onColor='#0064D0'
-                    isOn={this.state.isSwitchOn}
-                    label='Notifikasi'
-                    labelStyle={{
-                        height: normalize(18),
-                        marginLeft: normalize(20),
-                        marginRight: normalize(220),
-                        marginTop: normalize(35),
-                        marginBottom: normalize(35),
-                        fontSize: normalize(16),
-                        fontFamily: 'Montserrat-Medium'
-                    }}
-                    onToggle={isSwitchOn => {
-                        this.setState({isSwitchOn})
-                        this.onToggle({isSwitchOn})
-                    }}
-                    />
-          </View>
         </View>
   </View>
         )
