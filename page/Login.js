@@ -29,15 +29,16 @@ const Login = ({ navigation }) => {
         Fire.auth()
             .signInWithEmailAndPassword(form.email, form.password)
             .then(success => {
-                Fire.database()
-                .ref(`users/${success.user.uid}`)
-                .once('value')
-                .then(resDB => {
-                    console.log('data user: ', resDB.val())
-                    if(resDB.val()){
-                        storeData('user', resDB.val())
-                    }
-                })
+                Fire
+                    .database()
+                    .ref(`users/${success.user.uid}`)
+                    .once('value')
+                    .then(resDB => {
+                        console.log('data user: ', resDB.val())
+                        if (resDB.val()) {
+                            storeData('user', resDB.val())
+                        }
+                    })
                 console.log('success: ', success)
                 navigation.navigate('Home')
             })
@@ -51,12 +52,12 @@ const Login = ({ navigation }) => {
                 })
                 console.log('error: ', error)
             })
-        
+
     }
 
     return (
         <KeyboardAvoidingView style={styles.container} behavior="position">
-            <StatusBar backgroundColor='#0064D0'/>
+            <StatusBar backgroundColor='#0064D0' />
             <View style={styles.split1}>
                 <LinearGradient colors={['#0A4D96', '#1E87F8']}>
                     <Image style={styles.logo}
@@ -128,7 +129,7 @@ const Login = ({ navigation }) => {
                             onPress={() => navigation.navigate('Forgot')}>
                             <Text style={styles.txtSandi}>
                                 Lupa kata Sandi?
-                    </Text>
+                            </Text>
                         </TouchableOpacity>
                     </View>
                     <View style={styles.registerArea}>
@@ -136,7 +137,7 @@ const Login = ({ navigation }) => {
                             onPress={() => navigation.navigate('Register')}>
                             <Text style={styles.txtSandi}>
                                 Buat akun baru
-                    </Text>
+                            </Text>
                         </TouchableOpacity>
                     </View>
                 </View>

@@ -286,7 +286,7 @@ const UploadDocs = ({ navigation, route }) => {
         getData('dataCustomer').then(res => {
             // uploadData()
             showOrderSucceed({custName: res.custName})
-            // console.log('name', res.custName)
+            console.log('name', res.custName)
         })
         // navigation.navigate('DaftarPesanan')
     }
