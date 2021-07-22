@@ -62,7 +62,7 @@ const EditProfile = ({ navigation }) => {
         <View style={styles.container}>
             <View style={styles.Header}>
                 <TouchableOpacity
-                    onPress={() => navigation.navigate('Account')}
+                    onPress={() => navigation.goBack()}
                 >
                     <Image
                         style={styles.btnBack}

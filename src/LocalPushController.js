@@ -28,14 +28,6 @@ const showOrderSucceed = ({custName}) => {
         title: `Pesanan dengan nama ${custName} berhasil diajukan`,
         message: `Order ID 12345678910`,
     })
-    // const newPostKey = Fire.database().ref().child('post').push().key
-    // const notif = {
-
-    // }
-    // Fire
-    //     .database()
-    //     .ref('notification/' + newPostKey + '/')
-    //     .set()
 }
 
 const showOrderApproved = () => {
