@@ -18,7 +18,7 @@ const ChangePass = ({navigation}) => {
     })
 
     const goBack = () => {
-        navigation.navigate('ConfirmEmail')
+        navigation.navigate('Settings')
     }
 
         return(
@@ -38,8 +38,13 @@ const ChangePass = ({navigation}) => {
              </View>
 
              <View>
+                <Image
+                    style={styles.imgContainer}
+                    source={require('../../assets/images/lupaPass.png')}
+                />
+
                 <Text style={styles.txtUbah}>
-                    Ubah Sandi Baru
+                    Ubah Kata Sandi
                 </Text>
              </View>
              
@@ -137,10 +142,18 @@ const styles = StyleSheet.create({
         fontFamily: 'Montserrat-Bold'
     },
 
+    imgContainer: {
+        width: normalize(190),
+        height: normalize(230),
+        marginTop: normalize(20),
+        marginBottom: normalize(30),
+        marginLeft: normalize(95),
+        marginRight: normalize(105)
+    },
+
     txtUbah: {
-        marginLeft: normalize(16),
-        marginTop: normalize(24),
-        marginBottom: normalize(24),
+        marginLeft: normalize(25),
+        marginBottom: normalize(20),
         fontFamily: 'Montserrat-Bold',
         fontSize: normalize(16)
     },
@@ -200,6 +213,7 @@ const styles = StyleSheet.create({
         borderRadius: 5,
         paddingLeft: normalize(35),
         marginLeft: normalize(25),
+        borderColor: '#7F7F7F'
     },
     
     inputContainer2: {
@@ -210,6 +224,7 @@ const styles = StyleSheet.create({
         borderRadius: 5,
         paddingLeft: normalize(35),
         marginLeft: normalize(25),
+        borderColor: '#7F7F7F'
     },
 
     btnReset: {
@@ -225,6 +240,7 @@ const styles = StyleSheet.create({
     },
 
     txtReset: {
+        color: '#FFFFFF',
         fontFamily: 'Montserrat-SemiBold',
         fontSize: normalize(16),
     }
