@@ -11,7 +11,6 @@ import normalize from 'react-native-normalize'
 import Login from './page/Login'
 import Forgot from './page/Forgot'
 import Logout from './page/Logout'
-import Register from './page/Register'
 
 import Home from './page/Home/Home'
 
@@ -64,7 +63,6 @@ import PrivacyPolicy from './page/Account/PrivacyPolicy'
 import Terms from './page/Account/Terms'
 import FAQ from './page/Account/FAQ'
 
-import ConfirmEmail from './page/Account/ConfirmEmail' // 1st screen for change password page
 import ChangePass from './page/Account/ChangePass'
 
 const HomeStack = createStackNavigator()
@@ -660,14 +658,12 @@ class App extends Component {
             <Stack.Screen name='EditPics' component={EditPics} />
             <Stack.Screen name='EditProfile' component={EditProfile} />
             <Stack.Screen name='Settings' component={Settings} />
-            <Stack.Screen name='ConfirmEmail' component={ConfirmEmail} />
             <Stack.Screen name='ChangePass' component={ChangePass} />
             <Stack.Screen name='About' component={About} />
             <Stack.Screen name='PrivacyPolicy' component={PrivacyPolicy} />
             <Stack.Screen name='Terms' component={Terms} />
             <Stack.Screen name='FAQ' component={FAQ} />
             <Stack.Screen name='Logout' component={Logout} />
-            <Stack.Screen name='Register' component={Register} />
           </Stack.Navigator>
         </NavigationContainer>
         <FlashMessage position='top' />

@@ -8,20 +8,13 @@ import {
 } from 'react-native'
 import normalize from 'react-native-normalize'
 
-class Settings extends Component{
-    constructor(props){
-        super(props)
-        this.state = {
-            isSwitchOn: false
-        }
-    }
-    
+class Settings extends Component{    
   goToAccount = () => {
     this.props.navigation.goBack()
   }
 
   goToChangePass = () => {
-    this.props.navigation.navigate('ConfirmEmail')
+    this.props.navigation.navigate('ChangePass')
   }
 
 render(){
