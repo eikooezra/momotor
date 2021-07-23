@@ -37,19 +37,6 @@ const BottomSheet = ({onPressEdit, onPressDelete}) => {
                         Edit Produk
                     </Text>
                 </TouchableOpacity>
-                <TouchableOpacity
-                    style={styles.btnView}
-                    onPress={onPressDelete}
-                >
-                    <Image
-                        style={styles.imgDelete}
-                        source={require('../../assets/images/trash.png')}
-                    />
-
-                    <Text style={styles.txtEdit}>
-                        Hapus Produk
-                    </Text>
-                </TouchableOpacity>
             </View>
 
             <View style={styles.containerSwitch}>
