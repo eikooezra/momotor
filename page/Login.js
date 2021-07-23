@@ -132,14 +132,6 @@ const Login = ({ navigation }) => {
                             </Text>
                         </TouchableOpacity>
                     </View>
-                    <View style={styles.registerArea}>
-                        <TouchableOpacity
-                            onPress={() => navigation.navigate('Register')}>
-                            <Text style={styles.txtSandi}>
-                                Buat akun baru
-                            </Text>
-                        </TouchableOpacity>
-                    </View>
                 </View>
             </View>
         </KeyboardAvoidingView>
