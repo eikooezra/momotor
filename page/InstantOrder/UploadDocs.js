@@ -8,7 +8,7 @@ import {
     TouchableOpacity
 } from 'react-native'
 import { launchCamera, launchImageLibrary } from 'react-native-image-picker';
-import Animated from 'react-native-reanimated'
+import Animated, { not } from 'react-native-reanimated'
 import BottomSheet from 'reanimated-bottom-sheet'
 import normalize from 'react-native-normalize'
 import { Header, Title } from '../../components/components'
@@ -283,10 +283,26 @@ const UploadDocs = ({ navigation, route }) => {
     }
 
     const uploadAndContinue = () => {
-        getData('dataCustomer').then(res => {
-            // uploadData()
-            showOrderSucceed({custName: res.custName})
-            console.log('name', res.custName)
+        uploadData()
+        getData('user').then(res => {
+            const uid = res.uid
+            getData('dataCustomer').then(res => {
+                showOrderSucceed({ custName: res.custName })
+                console.log('name', res.custName)
+                const newPostKey = Fire.database().ref().child('post').push().key
+                const notif = {
+                    id: newPostKey,
+                    title: 'Pesanan dengan nama ' + res.custName + ' berhasil diajukan',
+                    message: `Order ID 12345678910`,
+                    type: 'NewOrder'
+
+                }
+                Fire
+                    .database()
+                    .ref('notification/' + uid + '/' + notif.id + '/')
+                    .set(notif)
+            })
+
         })
         // navigation.navigate('DaftarPesanan')
     }
