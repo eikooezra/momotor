@@ -251,10 +251,10 @@ const styles = StyleSheet.create({
     },
 
     status: {
-        width: 100,
-        height: 25,
-        marginTop: 85,
-        marginLeft: 5,
+        width: normalize(100),
+        height: normalize(25),
+        marginTop: normalize(85),
+        marginLeft: normalize(5),
         borderRadius: 4,
         backgroundColor: '#EAF7EE'
     },
@@ -268,15 +268,15 @@ const styles = StyleSheet.create({
     },
 
     btnArea: {
-        width: 24,
-        height: 24,
-        marginLeft: 335,
-        marginTop: 16,
+        width: normalize(24),
+        height: normalize(24),
+        marginLeft: normalize(320),
+        marginTop: normalize(16),
         position: 'absolute'
     },
 
     triDots: {
-        width: 24,
-        height: 24,
+        width: normalize(24),
+        height: normalize(24),
     }
 });
