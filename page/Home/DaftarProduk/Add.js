@@ -57,9 +57,9 @@ const Add = ({ navigation }) => {
             //     .database()
             //     .ref('product/' + res.uid + '/' + newPostKey + '/')
             //     .set(data)
-            // storeData('product', data)
+            storeData('product', data)
 
-            // navigation.navigate('AddPics', data)
+            navigation.navigate('AddPics', data)
 
         })
     }
