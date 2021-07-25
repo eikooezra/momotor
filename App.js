@@ -60,7 +60,6 @@ import Settings from './page/Account/Settings'
 import EditProfile from './page/Account/EditProfile'
 import About from './page/Account/About'
 import PrivacyPolicy from './page/Account/PrivacyPolicy'
-import Terms from './page/Account/Terms'
 import FAQ from './page/Account/FAQ'
 
 import ChangePass from './page/Account/ChangePass'
@@ -661,7 +660,6 @@ class App extends Component {
             <Stack.Screen name='ChangePass' component={ChangePass} />
             <Stack.Screen name='About' component={About} />
             <Stack.Screen name='PrivacyPolicy' component={PrivacyPolicy} />
-            <Stack.Screen name='Terms' component={Terms} />
             <Stack.Screen name='FAQ' component={FAQ} />
             <Stack.Screen name='Logout' component={Logout} />
           </Stack.Navigator>
