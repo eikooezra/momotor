@@ -41,6 +41,9 @@ const AddPics = ({ navigation, route }) => {
                 const source = { uri: response.uri }
                 setPhotoForDB(`data:${response.type};base64, ${response.base64}`)
                 setPhoto(source)
+                if(response.didCancel){
+                    setPhoto(require('../../../assets/images/camLogo.png'))
+                }
             })
     }
 
@@ -52,6 +55,9 @@ const AddPics = ({ navigation, route }) => {
                 const source = { uri: response.uri }
                 setPhotoForDB(`data:${response.type};base64, ${response.base64}`)
                 setPhoto(source)
+                if(response.didCancel){
+                    setPhoto(require('../../../assets/images/camLogo.png'))
+                }
             })
     }
 
@@ -63,6 +69,9 @@ const AddPics = ({ navigation, route }) => {
                 const source = { uri: response.uri }
                 setPhotoForDB1(`data:${response.type};base64, ${response.base64}`)
                 setPhoto1(source)
+                if(response.didCancel){
+                    setPhoto(require('../../../assets/images/camLogo.png'))
+                }
             })
     }
 
@@ -74,6 +83,9 @@ const AddPics = ({ navigation, route }) => {
                 const source = { uri: response.uri }
                 setPhotoForDB1(`data:${response.type};base64, ${response.base64}`)
                 setPhoto1(source)
+                if(response.didCancel){
+                    setPhoto(require('../../../assets/images/camLogo.png'))
+                }
             })
     }
 
@@ -85,6 +97,9 @@ const AddPics = ({ navigation, route }) => {
                 const source = { uri: response.uri }
                 setPhotoForDB2(`data:${response.type};base64, ${response.base64}`)
                 setPhoto2(source)
+                if(response.didCancel){
+                    setPhoto(require('../../../assets/images/camLogo.png'))
+                }
             })
     }
 
@@ -96,6 +111,9 @@ const AddPics = ({ navigation, route }) => {
                 const source = { uri: response.uri }
                 setPhotoForDB2(`data:${response.type};base64, ${response.base64}`)
                 setPhoto2(source)
+                if(response.didCancel){
+                    setPhoto(require('../../../assets/images/camLogo.png'))
+                }
             })
     }
 
@@ -107,6 +125,9 @@ const AddPics = ({ navigation, route }) => {
                 const source = { uri: response.uri }
                 setPhotoForDB3(`data:${response.type};base64, ${response.base64}`)
                 setPhoto3(source)
+                if(response.didCancel){
+                    setPhoto(require('../../../assets/images/camLogo.png'))
+                }
             })
     }
 
@@ -118,6 +139,9 @@ const AddPics = ({ navigation, route }) => {
                 const source = { uri: response.uri }
                 setPhotoForDB3(`data:${response.type};base64, ${response.base64}`)
                 setPhoto3(source)
+                if(response.didCancel){
+                    setPhoto(require('../../../assets/images/camLogo.png'))
+                }
             })
     }
 
@@ -129,6 +153,9 @@ const AddPics = ({ navigation, route }) => {
                 const source = { uri: response.uri }
                 setPhotoForDB4(`data:${response.type};base64, ${response.base64}`)
                 setPhoto4(source)
+                if(response.didCancel){
+                    setPhoto(require('../../../assets/images/camLogo.png'))
+                }
             })
     }
 
@@ -140,6 +167,9 @@ const AddPics = ({ navigation, route }) => {
                 const source = { uri: response.uri }
                 setPhotoForDB4(`data:${response.type};base64, ${response.base64}`)
                 setPhoto4(source)
+                if(response.didCancel){
+                    setPhoto(require('../../../assets/images/camLogo.png'))
+                }
             })
     }
 
@@ -151,6 +181,9 @@ const AddPics = ({ navigation, route }) => {
                 const source = { uri: response.uri }
                 setPhotoForDB5(`data:${response.type};base64, ${response.base64}`)
                 setPhoto5(source)
+                if(response.didCancel){
+                    setPhoto(require('../../../assets/images/camLogo.png'))
+                }
             })
     }
 
@@ -162,6 +195,9 @@ const AddPics = ({ navigation, route }) => {
                 const source = { uri: response.uri }
                 setPhotoForDB5(`data:${response.type};base64, ${response.base64}`)
                 setPhoto5(source)
+                if(response.didCancel){
+                    setPhoto(require('../../../assets/images/camLogo.png'))
+                }
             })
     }
 
