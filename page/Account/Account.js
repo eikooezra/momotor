@@ -109,19 +109,6 @@ const Account = ({ navigation, route }) => {
         </Text>
         </TouchableOpacity>
 
-        <TouchableOpacity style={styles.btnTerms}
-          onPress={() => navigation.navigate('Terms')}
-        >
-          <Image
-            style={styles.imgTerms}
-            source={require('../../assets/images/termscondition.png')}
-          />
-
-          <Text style={styles.txtTerms}>
-            Syarat dan Ketentuan
-        </Text>
-        </TouchableOpacity>
-
         <TouchableOpacity style={styles.btnFaq}
           onPress={() => navigation.navigate('FAQ')}
         >
