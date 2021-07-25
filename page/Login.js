@@ -43,12 +43,12 @@ const Login = ({ navigation }) => {
                 navigation.navigate('Home')
             })
             .catch(error => {
-                const errorMessage = error.message
                 showMessage({
-                    message: errorMessage,
+                    message: 'Email atau kata sandi salah!',
                     type: 'default',
                     backgroundColor: '#E06379',
-                    color: '#FFFFFF'
+                    color: '#FFFFFF',
+                    fontFamily: 'Montserrat-SemiBold'
                 })
                 console.log('error: ', error)
             })

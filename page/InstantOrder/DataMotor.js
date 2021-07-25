@@ -15,6 +15,7 @@ import { Button, Title, Input, Gap, Header } from '../../components/components'
 import { Fire } from '../../config'
 import { getData, storeData } from '../../utils/localstorage/localstorage'
 import { useForm } from '../../utils/utils'
+import SearchableDropdown from 'react-native-searchable-dropdown';
 
 const DataMotor = ({ navigation, route }) => {
     const {
@@ -86,7 +87,7 @@ const DataMotor = ({ navigation, route }) => {
         setSelectedYear(item.year)
         setSelectedImages(item.images)
     }
-    
+
     const searchFilter = (text) => {
         if (text) {
             const newData = masterProduct.filter((item) => {
@@ -116,7 +117,7 @@ const DataMotor = ({ navigation, route }) => {
         storeData('dataMotor', data)
         navigation.navigate('DataKredit', data)
     }
-    
+
     return (
         <View style={styles.container}>
             <Header title="Instant Order" back onPress={() => navigation.goBack()} />
@@ -124,6 +125,36 @@ const DataMotor = ({ navigation, route }) => {
             <ScrollView>
                 <View style={styles.content}>
                     <Gap height={8} />
+                    {/* <SearchableDropdown
+                        defaultIndex={2}
+                        placeholder="Model Motor"
+                        value={selectedModel}
+                        onTextChange={(text) => setSelectedModel(text)}
+                        onItemSelect={itemView}
+                        items={product}
+                        textInputStyle={{
+                            paddingHorizontal: 16,
+                            borderWidth: 1,
+                            borderRadius: 4,
+                            borderColor: '#EBEBEB',
+                            color: '#7F7F7F',
+                            fontFamily: 'Montserrat-SemiBold',
+                        }}
+                        itemStyle={{
+                            // Single dropdown item style
+                            padding: 10,
+                            marginTop: 2,
+                            borderColor: '#EBEBEB',
+
+
+                            // borderWidth: 1,
+                        }}
+                        itemTextStyle={{
+                            // Text style of a single dropdown item
+                            fontFamily: 'Montserrat-SemiBold',
+                            color: '#7F7F7F',
+                        }}
+                    /> */}
                     <Input
                         placeholder="Model Motor"
                         value={selectedModel}

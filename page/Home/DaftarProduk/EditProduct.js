@@ -21,6 +21,7 @@ const EditProduct = ({ navigation, route }) => {
         desc,
         images
     })
+    console.log(product.year)
 
     const changeText = (key, value) => {
         setProduct({
@@ -116,7 +117,7 @@ const EditProduct = ({ navigation, route }) => {
                         arrowStyle={{
 
                         }}
-                        value={product.year}
+                        defaultValue={product.year}
                         onChangeItem={(value) => changeText('year', value)}
                     />
                     <Gap height={34} />

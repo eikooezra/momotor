@@ -1,18 +1,25 @@
-import React, {useState, useRef, useEffect} from 'react'
+import React, { useState, useRef, useEffect } from 'react'
 import {
     Image,
     View,
     Text,
     TextInput,
     StyleSheet,
-    TouchableOpacity
+    TouchableOpacity,
+    Alert,
+    KeyboardAvoidingView
 } from 'react-native'
+import { ScrollView } from 'react-native-gesture-handler'
 import normalize from 'react-native-normalize'
+import { showMessage, hideMessage } from "react-native-flash-message";
 import { useForm } from '../../utils/utils'
+import { Fire } from '../../config'
 
-const ChangePass = ({navigation}) => {
+const ChangePass = ({ navigation }) => {
     const [showPass, setShowPass] = useState(true)
+    const [showPass1, setShowPass1] = useState(true)
     const [form, setForm] = useForm({
+        currPass: '',
         newPass: '',
         conPass: ''
     })
@@ -21,92 +28,178 @@ const ChangePass = ({navigation}) => {
         navigation.navigate('Settings')
     }
 
-        return(
-            <View style={styles.container}>
-             <View style={styles.Header}>
-              <TouchableOpacity
-                onPress={goBack}
-              >
-                <Image 
-                 style={styles.btnBack}
-                 source={require('../../assets/images/back.png')}
-                />
-              </TouchableOpacity>
-                <Text style={styles.txtSandi}>
-                 Kata Sandi
-                </Text>
-             </View>
+    const reauthenticate = (currentPass) => {
+        const user = Fire.auth().currentUser
+        const cred = Fire.auth.EmailAuthProvider.credential(user.email, currentPass)
+        return user.reauthenticateWithCredential(cred)
+    }
 
-             <View>
-                <Image
-                    style={styles.imgContainer}
-                    source={require('../../assets/images/lupaPass.png')}
-                />
+    const onChangePass = () => {
+        reauthenticate(form.currPass).then(() => {
+            const user = Fire.auth().currentUser
+            user.updatePassword(form.newPass).then(() => {
+                showMessage({
+                    message: 'Kata sandi berhasil diubah',
+                    type: 'default',
+                    backgroundColor: '#20b53e',
+                    color: '#FFFFFF',
+                })
+                navigation.navigate('Home')
+            }).catch((error) => {
+                const errorMessage = error.message
+                showMessage({
+                    message: errorMessage,
+                    type: 'default',
+                    backgroundColor: '#E06379',
+                    color: '#FFFFFF',
+                })
+            })
 
-                <Text style={styles.txtUbah}>
-                    Ubah Kata Sandi
-                </Text>
-             </View>
-             
-             <Text style={styles.txtSanLam}>
-                Kata Sandi Baru
-             </Text>
+        }).catch((error) => {
+            const errorMessage = error.message
+            showMessage({
+                message: errorMessage,
+                type: 'default',
+                backgroundColor: '#E06379',
+                color: '#FFFFFF',
+            })
+        })
 
-             <View style={styles.inputContainer1}>
-                <Image style={styles.lockLogo}
-                    source={require('../../assets/images/lockGre.png')}
-                />
-                <TextInput style={styles.txtInput}
-                    placeholder='Masukkan kata sandi baru'
-                    returnKeyType='next'
-                    placeholderTextColor='#7F7F7F'
-                    secureTextEntry={showPass}
-                    value={form.newPass}
-                    onChangeText={value => setForm('newPass', value)}
-                    onSubmitEditing={() => secondTextInput.focus()}
-                />
+    }
+    const enabled =
+        form.currPass !== '' &&
+        form.newPass !== '' &&
+        form.conPass !== '' &&
+        form.conPass == form.newPass
 
-                <TouchableOpacity style={styles.btnEye}
-                    onPress={() => setShowPass((prev) => !prev)}>
-                        <Image style={styles.eyeLogo}
-                            source={(showPass) 
-                                ? require('../../assets/images/eyeGre.png')
-                                : require('../../assets/images/eyeGreS.png')
-                            }
-                        />
+    return (
+        <View style={styles.container}>
+            <View style={styles.Header}>
+                <TouchableOpacity
+                    onPress={goBack}
+                >
+                    <Image
+                        style={styles.btnBack}
+                        source={require('../../assets/images/back.png')}
+                    />
                 </TouchableOpacity>
-             </View>
-
-             <Text style={styles.txtSanBar}>
-                Konfirmasi Kata Sandi Baru
-             </Text>
-
-             <View style={styles.inputContainer2}>
-                <Image style={styles.lockLogo}
-                    source={require('../../assets/images/lockGre.png')}
-                />
-                <TextInput style={styles.txtInput}
-                    placeholder='Konfirmasi kata sandi baru'
-                    placeholderTextColor='#7F7F7F'
-                    secureTextEntry={true}
-                    value={form.conPass}
-                    onChangeText={value => setForm('conPass', value)}
-                    ref={(input) => { secondTextInput = input }}
-                />
-             </View>
-            
-             <TouchableOpacity style={styles.btnReset}
-                    // onPress={}
-                    // disabled={!enabled}
-                    >
-                        
-                    <Text style={styles.txtReset}>
-                        Reset Kata Sandi
-                    </Text>
-             </TouchableOpacity>
-
+                <Text style={styles.txtSandi}>
+                    Kata Sandi
+                </Text>
             </View>
-        )
+            <ScrollView
+                showsVerticalScrollIndicator={false}
+            >
+
+                <View>
+                    <Image
+                        style={styles.imgContainer}
+                        source={require('../../assets/images/lupaPass.png')}
+                    />
+
+                    <Text style={styles.txtUbah}>
+                        Ubah Kata Sandi
+                    </Text>
+                </View>
+                <KeyboardAvoidingView>
+                    <Text style={styles.txtSanLam}>
+                        Kata Sandi Saat Ini
+                    </Text>
+
+                    <View style={styles.inputContainer1}>
+                        <Image style={styles.lockLogo}
+                            source={require('../../assets/images/lockGre.png')}
+                        />
+                        <TextInput style={styles.txtInput}
+                            placeholder='Masukkan kata sandi saat ini'
+                            returnKeyType='next'
+                            placeholderTextColor='#7F7F7F'
+                            secureTextEntry={showPass}
+                            value={form.currPass}
+                            onChangeText={value => setForm('currPass', value)}
+                            onSubmitEditing={() => secondTextInput.focus()}
+                        />
+
+                        <TouchableOpacity style={styles.btnEye}
+                            onPress={() => setShowPass((prev) => !prev)}>
+                            <Image style={styles.eyeLogo}
+                                source={(showPass)
+                                    ? require('../../assets/images/eyeGre.png')
+                                    : require('../../assets/images/eyeGreS.png')
+                                }
+                            />
+                        </TouchableOpacity>
+                    </View>
+
+                    <Text style={styles.txtSanLam}>
+                        Kata Sandi Baru
+                    </Text>
+
+                    <View style={styles.inputContainer1}>
+                        <Image style={styles.lockLogo}
+                            source={require('../../assets/images/lockGre.png')}
+                        />
+                        <TextInput style={styles.txtInput}
+                            placeholder='Masukkan kata sandi baru'
+                            returnKeyType='next'
+                            placeholderTextColor='#7F7F7F'
+                            secureTextEntry={showPass1}
+                            value={form.newPass}
+                            onChangeText={value => setForm('newPass', value)}
+                            onSubmitEditing={() => secondTextInput.focus()}
+                        />
+
+                        <TouchableOpacity style={styles.btnEye}
+                            onPress={() => setShowPass1((prev) => !prev)}>
+                            <Image style={styles.eyeLogo}
+                                source={(showPass1)
+                                    ? require('../../assets/images/eyeGre.png')
+                                    : require('../../assets/images/eyeGreS.png')
+                                }
+                            />
+                        </TouchableOpacity>
+                    </View>
+
+                    <Text style={styles.txtSanBar}>
+                        Konfirmasi Kata Sandi Baru
+                    </Text>
+
+                    <View style={styles.inputContainer2}>
+                        <Image style={styles.lockLogo}
+                            source={require('../../assets/images/lockGre.png')}
+                        />
+                        <TextInput style={styles.txtInput}
+                            placeholder='Konfirmasi kata sandi baru'
+                            placeholderTextColor='#7F7F7F'
+                            secureTextEntry={true}
+                            value={form.conPass}
+                            onChangeText={value => setForm('conPass', value)}
+                            ref={(input) => { secondTextInput = input }}
+                        />
+                    </View>
+
+                    <TouchableOpacity
+                        style={[styles.btnReset,
+                        {
+                            backgroundColor: (enabled)
+                                ? '#0064D0'
+                                : '#B7B7B7'
+                        }
+                        ]}
+                        onPress={onChangePass}
+                        disabled={!enabled}
+                    >
+
+                        <Text style={styles.txtReset}>
+                            Ganti Kata Sandi
+                        </Text>
+                    </TouchableOpacity>
+
+                </KeyboardAvoidingView>
+            </ScrollView>
+
+        </View>
+    )
 }
 
 export default ChangePass
@@ -215,7 +308,7 @@ const styles = StyleSheet.create({
         marginLeft: normalize(25),
         borderColor: '#7F7F7F'
     },
-    
+
     inputContainer2: {
         width: normalize(328),
         height: normalize(48),
@@ -228,7 +321,7 @@ const styles = StyleSheet.create({
     },
 
     btnReset: {
-        backgroundColor: '#0064D0',
+        backgroundColor: '#B7B7B7',
         marginTop: normalize(20),
         marginBottom: normalize(1),
         width: normalize(328),
