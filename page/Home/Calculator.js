@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import {
     StyleSheet,
-    KeyboardAvoidingView,
     Image,
     View,
     Text,
@@ -13,8 +12,8 @@ class Calculator extends Component {
     constructor(props){
         super(props)
         this.state={
-            price: 0,
-            dp: 0,
+            price: '',
+            dp: '',
             total36: 0,
             total24: 0,
             total12: 0,
@@ -70,10 +69,14 @@ class Calculator extends Component {
     }
 
         render(){
+            
+            let dpMin = this.state.price*0.1
+            let dpMax = this.state.price*0.5
 
             const enabled = 
             this.state.price >= 5000000 &&
-            this.state.dp >= 1500000
+            this.state.dp >= dpMin &&
+            this.state.dp <dpMax
 
             return (
                 <View style={styles.container}>
@@ -135,17 +138,14 @@ class Calculator extends Component {
                             </View>
         
                             <Text style={styles.txtMinDp}>
-                                *Minimal DP Rp 1,500,000
+                                *Minimal DP Rp 10%
                             </Text>
                         </View>
         
                         <TouchableOpacity
                             style={[styles.btnCount, 
                                 {
-                                    backgroundColor: (
-                                        this.state.price >= 5000000 &&
-                                        this.state.dp >= 1500000
-                                    )
+                                    backgroundColor: (enabled)
                                     ? '#0064D0'
                                     : '#B7B7B7'
                                 }
