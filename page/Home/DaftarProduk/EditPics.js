@@ -2,8 +2,10 @@ import React, { useState } from 'react';
 import {
     Image, StyleSheet, Text, TouchableOpacity, View
 } from 'react-native';
-import { launchImageLibrary } from 'react-native-image-picker';
+import { launchImageLibrary, launchCamera } from 'react-native-image-picker';
 import normalize from 'react-native-normalize';
+import Animated from 'react-native-reanimated'
+import BottomSheet from 'reanimated-bottom-sheet'
 import { Fire } from '../../../config';
 import { getData } from '../../../utils/localstorage/localstorage';
 
@@ -38,9 +40,27 @@ const AddPics = ({ navigation, route }) => {
             (response) => {
                 console.log('response: ', response)
                 const source = { uri: response.uri }
-                const data = { uri: `data:${response.type};base64, ${response.base64}` }
-                setPhotoForDB(data)
+                setPhotoForDB(`data:${response.type};base64, ${response.base64}`)
                 setPhoto(source)
+                if (response.didCancel) {
+                    const last = {uri: images.image}
+                    setPhoto(last)
+                }
+            })
+    }
+
+    const openCam = () => {
+        launchCamera(
+            { mediaType: 'photo', quality: 1, includeBase64: true },
+            (response) => {
+                console.log('response: ', response)
+                const source = { uri: response.uri }
+                setPhotoForDB(`data:${response.type};base64, ${response.base64}`)
+                setPhoto(source)
+                if (response.didCancel) {
+                    const last = {uri: images.image}
+                    setPhoto(last)
+                }
             })
     }
 
@@ -50,9 +70,27 @@ const AddPics = ({ navigation, route }) => {
             (response) => {
                 console.log('response: ', response)
                 const source = { uri: response.uri }
-                const data = { uri: `data:${response.type};base64, ${response.base64}` }
-                setPhotoForDB1(data)
+                setPhotoForDB1(`data:${response.type};base64, ${response.base64}`)
                 setPhoto1(source)
+                if (response.didCancel) {
+                    const last = {uri: images.image1}
+                    setPhoto1(last)
+                }
+            })
+    }
+
+    const openCam1 = () => {
+        launchCamera(
+            { mediaType: 'photo', quality: 1, includeBase64: true },
+            (response) => {
+                console.log('response: ', response)
+                const source = { uri: response.uri }
+                setPhotoForDB1(`data:${response.type};base64, ${response.base64}`)
+                setPhoto1(source)
+                if (response.didCancel) {
+                    const last = {uri: images.image1}
+                    setPhoto1(last)
+                }
             })
     }
 
@@ -62,9 +100,27 @@ const AddPics = ({ navigation, route }) => {
             (response) => {
                 console.log('response: ', response)
                 const source = { uri: response.uri }
-                const data = { uri: `data:${response.type};base64, ${response.base64}` }
-                setPhotoForDB2(data)
+                setPhotoForDB2(`data:${response.type};base64, ${response.base64}`)
                 setPhoto2(source)
+                if (response.didCancel) {
+                    const last = {uri: images.image2}
+                    setPhoto2(last)
+                }
+            })
+    }
+
+    const openCam2 = () => {
+        launchCamera(
+            { mediaType: 'photo', quality: 1, includeBase64: true },
+            (response) => {
+                console.log('response: ', response)
+                const source = { uri: response.uri }
+                setPhotoForDB2(`data:${response.type};base64, ${response.base64}`)
+                setPhoto2(source)
+                if (response.didCancel) {
+                    const last = {uri: images.image2}
+                    setPhoto2(last)
+                }
             })
     }
 
@@ -74,9 +130,27 @@ const AddPics = ({ navigation, route }) => {
             (response) => {
                 console.log('response: ', response)
                 const source = { uri: response.uri }
-                const data = { uri: `data:${response.type};base64, ${response.base64}` }
-                setPhotoForDB3(data)
+                setPhotoForDB3(`data:${response.type};base64, ${response.base64}`)
                 setPhoto3(source)
+                if (response.didCancel) {
+                    const last = {uri: images.image3}
+                    setPhoto3(last)
+                }
+            })
+    }
+
+    const openCam3 = () => {
+        launchCamera(
+            { mediaType: 'photo', quality: 1, includeBase64: true },
+            (response) => {
+                console.log('response: ', response)
+                const source = { uri: response.uri }
+                setPhotoForDB3(`data:${response.type};base64, ${response.base64}`)
+                setPhoto3(source)
+                if (response.didCancel) {
+                    const last = {uri: images.image3}
+                    setPhoto3(last)
+                }
             })
     }
 
@@ -86,9 +160,27 @@ const AddPics = ({ navigation, route }) => {
             (response) => {
                 console.log('response: ', response)
                 const source = { uri: response.uri }
-                const data = { uri: `data:${response.type};base64, ${response.base64}` }
-                setPhotoForDB4(data)
+                setPhotoForDB4(`data:${response.type};base64, ${response.base64}`)
                 setPhoto4(source)
+                if (response.didCancel) {
+                    const last = {uri: images.image4}
+                    setPhoto4(last)
+                }
+            })
+    }
+
+    const openCam4 = () => {
+        launchCamera(
+            { mediaType: 'photo', quality: 1, includeBase64: true },
+            (response) => {
+                console.log('response: ', response)
+                const source = { uri: response.uri }
+                setPhotoForDB4(`data:${response.type};base64, ${response.base64}`)
+                setPhoto4(source)
+                if (response.didCancel) {
+                    const last = {uri: images.image4}
+                    setPhoto4(last)
+                }
             })
     }
 
@@ -98,9 +190,27 @@ const AddPics = ({ navigation, route }) => {
             (response) => {
                 console.log('response: ', response)
                 const source = { uri: response.uri }
-                const data = { uri: `data:${response.type};base64, ${response.base64}` }
-                setPhotoForDB5(data)
+                setPhotoForDB5(`data:${response.type};base64, ${response.base64}`)
                 setPhoto5(source)
+                if (response.didCancel) {
+                    const last = {uri: images.image5}
+                    setPhoto5(last)
+                }
+            })
+    }
+
+    const openCam5 = () => {
+        launchCamera(
+            { mediaType: 'photo', quality: 1, includeBase64: true },
+            (response) => {
+                console.log('response: ', response)
+                const source = { uri: response.uri }
+                setPhotoForDB5(`data:${response.type};base64, ${response.base64}`)
+                setPhoto5(source)
+                if (response.didCancel) {
+                    const last = {uri: images.image5}
+                    setPhoto5(last)
+                }
             })
     }
 
@@ -121,11 +231,296 @@ const AddPics = ({ navigation, route }) => {
         })
     }
 
+    //Bottom sheet
+    const renderScreen = () => {
+        return (
+            <View style={styles.panel}>
+                <View>
+                    <TouchableOpacity
+                        style={{
+                            marginTop: 20,
+                            marginLeft: 25,
+                            flexDirection: 'row',
+                        }}
+                        onPress={openCam}
+                    >
+                        <Image
+                            style={styles.imgCam}
+                            source={require('../../../assets/images/camblk.png')}
+                        />
+
+                        <Text style={styles.txtBS}>
+                            Camera
+                        </Text>
+                    </TouchableOpacity>
+                </View>
+
+                <View>
+                    <TouchableOpacity
+                        style={{
+                            marginTop: 20,
+                            marginLeft: 25,
+                            flexDirection: 'row',
+                        }}
+                        onPress={getImage}
+                    >
+                        <Image
+                            style={styles.img3dots}
+                            source={require('../../../assets/images/3dots2.png')}
+                        />
+
+                        <Text style={styles.txtBS}>
+                            Browse
+                        </Text>
+                    </TouchableOpacity>
+                </View>
+            </View>
+        )
+    }
+
+    const renderScreen1 = () => {
+        return (
+            <View style={styles.panel}>
+                <View>
+                    <TouchableOpacity
+                        style={{
+                            marginTop: 20,
+                            marginLeft: 25,
+                            flexDirection: 'row',
+                        }}
+                        onPress={openCam1}
+                    >
+                        <Image
+                            style={styles.imgCam}
+                            source={require('../../../assets/images/camblk.png')}
+                        />
+
+                        <Text style={styles.txtBS}>
+                            Camera
+                        </Text>
+                    </TouchableOpacity>
+                </View>
+
+                <View>
+                    <TouchableOpacity
+                        style={{
+                            marginTop: 20,
+                            marginLeft: 25,
+                            flexDirection: 'row',
+                        }}
+                        onPress={getImage1}
+                    >
+                        <Image
+                            style={styles.img3dots}
+                            source={require('../../../assets/images/3dots2.png')}
+                        />
+
+                        <Text style={styles.txtBS}>
+                            Browse
+                        </Text>
+                    </TouchableOpacity>
+                </View>
+            </View>
+        )
+    }
+
+    const renderScreen2 = () => {
+        return (
+            <View style={styles.panel}>
+                <View>
+                    <TouchableOpacity
+                        style={{
+                            marginTop: 20,
+                            marginLeft: 25,
+                            flexDirection: 'row',
+                        }}
+                        onPress={openCam2}
+                    >
+                        <Image
+                            style={styles.imgCam}
+                            source={require('../../../assets/images/camblk.png')}
+                        />
+
+                        <Text style={styles.txtBS}>
+                            Camera
+                        </Text>
+                    </TouchableOpacity>
+                </View>
+
+                <View>
+                    <TouchableOpacity
+                        style={{
+                            marginTop: 20,
+                            marginLeft: 25,
+                            flexDirection: 'row',
+                        }}
+                        onPress={getImage2}
+                    >
+                        <Image
+                            style={styles.img3dots}
+                            source={require('../../../assets/images/3dots2.png')}
+                        />
+
+                        <Text style={styles.txtBS}>
+                            Browse
+                        </Text>
+                    </TouchableOpacity>
+                </View>
+            </View>
+        )
+    }
+
+    const renderScreen3 = () => {
+        return (
+            <View style={styles.panel}>
+                <View>
+                    <TouchableOpacity
+                        style={{
+                            marginTop: 20,
+                            marginLeft: 25,
+                            flexDirection: 'row',
+                        }}
+                        onPress={openCam3}
+                    >
+                        <Image
+                            style={styles.imgCam}
+                            source={require('../../../assets/images/camblk.png')}
+                        />
+
+                        <Text style={styles.txtBS}>
+                            Camera
+                        </Text>
+                    </TouchableOpacity>
+                </View>
+
+                <View>
+                    <TouchableOpacity
+                        style={{
+                            marginTop: 20,
+                            marginLeft: 25,
+                            flexDirection: 'row',
+                        }}
+                        onPress={getImage3}
+                    >
+                        <Image
+                            style={styles.img3dots}
+                            source={require('../../../assets/images/3dots2.png')}
+                        />
+
+                        <Text style={styles.txtBS}>
+                            Browse
+                        </Text>
+                    </TouchableOpacity>
+                </View>
+            </View>
+        )
+    }
+
+    const renderScreen4 = () => {
+        return (
+            <View style={styles.panel}>
+                <View>
+                    <TouchableOpacity
+                        style={{
+                            marginTop: 20,
+                            marginLeft: 25,
+                            flexDirection: 'row',
+                        }}
+                        onPress={openCam4}
+                    >
+                        <Image
+                            style={styles.imgCam}
+                            source={require('../../../assets/images/camblk.png')}
+                        />
+
+                        <Text style={styles.txtBS}>
+                            Camera
+                        </Text>
+                    </TouchableOpacity>
+                </View>
+
+                <View>
+                    <TouchableOpacity
+                        style={{
+                            marginTop: 20,
+                            marginLeft: 25,
+                            flexDirection: 'row',
+                        }}
+                        onPress={getImage4}
+                    >
+                        <Image
+                            style={styles.img3dots}
+                            source={require('../../../assets/images/3dots2.png')}
+                        />
+
+                        <Text style={styles.txtBS}>
+                            Browse
+                        </Text>
+                    </TouchableOpacity>
+                </View>
+            </View>
+        )
+    }
+
+    const renderScreen5 = () => {
+        return (
+            <View style={styles.panel}>
+                <View>
+                    <TouchableOpacity
+                        style={{
+                            marginTop: 20,
+                            marginLeft: 25,
+                            flexDirection: 'row',
+                        }}
+                        onPress={openCam5}
+                    >
+                        <Image
+                            style={styles.imgCam}
+                            source={require('../../../assets/images/camblk.png')}
+                        />
+
+                        <Text style={styles.txtBS}>
+                            Camera
+                        </Text>
+                    </TouchableOpacity>
+                </View>
+
+                <View>
+                    <TouchableOpacity
+                        style={{
+                            marginTop: 20,
+                            marginLeft: 25,
+                            flexDirection: 'row',
+                        }}
+                        onPress={getImage5}
+                    >
+                        <Image
+                            style={styles.img3dots}
+                            source={require('../../../assets/images/3dots2.png')}
+                        />
+
+                        <Text style={styles.txtBS}>
+                            Browse
+                        </Text>
+                    </TouchableOpacity>
+                </View>
+            </View>
+        )
+    }
+
+    const sheetRef = React.createRef()
+    const sheetRef1 = React.createRef()
+    const sheetRef2 = React.createRef()
+    const sheetRef3 = React.createRef()
+    const sheetRef4 = React.createRef()
+    const sheetRef5 = React.createRef()
+    const fall = new Animated.Value(1)
+
     return (
         <View style={styles.container}>
             <View style={styles.Header}>
                 <TouchableOpacity
-                    onPress={() => navigation.navigate('Add')}
+                    onPress={() => navigation.goBack()}
                 >
                     <Image
                         style={styles.btnBack}
@@ -140,7 +535,7 @@ const AddPics = ({ navigation, route }) => {
 
             <View style={styles.chosenPic}>
                 <TouchableOpacity
-                    onPress={getImage}
+                    onPress={() => sheetRef.current.snapTo(0)}
                     style={styles.bluRectangle}
                 >
                     <Image source={photo}
@@ -152,7 +547,7 @@ const AddPics = ({ navigation, route }) => {
                 </TouchableOpacity>
 
                 <TouchableOpacity
-                    onPress={getImage1}
+                    onPress={() => sheetRef1.current.snapTo(0)}
                     style={styles.bluRectangle}
                 >
                     <Image source={photo1}
@@ -164,7 +559,7 @@ const AddPics = ({ navigation, route }) => {
                 </TouchableOpacity>
 
                 <TouchableOpacity
-                    onPress={getImage2}
+                    onPress={() => sheetRef2.current.snapTo(0)}
                     style={styles.bluRectangle}
                 >
                     <Image source={photo2}
@@ -176,7 +571,7 @@ const AddPics = ({ navigation, route }) => {
                 </TouchableOpacity>
 
                 <TouchableOpacity
-                    onPress={getImage3}
+                    onPress={() => sheetRef3.current.snapTo(0)}
                     style={styles.bluRectangle}
                 >
                     <Image source={photo3}
@@ -188,7 +583,7 @@ const AddPics = ({ navigation, route }) => {
                 </TouchableOpacity>
 
                 <TouchableOpacity
-                    onPress={getImage4}
+                    onPress={() => sheetRef4.current.snapTo(0)}
                     style={styles.bluRectangle}
                 >
                     <Image source={photo4}
@@ -200,7 +595,7 @@ const AddPics = ({ navigation, route }) => {
                 </TouchableOpacity>
 
                 <TouchableOpacity
-                    onPress={getImage5}
+                    onPress={() => sheetRef5.current.snapTo(0)}
                     style={styles.bluRectangle}
                 >
                     <Image source={photo5}
@@ -222,6 +617,59 @@ const AddPics = ({ navigation, route }) => {
                     </Text>
                 </TouchableOpacity>
             </View>
+            <BottomSheet
+                ref={sheetRef}
+                snapPoints={[90, 0]}
+                initialSnap={1}
+                callbackNode={fall}
+                renderContent={renderScreen}
+                enabledGestureInteraction={true}
+            />
+
+            <BottomSheet
+                ref={sheetRef1}
+                snapPoints={[90, 0]}
+                initialSnap={1}
+                callbackNode={fall}
+                renderContent={renderScreen1}
+                enabledGestureInteraction={true}
+            />
+
+            <BottomSheet
+                ref={sheetRef2}
+                snapPoints={[90, 0]}
+                initialSnap={1}
+                callbackNode={fall}
+                renderContent={renderScreen2}
+                enabledGestureInteraction={true}
+            />
+
+            <BottomSheet
+                ref={sheetRef3}
+                snapPoints={[90, 0]}
+                initialSnap={1}
+                callbackNode={fall}
+                renderContent={renderScreen3}
+                enabledGestureInteraction={true}
+            />
+
+            <BottomSheet
+                ref={sheetRef4}
+                snapPoints={[90, 0]}
+                initialSnap={1}
+                callbackNode={fall}
+                renderContent={renderScreen4}
+                enabledGestureInteraction={true}
+            />
+
+            <BottomSheet
+                ref={sheetRef5}
+                snapPoints={[90, 0]}
+                initialSnap={1}
+                callbackNode={fall}
+                renderContent={renderScreen5}
+                enabledGestureInteraction={true}
+            />
         </View>
     )
 }
@@ -317,4 +765,28 @@ const styles = StyleSheet.create({
         fontFamily: 'Montserrat-SemiBold',
         color: '#FFFFFF',
     },
+
+    //for bottom sheet screen
+    panel: {
+        height: normalize(85),
+        padding: normalize(10),
+        backgroundColor: '#FFFFFF',
+        paddingTop: normalize(1),
+    },
+
+    imgCam: {
+        width: normalize(21),
+        height: normalize(19)
+    },
+
+    img3dots: {
+        width: normalize(22),
+        height: normalize(22)
+    },
+
+    txtBS: {
+        marginLeft: normalize(16),
+        fontSize: normalize(14),
+        fontFamily: 'Montserrat-Medium'
+    }
 })
