@@ -72,7 +72,7 @@ const Account = ({ navigation, route }) => {
           </View>
 
           <TouchableOpacity
-            onPress={() => navigation.navigate('EditProfile')}
+            onPress={() => navigation.navigate('EditProfile', profile)}
           >
             <Image
               style={styles.btnEdit}

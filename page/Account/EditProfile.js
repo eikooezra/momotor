@@ -15,35 +15,36 @@ import { Fire } from '../../config'
 import { getData, storeData } from '../../utils/localstorage/localstorage'
 import { useForm } from '../../utils/utils'
 
-const EditProfile = ({ navigation }) => {
-
+const EditProfile = ({ navigation, route }) => {
+    const { fullName, phoneNo, address, email } = route.params
     const [profile, setProfile] = useState({
-        fullName: '',
-        address: '',
-        phoneNo: '',
-        email: ''
-    })
-
-    useEffect(() => {
-        getData('user').then(res => {
-            const data = res
-            setProfile(data)
-        })
+        fullName,
+        address,
+        phoneNo,
+        email
     })
 
     const update = () => {
-        console.log('profile: ', profile)
-        Fire.database()
-        .ref(`users/${profile.uid}/`)
-        .update(profile)
-        .then(data => {
-            console.log('success: ', data)
-            storeData('user', data)
-            navigation.navigate('Account')
-            alert('Data berhasil diubah!')
-        })
-        .catch(err => {
-            console.log('error: ', err)
+        // console.log('profile: ', profile)
+        getData('user').then(res => {
+            const dataUpdate = {
+                fullName: profile.fullName,
+                address: profile.address,
+                phoneNo: profile.phoneNo
+            }
+            Fire
+                .database()
+                .ref(`users/${res.uid}/`)
+                .update(dataUpdate)
+                .then(data => {
+                    console.log('success: ', data)
+                    storeData('user', data)
+                    navigation.navigate('Account')
+                    alert('Data berhasil diubah!')
+                })
+                .catch(err => {
+                    console.log('error: ', err)
+                })
         })
     }
 
@@ -52,10 +53,6 @@ const EditProfile = ({ navigation }) => {
             ...profile,
             [key]: value,
         })
-    }
-
-    const dataSaved = () => {
-       
     }
 
     return (
@@ -71,13 +68,13 @@ const EditProfile = ({ navigation }) => {
                 </TouchableOpacity>
                 <Text style={styles.txtEdit}>
                     Edit Profile
-          </Text>
+                </Text>
             </View>
 
             <View>
                 <Text style={styles.txtName}>
                     Nama Dealer
-            </Text>
+                </Text>
 
                 <View style={styles.inputName}>
                     <TextInput
@@ -90,7 +87,7 @@ const EditProfile = ({ navigation }) => {
 
                 <Text style={styles.txtAddress}>
                     Alamat Dealer
-            </Text>
+                </Text>
 
                 <View style={styles.inputAddress}>
                     <TextInput
@@ -103,7 +100,7 @@ const EditProfile = ({ navigation }) => {
 
                 <Text style={styles.txtPhone}>
                     No. Handphone
-            </Text>
+                </Text>
 
                 <View style={styles.inputPhone}>
                     <TextInput
@@ -118,7 +115,7 @@ const EditProfile = ({ navigation }) => {
 
                 <Text style={styles.txtEmail}>
                     Email
-            </Text>
+                </Text>
 
                 <View style={styles.inputEmail}>
                     <TextInput
@@ -140,7 +137,7 @@ const EditProfile = ({ navigation }) => {
                     >
                         <Text style={styles.txtSave}>
                             SIMPAN
-                    </Text>
+                        </Text>
                     </TouchableOpacity>
                 </View>
             </View>
