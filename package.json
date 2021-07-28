@@ -19,6 +19,7 @@
     "@react-native-community/slider": "^3.0.3",
     "@react-native-firebase/app": "^12.1.0",
     "@react-native-firebase/dynamic-links": "^12.1.0",
+    "@react-native-firebase/messaging": "^12.3.0",
     "@react-navigation/bottom-tabs": "^5.5.1",
     "@react-navigation/material-top-tabs": "^5.2.9",
     "@react-navigation/native": "^5.5.0",
