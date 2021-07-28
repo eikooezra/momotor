@@ -226,7 +226,7 @@ const UploadDocs = ({ navigation, route }) => {
             const data = {
                 uid: uid,
                 id: newPostKey,
-                date: new Date().getDate() + '/' + new Date().getMonth() + '/' + new Date().getFullYear(),
+                date: new Date().getDate() + '/' + new Date().getMonth() + 1 + '/' + new Date().getFullYear(),
                 status: 'Proses Verifikasi'
             }
             const dataDokumen = {

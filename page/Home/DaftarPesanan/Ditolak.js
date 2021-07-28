@@ -10,28 +10,24 @@ import {
 import normalize from 'react-native-normalize';
 import { OrderItem } from '../../../components/components';
 import { Fire } from '../../../config';
-import { getData } from '../../../utils/localstorage/localstorage';
 
-const Ditolak = ({ navigation }) => {
+const Ditolak = ({navigation}) => {
     const [order, setOrder] = useState([])
     useEffect(() => {
-        getData('user').then(res => {
-            Fire.database()
-                .ref('order/' + res.uid + '/')
-                .orderByChild('status')
-                .equalTo('Ditolak')
-                .once('value')
-                .then(res => {
-                    console.log('data: ', res.val())
-                    if (res.val()) {
-                        setOrder(Object.values(res.val()))
-                    }
-                })
-                .catch(err => {
-                    console.log('error: ', err)
-                })
-
-        })
+        Fire.database()
+            .ref('order/')
+            .orderByChild('status')
+            .equalTo('Ditolak')
+            .once('value')
+            .then(res => {
+                console.log('data: ', res.val())
+                if (res.val()) {
+                    setOrder(Object.values(res.val()))
+                }
+            })
+            .catch(err => {
+                console.log('error: ', err)
+            })
     }, [])
     return (
         <View style={styles.container}>
@@ -39,10 +35,10 @@ const Ditolak = ({ navigation }) => {
                 {order.map(item => {
                     return (
                         <OrderItem
-                            key={item.id}
-                            image={item.data_motor.images.image}
-                            name={item.data_customer.custName}
-                            product={item.data_motor.product}
+                            id={item.id} 
+                            image={item.images.image}
+                            name={item.name}
+                            product={item.product}
                             date={item.date}
                             status={item.status}
                             onPress={() => navigation.navigate('DetailPesanan', item)}

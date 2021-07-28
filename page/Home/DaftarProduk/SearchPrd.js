@@ -7,8 +7,7 @@ import {
     TouchableOpacity,
     StatusBar,
     ScrollView,
-    FlatList,
-    Alert
+    FlatList
 } from 'react-native'
 import normalize from 'react-native-normalize';
 import { Fire } from '../../../config';
@@ -75,25 +74,11 @@ const Search = ({ navigation }) => {
             })
             setProduct(newData)
             setSearch(text)
-            // if(newData == ''){
-            //     showMessage({
-            //         message: 'Produk tidak ditemukan',
-            //         type: 'default',
-            //         backgroundColor: '#E06379',
-            //         color: '#FFFFFF',
-            //         fontFamily: 'Montserrat-SemiBold'
-            //     })
-            //     console.log('product not found')
-            // }
         }
         else {
             setProduct(masterProduct)
             setSearch(text)
         }
-    }
-
-    const onKeyPress = () => {
-        Alert.alert('Enter pressed')
     }
 
     return (
@@ -112,10 +97,9 @@ const Search = ({ navigation }) => {
                         placeholderTextColor='#7F7F7F'
                         value={search}
                         onChangeText={(text) => searchFilter(text)}
-                        onKeyPress={onKeyPress}
                     />
                 </View>
-
+                
                 <TouchableOpacity
                     onPress={() => navigation.goBack()}
                 >
@@ -124,7 +108,7 @@ const Search = ({ navigation }) => {
                     </Text>
                 </TouchableOpacity>
             </View>
-            <Gap height={16} />
+            <Gap height={16}/>
             <ScrollView>
                 <FlatList
                     data={product}
