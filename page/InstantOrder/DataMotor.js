@@ -9,6 +9,7 @@ import {
     ScrollView,
 } from "react-native";
 import DropDownPicker from "react-native-dropdown-picker";
+import SearchableDropdown from "react-native-searchable-dropdown";
 import normalize from "react-native-normalize";
 import { FlatList, TapGestureHandler } from "react-native-gesture-handler";
 import { Button, Title, Input, Gap, Header } from "../../components/components";
@@ -16,7 +17,48 @@ import { Fire } from "../../config";
 import { getData, storeData } from "../../utils/localstorage/localstorage";
 import { useForm } from "../../utils/utils";
 import { strings as str } from "../../utils/defaultValue";
-
+const items = [
+    {
+        id: 1,
+        name: "JavaScript",
+        value: "JavaScript",
+    },
+    {
+        id: 2,
+        name: "Java",
+        value: "Java",
+    },
+    {
+        id: 3,
+        name: "Ruby",
+        value: "Ruby",
+    },
+    {
+        id: 4,
+        name: "React Native",
+        value: "React Native",
+    },
+    {
+        id: 5,
+        name: "PHP",
+        value: "PHP",
+    },
+    {
+        id: 6,
+        name: "Python",
+        value: "Python",
+    },
+    {
+        id: 7,
+        name: "Go",
+        value: "Go",
+    },
+    {
+        id: 8,
+        name: "Swift",
+        value: "Swift",
+    },
+];
 const DataMotor = ({ navigation, route }) => {
     const { orderId } = route.params;
     const [masterProduct, setMasterProduct] = useState([]);
@@ -27,6 +69,7 @@ const DataMotor = ({ navigation, route }) => {
     const [selectedYear, setSelectedYear] = useState();
     const [selectedId, setSelectedId] = useState();
     const [selectedImages, setSelectedImages] = useState();
+    const [selectedValues, setSelectedValues] = useState([]);
 
     const [formError, setFormError] = useState([]);
 
@@ -37,10 +80,6 @@ const DataMotor = ({ navigation, route }) => {
     });
 
     const isEnabled = useMemo(() => selectedModel !== "", [formError]);
-
-    useEffect(() => {
-        getDataProduct();
-    }, []);
 
     const getDataProduct = () => {
         getData("user").then((res) => {
@@ -86,6 +125,15 @@ const DataMotor = ({ navigation, route }) => {
         setSelectedYear(item.year);
         setSelectedImages(item.images);
     };
+
+    const searchData = useMemo(() => {
+        if (selectedModel.length === 0) {
+            return [];
+        }
+        return product.filter((item) =>
+            item.name.toLowerCase().includes(selectedModel.toLowerCase())
+        );
+    }, [selectedModel, product]);
 
     const searchFilter = (text) => {
         if (text) {
@@ -162,6 +210,10 @@ const DataMotor = ({ navigation, route }) => {
         setFormError(currentError);
     };
 
+    useEffect(() => {
+        getDataProduct();
+    }, []);
+
     return (
         <View style={styles.container}>
             <Header title="Instant Order" back onPress={() => navigation.goBack()} />
@@ -182,7 +234,7 @@ const DataMotor = ({ navigation, route }) => {
                                 onBlur={() => onBlurCheck("model")}
                             />
                             <FlatList
-                                data={product}
+                                data={searchData}
                                 keyExtractor={(items, index) => items.id}
                                 ItemSeparatorComponent={itemSeparatorView}
                                 renderItem={itemView}
