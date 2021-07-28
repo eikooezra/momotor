@@ -52,7 +52,6 @@ const Add = ({ navigation }) => {
                 prevStatus: 'Pending',
             }
             console.log('cek: ', data)
-            console.log('new id: ', id)
             // Fire
             //     .database()
             //     .ref('product/' + res.uid + '/' + newPostKey + '/')

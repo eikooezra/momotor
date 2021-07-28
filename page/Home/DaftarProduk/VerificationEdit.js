@@ -12,7 +12,7 @@ import { getData } from '../../../utils/localstorage/localstorage';
 import { showMessage } from "react-native-flash-message";
 import { Fire } from '../../../config';
 
-const Verification = ({ navigation }) => {
+const VerificationEdit = ({ navigation }) => {
     const [isPressed, setIsPressed] = useState(false)
 
     const inputDataProduct = () => {
@@ -23,7 +23,7 @@ const Verification = ({ navigation }) => {
                 Fire
                     .database()
                     .ref('product/' + uid + '/' + id + '/')
-                    .set(res)
+                    .update(res)
                 getData('productImage').then(res => {
                     Fire
                         .database()
@@ -31,6 +31,7 @@ const Verification = ({ navigation }) => {
                         .update(res)
 
                 })
+                console.log('data image', res)
             })
         })
     }
@@ -108,7 +109,7 @@ const Verification = ({ navigation }) => {
     )
 }
 
-export default Verification
+export default VerificationEdit
 
 const styles = StyleSheet.create({
     container: {

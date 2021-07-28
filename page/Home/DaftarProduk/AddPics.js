@@ -7,7 +7,7 @@ import Animated from 'react-native-reanimated'
 import BottomSheet from 'reanimated-bottom-sheet'
 import normalize from 'react-native-normalize';
 import { Fire } from '../../../config';
-import { getData } from '../../../utils/localstorage/localstorage';
+import { getData, storeData } from '../../../utils/localstorage/localstorage';
 
 const AddPics = ({ navigation, route }) => {
     const {
@@ -215,17 +215,18 @@ const AddPics = ({ navigation, route }) => {
                 image5: photoForDB5,
             }
             console.log('data image: ', image)
-            getData('product').then(res => {
-                Fire
-                    .database()
-                    .ref('product/' + uid + '/' + id + '/')
-                    .set(res)
-                Fire
-                    .database()
-                    .ref('product/' + uid + '/' + id + '/images' + '/')
-                    .update(image)
-            })
-            navigation.navigate('Verification')
+            storeData('productImage', image)
+            // getData('product').then(res => {
+            //     Fire
+            //         .database()
+            //         .ref('product/' + uid + '/' + id + '/')
+            //         .set(res)
+            //     Fire
+            //         .database()
+            //         .ref('product/' + uid + '/' + id + '/images' + '/')
+            //         .update(image)
+            // })
+            navigation.navigate('Verification', image)
         })
     }
 

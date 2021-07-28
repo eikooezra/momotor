@@ -7,7 +7,7 @@ import normalize from 'react-native-normalize';
 import Animated from 'react-native-reanimated'
 import BottomSheet from 'reanimated-bottom-sheet'
 import { Fire } from '../../../config';
-import { getData } from '../../../utils/localstorage/localstorage';
+import { getData, storeData } from '../../../utils/localstorage/localstorage';
 
 const AddPics = ({ navigation, route }) => {
     const {
@@ -43,7 +43,7 @@ const AddPics = ({ navigation, route }) => {
                 setPhotoForDB(`data:${response.type};base64, ${response.base64}`)
                 setPhoto(source)
                 if (response.didCancel) {
-                    const last = {uri: images.image}
+                    const last = { uri: images.image }
                     setPhoto(last)
                 }
             })
@@ -58,7 +58,7 @@ const AddPics = ({ navigation, route }) => {
                 setPhotoForDB(`data:${response.type};base64, ${response.base64}`)
                 setPhoto(source)
                 if (response.didCancel) {
-                    const last = {uri: images.image}
+                    const last = { uri: images.image }
                     setPhoto(last)
                 }
             })
@@ -73,7 +73,7 @@ const AddPics = ({ navigation, route }) => {
                 setPhotoForDB1(`data:${response.type};base64, ${response.base64}`)
                 setPhoto1(source)
                 if (response.didCancel) {
-                    const last = {uri: images.image1}
+                    const last = { uri: images.image1 }
                     setPhoto1(last)
                 }
             })
@@ -88,7 +88,7 @@ const AddPics = ({ navigation, route }) => {
                 setPhotoForDB1(`data:${response.type};base64, ${response.base64}`)
                 setPhoto1(source)
                 if (response.didCancel) {
-                    const last = {uri: images.image1}
+                    const last = { uri: images.image1 }
                     setPhoto1(last)
                 }
             })
@@ -103,7 +103,7 @@ const AddPics = ({ navigation, route }) => {
                 setPhotoForDB2(`data:${response.type};base64, ${response.base64}`)
                 setPhoto2(source)
                 if (response.didCancel) {
-                    const last = {uri: images.image2}
+                    const last = { uri: images.image2 }
                     setPhoto2(last)
                 }
             })
@@ -118,7 +118,7 @@ const AddPics = ({ navigation, route }) => {
                 setPhotoForDB2(`data:${response.type};base64, ${response.base64}`)
                 setPhoto2(source)
                 if (response.didCancel) {
-                    const last = {uri: images.image2}
+                    const last = { uri: images.image2 }
                     setPhoto2(last)
                 }
             })
@@ -133,7 +133,7 @@ const AddPics = ({ navigation, route }) => {
                 setPhotoForDB3(`data:${response.type};base64, ${response.base64}`)
                 setPhoto3(source)
                 if (response.didCancel) {
-                    const last = {uri: images.image3}
+                    const last = { uri: images.image3 }
                     setPhoto3(last)
                 }
             })
@@ -148,7 +148,7 @@ const AddPics = ({ navigation, route }) => {
                 setPhotoForDB3(`data:${response.type};base64, ${response.base64}`)
                 setPhoto3(source)
                 if (response.didCancel) {
-                    const last = {uri: images.image3}
+                    const last = { uri: images.image3 }
                     setPhoto3(last)
                 }
             })
@@ -163,7 +163,7 @@ const AddPics = ({ navigation, route }) => {
                 setPhotoForDB4(`data:${response.type};base64, ${response.base64}`)
                 setPhoto4(source)
                 if (response.didCancel) {
-                    const last = {uri: images.image4}
+                    const last = { uri: images.image4 }
                     setPhoto4(last)
                 }
             })
@@ -178,7 +178,7 @@ const AddPics = ({ navigation, route }) => {
                 setPhotoForDB4(`data:${response.type};base64, ${response.base64}`)
                 setPhoto4(source)
                 if (response.didCancel) {
-                    const last = {uri: images.image4}
+                    const last = { uri: images.image4 }
                     setPhoto4(last)
                 }
             })
@@ -193,7 +193,7 @@ const AddPics = ({ navigation, route }) => {
                 setPhotoForDB5(`data:${response.type};base64, ${response.base64}`)
                 setPhoto5(source)
                 if (response.didCancel) {
-                    const last = {uri: images.image5}
+                    const last = { uri: images.image5 }
                     setPhoto5(last)
                 }
             })
@@ -208,27 +208,37 @@ const AddPics = ({ navigation, route }) => {
                 setPhotoForDB5(`data:${response.type};base64, ${response.base64}`)
                 setPhoto5(source)
                 if (response.didCancel) {
-                    const last = {uri: images.image5}
+                    const last = { uri: images.image5 }
                     setPhoto5(last)
                 }
             })
     }
 
     const uploadAndContinue = () => {
-        getData('user').then(res => {
-            Fire
-                .database()
-                .ref('product/' + res.uid + '/' + id + '/images' + '/')
-                .update({
-                    image: photoForDB.uri,
-                    image1: photoForDB1.uri,
-                    image2: photoForDB2.uri,
-                    image3: photoForDB3.uri,
-                    image4: photoForDB4.uri,
-                    image5: photoForDB5.uri,
-                })
-            navigation.navigate('Verification')
-        })
+        const image = {
+            image: photoForDB,
+            image1: photoForDB1,
+            image2: photoForDB2,
+            image3: photoForDB3,
+            image4: photoForDB4,
+            image5: photoForDB5
+        }
+        storeData('productImage', image)
+        navigation.navigate('VerificationEdit', image)
+        // getData('user').then(res => {
+        //     Fire
+        //         .database()
+        //         .ref('product/' + res.uid + '/' + id + '/images' + '/')
+        //         .update({
+        //             image: photoForDB.uri,
+        //             image1: photoForDB1.uri,
+        //             image2: photoForDB2.uri,
+        //             image3: photoForDB3.uri,
+        //             image4: photoForDB4.uri,
+        //             image5: photoForDB5.uri,
+        //         })
+
+        // })
     }
 
     //Bottom sheet

@@ -30,13 +30,6 @@ const EditProduct = ({ navigation, route }) => {
         })
     }
 
-    // useEffect(() => {
-    //     getData('product').then(res => {
-    //         const data = res
-    //         console.log('data', data)
-    //     })
-    // })
-
     const [pressed, setPressed] = useState(false)
 
     const nullChecker = () => {
@@ -46,7 +39,12 @@ const EditProduct = ({ navigation, route }) => {
     }
 
     const onContinue = () => {
-        const newPostKey = Fire.database().ref().child('post').push().key
+        const newDate = new Date()
+        const date = newDate.toLocaleDateString('en-GB', {
+            day: '2-digit',
+            month: '2-digit',
+            year: 'numeric'
+        })
         getData('user').then(res => {
             const data = {
                 name: product.name,
@@ -56,16 +54,16 @@ const EditProduct = ({ navigation, route }) => {
                 ref_code: product.ref_code,
                 desc: product.desc,
                 kilometer: product.kilometer,
-                date: new Date().getDate() + '/' + new Date().getMonth() + 1 + '/' + new Date().getFullYear(),
+                date: date,
                 id: product.id,
                 status: 'Pending',
                 images: product.images
             }
             console.log('new data: ', data)
-            Fire
-                .database()
-                .ref('product/' + res.uid + '/' + id + '/')
-                .update(data)
+            // Fire
+            //     .database()
+            //     .ref('product/' + res.uid + '/' + id + '/')
+            //     .update(data)
             storeData('product', data)
 
             navigation.navigate('EditPics', data)
