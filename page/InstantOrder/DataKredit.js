@@ -200,7 +200,7 @@ const DataKredit = ({ navigation, route }) => {
                         onChangeItem={({ value }) => setForm("tenor", value)}
                     />
                     <Gap height={10} />
-                    <TouchableOpacity
+                    {/* <TouchableOpacity
                         onPress={calculate}
                     >
                         <Text style={styles.cekTxt}>cek cicilan</Text>
@@ -211,7 +211,7 @@ const DataKredit = ({ navigation, route }) => {
                         <Text style={styles.result}>
                             {cicilan.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1.")}
                         </Text>
-                    </View>
+                    </View> */}
                 </View>
             </ScrollView>
             <Button

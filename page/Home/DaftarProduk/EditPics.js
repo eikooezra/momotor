@@ -21,12 +21,12 @@ const AddPics = ({ navigation, route }) => {
         images,
         id,
     } = route.params
-    const [photoForDB, setPhotoForDB] = useState({ uri: images.image })
-    const [photoForDB1, setPhotoForDB1] = useState({ uri: images.image1 })
-    const [photoForDB2, setPhotoForDB2] = useState({ uri: images.image2 })
-    const [photoForDB3, setPhotoForDB3] = useState({ uri: images.image3 })
-    const [photoForDB4, setPhotoForDB4] = useState({ uri: images.image4 })
-    const [photoForDB5, setPhotoForDB5] = useState({ uri: images.image5 })
+    const [photoForDB, setPhotoForDB] = useState(images.image)
+    const [photoForDB1, setPhotoForDB1] = useState(images.image1)
+    const [photoForDB2, setPhotoForDB2] = useState(images.image2)
+    const [photoForDB3, setPhotoForDB3] = useState(images.image3)
+    const [photoForDB4, setPhotoForDB4] = useState(images.image4)
+    const [photoForDB5, setPhotoForDB5] = useState(images.image5)
     const [photo, setPhoto] = useState({ uri: images.image })
     const [photo1, setPhoto1] = useState({ uri: images.image1 })
     const [photo2, setPhoto2] = useState({ uri: images.image2 })

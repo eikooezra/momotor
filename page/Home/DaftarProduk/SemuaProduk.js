@@ -1,41 +1,78 @@
-import React, { useEffect, useRef, useState } from 'react'
-import { showMessage, hideMessage } from "react-native-flash-message";
+import messaging from "@react-native-firebase/messaging";
+import React, { useCallback, useEffect, useState } from 'react';
 import {
-    StyleSheet,
-    ScrollView,
-    View,
-} from 'react-native'
-import { Fire } from '../../../config'
+    ActivityIndicator,
+    Dimensions, RefreshControl, ScrollView, StyleSheet, View
+} from 'react-native';
+import { showMessage } from "react-native-flash-message";
+import normalize from "react-native-normalize";
 import { ProductItem } from '../../../components/components';
+import { Fire } from '../../../config';
 import { getData } from '../../../utils/localstorage/localstorage';
+
+const { height } = Dimensions.get("window");
 
 const SemuaProduk = ({ navigation }) => {
     const [product, setProduct] = useState([])
-    useEffect(() => {
-        getData('user').then(res => {
-            const uid = res.uid
+    const [refreshing, setRefreshing] = useState(false);
+    const [isLoading, setIsLoading] = useState(false);
+    const [userProfile, setUserProfile] = useState({});
+
+    const onRefresh = useCallback(() => {
+        setRefreshing(true);
+        saveToken();
+        getData("user").then((res) => {
+            const uid = res.uid;
             Fire.database()
-                .ref('product/' + uid + '/')
-                .orderByChild('date')
-                .once('value')
-                .then(res => {
-                    console.log('data: ', res.val())
+                .ref("product/" + uid + "/")
+                .once("value")
+                .then((res) => {
                     if (res.val()) {
-                        setProduct(Object.values(res.val()))
+                        setProduct(Object.values(res.val()));
                     }
                 })
-                .catch(error => {
-                    const errorMessage = error.message
-                    showMessage({
-                        message: errorMessage,
-                        type: 'default',
-                        backgroundColor: '#E06379',
-                        color: '#FFFFFF'
-                    })
-                    console.log('error: ', error)
+                .catch((err) => {
+                    console.log("error: ", err);
                 })
-        })
-    }, [])
+                .finally(() => setRefreshing(false));
+        });
+    }, [userProfile]);
+
+    const saveToken = async () => {
+        const token = await messaging().getToken();
+        if (userProfile.uid)
+            Fire.database()
+                .ref(`users/${userProfile.uid}`)
+                .update({ token });
+    };
+
+    const getUid = () => {
+        setIsLoading(true);
+        getData("user").then((res) => {
+            const uid = res.uid;
+            setUserProfile(res);
+            Fire.database()
+                .ref("product/" + uid + "/")
+                .once("value")
+                .then((res) => {
+                    if (res.val()) {
+                        setProduct(Object.values(res.val()));
+                    }
+                })
+                .catch((err) => {
+                    console.log("error: ", err);
+                })
+                .finally(() => setIsLoading(false));
+        });
+    };
+
+    useEffect(() => {
+        getUid();
+    }, []);
+
+    useEffect(() => {
+        saveToken();
+    }, [userProfile]);
 
     const deleteData = (productId) => {
         getData('user').then(res => {
@@ -44,7 +81,7 @@ const SemuaProduk = ({ navigation }) => {
                 .database()
                 .ref('product/' + uid + '/' + productId)
                 .remove()
-                
+
         })
     }
 
@@ -54,7 +91,7 @@ const SemuaProduk = ({ navigation }) => {
             Fire
                 .database()
                 .ref('product/' + uid + '/' + productId)
-                .update({status: 'Disembunyikan'}) 
+                .update({ status: 'Disembunyikan' })
         })
         showMessage({
             message: 'Produk berhasil disembunyikan',
@@ -69,7 +106,7 @@ const SemuaProduk = ({ navigation }) => {
             Fire
                 .database()
                 .ref('product/' + uid + '/' + productId)
-                .update({status: prevStatus}) 
+                .update({ status: prevStatus })
         })
         showMessage({
             message: 'Produk berhasil ditampilkan kembali',
@@ -81,27 +118,40 @@ const SemuaProduk = ({ navigation }) => {
 
     return (
         <View style={styles.container}>
-            <ScrollView>
-                {product.map(item => {
-                    return (
-                        <ProductItem
-                            key={item.id}
-                            date={item.date}
-                            name={item.name}
-                            kilometer={item.kilometer.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1.") + ' KM'}
-                            image={item.images.image}
-                            location={item.location}
-                            year={item.year}
-                            price={'Rp ' + item.price.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1.")}
-                            status={item.status}
-                            onPress={() => navigation.navigate('DetailProduk', item)}
-                            onPressEdit={() => navigation.navigate('EditProduct', item)}
-                            onPressDelete={() => deleteData(item.id)}
-                            onPressHide={() => hideProd(item.id)}
-                            onPressUnhide={() => unhideProd(item.id, item.prevStatus)}
-                        />
-                    )
-                })}
+            <ScrollView
+                style={styles.scrollContainer}
+                refreshControl={
+                    <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+                }
+            >
+                {isLoading ? (
+                    <View style={styles.loadingCont}>
+                        <ActivityIndicator size="large" color="#0064D0" />
+                    </View>
+                ) : (
+                    <>
+                        {product.map(item => {
+                            return (
+                                <ProductItem
+                                    key={item.id}
+                                    date={item.date}
+                                    name={item.name}
+                                    kilometer={item.kilometer.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1.") + ' KM'}
+                                    image={item.images.image}
+                                    location={item.location}
+                                    year={item.year}
+                                    price={'Rp ' + item.price.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1.")}
+                                    status={item.status}
+                                    onPress={() => navigation.navigate('DetailProduk', item)}
+                                    onPressEdit={() => navigation.navigate('EditProduct', item)}
+                                    onPressDelete={() => deleteData(item.id)}
+                                    onPressHide={() => hideProd(item.id)}
+                                    onPressUnhide={() => unhideProd(item.id, item.prevStatus)}
+                                />
+                            )
+                        })}
+                    </>
+                )}
             </ScrollView>
         </View>
     )
@@ -114,5 +164,16 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: '#FFFFFF'
-    }
+    },
+
+    scrollContainer: {
+        height: normalize(400),
+    },
+
+    loadingCont: {
+        flex: 1,
+        height: height - 350,
+        justifyContent: "center",
+        alignItems: "center",
+    },
 })

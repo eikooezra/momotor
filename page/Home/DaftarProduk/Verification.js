@@ -20,11 +20,13 @@ const Verification = ({ navigation }) => {
             const uid = res.uid
             getData('product').then(res => {
                 const id = res.id
+                console.log('dataProd', res)
                 Fire
                     .database()
                     .ref('product/' + uid + '/' + id + '/')
                     .set(res)
                 getData('productImage').then(res => {
+                    console.log('dataFoto', res)
                     Fire
                         .database()
                         .ref('product/' + uid + '/' + id + '/images' + '/')
