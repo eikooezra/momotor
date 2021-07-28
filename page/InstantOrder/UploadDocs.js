@@ -82,7 +82,7 @@ const UploadDocs = ({ navigation, route }) => {
             (response) => {
                 console.log('response: ', response)
                 const source = { uri: response.uri }
-                setPhotoForDB(`data:${response.type};base64, ${response.base64}`)
+                setPhotoForDB1(`data:${response.type};base64, ${response.base64}`)
                 setPhoto1(source)
             })
     }
@@ -104,7 +104,7 @@ const UploadDocs = ({ navigation, route }) => {
             (response) => {
                 console.log('response: ', response)
                 const source = { uri: response.uri }
-                setPhotoForDB(`data:${response.type};base64, ${response.base64}`)
+                setPhotoForDB2(`data:${response.type};base64, ${response.base64}`)
                 setPhoto2(source)
             })
     }
@@ -126,7 +126,7 @@ const UploadDocs = ({ navigation, route }) => {
             (response) => {
                 console.log('response: ', response)
                 const source = { uri: response.uri }
-                setPhotoForDB(`data:${response.type};base64, ${response.base64}`)
+                setPhotoForDB3(`data:${response.type};base64, ${response.base64}`)
                 setPhoto3(source)
             })
     }
@@ -148,7 +148,7 @@ const UploadDocs = ({ navigation, route }) => {
             (response) => {
                 console.log('response: ', response)
                 const source = { uri: response.uri }
-                setPhotoForDB(`data:${response.type};base64, ${response.base64}`)
+                setPhotoForDB4(`data:${response.type};base64, ${response.base64}`)
                 setPhoto4(source)
             })
     }
@@ -170,7 +170,7 @@ const UploadDocs = ({ navigation, route }) => {
             (response) => {
                 console.log('response: ', response)
                 const source = { uri: response.uri }
-                setPhotoForDB(`data:${response.type};base64, ${response.base64}`)
+                setPhotoForDB5(`data:${response.type};base64, ${response.base64}`)
                 setPhoto5(source)
             })
     }
@@ -192,7 +192,7 @@ const UploadDocs = ({ navigation, route }) => {
             (response) => {
                 console.log('response: ', response)
                 const source = { uri: response.uri }
-                setPhotoForDB(`data:${response.type};base64, ${response.base64}`)
+                setPhotoForDB6(`data:${response.type};base64, ${response.base64}`)
                 setPhoto6(source)
             })
     }
@@ -214,7 +214,7 @@ const UploadDocs = ({ navigation, route }) => {
             (response) => {
                 console.log('response: ', response)
                 const source = { uri: response.uri }
-                setPhotoForDB(`data:${response.type};base64, ${response.base64}`)
+                setPhotoForDB7(`data:${response.type};base64, ${response.base64}`)
                 setPhoto7(source)
             })
     }
@@ -239,7 +239,7 @@ const UploadDocs = ({ navigation, route }) => {
                 koranImage: photoForDB6,
                 notaImage: photoForDB7,
             }
-            console.log('data global: ', data)
+            console.log('data global: ', dataDokumen)
 
             Fire
                 .database()
@@ -304,8 +304,18 @@ const UploadDocs = ({ navigation, route }) => {
             })
 
         })
-        // navigation.navigate('DaftarPesanan')
+        navigation.navigate('DaftarPesanan')
     }
+
+    const enabled =
+        photoForDB !== '' &&
+        photoForDB1 !== '' &&
+        photoForDB2 !== '' &&
+        photoForDB3 !== '' &&
+        photoForDB4 !== '' &&
+        photoForDB5 !== '' &&
+        photoForDB6 !== '' &&
+        photoForDB7 !== ''
 
     // bottom sheet
     const renderScreen = () => {
@@ -907,9 +917,13 @@ const UploadDocs = ({ navigation, route }) => {
                 </View>
 
                 <TouchableOpacity
-                    style={styles.btnSubmit}
+                    style={[styles.btnSubmit, {
+                        backgroundColor: (enabled)
+                            ? '#0064D0'
+                            : '#B7B7B7'
+                    }]}
                     onPress={uploadAndContinue}
-                // disabled={!enabled}
+                    disabled={!enabled}
                 >
                     <Text style={styles.txtSubmit}>
                         Submit Order

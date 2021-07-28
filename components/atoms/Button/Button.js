@@ -1,17 +1,23 @@
-import { Image } from 'native-base';
-import React from 'react';
-import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
-import normalize from 'react-native-normalize';
-import IconOnly from './IconOnly'
+import { Image } from "native-base";
+import React from "react";
+import { StyleSheet, View, Text, TouchableOpacity } from "react-native";
+import normalize from "react-native-normalize";
+import IconOnly from "./IconOnly";
 
-
-const Button = ({ title, onPress, type, icon }) => {
-    if(type === 'icon-only') {
-        return <IconOnly icon={icon} onPress={onPress}/>
+const Button = ({
+    title,
+    onPress,
+    type,
+    icon,
+    disabled = false,
+    textStyle,
+}) => {
+    if (type === "icon-only") {
+        return <IconOnly icon={icon} onPress={onPress} />;
     }
     return (
-        <TouchableOpacity onPress={onPress}>
-            <Text style={styles.title}>{title}</Text>
+        <TouchableOpacity onPress={onPress} disabled={disabled}>
+            <Text style={[styles.title, textStyle]}>{title}</Text>
         </TouchableOpacity>
     );
 };
@@ -24,9 +30,9 @@ const styles = StyleSheet.create({
         // height: normalize(20),
         // marginTop: normalize(250),
         // marginLeft: normalize(135),
-        textAlign: 'center',
+        textAlign: "center",
         fontSize: normalize(16),
-        fontFamily: 'Montserrat-SemiBold',
-        color: '#7F7F7F'
-    }
+        fontFamily: "Montserrat-SemiBold",
+        color: "#7F7F7F",
+    },
 });

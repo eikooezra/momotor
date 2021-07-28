@@ -55,6 +55,10 @@ const Login = ({ navigation }) => {
 
     }
 
+    const enabled = 
+        form.email !== '' &&
+        form.password !== ''
+
     return (
         <KeyboardAvoidingView style={styles.container} behavior="position">
             <StatusBar backgroundColor='#0064D0' />

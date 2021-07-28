@@ -79,9 +79,9 @@ function HomeStackScreen() {
 }
 
 function LogoHome({ color, focused, size }) {
-  if (focused) {
-    console.log('onclick')
-  }
+  // if (focused) {
+  //   console.log('onclick')
+  // }
   return (
     <Image
       style={{

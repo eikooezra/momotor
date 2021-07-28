@@ -35,8 +35,20 @@ const NewestOrderComponent = ({ image, name, product, date, status, onPressProdu
                                     {date}
                                 </Text>
 
-                                <View style={styles.pill}>
-                                    <Text style={styles.txtStatus}>
+                                <View style={[styles.pill, {
+                                    backgroundColor: (status == 'Disetujui')
+                                        ? '#EAF7EE'
+                                        : (status == 'Ditolak')
+                                            ? '#FBEBEB'
+                                            : '#FEF2E6'
+                                }]}>
+                                    <Text style={[styles.txtStatus, {
+                                        color: (status == 'Disetujui')
+                                            ? '#3CB13C'
+                                            : (status == 'Ditolak')
+                                                ? '#DD3434'
+                                                : '#F78103'
+                                    }]}>
                                         {status}
                                     </Text>
                                 </View>

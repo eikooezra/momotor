@@ -29,7 +29,12 @@ const Add = ({ navigation }) => {
 
     const onContinue = () => {
         const newPostKey = Fire.database().ref().child('post').push().key
-        const id = 'UMCY' + random.toString()
+        const newDate = new Date()
+        const date = newDate.toLocaleDateString('en-GB', {
+            day: '2-digit',
+            month: '2-digit',
+            year: 'numeric'
+        })
         getData('user').then(res => {
             const data = {
                 uid: res.uid,
@@ -40,7 +45,8 @@ const Add = ({ navigation }) => {
                 ref_code: form.ref_code,
                 desc: form.desc,
                 kilometer: form.kilometer,
-                date: new Date().getDate() + '/' + new Date().getMonth() + 1 + '/' + new Date().getFullYear(),
+                // date: new Date().getDate() + '/' + new Date().getMonth() + 1 + '/' + new Date().getFullYear(),
+                date : date,
                 id: newPostKey,
                 status: 'Pending',
                 prevStatus: 'Pending',

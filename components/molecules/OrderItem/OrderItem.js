@@ -34,14 +34,18 @@ const OrderItem = ({ image, name, product, date, status, onPress }) => {
                         </Text>
 
                         <View style={[styles.btnProsesVerif, {
-                            backgroundColor: (status == 'Proses Survey' && status == 'Proses Verifikasi')
+                            backgroundColor: (status == 'Disetujui')
                                 ? '#EAF7EE'
-                                : '#FEF2E6'
+                                : (status == 'Ditolak')
+                                    ? '#FBEBEB'
+                                    : '#FEF2E6'
                         }]}>
                             <Text style={[styles.txtProsesVerif, {
-                                color: (status == 'Proses Survey' && status == 'Proses Verifikasi')
+                                color: (status == 'Disetujui')
                                     ? '#3CB13C'
-                                    : '#F78103'
+                                    : (status == 'Ditolak')
+                                        ? '#DD3434'
+                                        : '#F78103'
                             }]}>
                                 {status}
                             </Text>

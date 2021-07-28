@@ -16,6 +16,7 @@ const SemuaProduk = ({ navigation }) => {
             const uid = res.uid
             Fire.database()
                 .ref('product/' + uid + '/')
+                .orderByChild('date')
                 .once('value')
                 .then(res => {
                     console.log('data: ', res.val())

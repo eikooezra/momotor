@@ -16,6 +16,7 @@ const SemuaPesanan = ({ navigation }) => {
             const uid = res.uid
             Fire.database()
                 .ref('order/' + uid + '/')
+                .orderByKey()
                 .once('value')
                 .then(res => {
                     console.log('data: ', res.val())

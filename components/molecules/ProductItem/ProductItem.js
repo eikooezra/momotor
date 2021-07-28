@@ -151,7 +151,11 @@ const ProductItem = ({
                     <View style={[styles.status, {
                         backgroundColor: (status == 'Pending')
                             ? '#FEF2E6'
-                            : '#EAF7EE'
+                            : (status == 'Unapproved')
+                                ? '#FBEBEB'
+                                : (status == 'Disembunyikan')
+                                    ? '#B7B7B7'
+                                    : '#EAF7EE'
                     },
                     ]}
                     >
@@ -159,7 +163,11 @@ const ProductItem = ({
                             style={[styles.txtStatus, {
                                 color: (status == 'Pending')
                                     ? '#F78103'
-                                    : '#3CB13C'
+                                    : (status == 'Unapproved')
+                                        ? '#DD3434'
+                                        : (status == 'Disembunyikan')
+                                            ? '#FFFFFF'
+                                            : '#3CB13C'
                             },
                             ]}
                         >
