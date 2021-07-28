@@ -33,8 +33,16 @@ const OrderItem = ({ image, name, product, date, status, onPress }) => {
                             {date}
                         </Text>
 
-                        <View style={styles.btnProsesVerif}>
-                            <Text style={styles.txtProsesVerif}>
+                        <View style={[styles.btnProsesVerif, {
+                            backgroundColor: (status == 'Proses Survey' && status == 'Proses Verifikasi')
+                                ? '#EAF7EE'
+                                : '#FEF2E6'
+                        }]}>
+                            <Text style={[styles.txtProsesVerif, {
+                                color: (status == 'Proses Survey' && status == 'Proses Verifikasi')
+                                    ? '#3CB13C'
+                                    : '#F78103'
+                            }]}>
                                 {status}
                             </Text>
 

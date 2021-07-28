@@ -1,7 +1,8 @@
-import React, { useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import normalize from 'react-native-normalize';
 import RBSheet from "react-native-raw-bottom-sheet"
-import BottomSheet from '../../../page/Home/BottomSheet'
+import BSDP1 from '../../../page/Home/BSDP1'
+import BSDP2 from '../../../page/Home/BSDP2'
 import {
     StyleSheet,
     View,
@@ -23,13 +24,24 @@ const ProductItem = ({
     onPress,
     status,
     onPressEdit,
-    onPressDelete
+    onPressHide,
+    onPressUnhide
 }) => {
-    const refRBSheet = useRef()
+    const refRBSheet1 = useRef()
+    const refRBSheet2 = useRef()
+    const onPress3Dot = () => {
+        console.log('status', { status }.status)
+        if ({ status }.status == 'Disembunyikan') {
+            refRBSheet2.current.open()
+        }
+        else {
+            refRBSheet1.current.open()
+        }
+    }
     return (
         <View>
             <RBSheet
-                ref={refRBSheet}
+                ref={refRBSheet1}
                 height={300}
                 openDuration={250}
                 closeOnDragDown={true}
@@ -39,19 +51,27 @@ const ProductItem = ({
                         borderTopStartRadius: 10,
                         borderTopEndRadius: 10,
                     }
-                }}
-            >
-                <BottomSheet
+                }}>
+                <BSDP1
                     onPressEdit={onPressEdit}
-                    onPressDelete={() => Alert.alert(
-                        'Hapus Produk',
-                        'Apakah anda yakin ingin menghapus produk ini?',
-                        [
-                            { text: 'Tidak'},
-                            { text: 'Ya', onPress: onPressDelete },
-                        ],
-                        { cancelable: false }
-                    )}
+                    onPressHide={onPressHide}
+                />
+            </RBSheet>
+            <RBSheet
+                ref={refRBSheet2}
+                height={300}
+                openDuration={250}
+                closeOnDragDown={true}
+                customStyles={{
+                    container: {
+                        height: 250,
+                        borderTopStartRadius: 10,
+                        borderTopEndRadius: 10,
+                    }
+                }}>
+                <BSDP2
+                    onPressEdit={onPressEdit}
+                    onPressUnhide={onPressUnhide}
                 />
             </RBSheet>
 
@@ -114,7 +134,7 @@ const ProductItem = ({
 
                     <View style={styles.btnArea}>
                         <TouchableOpacity
-                            onPress={() => refRBSheet.current.open()}
+                            onPress={onPress3Dot}
                         // style={styles.touch}
                         >
                             <Image
@@ -128,8 +148,23 @@ const ProductItem = ({
                         </TouchableOpacity> */}
                     </View>
 
-                    <View style={styles.status}>
-                        <Text style={styles.txtStatus}>{status}</Text>
+                    <View style={[styles.status, {
+                        backgroundColor: (status == 'Pending')
+                            ? '#FEF2E6'
+                            : '#EAF7EE'
+                    },
+                    ]}
+                    >
+                        <Text
+                            style={[styles.txtStatus, {
+                                color: (status == 'Pending')
+                                    ? '#F78103'
+                                    : '#3CB13C'
+                            },
+                            ]}
+                        >
+                            {status}
+                        </Text>
                     </View>
                 </View>
             </TouchableOpacity>
@@ -149,18 +184,8 @@ const styles = StyleSheet.create({
         borderRadius: 6,
         elevation: 5,
         backgroundColor: '#FFFFFF',
-        flexDirection: 'row'
-    },
-
-    WhiteBox2: {
-        width: normalize(350),
-        height: normalize(121),
-        marginBottom: normalize(16),
-        marginLeft: normalize(16),
-        borderRadius: 6,
-        elevation: 5,
-        backgroundColor: '#FFFFFF',
-        flexDirection: 'row'
+        flexDirection: 'row',
+        justifyContent: 'space-between',
     },
 
     boxContainer1: {
@@ -254,7 +279,7 @@ const styles = StyleSheet.create({
         width: normalize(100),
         height: normalize(25),
         marginTop: normalize(85),
-        marginLeft: normalize(5),
+        marginRight: normalize(10),
         borderRadius: 4,
         backgroundColor: '#EAF7EE'
     },

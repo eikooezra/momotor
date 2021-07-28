@@ -5,16 +5,10 @@ import {
     Image,
     TouchableOpacity,
     StyleSheet,
-    Switch
 } from 'react-native'
 import normalize from 'react-native-normalize';
 
-const BottomSheet = ({onPressEdit, onPressDelete}) => {
-
-    const [toggled, setToggle] = useState(false)
-
-    
-
+const BottomSheet = ({ onPressEdit, onPressUnhide}) => {
     return (
         <View style={styles.container}>
             <View style={styles.containerText}>
@@ -39,16 +33,18 @@ const BottomSheet = ({onPressEdit, onPressDelete}) => {
                 </TouchableOpacity>
             </View>
 
-            <View style={styles.containerSwitch}>
-                <Text style={styles.txtTampilkan}>
-                    Tampilkan Produk
-                </Text>
-                <Switch
-                    value={toggled}
-                    onValueChange={(value) => setToggle(value)}
-                    trackColor={{true: '#0064D0', false: 'grey'}}
-                    thumbColor={'white'}
-                />
+            <View style={{
+                justifyContent: 'center',
+                alignItems: 'center'
+                 }}>
+                <TouchableOpacity
+                    onPress={onPressUnhide}
+                    style={styles.btnShow}
+                >
+                    <Text style={styles.txtShow}>
+                        Tampilkan
+                    </Text>
+                </TouchableOpacity>
             </View>
         </View>
     )
@@ -142,10 +138,6 @@ const styles = StyleSheet.create({
         fontFamily: 'Montserrat-Regular'
     },
 
-    containerSwitch: {
-        flexDirection: 'row'
-    },
-
     txtTampilkan: {
         width: normalize(129),
         height: normalize(18),
@@ -155,4 +147,23 @@ const styles = StyleSheet.create({
         fontSize: normalize(14),
         fontFamily: 'Montserrat-Regular'
     },
+
+    btnShow: {
+        width: normalize(300),
+        height: normalize(48),
+        marginTop: normalize(10),
+        marginLeft: normalize(5),
+        borderRadius: 4,
+        backgroundColor: '#0064D0'
+    },
+
+    txtShow: {
+        alignSelf: 'center',
+        marginTop: normalize(8),
+        paddingVertical: 4,
+        fontSize: 18,
+        fontFamily: 'Montserrat-SemiBold',
+        color: '#FFFFFF'
+    },
+
 })

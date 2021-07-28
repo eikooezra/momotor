@@ -27,13 +27,6 @@ const Add = ({ navigation }) => {
         kilometer: '',
     })
 
-    const number1 = Math.floor(Math.random() * 9)
-    const number2 = Math.floor(Math.random() * 9)
-    const number3 = Math.floor(Math.random() * 9)
-    const number4 = Math.floor(Math.random() * 9)
-    const number5 = Math.floor(Math.random() * 9)
-    const random = Math.floor(Math.random() * 9 + Math.random() * 9 + Math.random() * 9 + Math.random() * 9 + Math.random() * 9)
-
     const onContinue = () => {
         const newPostKey = Fire.database().ref().child('post').push().key
         const id = 'UMCY' + random.toString()
@@ -49,7 +42,8 @@ const Add = ({ navigation }) => {
                 kilometer: form.kilometer,
                 date: new Date().getDate() + '/' + new Date().getMonth() + 1 + '/' + new Date().getFullYear(),
                 id: newPostKey,
-                status: 'Pending'
+                status: 'Pending',
+                prevStatus: 'Pending',
             }
             console.log('cek: ', data)
             console.log('new id: ', id)

@@ -23,7 +23,7 @@ const SemuaProduk = ({ navigation }) => {
                         setProduct(Object.values(res.val()))
                     }
                 })
-                .catch(err => {
+                .catch(error => {
                     const errorMessage = error.message
                     showMessage({
                         message: errorMessage,
@@ -35,15 +35,7 @@ const SemuaProduk = ({ navigation }) => {
                 })
         })
     }, [])
-    // const deleteData = () => {
-    //     getData('user').then(res => {
-    //         const uid = res.uid
-    //         Fire
-    //             .database()
-    //             .ref('product/' + uid + '/')
-    //             .remove(item.id)
-    //     })
-    // }
+
     const deleteData = (productId) => {
         getData('user').then(res => {
             const uid = res.uid
@@ -54,7 +46,38 @@ const SemuaProduk = ({ navigation }) => {
                 
         })
     }
-    // console.log(product)
+
+    const hideProd = (productId) => {
+        getData('user').then(res => {
+            const uid = res.uid
+            Fire
+                .database()
+                .ref('product/' + uid + '/' + productId)
+                .update({status: 'Disembunyikan'}) 
+        })
+        showMessage({
+            message: 'Produk berhasil disembunyikan',
+            type: 'default',
+            backgroundColor: '#20b53e',
+            color: '#FFFFFF'
+        })
+    }
+    const unhideProd = (productId, prevStatus) => {
+        getData('user').then(res => {
+            const uid = res.uid
+            Fire
+                .database()
+                .ref('product/' + uid + '/' + productId)
+                .update({status: prevStatus}) 
+        })
+        showMessage({
+            message: 'Produk berhasil ditampilkan kembali',
+            type: 'default',
+            backgroundColor: '#20b53e',
+            color: '#FFFFFF'
+        })
+    }
+
     return (
         <View style={styles.container}>
             <ScrollView>
@@ -73,6 +96,8 @@ const SemuaProduk = ({ navigation }) => {
                             onPress={() => navigation.navigate('DetailProduk', item)}
                             onPressEdit={() => navigation.navigate('EditProduct', item)}
                             onPressDelete={() => deleteData(item.id)}
+                            onPressHide={() => hideProd(item.id)}
+                            onPressUnhide={() => unhideProd(item.id, item.prevStatus)}
                         />
                     )
                 })}
