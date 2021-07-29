@@ -14,7 +14,7 @@ const NotifComponent = ({title, message, date}) => {
             <View style={styles.notif}>
                 <Image
                     style={styles.imgNotif}
-                    source={require('../../../assets/images/aerox2.png')}
+                    source={require('../../../assets/images/notif2.png')}
                 />
 
                 <View style={styles.txtContainer}>
@@ -25,11 +25,27 @@ const NotifComponent = ({title, message, date}) => {
                     <Text style={styles.orderID}>
                         {message}
                     </Text>
-                </View>
 
-                <Text style={styles.clock}>
-                    {date}
-                </Text>
+                    <View style={{
+                        flexDirection: 'row'
+                    }}>
+                        <Text style={{
+                            marginBottom: normalize(15),
+                            fontSize: normalize(12),
+                            fontFamily: 'Montserrat-Medium'
+                        }}>
+                            12:00
+                        </Text>
+
+                        <Text style={{
+                            marginLeft: normalize(10),
+                            fontSize: normalize(12),
+                            fontFamily: 'Montserrat-Medium'
+                        }}>
+                            {date}
+                        </Text>
+                    </View>
+                </View>
             </View>
         </View>
     )
@@ -44,40 +60,27 @@ const styles = StyleSheet.create({
     },
 
     imgNotif: {
-        marginLeft: normalize(34),
-        width: normalize(62),
-        height: normalize(62),
+        marginLeft: normalize(24),
+        width: normalize(30),
+        height: normalize(30),
     },
 
     txtContainer: {
-        marginLeft: normalize(11),
+        marginLeft: normalize(20),
         alignContent: 'center'
     },
 
     notifBerhasil: {
-        marginRight: normalize(160),
+        marginRight: normalize(120),
         marginBottom: normalize(6),
         fontSize: normalize(16),
-        fontFamily: 'Montserrat-SemiBold'
-    },
-
-    noteGagal: {
-        marginRight: normalize(160),
-        fontSize: normalize(12),
-        color: '#7F7F7F',
-        fontFamily: 'Montserrat-Medium'
+        fontFamily: 'Montserrat-SemiBold',
     },
 
     orderID: {
-        marginBottom: normalize(24),
-        fontSize: normalize(12),
+        marginBottom: normalize(15),
+        fontSize: normalize(14),
         color: '#7F7F7F',
         fontFamily: 'Montserrat-Medium'
     },
-
-    clock: {
-        fontSize: normalize(12),
-        fontFamily: 'Montserrat-Regular'
-    }
-
 })
