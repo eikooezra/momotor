@@ -287,6 +287,12 @@ const UploadDocs = ({ navigation, route }) => {
         getData('user').then(res => {
             const uid = res.uid
             getData('dataCustomer').then(res => {
+                const newDate = new Date()
+                const date = newDate.toLocaleDateString('en-GB', {
+                    day: '2-digit',
+                    month: '2-digit',
+                    year: 'numeric'
+                })
                 showOrderSucceed({ custName: res.custName })
                 console.log('name', res.custName)
                 const newPostKey = Fire.database().ref().child('post').push().key
@@ -294,7 +300,8 @@ const UploadDocs = ({ navigation, route }) => {
                     id: newPostKey,
                     title: 'Pesanan dengan nama ' + res.custName + ' berhasil diajukan',
                     message: `Order ID 12345678910`,
-                    type: 'NewOrder'
+                    type: 'NewOrder',
+                    date: date
 
                 }
                 Fire

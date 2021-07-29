@@ -539,7 +539,7 @@ const AddPics = ({ navigation, route }) => {
                 </TouchableOpacity>
 
                 <Text style={styles.txtAddPic}>
-                    Tambah Foto
+                    Ubah Foto
                 </Text>
             </View>
 
