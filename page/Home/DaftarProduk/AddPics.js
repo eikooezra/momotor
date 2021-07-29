@@ -8,6 +8,7 @@ import BottomSheet from 'reanimated-bottom-sheet'
 import normalize from 'react-native-normalize';
 import { Fire } from '../../../config';
 import { getData, storeData } from '../../../utils/localstorage/localstorage';
+import { Button } from '../../../components/components';
 
 const AddPics = ({ navigation, route }) => {
     const {
@@ -41,7 +42,7 @@ const AddPics = ({ navigation, route }) => {
                 const source = { uri: response.uri }
                 setPhotoForDB(`data:${response.type};base64, ${response.base64}`)
                 setPhoto(source)
-                if(response.didCancel){
+                if (response.didCancel) {
                     setPhoto(require('../../../assets/images/camLogo.png'))
                 }
             })
@@ -55,7 +56,7 @@ const AddPics = ({ navigation, route }) => {
                 const source = { uri: response.uri }
                 setPhotoForDB(`data:${response.type};base64, ${response.base64}`)
                 setPhoto(source)
-                if(response.didCancel){
+                if (response.didCancel) {
                     setPhoto(require('../../../assets/images/camLogo.png'))
                 }
             })
@@ -69,7 +70,7 @@ const AddPics = ({ navigation, route }) => {
                 const source = { uri: response.uri }
                 setPhotoForDB1(`data:${response.type};base64, ${response.base64}`)
                 setPhoto1(source)
-                if(response.didCancel){
+                if (response.didCancel) {
                     setPhoto1(require('../../../assets/images/camLogo.png'))
                 }
             })
@@ -83,7 +84,7 @@ const AddPics = ({ navigation, route }) => {
                 const source = { uri: response.uri }
                 setPhotoForDB1(`data:${response.type};base64, ${response.base64}`)
                 setPhoto1(source)
-                if(response.didCancel){
+                if (response.didCancel) {
                     setPhoto1(require('../../../assets/images/camLogo.png'))
                 }
             })
@@ -97,7 +98,7 @@ const AddPics = ({ navigation, route }) => {
                 const source = { uri: response.uri }
                 setPhotoForDB2(`data:${response.type};base64, ${response.base64}`)
                 setPhoto2(source)
-                if(response.didCancel){
+                if (response.didCancel) {
                     setPhoto2(require('../../../assets/images/camLogo.png'))
                 }
             })
@@ -111,7 +112,7 @@ const AddPics = ({ navigation, route }) => {
                 const source = { uri: response.uri }
                 setPhotoForDB2(`data:${response.type};base64, ${response.base64}`)
                 setPhoto2(source)
-                if(response.didCancel){
+                if (response.didCancel) {
                     setPhoto2(require('../../../assets/images/camLogo.png'))
                 }
             })
@@ -125,7 +126,7 @@ const AddPics = ({ navigation, route }) => {
                 const source = { uri: response.uri }
                 setPhotoForDB3(`data:${response.type};base64, ${response.base64}`)
                 setPhoto3(source)
-                if(response.didCancel){
+                if (response.didCancel) {
                     setPhoto3(require('../../../assets/images/camLogo.png'))
                 }
             })
@@ -139,7 +140,7 @@ const AddPics = ({ navigation, route }) => {
                 const source = { uri: response.uri }
                 setPhotoForDB3(`data:${response.type};base64, ${response.base64}`)
                 setPhoto3(source)
-                if(response.didCancel){
+                if (response.didCancel) {
                     setPhoto3(require('../../../assets/images/camLogo.png'))
                 }
             })
@@ -153,7 +154,7 @@ const AddPics = ({ navigation, route }) => {
                 const source = { uri: response.uri }
                 setPhotoForDB4(`data:${response.type};base64, ${response.base64}`)
                 setPhoto4(source)
-                if(response.didCancel){
+                if (response.didCancel) {
                     setPhoto4(require('../../../assets/images/camLogo.png'))
                 }
             })
@@ -167,7 +168,7 @@ const AddPics = ({ navigation, route }) => {
                 const source = { uri: response.uri }
                 setPhotoForDB4(`data:${response.type};base64, ${response.base64}`)
                 setPhoto4(source)
-                if(response.didCancel){
+                if (response.didCancel) {
                     setPhoto4(require('../../../assets/images/camLogo.png'))
                 }
             })
@@ -181,7 +182,7 @@ const AddPics = ({ navigation, route }) => {
                 const source = { uri: response.uri }
                 setPhotoForDB5(`data:${response.type};base64, ${response.base64}`)
                 setPhoto5(source)
-                if(response.didCancel){
+                if (response.didCancel) {
                     setPhoto5(require('../../../assets/images/camLogo.png'))
                 }
             })
@@ -195,7 +196,7 @@ const AddPics = ({ navigation, route }) => {
                 const source = { uri: response.uri }
                 setPhotoForDB5(`data:${response.type};base64, ${response.base64}`)
                 setPhoto5(source)
-                if(response.didCancel){
+                if (response.didCancel) {
                     setPhoto5(require('../../../assets/images/camLogo.png'))
                 }
             })
@@ -515,6 +516,14 @@ const AddPics = ({ navigation, route }) => {
     const sheetRef5 = React.createRef()
     const fall = new Animated.Value(1)
 
+    const enabled =
+        photoForDB !== '' &&
+        photoForDB1 !== '' &&
+        photoForDB2 !== '' &&
+        photoForDB3 !== '' &&
+        photoForDB4 !== '' &&
+        photoForDB5 !== ''
+
     return (
         <View style={styles.container}>
             <View style={styles.Header}>
@@ -606,16 +615,12 @@ const AddPics = ({ navigation, route }) => {
                 </TouchableOpacity>
             </View>
 
-            <View style={styles.btnNxtArea}>
-                <TouchableOpacity
-                    style={styles.btnNxt}
-                    onPress={uploadAndContinue}
-                >
-                    <Text style={styles.txtNxt}>
-                        SELANJUTNYA
-                    </Text>
-                </TouchableOpacity>
-            </View>
+            <Button
+                onPress={uploadAndContinue}
+                areaStyle={{ backgroundColor: enabled ? '#0062CD' : '#B7B7B7' }}
+                disabled={!enabled}
+                title="SELANJUTNYA"
+            />
 
             <BottomSheet
                 ref={sheetRef}
@@ -679,7 +684,7 @@ export default AddPics
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: "white"
+        backgroundColor: "white",
     },
 
     Header: {

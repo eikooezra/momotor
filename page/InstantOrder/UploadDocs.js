@@ -293,6 +293,10 @@ const UploadDocs = ({ navigation, route }) => {
                     month: '2-digit',
                     year: 'numeric'
                 })
+                const hour = newDate.toLocaleDateString('en-GB', {
+                    hour: '2-digit',
+                    minute: '2-digit'
+                })
                 showOrderSucceed({ custName: res.custName })
                 console.log('name', res.custName)
                 const newPostKey = Fire.database().ref().child('post').push().key
@@ -301,7 +305,8 @@ const UploadDocs = ({ navigation, route }) => {
                     title: 'Pesanan dengan nama ' + res.custName + ' berhasil diajukan',
                     message: `Order ID 12345678910`,
                     type: 'NewOrder',
-                    date: date
+                    date: date,
+                    hour: hour
 
                 }
                 Fire

@@ -200,27 +200,14 @@ const DataKredit = ({ navigation, route }) => {
                         onChangeItem={({ value }) => setForm("tenor", value)}
                     />
                     <Gap height={10} />
-                    {/* <TouchableOpacity
-                        onPress={calculate}
-                    >
-                        <Text style={styles.cekTxt}>cek cicilan</Text>
-                    </TouchableOpacity>
-                    <Gap height={34} />
-                    <Text style={styles.label}>Cicilan</Text>
-                    <View style={styles.resultBorder}>
-                        <Text style={styles.result}>
-                            {cicilan.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1.")}
-                        </Text>
-                    </View> */}
                 </View>
             </ScrollView>
             <Button
                 onPress={onContinue}
                 title="SELANJUTNYA"
-                textStyle={{ color: isEnabled ? "#0064D0" : "#7F7F7F" }}
+                areaStyle={{backgroundColor: isEnabled ? '#0062CD' : '#B7B7B7'}}
                 disabled={!isEnabled}
             />
-            <Gap height={22} />
         </View>
     );
 };

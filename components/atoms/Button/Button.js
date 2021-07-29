@@ -10,15 +10,21 @@ const Button = ({
     type,
     icon,
     disabled = false,
-    textStyle,
+    areaStyle
 }) => {
     if (type === "icon-only") {
         return <IconOnly icon={icon} onPress={onPress} />;
     }
     return (
-        <TouchableOpacity onPress={onPress} disabled={disabled}>
-            <Text style={[styles.title, textStyle]}>{title}</Text>
-        </TouchableOpacity>
+        <View style={styles.btnNxtArea}>
+            <TouchableOpacity
+                style={[styles.btnNxt, areaStyle]}
+                onPress={onPress}
+                disabled={disabled}
+            >
+                <Text style={styles.title}>{title}</Text>
+            </TouchableOpacity>
+        </View>
     );
 };
 
@@ -33,6 +39,20 @@ const styles = StyleSheet.create({
         textAlign: "center",
         fontSize: normalize(16),
         fontFamily: "Montserrat-SemiBold",
-        color: "#7F7F7F",
+        color: "#FFFFFF",
+    },
+
+    btnNxtArea: {
+        bottom: normalize(0),
+        justifyContent: 'center',
+        alignSelf: 'center'
+    },
+
+    btnNxt: {
+        paddingVertical: 15,
+        paddingHorizontal: 127,
+        width: normalize(420),
+        height: normalize(58),
+        backgroundColor: '#0064D0'
     },
 });

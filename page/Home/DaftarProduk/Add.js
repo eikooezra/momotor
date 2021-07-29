@@ -1,19 +1,27 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import { StyleSheet, View, Text, Image, TextInput, } from 'react-native';
 import DropDownPicker from 'react-native-dropdown-picker';
 import { ScrollView, TouchableOpacity } from 'react-native-gesture-handler';
 import normalize from 'react-native-normalize';
-import { Button2, Gap, Header, Input } from '../../../components/components';
+import { Button, Button2, Gap, Header, Input, PickerInput } from '../../../components/components';
 import { Fire } from '../../../config';
 import { getData, storeData } from '../../../utils/localstorage/localstorage';
 import { useForm } from '../../../utils/utils';
+import { strings as str, general } from "../../../utils/defaultValue";
 
 const Add = ({ navigation }) => {
     const [pressed, setPressed] = useState(false)
+    const [pressed1, setPressed1] = useState(false)
 
     const nullChecker = () => {
         if (pressed === false) {
             setPressed({ null: true })
+        }
+    }
+
+    const nullChecker1 = () => {
+        if (pressed1 === false) {
+            setPressed1({ null: true })
         }
     }
 
@@ -27,59 +35,122 @@ const Add = ({ navigation }) => {
         kilometer: '',
     })
 
+    const [formError, setFormError] = useState([]);
+
+    const isEnabled = useMemo(() => {
+        const currentValue = { ...form };
+        const values = Object.values(currentValue);
+
+        return (
+            formError.length !== 0 &&
+            (formError.every((item) => item.isChecked) &&
+                values.every((item) => item !== ""))
+        );
+    }, [formError]);
+
+    const enabled =
+        form.name !== '' &&
+        form.year !== '' &&
+        form.location !== '' &&
+        form.price !== '' &&
+        form.kilometer !== ''
+
+    const onProcess = (data) => {
+        storeData('product', data)
+
+        navigation.navigate('AddPics', data)
+    };
+
     const onContinue = () => {
         const newPostKey = Fire.database().ref().child('post').push().key
         const newDate = new Date()
         const date = newDate.toLocaleDateString('en-GB', {
             day: '2-digit',
             month: '2-digit',
-            year: 'numeric'
+            year: 'numeric',
         })
+
+        const emptyValidator = [
+            'name',
+            'year',
+            'location',
+            'price',
+            'kilometer',
+        ];
+
+        const currentError = formError.filter((item) => item.isChecked);
+
+        emptyValidator.forEach((element) => {
+            if (form[element]?.length === undefined || form[element]?.length === 0) {
+                currentError.push({
+                    param: element,
+                    errorMsg: str.cantEmpty,
+                    isChecked: false,
+                    isError: true,
+                });
+            }
+        });
+
+        if (!currentError.every((item) => item.isChecked)) {
+            setFormError(currentError);
+            return;
+        }
+
         getData('user').then(res => {
             const data = {
                 uid: res.uid,
                 name: form.name,
-                year: form.year.value,
-                location: form.location.value,
+                year: form.year,
+                location: form.location,
                 price: form.price,
                 ref_code: form.ref_code,
                 desc: form.desc,
                 kilometer: form.kilometer,
-                // date: new Date().getDate() + '/' + new Date().getMonth() + 1 + '/' + new Date().getFullYear(),
-                date : date,
+                date: date,
                 id: newPostKey,
                 status: 'Pending',
                 prevStatus: 'Pending',
             }
             console.log('cek: ', data)
-            // Fire
-            //     .database()
-            //     .ref('product/' + res.uid + '/' + newPostKey + '/')
-            //     .set(data)
-            storeData('product', data)
 
-            navigation.navigate('AddPics', data)
+            onProcess(data)
 
         })
     }
+
+    const testError = (key) => {
+        const errorIndex = formError.findIndex((error) => error.param === key);
+        if (errorIndex === -1) {
+            return { ...formError[errorIndex], isError: false, isChecked: false };
+        }
+        return formError[errorIndex];
+    };
+
+    const onBlurCheck = (param) => {
+        const regEmail = new RegExp(general.regexEmail);
+        const value = form[param];
+        const currentError = [...formError];
+
+        const isError = value?.length === 0
+
+        const errorMsg = str.cantEmpty
+
+        const errorIndex = currentError.findIndex((error) => error.param === param);
+
+        if (errorIndex === -1) {
+            setFormError((current) => [
+                ...current,
+                { param, errorMsg, isError, isChecked: !isError },
+            ]);
+            return;
+        }
+        currentError[errorIndex].isError = isError;
+        currentError[errorIndex].isChecked = !isError;
+        setFormError(currentError);
+    };
     return (
         <View style={styles.container}>
             <Header title="Tambah Produk" back onPress={() => navigation.goBack()} />
-            {/* <View style={styles.searchContainer}>
-                <Image
-                    source={require('../../../assets/images/greysearch.png')}
-                    style={styles.imgSearch}
-                />
-
-
-                <View style={styles.modelContainer}>
-                    <TextInput
-                        style={styles.txtModel}
-                        placeholder='Model Motor'
-                        placeholderTextColor='#7F7F7F'
-                    />
-                </View>
-            </View> */}
             <ScrollView showsVerticalScrollIndicator={false}>
                 <View style={styles.content}>
                     <Gap height={25} />
@@ -87,10 +158,15 @@ const Add = ({ navigation }) => {
                         placeholder='Nama Produk'
                         value={form.name}
                         onChangeText={value => setForm('name', value)}
+                        overLabel='Nama Produk'
+                        errorInput={testError('name')}
+                        iconType="check"
+                        isShowIcon={testError('name').isChecked}
+                        onBlur={() => onBlurCheck('name')}
                     />
                     <Gap height={34} />
-                    <DropDownPicker
-                        items={[
+                    <PickerInput
+                        data={[
                             { label: '2015', value: '2015' },
                             { label: '2016', value: '2016' },
                             { label: '2017', value: '2017' },
@@ -98,58 +174,32 @@ const Add = ({ navigation }) => {
                             { label: '2019', value: '2019' },
                             { label: '2020', value: '2020' },
                         ]}
-                        defaultNull={nullChecker}
+                        defaultNull={!pressed}
                         placeholder='Tahun Produksi'
-                        containerStyle={{
-                            // width: normalize(350),
-                            // marginLeft: normalize(16),
-                            // marginBottom: normalize(34),
-                        }}
-                        dropDownStyle={{
-                            backgroundColor: '#FFFFFF'
-                        }}
-                        labelStyle={{
-                            // marginLeft: 16,
-                            width: 120,
-                            marginRight: 200,
-                            fontSize: 14,
-                            color: '#7F7F7F',
-                            fontFamily: 'Montserrat-SemiBold',
-                        }}
-                        arrowStyle={{
-
-                        }}
                         value={form.year}
-                        onChangeItem={value => setForm('year', value)}
+                        onChangeItem={({ value }) => {
+                            setForm('year', value);
+                            nullChecker();
+                        }}
+                        overLabel="Tahun Produksi"
                     />
                     <Gap height={34} />
-                    <DropDownPicker
-                        items={[
-                            { label: 'Jakarta', value: 'jakarta' },
-                            { label: 'Bogor', value: 'bogor' },
-                            { label: 'Depok', value: 'depok' },
-                            { label: 'Tangerang', value: 'tangerang' },
-                            { label: 'Bekasi', value: 'bekasi' },
+                    <PickerInput
+                        data={[
+                            { label: 'Jakarta', value: 'Jakarta' },
+                            { label: 'Bogor', value: 'Bogor' },
+                            { label: 'Depok', value: 'Depok' },
+                            { label: 'Tangerang', value: 'Tangerang' },
+                            { label: 'Bekasi', value: 'Bekasi' },
                         ]}
-                        defaultNull={nullChecker}
+                        defaultNull={!pressed1}
                         placeholder='Lokasi'
-                        containerStyle={{
-                            // width: normalize(350),
-                            // marginLeft: normalize(16),
-                            // marginBottom: normalize(34),
-                        }}
-                        dropDownStyle={{
-                            backgroundColor: '#FFFFFF'
-                        }}
-                        labelStyle={{
-                            width: 120,
-                            marginRight: 200,
-                            fontSize: 14,
-                            color: '#7F7F7F',
-                            fontFamily: 'Montserrat-SemiBold',
-                        }}
                         value={form.location}
-                        onChangeItem={value => setForm('location', value)}
+                        onChangeItem={({ value }) => {
+                            setForm('location', value);
+                            nullChecker1();
+                        }}
+                        overLabel='Lokasi'
                     />
                     <Gap height={34} />
                     <Input
@@ -157,6 +207,11 @@ const Add = ({ navigation }) => {
                         value={form.price.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1.")}
                         onChangeText={value => setForm('price', value.toString().replace(/\./g, ""))}
                         type='numeric'
+                        overLabel='Harga'
+                        errorInput={testError('price')}
+                        iconType="check"
+                        isShowIcon={testError('price').isChecked}
+                        onBlur={() => onBlurCheck('price')}
                     />
                     <Gap height={34} />
                     <Input
@@ -164,12 +219,19 @@ const Add = ({ navigation }) => {
                         value={form.kilometer.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1.")}
                         onChangeText={value => setForm('kilometer', value.toString().replace(/\./g, ""))}
                         type='numeric'
+                        overLabel='Kilometer'
+                        errorInput={testError('kilometer')}
+                        iconType="check"
+                        isShowIcon={testError('kilometer').isChecked}
+                        onBlur={() => onBlurCheck('kilometer')}
                     />
                     <Gap height={34} />
                     <Input
                         placeholder='Kode Referral'
                         value={form.ref_code}
                         onChangeText={value => setForm('ref_code', value)}
+                        overLabel='Kode Referral'
+                        iconType="check"
                     />
                     <Gap height={34} />
                     <View style={styles.txtInpDesc}>
@@ -184,22 +246,12 @@ const Add = ({ navigation }) => {
                     </View>
                     <Gap height={34} />
                 </View>
-                <View style={styles.btnNxtArea}>
-                    {/* <Button2
-                            onPress={onContinue}
-                            title="SELANJUTNYA"
-                        /> */}
-                    <TouchableOpacity
-                        style={[styles.btnNxt]}
-                        onPress={onContinue}
-                    // disabled={!enabled}
-                    >
-                        <Text style={styles.txtNxt}>
-                            SELANJUTNYA
-                        </Text>
-                    </TouchableOpacity>
-                </View>
-
+                <Button
+                    onPress={onContinue}
+                    areaStyle={{ backgroundColor: enabled ? '#0062CD' : '#B7B7B7' }}
+                    disabled={!enabled}
+                    title="SELANJUTNYA"
+                />
             </ScrollView>
         </View>
     );

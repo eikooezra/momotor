@@ -364,11 +364,10 @@ const DataCustomer = ({ navigation }) => {
                 <Gap height={34} />
                 <Button
                     onPress={onContinue}
-                    textStyle={{ color: isEnabled ? "#0064D0" : "#7F7F7F" }}
+                    areaStyle={{backgroundColor: isEnabled ? '#0062CD' : '#B7B7B7'}}
                     disabled={!isEnabled}
                     title="SELANJUTNYA"
                 />
-                <Gap height={18} />
             </ScrollView>
         </View>
     );

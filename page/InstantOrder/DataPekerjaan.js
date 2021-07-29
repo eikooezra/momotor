@@ -149,10 +149,9 @@ const DataPekerjaan = ({ navigation, route }) => {
             <Button
                 onPress={onContinue}
                 title="SELANJUTNYA"
-                textStyle={{ color: isEnabled ? "#0064D0" : "#7F7F7F" }}
+                areaStyle={{backgroundColor: isEnabled ? '#0062CD' : '#B7B7B7'}}
                 disabled={!isEnabled}
             />
-            <Gap height={22} />
         </View>
     );
 };
