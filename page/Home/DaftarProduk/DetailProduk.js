@@ -26,7 +26,7 @@ const DetailProduk = ({ navigation, route }) => {
             setProductDetail(Object.values(res.val()))
           }
         })
-        .catch(err => {
+        .catch(error => {
           const errorMessage = error.message
           showMessage({
             message: errorMessage,

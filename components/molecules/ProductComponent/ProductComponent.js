@@ -55,8 +55,27 @@ const ProductComponent = ({
 
         <View style={styles.content}>
 
-          <View style={styles.status}>
-            <Text style={styles.txtStatus}>{status}</Text>
+          <View style={[styles.status, 
+            {
+              backgroundColor: (status == 'Pending')
+                  ? '#FEF2E6'
+                  : (status == 'Unapproved')
+                      ? '#FBEBEB'
+                      : (status == 'Disembunyikan')
+                          ? '#B7B7B7'
+                          : '#EAF7EE'
+          },
+          ]}>
+            <Text style={[styles.txtStatus, {
+                                color: (status == 'Pending')
+                                    ? '#F78103'
+                                    : (status == 'Unapproved')
+                                        ? '#DD3434'
+                                        : (status == 'Disembunyikan')
+                                            ? '#FFFFFF'
+                                            : '#3CB13C'
+                            },
+                            ]}>{status}</Text>
           </View>
 
           <View style={styles.section}>
