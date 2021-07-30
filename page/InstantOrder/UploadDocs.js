@@ -221,12 +221,22 @@ const UploadDocs = ({ navigation, route }) => {
 
     const uploadData = () => {
         const newPostKey = Fire.database().ref().child('post').push().key
+        const randomKey1 = Math.floor(Math.random() * 90000) + 10000;
+        const randomKey2 = Math.floor(Math.random() * 90000) + 10000;
+        const id = 'UMCY' + randomKey1 + randomKey2
+        const newDate = new Date()
+        const date = newDate.toLocaleDateString('en-GB', {
+            day: '2-digit',
+            month: '2-digit',
+            year: 'numeric',
+        })
+        const time = newDate.getHours() + ':' + newDate.getMinutes()
         getData('user').then(res => {
             const uid = res.uid
             const data = {
                 uid: uid,
-                id: newPostKey,
-                date: new Date().getDate() + '/' + new Date().getMonth() + 1 + '/' + new Date().getFullYear(),
+                orderId: id,
+                date: date,
                 status: 'Proses Verifikasi'
             }
             const dataDokumen = {
@@ -243,70 +253,52 @@ const UploadDocs = ({ navigation, route }) => {
 
             Fire
                 .database()
-                .ref('order/' + uid + '/' + data.id + '/')
+                .ref('order/' + uid + '/' + data.orderId + '/')
                 .set(data)
 
             getData('dataCustomer').then(res => {
                 console.log('data cust: ', res)
                 Fire
                     .database()
-                    .ref('order/' + uid + '/' + data.id + '/data_customer/')
+                    .ref('order/' + uid + '/' + data.orderId + '/data_customer/')
                     .update(res)
+                showOrderSucceed({ custName: res.custName, orderId: data.orderId })
             })
             getData('dataPekerjaan').then(res => {
                 console.log('data job: ', res)
                 Fire
                     .database()
-                    .ref('order/' + uid + '/' + data.id + '/data_pekerjaan/')
+                    .ref('order/' + uid + '/' + data.orderId + '/data_pekerjaan/')
                     .update(res)
             })
             getData('dataMotor').then(res => {
                 console.log('data motor: ', res)
                 Fire
                     .database()
-                    .ref('order/' + uid + '/' + data.id + '/data_motor/')
+                    .ref('order/' + uid + '/' + data.orderId + '/data_motor/')
                     .update(res)
             })
             getData('dataKredit').then(res => {
                 console.log('data kredit: ', res)
                 Fire
                     .database()
-                    .ref('order/' + uid + '/' + data.id + '/data_kredit/')
+                    .ref('order/' + uid + '/' + data.orderId + '/data_kredit/')
                     .update(res)
             })
             Fire
                 .database()
-                .ref('order/' + uid + '/' + data.id + '/dokumen/')
+                .ref('order/' + uid + '/' + data.orderId + '/dokumen/')
                 .update(dataDokumen)
             console.log('dokumen: ', dataDokumen)
-        })
-    }
-
-    const uploadAndContinue = () => {
-        uploadData()
-        getData('user').then(res => {
-            const uid = res.uid
             getData('dataCustomer').then(res => {
-                const newDate = new Date()
-                const date = newDate.toLocaleDateString('en-GB', {
-                    day: '2-digit',
-                    month: '2-digit',
-                    year: 'numeric'
-                })
-                const hour = newDate.toLocaleDateString('en-GB', {
-                    hour: '2-digit',
-                    minute: '2-digit'
-                })
-                showOrderSucceed({ custName: res.custName })
-                console.log('name', res.custName)
-                const newPostKey = Fire.database().ref().child('post').push().key
+                showOrderSucceed({ custName: res.custName, orderId: data.orderId })
                 const notif = {
                     id: newPostKey,
                     title: 'Pesanan dengan nama ' + res.custName + ' berhasil diajukan',
-                    message: `Order ID 12345678910`,
+                    message: 'Order ID ' + data.orderId,
                     type: 'NewOrder',
                     date: date,
-                    hour: hour
+                    hour: time
 
                 }
                 Fire
@@ -314,8 +306,11 @@ const UploadDocs = ({ navigation, route }) => {
                     .ref('notification/' + uid + '/' + notif.id + '/')
                     .set(notif)
             })
-
         })
+    }
+
+    const uploadAndContinue = () => {
+        uploadData()
         navigation.navigate('DaftarPesanan')
     }
 

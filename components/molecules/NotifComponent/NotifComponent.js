@@ -8,7 +8,7 @@ import {
 } from 'react-native'
 import normalize from 'react-native-normalize'
 
-const NotifComponent = ({title, message, date}) => {
+const NotifComponent = ({title, message, date, hour}) => {
     return (
         <View>
             <View style={styles.notif}>
@@ -34,7 +34,7 @@ const NotifComponent = ({title, message, date}) => {
                             fontSize: normalize(12),
                             fontFamily: 'Montserrat-Medium'
                         }}>
-                            12:00
+                            {hour}
                         </Text>
 
                         <Text style={{

@@ -63,6 +63,9 @@ const Add = ({ navigation }) => {
 
     const onContinue = () => {
         const newPostKey = Fire.database().ref().child('post').push().key
+        const randomKey1 = Math.floor(Math.random()*90000) + 10000;
+        const randomKey2 = Math.floor(Math.random()*90000) + 10000;
+        const id = 'NMCY'+ randomKey1 + randomKey2
         const newDate = new Date()
         const date = newDate.toLocaleDateString('en-GB', {
             day: '2-digit',
@@ -107,7 +110,7 @@ const Add = ({ navigation }) => {
                 desc: form.desc,
                 kilometer: form.kilometer,
                 date: date,
-                id: newPostKey,
+                ProductId: id,
                 status: 'Pending',
                 prevStatus: 'Pending',
             }

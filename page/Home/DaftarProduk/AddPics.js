@@ -9,6 +9,7 @@ import normalize from 'react-native-normalize';
 import { Fire } from '../../../config';
 import { getData, storeData } from '../../../utils/localstorage/localstorage';
 import { Button } from '../../../components/components';
+import { ScrollView } from 'react-native-gesture-handler';
 
 const AddPics = ({ navigation, route }) => {
     const {
@@ -27,12 +28,12 @@ const AddPics = ({ navigation, route }) => {
     const [photoForDB3, setPhotoForDB3] = useState('')
     const [photoForDB4, setPhotoForDB4] = useState('')
     const [photoForDB5, setPhotoForDB5] = useState('')
-    const [photo, setPhoto] = useState(require('../../../assets/images/camLogo.png'))
-    const [photo1, setPhoto1] = useState(require('../../../assets/images/camLogo.png'))
-    const [photo2, setPhoto2] = useState(require('../../../assets/images/camLogo.png'))
-    const [photo3, setPhoto3] = useState(require('../../../assets/images/camLogo.png'))
-    const [photo4, setPhoto4] = useState(require('../../../assets/images/camLogo.png'))
-    const [photo5, setPhoto5] = useState(require('../../../assets/images/camLogo.png'))
+    const [photo, setPhoto] = useState(require('../../../assets/images/camLogoDepan.png'))
+    const [photo1, setPhoto1] = useState(require('../../../assets/images/camLogoKanan.png'))
+    const [photo2, setPhoto2] = useState(require('../../../assets/images/camLogoKiri.png'))
+    const [photo3, setPhoto3] = useState(require('../../../assets/images/camLogoBelakang.png'))
+    const [photo4, setPhoto4] = useState(require('../../../assets/images/camLogoSpeedo.png'))
+    const [photo5, setPhoto5] = useState(require('../../../assets/images/camLogoLainnya.png'))
 
     const getImage = () => {
         launchImageLibrary(
@@ -615,12 +616,21 @@ const AddPics = ({ navigation, route }) => {
                 </TouchableOpacity>
             </View>
 
-            <Button
-                onPress={uploadAndContinue}
-                areaStyle={{ backgroundColor: enabled ? '#0062CD' : '#B7B7B7' }}
-                disabled={!enabled}
-                title="SELANJUTNYA"
-            />
+            <View style={styles.btnNxtArea}>
+                <TouchableOpacity
+                    style={[styles.btnNxt, {
+                        backgroundColor: (enabled)
+                            ? '#0062CD'
+                            : '#B7B7B7'
+                    }]}
+                    onPress={uploadAndContinue}
+                    disabled={!enabled}
+                >
+                    <Text style={styles.txtNxt}>
+                        SELANJUTNYA
+                    </Text>
+                </TouchableOpacity>
+            </View>
 
             <BottomSheet
                 ref={sheetRef}

@@ -48,7 +48,7 @@ const ChangePass = ({ navigation }) => {
             }).catch((error) => {
                 const errorMessage = error.message
                 showMessage({
-                    message: errorMessage,
+                    message: 'kata sandi anda salah',
                     type: 'default',
                     backgroundColor: '#E06379',
                     color: '#FFFFFF',
@@ -58,7 +58,7 @@ const ChangePass = ({ navigation }) => {
         }).catch((error) => {
             const errorMessage = error.message
             showMessage({
-                message: errorMessage,
+                message: 'kata sandi anda salah',
                 type: 'default',
                 backgroundColor: '#E06379',
                 color: '#FFFFFF',

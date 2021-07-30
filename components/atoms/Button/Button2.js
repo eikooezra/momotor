@@ -2,10 +2,11 @@ import React from 'react';
 import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
 import normalize from 'react-native-normalize';
 
-const Button2 = ({ title, onPress, type}) => {
+const Button2 = ({ title, onPress, type, areaStyle, disabled }) => {
     return (
-        <TouchableOpacity 
-            style={styles.btn}
+        <TouchableOpacity
+            style={[styles.btn, areaStyle]}
+            disabled={disabled}
             onPress={onPress}>
             <Text style={styles.title}>{title}</Text>
         </TouchableOpacity>

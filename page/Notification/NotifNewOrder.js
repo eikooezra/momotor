@@ -93,6 +93,7 @@ const Notification = ({ navigation }) => {
                   title={item.title}
                   message={item.message}
                   date={item.date}
+                  hour={item.hour}
                 />
 
               )

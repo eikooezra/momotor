@@ -199,7 +199,7 @@ const DataKredit = ({ navigation, route }) => {
                         value={form.tenor}
                         onChangeItem={({ value }) => setForm("tenor", value)}
                     />
-                    <Gap height={10} />
+                    <Gap height={150} />
                 </View>
             </ScrollView>
             <Button

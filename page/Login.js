@@ -55,7 +55,7 @@ const Login = ({ navigation }) => {
 
     }
 
-    const enabled = 
+    const enabled =
         form.email !== '' &&
         form.password !== ''
 
@@ -125,6 +125,8 @@ const Login = ({ navigation }) => {
                         <Button2
                             onPress={login}
                             title='MASUK'
+                            areaStyle={{ backgroundColor: enabled ? '#0062CD' : '#B7B7B7' }}
+                            disabled={!enabled}
                         />
                     </View>
 

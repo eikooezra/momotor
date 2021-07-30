@@ -19,7 +19,7 @@ const Verification = ({ navigation }) => {
         getData('user').then(res => {
             const uid = res.uid
             getData('product').then(res => {
-                const id = res.id
+                const id = res.ProductId
                 console.log('dataProd', res)
                 Fire
                     .database()

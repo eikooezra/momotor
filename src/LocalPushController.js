@@ -22,11 +22,11 @@ const showAdApproved = () => {
 }
 
 // pesanan baru
-const showOrderSucceed = ({custName}) => {
+const showOrderSucceed = ({custName, orderId}) => {
     PushNotification.localNotification({
         channelId: "dealer-id",
         title: `Pesanan dengan nama ${custName} berhasil diajukan`,
-        message: `Order ID 12345678910`,
+        message: `Order ID ${orderId}`,
     })
 }
 

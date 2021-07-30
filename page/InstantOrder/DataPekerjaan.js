@@ -132,10 +132,11 @@ const DataPekerjaan = ({ navigation, route }) => {
                     iconType="check"
                     isShowIcon={testError("salary").isChecked}
                     onBlur={() => onBlurCheck("salary")}
+                    type="numeric"
                 />
                 <Gap height={34} />
                 <Input
-                    placeholder="Lama Bekerja"
+                    placeholder="Lama Bekerja (Tahun/bulan)"
                     value={form.workDuration}
                     onChangeText={(value) => setForm("workDuration", value)}
                     overLabel="Lama Bekerja"
@@ -143,6 +144,7 @@ const DataPekerjaan = ({ navigation, route }) => {
                     iconType="check"
                     isShowIcon={testError("workDuration").isChecked}
                     onBlur={() => onBlurCheck("workDuration")}
+                    type="numeric"
                 />
                 <Gap height={34} />
             </ScrollView>
