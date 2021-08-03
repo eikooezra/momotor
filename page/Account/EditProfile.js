@@ -13,6 +13,7 @@ import { TextInput } from 'react-native-gesture-handler'
 import normalize from 'react-native-normalize'
 import { Fire } from '../../config'
 import { getData, storeData } from '../../utils/localstorage/localstorage'
+import { showMessage, hideMessage } from "react-native-flash-message";
 import { useForm } from '../../utils/utils'
 
 const EditProfile = ({ navigation, route }) => {
@@ -40,7 +41,12 @@ const EditProfile = ({ navigation, route }) => {
                     console.log('success: ', data)
                     storeData('user', data)
                     navigation.navigate('Account')
-                    alert('Data berhasil diubah!')
+                    showMessage({
+                        message: 'Data berhasil diubah',
+                        type: 'default',
+                        backgroundColor: '#20b53e',
+                        color: '#FFFFFF',
+                    })
                 })
                 .catch(err => {
                     console.log('error: ', err)

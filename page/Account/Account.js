@@ -131,7 +131,7 @@ const Account = ({ navigation, route }) => {
         </TouchableOpacity>
 
         <Text style={styles.txtVer}>
-          App version 0.0
+          App version 1.0
       </Text>
       </View>
 
