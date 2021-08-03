@@ -5,5 +5,14 @@ import ProductComponent from './ProductComponent/ProductComponent'
 import OrderComponent from './OrderComponent/OrderComponent'
 import NewestOrderComponent from './NewestOrderComponent/NewestOrderComponent'
 import NotifComponent from './NotifComponent/NotifComponent';
-
-export { Header, ProductItem, OrderItem, ProductComponent, OrderComponent, NewestOrderComponent, NotifComponent};
+import UserComponent from './UserComponent/UserComponent';
+export { 
+    Header, 
+    ProductItem, 
+    OrderItem, 
+    ProductComponent, 
+    OrderComponent, 
+    NewestOrderComponent, 
+    NotifComponent, 
+    UserComponent
+};

@@ -1,86 +1,158 @@
-import React, { useState } from 'react'
-import { useEffect } from 'react'
+import React, { useState, useEffect, useCallback } from "react";
+import { } from "react";
 import {
   StyleSheet,
   TouchableOpacity,
   View,
   Text,
   Image,
-} from 'react-native'
-import normalize from 'react-native-normalize'
-import { getData } from '../../utils/localstorage/localstorage'
+  ScrollView,
+  StatusBar,
+  ImageBackground,
+  RefreshControl,
+  ActivityIndicator,
+  Dimensions,
+} from "react-native";
+import normalize from "react-native-normalize";
+import { Gap, NewestOrderComponent, UserComponent } from "../../components/components";
+import { Fire } from "../../config";
+import { getData } from "../../utils/localstorage/localstorage";
+import messaging from "@react-native-firebase/messaging";
+
+const { height } = Dimensions.get("window");
 
 const Account = ({ navigation, route }) => {
-  // const {fullName, phoneNo, address} = route.params;
-  const [profile, setProfile] = useState({
-    fullName: '',
-    phoneNo: '',
-    address: '',
-  })
+  const [user, setUser] = useState([])
+  const [refreshing, setRefreshing] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [userProfile, setUserProfile] = useState({});
+
+  const onRefresh = useCallback(() => {
+    setRefreshing(true);
+    saveToken();
+    getData('user').then(res => {
+      console.log('uid', res.uid)
+      Fire.database()
+        .ref('users/')
+        .orderByChild('uid')
+        .equalTo(res.uid)
+        .once('value')
+        .then(res => {
+          console.log('data: ', res.val())
+          if (res.val()) {
+            console.log('a', Object.values(res.val()))
+            setUser(Object.values(res.val()))
+          }
+        })
+        .catch(err => {
+          const errorMessage = err.message
+          showMessage({
+            message: errorMessage,
+            type: 'default',
+            backgroundColor: '#E06379',
+            color: '#FFFFFF'
+          })
+          console.log('error: ', err)
+        })
+        .finally(() => setRefreshing(false));
+    });
+  }, [userProfile]);
+
+  const saveToken = async () => {
+    const token = await messaging().getToken();
+    if (userProfile.uid)
+      Fire.database()
+        .ref(`users/${userProfile.uid}`)
+        .update({ token });
+  };
+
+  const getUid = () => {
+    setIsLoading(true);
+    getData("user").then((res) => {
+      const uid = res.uid;
+      setUserProfile(res);
+      getData('user').then(res => {
+        console.log('uid', res.uid)
+        Fire.database()
+          .ref('users/')
+          .orderByChild('uid')
+          .equalTo(res.uid)
+          .once('value')
+          .then(res => {
+            console.log('data: ', res.val())
+            if (res.val()) {
+              console.log('a', Object.values(res.val()))
+              setUser(Object.values(res.val()))
+            }
+          })
+          .catch(err => {
+            const errorMessage = err.message
+            showMessage({
+              message: errorMessage,
+              type: 'default',
+              backgroundColor: '#E06379',
+              color: '#FFFFFF'
+            })
+            console.log('error: ', err)
+          })
+      })
+        .finally(() => setIsLoading(false));
+    });
+  };
 
   useEffect(() => {
-    getData('user').then(res => {
-      // const data = res
-      // console.log('new profile: ', res.uid)
-      setProfile(res)
+    getUid();
+  }, [])
 
-    })
-  })
+  useEffect(() => {
+    saveToken();
+  }, [userProfile]);
+
   return (
     <View style={styles.container}>
-      <View style={styles.Header}>
-        <View style={styles.insideHeader}>
-          <Image
-            style={styles.momotor}
-            source={require('../../assets/images/Momotor.id.png')}
-          />
-
-          <TouchableOpacity
-            onPress={() => navigation.navigate('Settings')}
-          >
+      <ScrollView
+        refreshControl={
+          <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+        }
+      >
+        <View style={styles.Header}>
+          <View style={styles.insideHeader}>
             <Image
-              style={styles.btnSettings}
-              source={require('../../assets/images/settings.png')}
+              style={styles.momotor}
+              source={require('../../assets/images/Momotor.id.png')}
             />
-          </TouchableOpacity>
-        </View>
-        <View style={styles.upperBar}>
-          <Image
-            style={styles.dealerLogo}
-            source={require('../../assets/images/dealer1.png')}
-          />
 
-          <View style={styles.infoArea}>
-            <Text style={styles.name}>
-              {profile.fullName}
-            </Text>
-
-            <Text style={styles.phone}>
-              {profile.phoneNo}
-            </Text>
-
-            <View style={styles.address}>
+            <TouchableOpacity
+              onPress={() => navigation.navigate('Settings')}
+            >
               <Image
-                style={styles.imgLoc}
-                source={require('../../assets/images/location.png')}
+                style={styles.btnSettings}
+                source={require('../../assets/images/settings.png')}
               />
-
-              <Text style={styles.txtAddress}>
-                {profile.address}
-              </Text>
-            </View>
+            </TouchableOpacity>
           </View>
 
-          <TouchableOpacity
-            onPress={() => navigation.navigate('EditProfile', profile)}
-          >
-            <Image
-              style={styles.btnEdit}
-              source={require('../../assets/images/edit.png')}
-            />
-          </TouchableOpacity>
+          {isLoading ? (
+            <View style={styles.loadingCont}>
+              <ActivityIndicator size="large" color="#0064D0" />
+            </View>
+          ) : (
+            <>
+              {user.map(item => {
+                return (
+                  <UserComponent
+                    key={item.uid}
+                    name={item.fullName}
+                    phoneNo={item.phoneNo}
+                    address={item.address}
+                    onPressEdit={() => navigation.navigate('EditProfile', item)}
+                  />
+                )
+              })}
+            </>
+          )}
         </View>
-      </View>
+      </ScrollView>
 
       <View style={styles.middle}>
         <TouchableOpacity style={styles.btnAbout}
@@ -93,7 +165,7 @@ const Account = ({ navigation, route }) => {
 
           <Text style={styles.txtAbout}>
             Tentang Kami
-        </Text>
+          </Text>
         </TouchableOpacity>
 
         <TouchableOpacity style={styles.btnPrivacy}
@@ -106,7 +178,7 @@ const Account = ({ navigation, route }) => {
 
           <Text style={styles.txtPrivacy}>
             Kebijakan Privasi
-        </Text>
+          </Text>
         </TouchableOpacity>
 
         <TouchableOpacity style={styles.btnFaq}
@@ -119,7 +191,7 @@ const Account = ({ navigation, route }) => {
 
           <Text style={styles.txtFaq}>
             Pertanyaan Umum
-        </Text>
+          </Text>
         </TouchableOpacity>
 
         <TouchableOpacity
@@ -127,15 +199,14 @@ const Account = ({ navigation, route }) => {
         >
           <Text style={styles.txtKeluar}>
             Keluar
-        </Text>
+          </Text>
         </TouchableOpacity>
 
         <Text style={styles.txtVer}>
           App version 1.0
-      </Text>
+        </Text>
+        <Gap height={200} />
       </View>
-
-
     </View>
   )
 }
@@ -144,7 +215,7 @@ export default Account
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    // flex: 1,
     backgroundColor: '#FFFFFF'
   },
 
@@ -176,70 +247,8 @@ const styles = StyleSheet.create({
     marginTop: normalize(40),
   },
 
-  upperBar: {
-    height: normalize(120),
-    borderRadius: 10,
-    marginLeft: normalize(16),
-    marginRight: normalize(16),
-    elevation: 5,
-    backgroundColor: '#FFFFFF',
-    justifyContent: 'space-between',
-    flexDirection: 'row'
-  },
-
-  dealerLogo: {
-    width: normalize(84),
-    height: normalize(84),
-    marginTop: normalize(16),
-    marginBottom: normalize(41),
-    marginLeft: normalize(20)
-  },
-
-  infoArea: {
-    marginLeft: normalize(10)
-  },
-
-  name: {
-    width: normalize(174),
-    height: normalize(20),
-    marginTop: normalize(16),
-    marginBottom: normalize(8),
-    fontSize: normalize(16),
-    fontFamily: 'Montserrat-SemiBold'
-  },
-
-  phone: {
-    width: normalize(116),
-    height: normalize(18),
-    marginBottom: normalize(8),
-    fontSize: normalize(14),
-    fontFamily: 'Montserrat-Medium'
-  },
-
-  address: {
-    flexDirection: 'row'
-  },
-
-  imgLoc: {
-    width: normalize(10),
-    height: normalize(13)
-  },
-
-  txtAddress: {
-    width: normalize(170),
-    height: normalize(40),
-    fontSize: normalize(12),
-    marginLeft: normalize(9),
-    color: '#7F7F7F',
-    fontFamily: 'Montserrat-Medium'
-  },
-
-  btnEdit: {
-    width: normalize(34),
-    height: normalize(34),
-    marginTop: normalize(6),
-    marginBottom: normalize(91),
-    marginRight: normalize(7),
+  middle: {
+    height: normalize(-50)
   },
 
   btnAbout: {

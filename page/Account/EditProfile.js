@@ -40,7 +40,7 @@ const EditProfile = ({ navigation, route }) => {
                 .then(data => {
                     console.log('success: ', data)
                     storeData('user', data)
-                    navigation.navigate('Account')
+                    navigation.navigate('Home', data)
                     showMessage({
                         message: 'Data berhasil diubah',
                         type: 'default',
