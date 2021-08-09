@@ -203,7 +203,7 @@ const Account = ({ navigation, route }) => {
         </TouchableOpacity>
 
         <Text style={styles.txtVer}>
-          App version 1.0
+          App version 0.1
         </Text>
         <Gap height={200} />
       </View>

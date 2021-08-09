@@ -44,7 +44,7 @@ const AddPics = ({ navigation, route }) => {
                 setPhotoForDB(`data:${response.type};base64, ${response.base64}`)
                 setPhoto(source)
                 if (response.didCancel) {
-                    setPhoto(require('../../../assets/images/camLogo.png'))
+                    setPhoto(require('../../../assets/images/camLogoDepan.png'))
                 }
             })
     }
@@ -58,7 +58,7 @@ const AddPics = ({ navigation, route }) => {
                 setPhotoForDB(`data:${response.type};base64, ${response.base64}`)
                 setPhoto(source)
                 if (response.didCancel) {
-                    setPhoto(require('../../../assets/images/camLogo.png'))
+                    setPhoto(require('../../../assets/images/camLogoDepan.png'))
                 }
             })
     }
@@ -72,7 +72,7 @@ const AddPics = ({ navigation, route }) => {
                 setPhotoForDB1(`data:${response.type};base64, ${response.base64}`)
                 setPhoto1(source)
                 if (response.didCancel) {
-                    setPhoto1(require('../../../assets/images/camLogo.png'))
+                    setPhoto1(require('../../../assets/images/camLogoKanan.png'))
                 }
             })
     }
@@ -86,7 +86,7 @@ const AddPics = ({ navigation, route }) => {
                 setPhotoForDB1(`data:${response.type};base64, ${response.base64}`)
                 setPhoto1(source)
                 if (response.didCancel) {
-                    setPhoto1(require('../../../assets/images/camLogo.png'))
+                    setPhoto1(require('../../../assets/images/camLogoKanan.png'))
                 }
             })
     }
@@ -100,7 +100,7 @@ const AddPics = ({ navigation, route }) => {
                 setPhotoForDB2(`data:${response.type};base64, ${response.base64}`)
                 setPhoto2(source)
                 if (response.didCancel) {
-                    setPhoto2(require('../../../assets/images/camLogo.png'))
+                    setPhoto2(require('../../../assets/images/camLogoKiri.png'))
                 }
             })
     }
@@ -114,7 +114,7 @@ const AddPics = ({ navigation, route }) => {
                 setPhotoForDB2(`data:${response.type};base64, ${response.base64}`)
                 setPhoto2(source)
                 if (response.didCancel) {
-                    setPhoto2(require('../../../assets/images/camLogo.png'))
+                    setPhoto2(require('../../../assets/images/camLogoKiri.png'))
                 }
             })
     }
@@ -128,7 +128,7 @@ const AddPics = ({ navigation, route }) => {
                 setPhotoForDB3(`data:${response.type};base64, ${response.base64}`)
                 setPhoto3(source)
                 if (response.didCancel) {
-                    setPhoto3(require('../../../assets/images/camLogo.png'))
+                    setPhoto3(require('../../../assets/images/camLogoBelakang.png'))
                 }
             })
     }
@@ -142,7 +142,7 @@ const AddPics = ({ navigation, route }) => {
                 setPhotoForDB3(`data:${response.type};base64, ${response.base64}`)
                 setPhoto3(source)
                 if (response.didCancel) {
-                    setPhoto3(require('../../../assets/images/camLogo.png'))
+                    setPhoto3(require('../../../assets/images/camLogoBelakang.png'))
                 }
             })
     }
@@ -156,7 +156,7 @@ const AddPics = ({ navigation, route }) => {
                 setPhotoForDB4(`data:${response.type};base64, ${response.base64}`)
                 setPhoto4(source)
                 if (response.didCancel) {
-                    setPhoto4(require('../../../assets/images/camLogo.png'))
+                    setPhoto4(require('../../../assets/images/camLogoSpeedo.png'))
                 }
             })
     }
@@ -170,7 +170,7 @@ const AddPics = ({ navigation, route }) => {
                 setPhotoForDB4(`data:${response.type};base64, ${response.base64}`)
                 setPhoto4(source)
                 if (response.didCancel) {
-                    setPhoto4(require('../../../assets/images/camLogo.png'))
+                    setPhoto4(require('../../../assets/images/camLogoSpeedo.png'))
                 }
             })
     }
@@ -184,7 +184,7 @@ const AddPics = ({ navigation, route }) => {
                 setPhotoForDB5(`data:${response.type};base64, ${response.base64}`)
                 setPhoto5(source)
                 if (response.didCancel) {
-                    setPhoto5(require('../../../assets/images/camLogo.png'))
+                    setPhoto5(require('../../../assets/images/camLogoLainnya.png'))
                 }
             })
     }
@@ -198,7 +198,7 @@ const AddPics = ({ navigation, route }) => {
                 setPhotoForDB5(`data:${response.type};base64, ${response.base64}`)
                 setPhoto5(source)
                 if (response.didCancel) {
-                    setPhoto5(require('../../../assets/images/camLogo.png'))
+                    setPhoto5(require('../../../assets/images/camLogoLainnya.png'))
                 }
             })
     }

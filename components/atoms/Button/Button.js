@@ -34,9 +34,8 @@ const styles = StyleSheet.create({
     title: {
         // width: normalize(125),
         // height: normalize(20),
-        // marginTop: normalize(250),
-        // marginLeft: normalize(135),
-        textAlign: "center",
+        marginTop: normalize(20),
+        marginLeft: normalize(160),
         fontSize: normalize(16),
         fontFamily: "Montserrat-SemiBold",
         color: "#FFFFFF",
@@ -49,8 +48,6 @@ const styles = StyleSheet.create({
     },
 
     btnNxt: {
-        paddingVertical: 15,
-        paddingHorizontal: 127,
         width: normalize(420),
         height: normalize(58),
         backgroundColor: '#0064D0'
