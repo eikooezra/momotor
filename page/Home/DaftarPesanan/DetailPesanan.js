@@ -8,7 +8,7 @@ const DetailPesanan = ({ navigation, route }) => {
     const detail = route.params
     const [orderDetail, setOrderDetail] = useState([])
     useEffect(() => {
-        getDetailById(detail.id)
+        getDetailById(detail.orderId)
     }, [])
 
     const getDetailById = (id) => {
@@ -16,7 +16,7 @@ const DetailPesanan = ({ navigation, route }) => {
         getData('user').then(res => {
             Fire.database()
                 .ref('order/' + res.uid + '/')
-                .orderByChild('id')
+                .orderByChild('orderId')
                 .equalTo(id)
                 .once('value')
                 .then(res => {
@@ -60,8 +60,8 @@ const DetailPesanan = ({ navigation, route }) => {
                         dp={item.data_kredit.dp.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1.")}
                         cicilan={item.data_kredit.cicilan.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1.")}
                         name={item.data_customer.custName}
-                        kode={'123456'}
-                        ref_code={'KJJVPOS'}
+                        kode={item.orderId}
+                        ref_code={item.data_motor.ref_code}
                         tenor={item.data_kredit.tenor}
                         date={item.date}
                     />

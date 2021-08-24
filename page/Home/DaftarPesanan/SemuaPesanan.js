@@ -72,25 +72,6 @@ const SemuaPesanan = ({ navigation }) => {
     useEffect(() => {
         saveToken();
     }, [userProfile]);
-
-    // useEffect(() => {
-    //     getData('user').then(res => {
-    //         const uid = res.uid
-    //         Fire.database()
-    //             .ref('order/' + uid + '/')
-    //             .orderByKey()
-    //             .once('value')
-    //             .then(res => {
-    //                 console.log('data: ', res.val())
-    //                 if (res.val()) {
-    //                     setOrder(Object.values(res.val()))
-    //                 }
-    //             })
-    //             .catch(err => {
-    //                 console.log('error: ', err)
-    //             })
-    //     })
-    // }, [])
     return (
         <View style={styles.container}>
             <ScrollView
@@ -108,7 +89,7 @@ const SemuaPesanan = ({ navigation }) => {
                         {order.map(item => {
                             return (
                                 <OrderItem
-                                    key={item.id}
+                                    key={item.orderId}
                                     image={item.data_motor.images.image}
                                     name={item.data_customer.custName}
                                     product={item.data_motor.product}

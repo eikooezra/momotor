@@ -69,7 +69,7 @@ const DataMotor = ({ navigation, route }) => {
     const [selectedYear, setSelectedYear] = useState();
     const [selectedId, setSelectedId] = useState();
     const [selectedImages, setSelectedImages] = useState();
-    const [selectedValues, setSelectedValues] = useState([]);
+    const [selectedRefCode, setSelectedRefCode] = useState([]);
 
     const [formError, setFormError] = useState([]);
 
@@ -124,6 +124,7 @@ const DataMotor = ({ navigation, route }) => {
         setSelectedPrice(item.price);
         setSelectedYear(item.year);
         setSelectedImages(item.images);
+        setSelectedRefCode(item.ref_code)
     };
 
     const searchData = useMemo(() => {
