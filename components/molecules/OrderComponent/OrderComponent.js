@@ -55,8 +55,22 @@ const ProductComponent = ({
 
                 <View style={styles.content}>
 
-                    <View style={styles.status}>
-                        <Text style={styles.txtStatus}>{status}</Text>
+                    <View style={[styles.status, {
+                        backgroundColor: (status == 'Disetujui')
+                            ? '#EAF7EE'
+                            : (status == 'Ditolak')
+                                ? '#FBEBEB'
+                                : '#FEF2E6'
+                    }]}>
+                        <Text style={[styles.txtStatus, {
+                            color: (status == 'Disetujui')
+                                ? '#3CB13C'
+                                : (status == 'Ditolak')
+                                    ? '#DD3434'
+                                    : '#F78103'
+                        }]}>
+                            {status}
+                        </Text>
                     </View>
 
                     <View style={styles.section}>

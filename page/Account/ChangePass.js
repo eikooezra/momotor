@@ -14,6 +14,7 @@ import normalize from 'react-native-normalize'
 import { showMessage, hideMessage } from "react-native-flash-message";
 import { useForm } from '../../utils/utils'
 import { Fire } from '../../config'
+import { getData } from '../../utils/localstorage/localstorage';
 
 const ChangePass = ({ navigation }) => {
     const [showPass, setShowPass] = useState(true)
@@ -35,6 +36,14 @@ const ChangePass = ({ navigation }) => {
     }
 
     const onChangePass = () => {
+        const newPostKey = Fire.database().ref().child('post').push().key
+        const newDate = new Date()
+        const date = newDate.toLocaleDateString('en-GB', {
+            day: '2-digit',
+            month: '2-digit',
+            year: 'numeric',
+        })
+        const time = newDate.getHours() + ':' + newDate.getMinutes()
         reauthenticate(form.currPass).then(() => {
             const user = Fire.auth().currentUser
             user.updatePassword(form.newPass).then(() => {
@@ -65,6 +74,21 @@ const ChangePass = ({ navigation }) => {
             })
         })
 
+        getData('user').then(res => {
+            const uid = res.uid
+            const notif = {
+                id: newPostKey,
+                title: 'Kata Sandi telah berhasil diubah',
+                message: 'User ID ' + uid,
+                type: 'Activity',
+                date: date,
+                hour: time
+            }
+            Fire
+                .database()
+                .ref('notification/' + uid + '/' + notif.id + '/')
+                .set(notif)
+        })
     }
     const enabled =
         form.currPass !== '' &&

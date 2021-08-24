@@ -23,6 +23,8 @@ const Notification = ({ navigation }) => {
       const uid = res.uid;
       Fire.database()
         .ref("notification/" + uid + "/")
+        .orderByChild('type')
+        .equalTo('NewOrder')
         .once("value")
         .then((res) => {
           if (res.val()) {
@@ -51,6 +53,8 @@ const Notification = ({ navigation }) => {
       setUserProfile(res);
       Fire.database()
         .ref("notification/" + uid + "/")
+        .orderByChild('type')
+        .equalTo('NewOrder')
         .once("value")
         .then((res) => {
           if (res.val()) {

@@ -86,6 +86,8 @@ const DataMotor = ({ navigation, route }) => {
             const uid = res.uid;
             Fire.database()
                 .ref("product/" + uid + "/")
+                .orderByChild('status')
+                .equalTo('Approved')
                 .once("value")
                 .then((res) => {
                     if (res.val()) {
@@ -152,6 +154,7 @@ const DataMotor = ({ navigation, route }) => {
     };
 
     const onProcess = (data) => {
+        console.log('data motor: ', data)
         storeData("dataMotor", data);
         navigation.navigate("DataKredit", data);
     };
@@ -180,6 +183,7 @@ const DataMotor = ({ navigation, route }) => {
             year: selectedYear,
             price: selectedPrice,
             images: selectedImages,
+            ref_code: selectedRefCode
         };
         onProcess(data);
     };
@@ -251,7 +255,7 @@ const DataMotor = ({ navigation, route }) => {
                             <Gap height={34} />
                             <Input
                                 placeholder="Harga"
-                                value={selectedPrice}
+                                value={selectedPrice?.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1.")}
                                 onChangeText={(text) => setSelectedPrice(text)}
                                 disable
                                 overLabel="Harga"
@@ -264,7 +268,7 @@ const DataMotor = ({ navigation, route }) => {
             <Button
                 onPress={onContinue}
                 title="SELANJUTNYA"
-                areaStyle={{backgroundColor: isEnabled ? '#0062CD' : '#B7B7B7'}}
+                areaStyle={{ backgroundColor: isEnabled ? '#0062CD' : '#B7B7B7' }}
                 disabled={!isEnabled}
             />
         </View>
