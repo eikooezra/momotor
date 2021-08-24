@@ -9,9 +9,9 @@ import { getData, storeData } from '../../../utils/localstorage/localstorage';
 import { useForm } from '../../../utils/utils';
 
 const EditProduct = ({ navigation, route }) => {
-    const { id, name, year, location, price, ref_code, kilometer, desc, images } = route.params
+    const { ProductId, name, year, location, price, ref_code, kilometer, desc, images } = route.params
     const [product, setProduct] = useState({
-        id,
+        ProductId,
         name,
         year,
         location,
@@ -46,6 +46,7 @@ const EditProduct = ({ navigation, route }) => {
             year: 'numeric'
         })
         getData('user').then(res => {
+            console.log('old data: ', product)
             const data = {
                 name: product.name,
                 year: product.year.value,
@@ -55,7 +56,7 @@ const EditProduct = ({ navigation, route }) => {
                 desc: product.desc,
                 kilometer: product.kilometer,
                 date: date,
-                id: product.id,
+                ProductId: product.ProductId,
                 status: 'Pending',
                 images: product.images
             }
