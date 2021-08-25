@@ -133,7 +133,7 @@ const SemuaProduk = ({ navigation }) => {
                         {product.map(item => {
                             return (
                                 <ProductItem
-                                    key={item.id}
+                                    key={item.ProductId}
                                     date={item.date}
                                     name={item.name}
                                     kilometer={item.kilometer.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1.") + ' KM'}
@@ -145,8 +145,8 @@ const SemuaProduk = ({ navigation }) => {
                                     onPress={() => navigation.navigate('DetailProduk', item)}
                                     onPressEdit={() => navigation.navigate('EditProduct', item)}
                                     onPressDelete={() => deleteData(item.id)}
-                                    onPressHide={() => hideProd(item.id)}
-                                    onPressUnhide={() => unhideProd(item.id, item.prevStatus)}
+                                    onPressHide={() => hideProd(item.ProductId)}
+                                    onPressUnhide={() => unhideProd(item.ProductId, item.prevStatus)}
                                 />
                             )
                         })}

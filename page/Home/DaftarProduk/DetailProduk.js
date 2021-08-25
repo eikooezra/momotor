@@ -8,15 +8,16 @@ const DetailProduk = ({ navigation, route }) => {
   const detail = route.params
   const [productDetail, setProductDetail] = useState([])
   useEffect(() => {
-    getDetailById(detail.id)
+    getDetailById(detail.ProductId)
   }, [])
 
   const getDetailById = (id) => {
     console.log('all data :',detail)
+    console.log('id', id)
     getData('user').then(res => {
       Fire.database()
         .ref('product/' + res.uid + '/')
-        .orderByChild('id')
+        .orderByChild('ProductId')
         .equalTo(id)
         .once('value')
         .then(res => {

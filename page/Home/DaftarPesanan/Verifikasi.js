@@ -1,21 +1,27 @@
-import React, { Component, useEffect, useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react';
 import {
-    StyleSheet,
-    Image,
-    ScrollView,
-    View,
-    Text,
-    TouchableOpacity
-} from 'react-native'
+    ActivityIndicator,
+    Dimensions, RefreshControl, ScrollView, StyleSheet, View
+} from 'react-native';
 import normalize from 'react-native-normalize';
 import { OrderItem } from '../../../components/components';
 import { Fire } from '../../../config';
 import { getData } from '../../../utils/localstorage/localstorage';
+import messaging from "@react-native-firebase/messaging";
+
+const { height } = Dimensions.get("window");
 
 const Verifikasi = ({ navigation }) => {
     const [order, setOrder] = useState([])
-    useEffect(() => {
-        getData('user').then(res => {
+    const [refreshing, setRefreshing] = useState(false);
+    const [isLoading, setIsLoading] = useState(false);
+    const [userProfile, setUserProfile] = useState({});
+
+    const onRefresh = useCallback(() => {
+        setRefreshing(true);
+        saveToken();
+        getData("user").then((res) => {
+            const uid = res.uid;
             Fire.database()
                 .ref('order/' + res.uid + '/')
                 .orderByChild('status')
@@ -27,28 +33,80 @@ const Verifikasi = ({ navigation }) => {
                         setOrder(Object.values(res.val()))
                     }
                 })
-                .catch(err => {
-                    console.log('error: ', err)
+                .catch((err) => {
+                    console.log("error: ", err);
                 })
+                .finally(() => setRefreshing(false));
+        });
+    }, [userProfile]);
 
-        })
-    }, [])
+    const saveToken = async () => {
+        const token = await messaging().getToken();
+        if (userProfile.uid)
+            Fire.database()
+                .ref(`users/${userProfile.uid}`)
+                .update({ token });
+    };
+
+    const getUid = () => {
+        setIsLoading(true);
+        getData("user").then((res) => {
+            const uid = res.uid;
+            setUserProfile(res);
+            Fire.database()
+                .ref('order/' + res.uid + '/')
+                .orderByChild('status')
+                .equalTo('Proses Verifikasi')
+                .once('value')
+                .then(res => {
+                    console.log('data: ', res.val())
+                    if (res.val()) {
+                        setOrder(Object.values(res.val()))
+                    }
+                })
+                .catch((err) => {
+                    console.log("error: ", err);
+                })
+                .finally(() => setIsLoading(false));
+        });
+    };
+
+    useEffect(() => {
+        getUid();
+    }, []);
+
+    useEffect(() => {
+        saveToken();
+    }, [userProfile]);
     return (
         <View style={styles.container}>
-            <ScrollView>
-                {order.map(item => {
-                    return (
-                        <OrderItem
-                            key={item.id}
-                            image={item.data_motor.images.image}
-                            name={item.data_customer.custName}
-                            product={item.data_motor.product}
-                            date={item.date}
-                            status={item.status}
-                            onPress={() => navigation.navigate('DetailPesanan', item)}
-                        />
-                    )
-                })}
+            <ScrollView
+                style={styles.scrollContainer}
+                refreshControl={
+                    <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+                }
+            >
+                {isLoading ? (
+                    <View style={styles.loadingCont}>
+                        <ActivityIndicator size="large" color="#0064D0" />
+                    </View>
+                ) : (
+                    <>
+                        {order.map(item => {
+                            return (
+                                <OrderItem
+                                    key={item.orderId}
+                                    image={item.data_motor.images.image}
+                                    name={item.data_customer.custName}
+                                    product={item.data_motor.product}
+                                    date={item.date}
+                                    status={item.status}
+                                    onPress={() => navigation.navigate('DetailPesanan', item)}
+                                />
+                            )
+                        })}
+                    </>
+                )}
             </ScrollView>
         </View>
     )
